@@ -23,6 +23,8 @@ namespace MVP_Tema1
         public MainWindow()
         {
             InitializeComponent();
+            FileLoader avatarIconsFileLoader = new FileLoader(@"Resources\Avatar_icons", @"Avatar_paths");
+            FileLoader tokensFileLoader = new FileLoader(@"Resources\Tokens", @"Tokens_paths");
         }
 
         private void New_User_Click(object sender, RoutedEventArgs e)
