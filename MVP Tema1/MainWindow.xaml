@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="New User" Click="New_User_Click" Margin="40,350,640,52" />
-        <Button Content="Delete User" Click="Delete_User_Click" Margin="240,350,440,52"/>
-        <Button Content="Play" Click="Play_Click" Margin="440,350,240,52"/>
-        <Button Content="Cancel" Click="Cancel_Click" Margin="640,350,40,52"/>
+        <Button Content="New User" Click="New_User_Click" Margin="40,350,640,52"  Height="35" Width="150"/>
+        <Button Content="Delete User" Click="Delete_User_Click" Margin="240,350,440,52" Height="35" Width="150"/>
+        <Button Content="Play" Click="Play_Click" Margin="440,350,240,52" Height="35" Width="150"/>
+        <Button Content="Cancel" Click="Cancel_Click" Margin="640,350,40,52" Height="35" Width="150"/>
     </Grid>
 
 </Window>
