@@ -60,6 +60,11 @@ namespace MVP_Tema1.Authentification
             }
         }
 
+        public Account GetAccount(string username)
+        {
+            return Accounts.Find(a => a.Username == username);
+        }
+
         private void ReadAccounts()
         {
             Accounts = ParseFileList(File.ReadAllLines(FilePath).ToList());

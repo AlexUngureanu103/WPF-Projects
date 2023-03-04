@@ -24,16 +24,29 @@ namespace MVP_Tema1
 
         private int currentIconIndex = 0;
 
+        private Account currentAccount;
+
         // to import it from the account file manager
 
         public MainWindow()
         {
             InitializeComponent();
-            accountFileManager.AddAccount(new Account("user1", @"Resources\Avatar_icons\surprised_rabbit.png"));
-            accountFileManager.AddAccount(new Account("user2", @"Resources\Avatar_icons\smiley_face.png"));
+            UpdateUserList();
             ImagePath = @"Resources\Avatar_icons\wink_emoji.png";
             icons = avatarIconsFileLoader.LoadPaths();
             currentIconIndex = icons.IndexOf(ImagePath);
+            UpdateImagePath();
+        }
+
+        private void Users_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Users.SelectedItem == null)
+            {
+                currentAccount = null;
+                return;
+            }
+            currentAccount = accountFileManager.GetAccount(Users.SelectedItem.ToString());
+            currentIconIndex = icons.IndexOf(currentAccount.AvatarPath);
             UpdateImagePath();
         }
 
@@ -47,17 +60,38 @@ namespace MVP_Tema1
                 //string password = registerWindow.password;
                 Account account = new Account(username, /*password,*/ ImagePath);
                 accountFileManager.AddAccount(account);
+                UpdateUserList();
             }
+        }
+
+        private void UpdateUserList()
+        {
+            Users.ItemsSource = accountFileManager.GetRegisteredAccounts();
+
         }
 
         private void DeleteUser_Click(object sender, RoutedEventArgs e)
         {
-
+            if (currentAccount == null)
+            {
+                MessageBox.Show("Please select an account");
+                return;
+            }
+            accountFileManager.RemoveAccount(currentAccount);
+            Users.SelectedItem = null;
+            UpdateUserList();
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-
+            if (currentAccount == null)
+            {
+                MessageBox.Show("Please select an account");
+                return;
+            }
+            MessageBox.Show("Play");
+            //close or hide the main window
+            //open the game window
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -80,7 +114,22 @@ namespace MVP_Tema1
         private void UpdateImagePath()
         {
             ImagePath = icons[currentIconIndex];
+            if (currentAccount != null)
+            {
+                UpdatePlayerProfile();
+            }
             Icon.Source = new BitmapImage(new Uri(ImagePath, UriKind.Relative));
+        }
+
+        private void UpdatePlayerProfile()
+        {
+            currentAccount.AvatarPath = ImagePath;
+            accountFileManager.UpdateAccount(currentAccount);
+        }
+
+        private void Users_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
         }
     }
 }

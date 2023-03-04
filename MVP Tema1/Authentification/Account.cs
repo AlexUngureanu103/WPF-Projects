@@ -8,7 +8,7 @@ namespace MVP_Tema1.Authentification
 
         //public string Password { get; private set; }
 
-        public string AvatarPath { get; private set; }
+        public string AvatarPath { get; set; }
 
         public Account(string username, /*string password, */string avatarPath)
         {
