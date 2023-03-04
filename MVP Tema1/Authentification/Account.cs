@@ -2,7 +2,7 @@
 
 namespace MVP_Tema1.Authentification
 {
-    internal class Account
+    public class Account
     {
         public string Username { get; private set; }
 

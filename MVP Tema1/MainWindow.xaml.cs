@@ -92,6 +92,8 @@ namespace MVP_Tema1
                 return;
             }
             MessageBox.Show("Play");
+            ConcentrationGame concentrationGame = new ConcentrationGame(currentAccount);
+            concentrationGame.Show();
             //close or hide the main window
             //open the game window
         }
