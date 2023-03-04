@@ -1,18 +1,9 @@
 ﻿using MVP_Tema1.Authentification;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MVP_Tema1
 {
@@ -21,24 +12,35 @@ namespace MVP_Tema1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private FileLoader avatarIconsFileLoader = new FileLoader(@"Resources\Avatar_icons", @"Avatar_paths");
+
+        private FileLoader tokensFileLoader = new FileLoader(@"Resources\Tokens", @"Tokens_paths");
+
+        private List<string> icons;
+
+        private AccountFileManager accountFileManager = new AccountFileManager(@"Save\Accounts");
+
+        public string ImagePath { get; set; }
+
+        private int currentIconIndex = 0;
+
+        // to import it from the account file manager
+
         public MainWindow()
         {
             InitializeComponent();
-            FileLoader avatarIconsFileLoader = new FileLoader(@"Resources\Avatar_icons", @"Avatar_paths");
-            FileLoader tokensFileLoader = new FileLoader(@"Resources\Tokens", @"Tokens_paths");
-
-            AccountFileManager accountFileManager = new AccountFileManager(@"Save\Accounts");
-            accountFileManager.AddAccount("Test21");
-            accountFileManager.AddAccount("test");
-            accountFileManager.AddAccount("Mom");
+            ImagePath = @"Resources\Avatar_icons\wink_emoji.png";
+            icons = avatarIconsFileLoader.LoadPaths();
+            currentIconIndex = icons.IndexOf(ImagePath);
+            UpdateImagePath();
         }
 
-        private void New_User_Click(object sender, RoutedEventArgs e)
+        private void NewUser_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
-        private void Delete_User_Click(object sender, RoutedEventArgs e)
+        private void DeleteUser_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -51,6 +53,28 @@ namespace MVP_Tema1
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void PrevIcon_Click(object sender, RoutedEventArgs e)
+        {
+            currentIconIndex = (currentIconIndex - 1) % icons.Count;
+            UpdateImagePath();
+        }
+
+        private void NextIcon_Click(object sender, RoutedEventArgs e)
+        {
+            currentIconIndex = (currentIconIndex + 1) % icons.Count;
+            UpdateImagePath();
+        }
+
+        private void UpdateImagePath()
+        {
+            ImagePath = icons[currentIconIndex];
+            //BitmapImage newImageSource = new BitmapImage();
+            //newImageSource.BeginInit();
+            //newImageSource.UriSource = new Uri(@"Resources\Avatar_icons\wink_emoji.png");
+            //newImageSource.EndInit();
+            Icon.Source = new BitmapImage(new Uri(ImagePath,UriKind.Relative));
         }
     }
 }

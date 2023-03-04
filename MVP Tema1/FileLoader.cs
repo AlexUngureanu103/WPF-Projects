@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace MVP_Tema1
 
         private string[] imagePaths;
 
-        public readonly string pathsFolder;
+        private string pathsFolder;
 
         /// <summary>
         /// Initializes a new instance of the FileLoader class with the specified folder path and paths folder name.
@@ -55,6 +56,11 @@ namespace MVP_Tema1
             {
                 File.AppendAllText(pathsFolder, path + '\n');
             }
+        }
+
+        public List<string> LoadPaths()
+        {
+            return File.ReadAllLines(pathsFolder).ToList();
         }
     }
 }
