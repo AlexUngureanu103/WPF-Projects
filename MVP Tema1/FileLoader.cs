@@ -37,12 +37,12 @@ namespace MVP_Tema1
             this.folder = folder;
             LoadFiles();
         }
-
+        // "C:\Users\aungu\Documents\GitHub\Teme_MVP\MVP Tema1\Resources\Avatar_icons\6sumsf.jpg"
         private void LoadFiles()
         {
-            imagePaths = Directory.GetFiles(folder, "*.png");
-            UploadPaths(imagePaths);
             imagePaths = Directory.GetFiles(folder, "*.jpg");
+            UploadPaths(imagePaths);
+            imagePaths = Directory.GetFiles(folder, "*.png");
             UploadPaths(imagePaths);
             imagePaths = Directory.GetFiles(folder, "*.jpeg");
             UploadPaths(imagePaths);

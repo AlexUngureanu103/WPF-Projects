@@ -57,7 +57,7 @@ namespace MVP_Tema1
 
         private void PrevIcon_Click(object sender, RoutedEventArgs e)
         {
-            currentIconIndex = (currentIconIndex - 1) % icons.Count;
+            currentIconIndex = (currentIconIndex - 1 + icons.Count) % icons.Count;
             UpdateImagePath();
         }
 
@@ -70,11 +70,7 @@ namespace MVP_Tema1
         private void UpdateImagePath()
         {
             ImagePath = icons[currentIconIndex];
-            //BitmapImage newImageSource = new BitmapImage();
-            //newImageSource.BeginInit();
-            //newImageSource.UriSource = new Uri(@"Resources\Avatar_icons\wink_emoji.png");
-            //newImageSource.EndInit();
-            Icon.Source = new BitmapImage(new Uri(ImagePath,UriKind.Relative));
+            Icon.Source = new BitmapImage(new Uri(ImagePath, UriKind.Relative));
         }
     }
 }
