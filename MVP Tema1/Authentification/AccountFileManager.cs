@@ -7,9 +7,9 @@ namespace MVP_Tema1.Authentification
 {
     internal class AccountFileManager
     {
-        private string filePath;
+        private string FilePath;
 
-        private List<string> accounts;
+        private List<Account> Accounts;
 
         public AccountFileManager(string folderPath)
         {
@@ -21,33 +21,72 @@ namespace MVP_Tema1.Authentification
             {
                 Directory.CreateDirectory(folderPath);
             }
-            this.filePath = Path.Combine(folderPath, "Accounts.txt");
-            if (!File.Exists(filePath))
+            this.FilePath = Path.Combine(folderPath, "Accounts.txt");
+            if (!File.Exists(FilePath))
             {
-                File.Create(filePath);
-            }
-            else
-            {
-                File.WriteAllText(filePath, string.Empty);
+                File.Create(FilePath);
             }
             ReadAccounts();
         }
 
-        public void AddAccount(string account)
+        public void AddAccount(Account account)
         {
-            accounts.Add(account);
-            File.WriteAllLines(filePath, accounts);
+            Accounts.Add(account);
+            File.WriteAllLines(FilePath, ParseAccountList(Accounts));
         }
 
-        public void RemoveAccount(string account)
+        public void RemoveAccount(Account account)
         {
-            accounts.Remove(account);
-            File.WriteAllLines(filePath, accounts);
+            Accounts.Remove(account);
+            File.WriteAllLines(FilePath, ParseAccountList(Accounts));
+        }
+
+        public void UpdateAccount(Account account)
+        {
+            int index = Accounts.FindIndex(a => a.Username == account.Username);
+            Accounts[index] = account;
+            File.WriteAllLines(FilePath, ParseAccountList(Accounts));
+        }
+
+        public List<string> GetRegisteredAccounts()
+        {
+            {
+                List<string> usernames = new List<string>();
+                foreach (Account account in Accounts)
+                {
+                    usernames.Add(account.Username);
+                }
+                return usernames;
+            }
         }
 
         private void ReadAccounts()
         {
-            accounts = File.ReadAllLines(filePath).ToList();
+            Accounts = ParseFileList(File.ReadAllLines(FilePath).ToList());
+        }
+
+        private List<Account> ParseFileList(List<string> fileLines)
+        {
+            List<Account> accounts = new List<Account>();
+            foreach (string line in fileLines)
+            {
+                string[] accountData = line.Split('/');
+                Account account = new Account(accountData[0], accountData[1]/*, accountData[2]*/);
+                accounts.Add(account);
+            }
+            return accounts;
+        }
+
+        private List<string> ParseAccountList(List<Account> accounts)
+        {
+            List<string> fileLines = new List<string>();
+            foreach (Account account in accounts)
+            {
+                //password ?
+                string line = $"{account.Username}/{account.AvatarPath}";
+                fileLines.Add(line);
+            }
+            return fileLines;
         }
     }
 }
