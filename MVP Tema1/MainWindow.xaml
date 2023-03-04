@@ -47,7 +47,7 @@
 
             <Button Grid.Row="2" Grid.Column="0" Content="New User" Click="NewUser_Click" Height="35" Width="150"/>
             <Button Grid.Row="2" Grid.Column="1" Content="Delete User" Click="DeleteUser_Click" Height="35" Width="150"/>
-            <Button Grid.Row="2" Grid.Column="3" Content="Cancel" Click="Cancel_Click" Height="35" Width="150"/>
+            <Button Grid.Row="2" Grid.Column="3" Content="Exit" Click="Exit_Click" Height="35" Width="150"/>
             <Button Grid.Row="2" Grid.Column="2" Content="Play" Click="Play_Click" Height="35" Width="150"/>
         </Grid>
     </Grid>

@@ -27,8 +27,6 @@ namespace MVP_Tema1
 
         private Account currentAccount;
 
-        // to import it from the account file manager
-
         public MainWindow()
         {
             InitializeComponent();
@@ -37,7 +35,7 @@ namespace MVP_Tema1
             icons = avatarIconsFileLoader.LoadPaths();
             if (icons.Count < 0)
             {
-                throw new InsufficientIconsException(); 
+                throw new InsufficientIconsException();
             }
             currentIconIndex = icons.IndexOf(ImagePath);
             UpdateImagePath();
@@ -98,9 +96,13 @@ namespace MVP_Tema1
             //open the game window
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to exit ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void PrevIcon_Click(object sender, RoutedEventArgs e)
@@ -117,7 +119,7 @@ namespace MVP_Tema1
 
         private void UpdateImagePath()
         {
-            if(currentIconIndex<0)
+            if (currentIconIndex < 0)
             {
                 MessageBox.Show("Someone removed this photo ... Here's another one for you :)");
                 currentIconIndex = 0;
