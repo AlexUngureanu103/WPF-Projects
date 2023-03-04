@@ -1,4 +1,5 @@
 ﻿using MVP_Tema1.Authentification;
+using MVP_Tema1.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -34,6 +35,10 @@ namespace MVP_Tema1
             UpdateUserList();
             ImagePath = @"Resources\Avatar_icons\wink_emoji.png";
             icons = avatarIconsFileLoader.LoadPaths();
+            if (icons.Count < 0)
+            {
+                throw new InsufficientIconsException(); 
+            }
             currentIconIndex = icons.IndexOf(ImagePath);
             UpdateImagePath();
         }
@@ -95,7 +100,7 @@ namespace MVP_Tema1
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void PrevIcon_Click(object sender, RoutedEventArgs e)
@@ -112,6 +117,11 @@ namespace MVP_Tema1
 
         private void UpdateImagePath()
         {
+            if(currentIconIndex<0)
+            {
+                MessageBox.Show("Someone removed this photo ... Here's another one for you :)");
+                currentIconIndex = 0;
+            }
             ImagePath = icons[currentIconIndex];
             if (currentAccount != null)
             {
@@ -128,7 +138,6 @@ namespace MVP_Tema1
 
         private void Users_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
-
         }
     }
 }

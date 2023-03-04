@@ -50,10 +50,10 @@ namespace MVP_Tema1
         {
             username = usernameBox.Text;
             //password = passwordBox.Text;
-            if (username == "")
+            if (username == "" || System.Text.RegularExpressions.Regex.IsMatch(username, @"[^a-zA-Z0-9]"))
             {
                 success = false;
-                MessageBox.Show("Please enter a username!");
+                MessageBox.Show("Please enter a valid username!");
             }
             else if (accounts.Contains(username))
             {

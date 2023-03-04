@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Column="0" Name="Users" SelectionChanged="Users_SelectionChanged" ScrollBar.Scroll="Users_Scroll"/>
+            <ListBox Grid.Column="0" Name="Users" SelectionChanged="Users_SelectionChanged" ScrollBar.Scroll="Users_Scroll"  Margin="15"/>
             <Grid Grid.Column="1" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
