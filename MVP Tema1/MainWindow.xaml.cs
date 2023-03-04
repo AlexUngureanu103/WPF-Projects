@@ -67,7 +67,6 @@ namespace MVP_Tema1
         private void UpdateUserList()
         {
             Users.ItemsSource = accountFileManager.GetRegisteredAccounts();
-
         }
 
         private void DeleteUser_Click(object sender, RoutedEventArgs e)
