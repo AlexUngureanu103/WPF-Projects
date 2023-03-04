@@ -29,6 +29,8 @@ namespace MVP_Tema1
         public MainWindow()
         {
             InitializeComponent();
+            accountFileManager.AddAccount(new Account("user1", @"Resources\Avatar_icons\surprised_rabbit.png"));
+            accountFileManager.AddAccount(new Account("user2", @"Resources\Avatar_icons\smiley_face.png"));
             ImagePath = @"Resources\Avatar_icons\wink_emoji.png";
             icons = avatarIconsFileLoader.LoadPaths();
             currentIconIndex = icons.IndexOf(ImagePath);
@@ -37,7 +39,15 @@ namespace MVP_Tema1
 
         private void NewUser_Click(object sender, RoutedEventArgs e)
         {
-
+            RegisterWindow registerWindow = new RegisterWindow(accountFileManager.GetRegisteredAccounts());
+            registerWindow.ShowDialog();
+            if (registerWindow.registerSuccesful == true)
+            {
+                string username = registerWindow.username;
+                //string password = registerWindow.password;
+                Account account = new Account(username, /*password,*/ ImagePath);
+                accountFileManager.AddAccount(account);
+            }
         }
 
         private void DeleteUser_Click(object sender, RoutedEventArgs e)
