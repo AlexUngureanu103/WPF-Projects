@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVP_Tema1.Authentification;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,11 @@ namespace MVP_Tema1
             InitializeComponent();
             FileLoader avatarIconsFileLoader = new FileLoader(@"Resources\Avatar_icons", @"Avatar_paths");
             FileLoader tokensFileLoader = new FileLoader(@"Resources\Tokens", @"Tokens_paths");
+
+            AccountFileManager accountFileManager = new AccountFileManager(@"Save\Accounts");
+            accountFileManager.AddAccount("Test21");
+            accountFileManager.AddAccount("test");
+            accountFileManager.AddAccount("Mom");
         }
 
         private void New_User_Click(object sender, RoutedEventArgs e)
