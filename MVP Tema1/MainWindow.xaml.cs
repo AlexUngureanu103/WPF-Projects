@@ -15,8 +15,6 @@ namespace MVP_Tema1
     {
         private FileLoader avatarIconsFileLoader = new FileLoader(@"Resources\Avatar_icons", @"Avatar_paths");
 
-        private FileLoader tokensFileLoader = new FileLoader(@"Resources\Tokens", @"Tokens_paths");
-
         private List<string> icons;
 
         private AccountFileManager accountFileManager = new AccountFileManager(@"Save\Accounts");

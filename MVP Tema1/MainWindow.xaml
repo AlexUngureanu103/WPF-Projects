@@ -34,7 +34,7 @@
                 </Grid>
                 <Image Name="Icon" Grid.Row="0" />
                 <!--<Border Background="White" />
-                <MediaElement Name="MediaIcon" Grid.Row="0" LoadedBehavior="Play"/>-->
+                <MediaElement Name="Icon" Grid.Row="0" LoadedBehavior="Play"/>-->
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
