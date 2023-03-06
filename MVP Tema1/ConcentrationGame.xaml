@@ -35,10 +35,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Name="NewGame" Grid.Row="0" Grid.Column="0" Click="NewGame_Click" Content="New Game" Margin="20" />
             <Button Name="SaveGame" Grid.Row="0" Grid.Column="1" Click="SaveGame_Click" Content="Save Game" Margin="20" />
             <Button Name="LoadGame" Grid.Row="0" Grid.Column="2" Click="LoadGame_Click" Content="Load Game" Margin="20" />
+            <Button Name="Statistics" Grid.Row="0" Grid.Column="3" Click="Statistics_Click"  Content="Leaderboard" Margin="20" />
         </Grid>
         <Grid x:Name="OtherOptions" Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>

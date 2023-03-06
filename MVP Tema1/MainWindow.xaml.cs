@@ -90,7 +90,9 @@ namespace MVP_Tema1
                 return;
             }
             ConcentrationGame concentrationGame = new ConcentrationGame(currentAccount);
-            concentrationGame.Show();
+            this.Hide();
+            concentrationGame.ShowDialog();
+            this.Show();
             //close or hide the main window
             //open the game window
         }

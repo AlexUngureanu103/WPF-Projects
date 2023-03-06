@@ -151,6 +151,7 @@ namespace MVP_Tema1
         {
             if (CheckBoardFinished())
             {
+                CheckIfGameEnded();
                 NextLevel();
                 return;
             }
@@ -197,6 +198,15 @@ namespace MVP_Tema1
             }
         }
 
+        private void CheckIfGameEnded()
+        {
+            if(level == 3)
+            {
+                MessageBox.Show("Congratulations , You have won a game!", "Congratulations");
+                this.Close();
+            }
+        }
+
         private bool CheckBoardFinished()
         {
             if (tokensToDisplay.Count - count < 3)
@@ -206,6 +216,8 @@ namespace MVP_Tema1
             }
             return false;
         }
+
+
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
@@ -244,6 +256,11 @@ namespace MVP_Tema1
             Random random = new Random();
             int randomIndex = random.Next(tokensToDisplay.Count);
             tokensToDisplay.Insert(randomIndex, tokens[index]);
+        }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
