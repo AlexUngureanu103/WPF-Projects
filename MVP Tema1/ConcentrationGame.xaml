@@ -20,8 +20,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Name="PlayerName" Grid.Row="0" Grid.Column="0" Content="Player" />
-            <Image Name="PlayerIcon" Grid.Row="1" Grid.Column="0" />
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Name="PlayerName" Grid.Column="0" Content="Player" />
+                <Image Name="PlayerIcon" Grid.Column="1" />
+            </Grid>
+            <Label Grid.Row="1" Name="LevelCounter" Content="Level" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         <Grid x:Name="GameRelatedOptions" Grid.Row="0" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -46,7 +53,7 @@
             <Button x:Name="Exit" Content="Exit" Click="Exit_Click" Grid.Row="3" Height="50" Width="70"/>
         </Grid>
         <Grid x:Name="Board" Grid.Row="1" Grid.Column="1">
-          
+
         </Grid>
     </Grid>
 </Window>

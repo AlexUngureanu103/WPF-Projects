@@ -1,7 +1,9 @@
 ﻿using MVP_Tema1.Authentification;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -17,20 +19,24 @@ namespace MVP_Tema1
     public partial class ConcentrationGame : Window
     {
         private FileLoader tokensFileLoader = new FileLoader(@"Resources\Tokens", @"Tokens_paths");
+        private BitmapImage cardPath = new BitmapImage(new Uri(Directory.GetFiles(@"Resources\Card", "*.png")[0], UriKind.Relative));
 
-        private string cardPath = Directory.GetFiles(@"Resources\Card", "*.png")[0];
-
+        private KeyValuePair<int, int> BoardDimensions = new KeyValuePair<int, int>(5, 5);
         private List<string> tokens;
-
         private List<string> tokensToDisplay;
 
         private Image[] images;
 
-        private Image selectedImage;
+        private int prevImageIndex;
+        private Image prevImage;
+        private int currentImageIndex;
+        private Image currentImage;
+
+        int count;
+        int level ;
 
         private readonly Account account;
 
-        private KeyValuePair<int, int> BoardDimensions;
         public ConcentrationGame(Account account)
         {
             InitializeComponent();
@@ -39,9 +45,16 @@ namespace MVP_Tema1
             LoadPlayerIcon();
             tokens = tokensFileLoader.LoadPaths();
             tokensToDisplay = new List<string>();
-
-            BoardDimensions = new KeyValuePair<int, int>(5, 5);
             RedimentionateTheGrid();
+            NextLevel();
+        }
+
+        private void NextLevel()
+        {
+            level++;
+
+            LevelCounter.Content = $"Current Level {level}";
+            ResetLevel();
         }
 
         private void LoadPlayerIcon()
@@ -51,6 +64,19 @@ namespace MVP_Tema1
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
+            level = 0;
+
+            NextLevel();
+        }
+
+        private void ResetLevel()
+        {
+            count = 0;
+            prevImage = null;
+            prevImageIndex = -1;
+            currentImage = null;
+            currentImageIndex = -1;
+
             ShuffleTokens();
             GenerateBoard();
         }
@@ -72,27 +98,14 @@ namespace MVP_Tema1
 
         private void Options_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBoxResult result = MessageBox.Show("Standard 5x5 size ?", "Chooe board size", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            //if (result == MessageBoxResult.Yes)
-            //{
-            //    BoardDimensions = new KeyValuePair<int, int>(5, 5);
-            //    RedimentionateTheGrid();
-            //    GenerateBoard();
-            //}
-            //else
-            //{
-            //    //get new dimensions 
-            //    ShuffleTokens();
-            //    RedimentionateTheGrid();
-            //    GenerateBoard();
-            //}
-
             OptionSettings optionSettings = new OptionSettings();
             optionSettings.ShowDialog();
-            BoardDimensions = optionSettings.BoardDimensions;
-            ShuffleTokens();
-            RedimentionateTheGrid();
-            GenerateBoard();
+            if (!BoardDimensions.Equals(optionSettings.BoardDimensions))
+            {
+                BoardDimensions = optionSettings.BoardDimensions;
+                level = 0;
+                NextLevel();
+            }
         }
 
         private void RedimentionateTheGrid()
@@ -122,7 +135,7 @@ namespace MVP_Tema1
                 {
                     int k = i * BoardDimensions.Value + j;
                     images[k] = new Image();
-                    images[k].Source = new BitmapImage(new Uri(cardPath, UriKind.Relative));
+                    images[k].Source = cardPath;
                     images[k].Width = Board.ColumnDefinitions[j].ActualWidth;
                     images[k].Height = Board.RowDefinitions[i].ActualHeight;
                     images[k].MouseLeftButtonDown += Image_MouseLeftButtonDown;
@@ -136,39 +149,62 @@ namespace MVP_Tema1
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Image clickedImage = sender as Image;
-
-            if (selectedImage == null)
+            if (CheckBoardFinished())
             {
-                selectedImage = clickedImage;
+                NextLevel();
+                return;
+            }
+            Image clickedImage = sender as Image;
+            int clickedImageIndex = Grid.GetRow(clickedImage) * BoardDimensions.Value + Grid.GetColumn(clickedImage);
+
+            clickedImage.Source = new BitmapImage(new Uri(tokensToDisplay[clickedImageIndex], UriKind.Relative));
+            if (clickedImageIndex == prevImageIndex || clickedImageIndex == currentImageIndex)
+            {
+                MessageBox.Show("Please choose another image", "Invalid choice");
+                return;
+            }
+            if (prevImageIndex == -1)
+            {
+                prevImageIndex = clickedImageIndex;
+                prevImage = clickedImage;
+                //prevImage.Source = new BitmapImage(new Uri(tokensToDisplay[prevImageIndex], UriKind.Relative));
+            }
+            else if (currentImageIndex == -1)
+            {
+                currentImageIndex = clickedImageIndex;
+                currentImage = clickedImage;
             }
             else
             {
-                if (selectedImage.Source.ToString() == clickedImage.Source.ToString())
+                if (tokensToDisplay[prevImageIndex] == tokensToDisplay[currentImageIndex])
                 {
-                    Board.Children.Remove(selectedImage);
-                    Board.Children.Remove(clickedImage);
-                    selectedImage = null;
+                    Board.Children.Remove(prevImage);
+                    Board.Children.Remove(currentImage);
+                    count += 2;
+                    prevImageIndex = -1;
+                    prevImage = null;
+                    currentImage = null;
+                    currentImageIndex = -1;
                 }
                 else
                 {
-                    selectedImage = null;
+                    currentImage.Source = cardPath;
+                    currentImageIndex = -1;
+                    prevImage.Source = cardPath;
                 }
+                prevImageIndex = clickedImageIndex;
+                prevImage = clickedImage;
             }
-            //if (selectedImage == null)
-            //    return;
-            //int clickedIndex = Grid.GetRow(selectedImage) * BoardDimensions.Value + Grid.GetColumn(selectedImage);
-            //for (int i = 0; i < images.Length; i++)
-            //{
-            //    if (i == clickedIndex)
-            //    {
-            //        images[i].Visibility = Visibility.Visible;
-            //    }
-            //    else
-            //    {
-            //        images[i].Visibility = Visibility.;
-            //    }
-            //}
+        }
+
+        private bool CheckBoardFinished()
+        {
+            if (tokensToDisplay.Count - count < 3)
+            {
+                MessageBox.Show($"Congrats , u have finished level {level} out of 3", "Stage Progression");
+                return true;
+            }
+            return false;
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
