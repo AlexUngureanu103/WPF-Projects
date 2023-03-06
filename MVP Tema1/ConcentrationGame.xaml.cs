@@ -18,6 +18,8 @@ namespace MVP_Tema1
     {
         private FileLoader tokensFileLoader = new FileLoader(@"Resources\Tokens", @"Tokens_paths");
 
+        private string cardPath = Directory.GetFiles(@"Resources\Card", "*.png")[0];
+
         private List<string> tokens;
 
         private List<string> tokensToDisplay;
@@ -70,21 +72,27 @@ namespace MVP_Tema1
 
         private void Options_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Standard 5x5 size ?", "Chooe board size", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                BoardDimensions = new KeyValuePair<int, int>(5, 5);
-                RedimentionateTheGrid();
-                GenerateBoard();
-            }
-            else
-            {
-                //get new dimensions 
-                ShuffleTokens();
-                RedimentionateTheGrid();
-                GenerateBoard();
+            //MessageBoxResult result = MessageBox.Show("Standard 5x5 size ?", "Chooe board size", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    BoardDimensions = new KeyValuePair<int, int>(5, 5);
+            //    RedimentionateTheGrid();
+            //    GenerateBoard();
+            //}
+            //else
+            //{
+            //    //get new dimensions 
+            //    ShuffleTokens();
+            //    RedimentionateTheGrid();
+            //    GenerateBoard();
+            //}
 
-            }
+            OptionSettings optionSettings = new OptionSettings();
+            optionSettings.ShowDialog();
+            BoardDimensions = optionSettings.BoardDimensions;
+            ShuffleTokens();
+            RedimentionateTheGrid();
+            GenerateBoard();
         }
 
         private void RedimentionateTheGrid()
@@ -107,7 +115,6 @@ namespace MVP_Tema1
         {
             Board.Children.Clear();
             int tokenCounter = 0;
-            Brush maskBrush = new SolidColorBrush(Color.FromArgb(128, 0, 0, 0));
 
             for (int i = 0; i < BoardDimensions.Key; i++)
             {
@@ -115,8 +122,7 @@ namespace MVP_Tema1
                 {
                     int k = i * BoardDimensions.Value + j;
                     images[k] = new Image();
-                    images[k].Source = new BitmapImage(new Uri(tokensToDisplay[tokenCounter], UriKind.Relative));
-                    images[k].OpacityMask = maskBrush;
+                    images[k].Source = new BitmapImage(new Uri(cardPath, UriKind.Relative));
                     images[k].Width = Board.ColumnDefinitions[j].ActualWidth;
                     images[k].Height = Board.RowDefinitions[i].ActualHeight;
                     images[k].MouseLeftButtonDown += Image_MouseLeftButtonDown;
