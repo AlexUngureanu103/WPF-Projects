@@ -203,6 +203,7 @@ namespace MVP_Tema1
             if(level == 3)
             {
                 MessageBox.Show("Congratulations , You have won a game!", "Congratulations");
+                account.Wins++;
                 this.Close();
             }
         }

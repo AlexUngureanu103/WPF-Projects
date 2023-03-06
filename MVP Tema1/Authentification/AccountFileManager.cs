@@ -76,7 +76,7 @@ namespace MVP_Tema1.Authentification
             foreach (string line in fileLines)
             {
                 string[] accountData = line.Split('/');
-                Account account = new Account(accountData[0], accountData[1]/*, accountData[2]*/);
+                Account account = new Account(accountData[0], accountData[1], int.Parse(accountData[2]));
                 accounts.Add(account);
             }
             return accounts;
@@ -87,8 +87,7 @@ namespace MVP_Tema1.Authentification
             List<string> fileLines = new List<string>();
             foreach (Account account in accounts)
             {
-                //password ?
-                string line = $"{account.Username}/{account.AvatarPath}";
+                string line = $"{account.Username}/{account.AvatarPath}/{account.Wins}";
                 fileLines.Add(line);
             }
             return fileLines;

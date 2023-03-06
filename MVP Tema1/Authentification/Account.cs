@@ -6,25 +6,26 @@ namespace MVP_Tema1.Authentification
     {
         public string Username { get; private set; }
 
-        //public string Password { get; private set; }
 
         public string AvatarPath { get; set; }
 
-        public Account(string username, /*string password, */string avatarPath)
+        public int Wins { get; set; }
+
+        public Account(string username, string avatarPath, int wins)
         {
             if (username == string.Empty)
             {
                 throw new ArgumentException("Username cannot be empty!", nameof(username));
             }
-            //if (password == string.Empty)
-            //{
-            //    throw new ArgumentException("Password cannot be empty!", nameof(password));
-            //}
-            //Password = password;
             if (avatarPath == string.Empty)
             {
                 throw new ArgumentException("Avatar path cannot be empty!", nameof(avatarPath));
             }
+            if (wins < 0)
+            {
+                wins = 0;
+            }
+            this.Wins = wins;
 
             Username = username;
             AvatarPath = avatarPath;

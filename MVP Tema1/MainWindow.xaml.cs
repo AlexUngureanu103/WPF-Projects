@@ -58,8 +58,7 @@ namespace MVP_Tema1
             if (registerWindow.registerSuccesful == true)
             {
                 string username = registerWindow.username;
-                //string password = registerWindow.password;
-                Account account = new Account(username, /*password,*/ ImagePath);
+                Account account = new Account(username, ImagePath, 0);
                 accountFileManager.AddAccount(account);
                 UpdateUserList();
             }
@@ -93,8 +92,7 @@ namespace MVP_Tema1
             this.Hide();
             concentrationGame.ShowDialog();
             this.Show();
-            //close or hide the main window
-            //open the game window
+            accountFileManager.UpdateAccount(currentAccount);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
