@@ -1,8 +1,12 @@
 ﻿using MVP_Tema1.Authentification;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace MVP_Tema1
@@ -18,6 +22,10 @@ namespace MVP_Tema1
 
         private List<string> tokensToDisplay;
 
+        private Image[] images;
+
+        private Image selectedImage;
+
         private readonly Account account;
 
         private KeyValuePair<int, int> BoardDimensions;
@@ -26,11 +34,12 @@ namespace MVP_Tema1
             InitializeComponent();
             this.account = account;
             PlayerName.Content = account.Username;
-            BoardDimensions = new KeyValuePair<int, int>(5, 5);
             LoadPlayerIcon();
             tokens = tokensFileLoader.LoadPaths();
             tokensToDisplay = new List<string>();
-            ShuffleTokens();
+
+            BoardDimensions = new KeyValuePair<int, int>(5, 5);
+            RedimentionateTheGrid();
         }
 
         private void LoadPlayerIcon()
@@ -41,6 +50,7 @@ namespace MVP_Tema1
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
             ShuffleTokens();
+            GenerateBoard();
         }
 
         private void SaveGame_Click(object sender, RoutedEventArgs e)
@@ -65,19 +75,94 @@ namespace MVP_Tema1
             {
                 BoardDimensions = new KeyValuePair<int, int>(5, 5);
                 RedimentionateTheGrid();
+                GenerateBoard();
             }
             else
             {
                 //get new dimensions 
-
-                RedimentionateTheGrid();
                 ShuffleTokens();
+                RedimentionateTheGrid();
+                GenerateBoard();
+
             }
         }
 
         private void RedimentionateTheGrid()
         {
-            //TD
+            images = new Image[BoardDimensions.Key * BoardDimensions.Value];
+
+            Board.RowDefinitions.Clear();
+            Board.ColumnDefinitions.Clear();
+            for (int i = 0; i < BoardDimensions.Key; i++)
+            {
+                Board.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
+            }
+            for (int i = 0; i < BoardDimensions.Value; i++)
+            {
+                Board.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            }
+        }
+
+        private void GenerateBoard()
+        {
+            Board.Children.Clear();
+            int tokenCounter = 0;
+            Brush maskBrush = new SolidColorBrush(Color.FromArgb(128, 0, 0, 0));
+
+            for (int i = 0; i < BoardDimensions.Key; i++)
+            {
+                for (int j = 0; j < BoardDimensions.Value; j++)
+                {
+                    int k = i * BoardDimensions.Value + j;
+                    images[k] = new Image();
+                    images[k].Source = new BitmapImage(new Uri(tokensToDisplay[tokenCounter], UriKind.Relative));
+                    images[k].OpacityMask = maskBrush;
+                    images[k].Width = Board.ColumnDefinitions[j].ActualWidth;
+                    images[k].Height = Board.RowDefinitions[i].ActualHeight;
+                    images[k].MouseLeftButtonDown += Image_MouseLeftButtonDown;
+                    Grid.SetRow(images[k], i);
+                    Grid.SetColumn(images[k], j);
+                    Board.Children.Add(images[k]);
+                    tokenCounter++;
+                }
+            }
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Image clickedImage = sender as Image;
+
+            if (selectedImage == null)
+            {
+                selectedImage = clickedImage;
+            }
+            else
+            {
+                if (selectedImage.Source.ToString() == clickedImage.Source.ToString())
+                {
+                    Board.Children.Remove(selectedImage);
+                    Board.Children.Remove(clickedImage);
+                    selectedImage = null;
+                }
+                else
+                {
+                    selectedImage = null;
+                }
+            }
+            //if (selectedImage == null)
+            //    return;
+            //int clickedIndex = Grid.GetRow(selectedImage) * BoardDimensions.Value + Grid.GetColumn(selectedImage);
+            //for (int i = 0; i < images.Length; i++)
+            //{
+            //    if (i == clickedIndex)
+            //    {
+            //        images[i].Visibility = Visibility.Visible;
+            //    }
+            //    else
+            //    {
+            //        images[i].Visibility = Visibility.;
+            //    }
+            //}
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
