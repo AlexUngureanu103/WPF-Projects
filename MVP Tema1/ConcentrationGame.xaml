@@ -7,6 +7,46 @@
         mc:Ignorable="d"
         Title="ConcentrationGame" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="ProfileCorner" Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Name="PlayerName" Grid.Row="0" Grid.Column="0" Content="Player" />
+            <Image Name="PlayerIcon" Grid.Row="1" Grid.Column="0" />
+        </Grid>
+        <Grid x:Name="GameRelatedOptions" Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="NewGame" Grid.Row="0" Grid.Column="0" Click="NewGame_Click" Content="New Game" Margin="20" />
+            <Button Name="SaveGame" Grid.Row="0" Grid.Column="1" Click="SaveGame_Click" Content="Save Game" Margin="20" />
+            <Button Name="LoadGame" Grid.Row="0" Grid.Column="2" Click="LoadGame_Click" Content="Load Game" Margin="20" />
+        </Grid>
+        <Grid x:Name="OtherOptions" Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="Options" Content="Options" Click="Options_Click" Grid.Row="0" Height="50" Width="70"/>
+            <Button x:Name="Help" Content="Help" Click="Help_Click"  Grid.Row="1" Height="50" Width="70"/>
+            <Button x:Name="About" Content="About" Click="About_Click" Grid.Row="2" Height="50" Width="70"/>
+            <Button x:Name="Exit" Content="Exit" Click="Exit_Click" Grid.Row="3" Height="50" Width="70"/>
+        </Grid>
+        <Grid x:Name="Board" Grid.Row="1" Grid.Column="1">
+          
+        </Grid>
     </Grid>
 </Window>
