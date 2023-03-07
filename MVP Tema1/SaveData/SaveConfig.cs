@@ -30,7 +30,7 @@ namespace MVP_Tema1.SaveData
             }
         }
 
-        public void SaveDataToFile(Grid boardConfiguration, int level)
+        public void SaveDataToFile(Grid boardConfiguration,List<string> tokensToDisplay,int count, int level)
         {
 
             if (boardConfiguration == null)
@@ -44,13 +44,15 @@ namespace MVP_Tema1.SaveData
 
             GridData gridData = new GridData()
             {
+                count = count,
                 rows = boardConfiguration.RowDefinitions.Count,
                 columns = boardConfiguration.ColumnDefinitions.Count,
                 level = level,
                 ImagesColumn = new List<int>(),
                 ImagesRow = new List<int>(),
-                ImagesPath = new List<string>()
+                ImagesPath = tokensToDisplay
             };
+            List<string> paths = new List<string>();
             foreach (var item in boardConfiguration.Children)
             {
                 if (item is Image)
@@ -63,8 +65,6 @@ namespace MVP_Tema1.SaveData
 
                     gridData.ImagesRow.Add(row);
                     gridData.ImagesColumn.Add(column);
-                    gridData.ImagesPath.Add(path);
-
                 }
             }
             string auxFilePath = Path.Combine(FilePath, DateTime.Now.ToString().GetHashCode() + ".xml");
@@ -84,6 +84,15 @@ namespace MVP_Tema1.SaveData
         public GridData LoadDataFromFile(string filePath)
         {
             GridData gridData = new GridData();
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(GridData));
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                gridData = (GridData)xmlSerializer.Deserialize(reader);
+                List<string> paths = gridData.ImagesPath;
+            }
+            //deleted the saved data so the player can't abuse it 
+            File.Delete(filePath);
 
             return gridData;
         }

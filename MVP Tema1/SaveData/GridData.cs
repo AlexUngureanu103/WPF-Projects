@@ -9,6 +9,8 @@ namespace MVP_Tema1.SaveData
 {
     public class GridData
     {
+        public int count { get; set; }
+        
         public int level { get; set; }
 
         public int rows { get; set; }

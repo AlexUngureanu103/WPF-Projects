@@ -85,6 +85,7 @@ namespace MVP_Tema1
         {
             //popup with save name
             saveConfig.SaveDataToFile(Board, level);
+            saveConfig.SaveDataToFile(Board, tokensToDisplay, count, level);
         }
 
         private void LoadGame_Click(object sender, RoutedEventArgs e)
