@@ -33,7 +33,7 @@ namespace MVP_Tema1
         private Image currentImage;
 
         int count;
-        int level ;
+        int level;
 
         private readonly Account account;
 
@@ -104,6 +104,7 @@ namespace MVP_Tema1
             {
                 BoardDimensions = optionSettings.BoardDimensions;
                 level = 0;
+                RedimentionateTheGrid();
                 NextLevel();
             }
         }
@@ -136,8 +137,8 @@ namespace MVP_Tema1
                     int k = i * BoardDimensions.Value + j;
                     images[k] = new Image();
                     images[k].Source = cardPath;
-                    images[k].Width = Board.ColumnDefinitions[j].ActualWidth;
-                    images[k].Height = Board.RowDefinitions[i].ActualHeight;
+                    //images[k].Width = Board.ColumnDefinitions[j].ActualWidth;
+                    //images[k].Height = Board.RowDefinitions[i].ActualHeight;
                     images[k].MouseLeftButtonDown += Image_MouseLeftButtonDown;
                     Grid.SetRow(images[k], i);
                     Grid.SetColumn(images[k], j);
@@ -200,7 +201,7 @@ namespace MVP_Tema1
 
         private void CheckIfGameEnded()
         {
-            if(level == 3)
+            if (level == 3)
             {
                 MessageBox.Show("Congratulations , You have won a game!", "Congratulations");
                 account.Wins++;
@@ -217,8 +218,6 @@ namespace MVP_Tema1
             }
             return false;
         }
-
-
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
