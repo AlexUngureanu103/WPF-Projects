@@ -137,8 +137,6 @@ namespace MVP_Tema1
                     int k = i * BoardDimensions.Value + j;
                     images[k] = new Image();
                     images[k].Source = cardPath;
-                    //images[k].Width = Board.ColumnDefinitions[j].ActualWidth;
-                    //images[k].Height = Board.RowDefinitions[i].ActualHeight;
                     images[k].MouseLeftButtonDown += Image_MouseLeftButtonDown;
                     Grid.SetRow(images[k], i);
                     Grid.SetColumn(images[k], j);
