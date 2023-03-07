@@ -76,6 +76,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Authentification\Account.cs" />
+    <Compile Include="ChooseSavedFile.xaml.cs">
+      <DependentUpon>ChooseSavedFile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConcentrationGame.xaml.cs">
       <DependentUpon>ConcentrationGame.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,12 @@
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SaveData\GridData.cs" />
+    <Compile Include="SaveData\SaveConfig.cs" />
+    <Page Include="ChooseSavedFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ConcentrationGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

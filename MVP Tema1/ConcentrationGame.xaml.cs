@@ -1,14 +1,11 @@
 ﻿using MVP_Tema1.Authentification;
+using MVP_Tema1.SaveData;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace MVP_Tema1
@@ -37,10 +34,13 @@ namespace MVP_Tema1
 
         private readonly Account account;
 
+        private SaveConfig saveConfig;
+
         public ConcentrationGame(Account account)
         {
             InitializeComponent();
             this.account = account;
+            saveConfig = new SaveConfig(@"Save", account);
             PlayerName.Content = account.Username;
             LoadPlayerIcon();
             tokens = tokensFileLoader.LoadPaths();
@@ -83,12 +83,19 @@ namespace MVP_Tema1
 
         private void SaveGame_Click(object sender, RoutedEventArgs e)
         {
-
+            //popup with save name
+            saveConfig.SaveDataToFile(Board, level);
         }
 
         private void LoadGame_Click(object sender, RoutedEventArgs e)
         {
-
+            ChooseSavedFile chooseSavedFile = new ChooseSavedFile(saveConfig.GetSavedGames());
+            chooseSavedFile.ShowDialog();
+            if (chooseSavedFile.selectedGamePath != null)
+            {
+               var gameData = saveConfig.LoadDataFromFile(chooseSavedFile.selectedGamePath);
+                //LevelCounter.Content = $"Current Level {level}";
+            }
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)
