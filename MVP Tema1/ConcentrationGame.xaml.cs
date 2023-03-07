@@ -84,7 +84,6 @@ namespace MVP_Tema1
         private void SaveGame_Click(object sender, RoutedEventArgs e)
         {
             //popup with save name
-            saveConfig.SaveDataToFile(Board, level);
             saveConfig.SaveDataToFile(Board, tokensToDisplay, count, level);
         }
 
@@ -94,8 +93,30 @@ namespace MVP_Tema1
             chooseSavedFile.ShowDialog();
             if (chooseSavedFile.selectedGamePath != null)
             {
-               var gameData = saveConfig.LoadDataFromFile(chooseSavedFile.selectedGamePath);
-                //LevelCounter.Content = $"Current Level {level}";
+                var gameData = saveConfig.LoadDataFromFile(chooseSavedFile.selectedGamePath);
+                LoadGridData(gameData);
+                MessageBox.Show("Game loaded successfully, But The has been DELETED", "Info");
+            }
+        }
+
+        private void LoadGridData(GridData gameData)
+        {
+            BoardDimensions = new KeyValuePair<int, int>(gameData.rows, gameData.columns);
+            Board.Children.Clear();
+            RedimentionateTheGrid();
+            count = gameData.count;
+            level = gameData.level;
+            tokensToDisplay = gameData.ImagesPath;
+            LevelCounter.Content = $"Curent level{level}";
+
+            for (int i = 0; i < gameData.ImagesRow.Count; i++)
+            {
+                images[i] = new Image();
+                images[i].Source = cardPath;
+                images[i].MouseLeftButtonDown += Image_MouseLeftButtonDown;
+                Grid.SetRow(images[i], gameData.ImagesRow[i]);
+                Grid.SetColumn(images[i], gameData.ImagesColumn[i]);
+                Board.Children.Add(images[i]);
             }
         }
 
@@ -136,7 +157,6 @@ namespace MVP_Tema1
         private void GenerateBoard()
         {
             Board.Children.Clear();
-            int tokenCounter = 0;
 
             for (int i = 0; i < BoardDimensions.Key; i++)
             {
@@ -149,7 +169,6 @@ namespace MVP_Tema1
                     Grid.SetRow(images[k], i);
                     Grid.SetColumn(images[k], j);
                     Board.Children.Add(images[k]);
-                    tokenCounter++;
                 }
             }
         }
@@ -165,7 +184,7 @@ namespace MVP_Tema1
             Image clickedImage = sender as Image;
             int clickedImageIndex = Grid.GetRow(clickedImage) * BoardDimensions.Value + Grid.GetColumn(clickedImage);
 
-            clickedImage.Source = new BitmapImage(new Uri(tokensToDisplay[clickedImageIndex], UriKind.Relative));
+            clickedImage.Source = new BitmapImage(new Uri(tokensToDisplay[clickedImageIndex], UriKind.RelativeOrAbsolute));
             if (clickedImageIndex == prevImageIndex || clickedImageIndex == currentImageIndex)
             {
                 MessageBox.Show("Please choose another image", "Invalid choice");
