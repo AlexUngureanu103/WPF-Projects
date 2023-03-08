@@ -92,9 +92,13 @@ namespace MVP_Tema1.SaveData
                 List<string> paths = gridData.ImagesPath;
             }
             //deleted the saved data so the player can't abuse it 
-            File.Delete(filePath);
-
+            DeleteFile(filePath);
             return gridData;
+        }
+
+        public void DeleteFile(string filePath)
+        {
+            File.Delete(filePath);
         }
     }
 }
