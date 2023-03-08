@@ -76,22 +76,25 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Authentification\Account.cs" />
-    <Compile Include="ChooseSavedFile.xaml.cs">
+    <Compile Include="SecondaryWindows\ChooseSavedFile.xaml.cs">
       <DependentUpon>ChooseSavedFile.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConcentrationGame.xaml.cs">
       <DependentUpon>ConcentrationGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\InsufficientIconsException.cs" />
-    <Compile Include="OptionSettings.xaml.cs">
+    <Compile Include="SecondaryWindows\OptionSettings.xaml.cs">
       <DependentUpon>OptionSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegisterWindow.xaml.cs">
+    <Compile Include="SecondaryWindows\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaveData\GridData.cs" />
     <Compile Include="SaveData\SaveConfig.cs" />
-    <Page Include="ChooseSavedFile.xaml">
+    <Compile Include="SecondaryWindows\SaveGameDataWindow.xaml.cs">
+      <DependentUpon>SaveGameDataWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="SecondaryWindows\ChooseSavedFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,11 +117,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="OptionSettings.xaml">
+    <Page Include="SecondaryWindows\OptionSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegisterWindow.xaml">
+    <Page Include="SecondaryWindows\RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SecondaryWindows\SaveGameDataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

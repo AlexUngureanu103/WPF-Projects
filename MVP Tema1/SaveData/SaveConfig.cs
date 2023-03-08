@@ -30,7 +30,7 @@ namespace MVP_Tema1.SaveData
             }
         }
 
-        public void SaveDataToFile(Grid boardConfiguration,List<string> tokensToDisplay,int count, int level)
+        public void SaveDataToFile(Grid boardConfiguration, List<string> tokensToDisplay, int count, int level, string saveName)
         {
 
             if (boardConfiguration == null)
@@ -67,7 +67,7 @@ namespace MVP_Tema1.SaveData
                     gridData.ImagesColumn.Add(column);
                 }
             }
-            string auxFilePath = Path.Combine(FilePath, DateTime.Now.ToString().GetHashCode() + ".xml");
+            string auxFilePath = Path.Combine(FilePath, saveName + ' ' + DateTime.Now.ToString().GetHashCode() + ".xml");
             Thread.Sleep(10);
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(GridData));
             using (StreamWriter writer = new StreamWriter(auxFilePath))

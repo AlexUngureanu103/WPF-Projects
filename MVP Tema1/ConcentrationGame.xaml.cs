@@ -1,5 +1,6 @@
 ﻿using MVP_Tema1.Authentification;
 using MVP_Tema1.SaveData;
+using MVP_Tema1.SecondaryWindows;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -83,16 +84,29 @@ namespace MVP_Tema1
 
         private void SaveGame_Click(object sender, RoutedEventArgs e)
         {
-            //popup with save name
-            saveConfig.SaveDataToFile(Board, tokensToDisplay, count, level);
+            SaveGameDataWindow saveGameDataWindow = new SaveGameDataWindow();
+            saveGameDataWindow.ShowDialog();
+            if (saveGameDataWindow.NameOFTheSave != string.Empty)
+                saveConfig.SaveDataToFile(Board, tokensToDisplay, count, level, saveGameDataWindow.NameOFTheSave);
         }
 
         private void LoadGame_Click(object sender, RoutedEventArgs e)
+        {
+            ManageLoadData();
+        }
+
+        private void ManageLoadData()
         {
             ChooseSavedFile chooseSavedFile = new ChooseSavedFile(saveConfig.GetSavedGames());
             chooseSavedFile.ShowDialog();
             if (chooseSavedFile.selectedGamePath != null)
             {
+                if (chooseSavedFile.toDelete == true)
+                {
+                    saveConfig.DeleteFile(chooseSavedFile.selectedGamePath);
+                    ManageLoadData();
+                    return;
+                }
                 var gameData = saveConfig.LoadDataFromFile(chooseSavedFile.selectedGamePath);
                 LoadGridData(gameData);
                 MessageBox.Show("Game loaded successfully, But The has been DELETED", "Info");
