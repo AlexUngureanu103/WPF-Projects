@@ -19,7 +19,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Load" Click="Load_Click" Margin="10" MaxWidth="100"/>
-            <Button Grid.Column="3" Content="Back" Click="Back_Click"  Margin="10" MaxWidth="100"/>
+            <Button Grid.Column="1" Content="Delete" Click="Delete_Click"  Margin="10" MaxWidth="100"/>
+            <Button Grid.Column="2" Content="Back" Click="Back_Click"  Margin="10" MaxWidth="100"/>
         </Grid>
         <Label Grid.Row="0" Content="Choose a saved file" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <ListBox Grid.Row="1" Margin="10" Name="SavedGamesList" SelectionChanged="SavedGames_SelectionChanged" ScrollBar.Scroll="SavedGamesList_Scroll"/>
