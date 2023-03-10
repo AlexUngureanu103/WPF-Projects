@@ -4,6 +4,7 @@ using MVP_Tema1.SecondaryWindows;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -37,6 +38,9 @@ namespace MVP_Tema1
 
         private SaveConfig saveConfig;
 
+        private Timer timer;
+        private float timeLeft;
+
         public ConcentrationGame(Account account)
         {
             InitializeComponent();
@@ -46,6 +50,10 @@ namespace MVP_Tema1
             LoadPlayerIcon();
             tokens = tokensFileLoader.LoadPaths();
             tokensToDisplay = new List<string>();
+
+            timer = new Timer();
+            timer.Interval = 100;
+            timer.Elapsed += Timer_Tick;
             RedimentionateTheGrid();
             NextLevel();
         }
@@ -77,15 +85,38 @@ namespace MVP_Tema1
             prevImageIndex = -1;
             currentImage = null;
             currentImageIndex = -1;
+            timeLeft = BoardDimensions.Value * BoardDimensions.Key * 2;
+
+            timer.Start();
 
             ShuffleTokens();
             GenerateBoard();
         }
 
+        private void Timer_Tick(object sender, ElapsedEventArgs e)
+        {
+            if (!this.IsVisible)
+            {
+                timer.Stop();
+            }
+            timeLeft -= 0.1f;
+            Application.Current.Dispatcher.Invoke(() => TimerCountDown.Content = $"Time left: {timeLeft.ToString("0.0")}s");
+            //TimerCountDown.Content = $"Time left: {timeLeft}s";
+            if (timeLeft <= 0)
+            {
+                timer.Stop();
+                MessageBox.Show("You lost the game", "Info");
+                level = 0;
+                Application.Current.Dispatcher.Invoke(() => NextLevel());
+            }
+        }
+
         private void SaveGame_Click(object sender, RoutedEventArgs e)
         {
             SaveGameDataWindow saveGameDataWindow = new SaveGameDataWindow();
+            timer.Stop();
             saveGameDataWindow.ShowDialog();
+            timer.Start();
             if (saveGameDataWindow.NameOFTheSave != string.Empty)
                 saveConfig.SaveDataToFile(Board, tokensToDisplay, count, level, saveGameDataWindow.NameOFTheSave);
         }
@@ -98,7 +129,9 @@ namespace MVP_Tema1
         private void ManageLoadData()
         {
             ChooseSavedFile chooseSavedFile = new ChooseSavedFile(saveConfig.GetSavedGames());
+            timer.Stop();
             chooseSavedFile.ShowDialog();
+            timer.Start();
             if (chooseSavedFile.selectedGamePath != null)
             {
                 if (chooseSavedFile.toDelete == true)
@@ -142,7 +175,9 @@ namespace MVP_Tema1
         private void Options_Click(object sender, RoutedEventArgs e)
         {
             OptionSettings optionSettings = new OptionSettings();
+            timer.Stop();
             optionSettings.ShowDialog();
+            timer.Start();
             if (!BoardDimensions.Equals(optionSettings.BoardDimensions))
             {
                 BoardDimensions = optionSettings.BoardDimensions;
@@ -242,6 +277,7 @@ namespace MVP_Tema1
         {
             if (level == 3)
             {
+                timer.Stop();
                 MessageBox.Show("Congratulations , You have won a game!", "Congratulations");
                 account.Wins++;
                 this.Close();
@@ -252,6 +288,7 @@ namespace MVP_Tema1
         {
             if (tokensToDisplay.Count - count < 3)
             {
+                timer.Stop();
                 MessageBox.Show($"Congrats , u have finished level {level} out of 3", "Stage Progression");
                 return true;
             }
@@ -265,6 +302,7 @@ namespace MVP_Tema1
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             this.Close();
             // return to login page 
         }
@@ -301,5 +339,6 @@ namespace MVP_Tema1
         {
 
         }
+
     }
 }
