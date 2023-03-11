@@ -58,7 +58,7 @@ namespace MVP_Tema1
             if (registerWindow.registerSuccesful == true)
             {
                 string username = registerWindow.username;
-                Account account = new Account(username, ImagePath, 0);
+                Account account = new Account(username, ImagePath, 0, 0);
                 accountFileManager.AddAccount(account);
                 UpdateUserList();
             }

@@ -80,6 +80,10 @@ namespace MVP_Tema1
 
         private void ResetLevel()
         {
+            if (count != 0 && level == 0)
+            {
+                account.GamesPlayed++;
+            }
             count = 0;
             prevImage = null;
             prevImageIndex = -1;
@@ -280,6 +284,7 @@ namespace MVP_Tema1
                 timer.Stop();
                 MessageBox.Show("Congratulations , You have won a game!", "Congratulations");
                 account.Wins++;
+                account.GamesPlayed++;
                 this.Close();
             }
         }

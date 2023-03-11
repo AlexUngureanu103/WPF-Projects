@@ -6,12 +6,13 @@ namespace MVP_Tema1.Authentification
     {
         public string Username { get; private set; }
 
-
         public string AvatarPath { get; set; }
 
         public int Wins { get; set; }
 
-        public Account(string username, string avatarPath, int wins)
+        public int GamesPlayed { get; set; }
+
+        public Account(string username, string avatarPath, int wins, int gamesPlayed)
         {
             if (username == string.Empty)
             {
@@ -25,6 +26,11 @@ namespace MVP_Tema1.Authentification
             {
                 wins = 0;
             }
+            if (gamesPlayed < 0)
+            {
+                gamesPlayed = 0;
+            }
+            this.GamesPlayed = gamesPlayed;
             this.Wins = wins;
 
             Username = username;
