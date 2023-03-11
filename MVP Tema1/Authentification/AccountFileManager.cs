@@ -9,7 +9,7 @@ namespace MVP_Tema1.Authentification
     {
         private string FilePath;
 
-        private List<Account> Accounts;
+        public List<Account> Accounts;
 
         public AccountFileManager(string folderPath)
         {

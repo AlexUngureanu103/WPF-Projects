@@ -88,7 +88,7 @@ namespace MVP_Tema1
                 MessageBox.Show("Please select an account");
                 return;
             }
-            ConcentrationGame concentrationGame = new ConcentrationGame(currentAccount);
+            ConcentrationGame concentrationGame = new ConcentrationGame(currentAccount,accountFileManager.Accounts);
             this.Hide();
             concentrationGame.ShowDialog();
             this.Show();

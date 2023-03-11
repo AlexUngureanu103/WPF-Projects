@@ -1,0 +1,62 @@
+﻿<Window x:Class="MVP_Tema1.SecondaryWindows.Leaderboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVP_Tema1.SecondaryWindows"
+        mc:Ignorable="d"
+        Title="Leaderboard" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Personal Stats" Click="PersonalStats_Click"  Margin="10" MaxHeight="50" MaxWidth="150"/>
+            <Button Grid.Column="1" Content="Global Stats" Click="GlobalStats_Click"  Margin="10" MaxHeight="50" MaxWidth="150"/>
+        </Grid>
+        <Button Grid.Row="1" Grid.Column="1" Content="Back" Click="Back_Click" Margin="10" MaxHeight="50" MaxWidth="150"/>
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="0.9*"/>
+                    <ColumnDefinition Width="1.6*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Content="Username"  MaxHeight="50" MaxWidth="150" FontSize="15"/>
+                <Label Grid.Column="2" Content="Wins"  MaxHeight="50" MaxWidth="150" FontSize="15"/>
+                <Label Grid.Column="3" Content="Games Played"  MaxHeight="50" MaxWidth="150" FontSize="15"/>
+            </Grid>
+            <ListBox Grid.Row="1"  Name="LB" Margin="10" MaxHeight="300" MaxWidth="500" ScrollBar.Scroll="ListBox_Scroll">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Username}" Width="200"/>
+                            <TextBlock Text="{Binding Wins}" Width="100"/>
+                            <TextBlock Text="{Binding GamesPlayed}" Width="100"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+    </Grid>
+</Window>

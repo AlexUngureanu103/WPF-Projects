@@ -30,8 +30,15 @@ namespace MVP_Tema1.Authentification
             {
                 gamesPlayed = 0;
             }
+            if (wins > gamesPlayed)
+            {
+                wins = gamesPlayed;
+            }
+            else
+            {
+                this.Wins = wins;
+            }
             this.GamesPlayed = gamesPlayed;
-            this.Wins = wins;
 
             Username = username;
             AvatarPath = avatarPath;

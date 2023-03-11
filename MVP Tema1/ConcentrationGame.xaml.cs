@@ -35,16 +35,21 @@ namespace MVP_Tema1
         int level;
 
         private readonly Account account;
+        private readonly List<Account> accounts;
 
         private SaveConfig saveConfig;
 
         private Timer timer;
         private float timeLeft;
 
-        public ConcentrationGame(Account account)
+        Leaderboard LeaderboardWindow;
+
+        public ConcentrationGame(Account account, List<Account> accounts)
         {
             InitializeComponent();
             this.account = account;
+            this.accounts = accounts;
+            LeaderboardWindow = new Leaderboard(accounts, account);
             saveConfig = new SaveConfig(@"Save", account);
             PlayerName.Content = account.Username;
             LoadPlayerIcon();
@@ -342,7 +347,9 @@ namespace MVP_Tema1
 
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
-
+            timer.Stop();
+            LeaderboardWindow.ShowDialog();
+            timer.Start();
         }
 
     }
