@@ -17,7 +17,7 @@ namespace MVP_Tema1
 
         private List<string> icons;
 
-        private AccountFileManager accountFileManager = new AccountFileManager(@"Save\Accounts");
+        private AccountFileManager accountFileManager = new AccountFileManager(@"Save");
 
         public string ImagePath { get; set; }
 

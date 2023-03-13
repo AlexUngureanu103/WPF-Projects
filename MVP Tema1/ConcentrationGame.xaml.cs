@@ -49,7 +49,6 @@ namespace MVP_Tema1
             InitializeComponent();
             this.account = account;
             this.accounts = accounts;
-            LeaderboardWindow = new Leaderboard(accounts, account);
             saveConfig = new SaveConfig(@"Save", account);
             PlayerName.Content = account.Username;
             LoadPlayerIcon();
@@ -85,7 +84,7 @@ namespace MVP_Tema1
 
         private void ResetLevel()
         {
-            if (count != 0 && level == 0)
+            if (count != 0 && level == 1)
             {
                 account.GamesPlayed++;
             }
@@ -110,7 +109,6 @@ namespace MVP_Tema1
             }
             timeLeft -= 0.1f;
             Application.Current.Dispatcher.Invoke(() => TimerCountDown.Content = $"Time left: {timeLeft.ToString("0.0")}s");
-            //TimerCountDown.Content = $"Time left: {timeLeft}s";
             if (timeLeft <= 0)
             {
                 timer.Stop();
@@ -152,6 +150,7 @@ namespace MVP_Tema1
                 var gameData = saveConfig.LoadDataFromFile(chooseSavedFile.selectedGamePath);
                 LoadGridData(gameData);
                 MessageBox.Show("Game loaded successfully, But The has been DELETED", "Info");
+                timeLeft = BoardDimensions.Value * BoardDimensions.Key * 2;
             }
         }
 
@@ -178,7 +177,9 @@ namespace MVP_Tema1
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             MessageBox.Show("Press the Images to reveal the image behind and find the pairs to win\n", "Info");
+            timer.Start();
         }
 
         private void Options_Click(object sender, RoutedEventArgs e)
@@ -233,16 +234,17 @@ namespace MVP_Tema1
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Image clickedImage = sender as Image;
+            int clickedImageIndex = Grid.GetRow(clickedImage) * BoardDimensions.Value + Grid.GetColumn(clickedImage);
+
+            clickedImage.Source = new BitmapImage(new Uri(tokensToDisplay[clickedImageIndex], UriKind.RelativeOrAbsolute));
+
             if (CheckBoardFinished())
             {
                 CheckIfGameEnded();
                 NextLevel();
                 return;
             }
-            Image clickedImage = sender as Image;
-            int clickedImageIndex = Grid.GetRow(clickedImage) * BoardDimensions.Value + Grid.GetColumn(clickedImage);
-
-            clickedImage.Source = new BitmapImage(new Uri(tokensToDisplay[clickedImageIndex], UriKind.RelativeOrAbsolute));
             if (clickedImageIndex == prevImageIndex || clickedImageIndex == currentImageIndex)
             {
                 MessageBox.Show("Please choose another image", "Invalid choice");
@@ -252,7 +254,6 @@ namespace MVP_Tema1
             {
                 prevImageIndex = clickedImageIndex;
                 prevImage = clickedImage;
-                //prevImage.Source = new BitmapImage(new Uri(tokensToDisplay[prevImageIndex], UriKind.Relative));
             }
             else if (currentImageIndex == -1)
             {
@@ -307,14 +308,15 @@ namespace MVP_Tema1
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             MessageBox.Show("Nume: Ungureanu Alexandru\nGrupa: 10LF213\nSpecializare: Informatica", "About");
+            timer.Start();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             timer.Stop();
             this.Close();
-            // return to login page 
         }
 
         private void ShuffleTokens()
@@ -348,9 +350,9 @@ namespace MVP_Tema1
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
             timer.Stop();
+            LeaderboardWindow = new Leaderboard(accounts, account);
             LeaderboardWindow.ShowDialog();
             timer.Start();
         }
-
     }
 }

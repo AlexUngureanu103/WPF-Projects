@@ -7,6 +7,8 @@ namespace MVP_Tema1.Authentification
 {
     internal class AccountFileManager
     {
+        private string FolderPath;
+
         private string FilePath;
 
         public List<Account> Accounts;
@@ -21,7 +23,8 @@ namespace MVP_Tema1.Authentification
             {
                 Directory.CreateDirectory(folderPath);
             }
-            this.FilePath = Path.Combine(folderPath, "Accounts.txt");
+            this.FolderPath = folderPath;
+            this.FilePath = Path.Combine(folderPath, "Accounts", "Accounts.txt");
             if (!File.Exists(FilePath))
             {
                 File.Create(FilePath);
@@ -39,6 +42,9 @@ namespace MVP_Tema1.Authentification
         {
             Accounts.Remove(account);
             File.WriteAllLines(FilePath, ParseAccountList(Accounts));
+            string folder = Path.Combine(Path.GetFullPath(FolderPath), account.Username);
+            if (File.Exists(folder))
+                Directory.Delete(folder, true);
         }
 
         public void UpdateAccount(Account account)
