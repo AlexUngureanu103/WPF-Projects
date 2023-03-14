@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Collections.Generic;
 
 namespace MVP_Tema1.SaveData
 {
     public class GridData
     {
         public int count { get; set; }
-        
+
         public int level { get; set; }
 
         public int rows { get; set; }
@@ -22,6 +17,5 @@ namespace MVP_Tema1.SaveData
         public List<int> ImagesColumn { get; set; }
 
         public List<string> ImagesPath { get; set; }
-
     }
 }

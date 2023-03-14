@@ -32,7 +32,6 @@ namespace MVP_Tema1.SaveData
 
         public void SaveDataToFile(Grid boardConfiguration, List<string> tokensToDisplay, int count, int level, string saveName)
         {
-
             if (boardConfiguration == null)
             {
                 throw new ArgumentException("Board configuration cannot be null", nameof(boardConfiguration));
