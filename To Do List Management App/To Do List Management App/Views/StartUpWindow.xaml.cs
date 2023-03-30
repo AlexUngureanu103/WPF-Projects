@@ -12,20 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using To_Do_List_Management_App.ResourceManagement;
 
-namespace To_Do_List_Management_App
+namespace To_Do_List_Management_App.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StartUpWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StartUpWindow : UserControl
     {
-        LoadImages loadImages;
-
-        public MainWindow()
+        public StartUpWindow()
         {
-            loadImages = new LoadImages(@"Images\CategoriesFolderIcons");
             InitializeComponent();
         }
     }
