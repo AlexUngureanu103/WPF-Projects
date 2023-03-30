@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using To_Do_List_Management_App.ResourceManagement;
 
 namespace To_Do_List_Management_App
 {
@@ -20,8 +21,11 @@ namespace To_Do_List_Management_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        LoadImages loadImages;
+
         public MainWindow()
         {
+            loadImages = new LoadImages(@"Images\CategoriesFolderIcons");
             InitializeComponent();
         }
     }
