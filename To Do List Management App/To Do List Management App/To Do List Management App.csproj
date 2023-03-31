@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\Priority.cs" />
+    <Compile Include="Enums\Status.cs" />
+    <Compile Include="Enums\Type.cs" />
     <Compile Include="ResourceManagement\LoadImages.cs" />
     <Compile Include="Views\StartUpWindow.xaml.cs">
       <DependentUpon>StartUpWindow.xaml</DependentUpon>
@@ -104,9 +107,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="NewFolder1\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\**">

@@ -1,6 +1,6 @@
 ﻿namespace To_Do_List_Management_App.Enums
 {
-    public enum Type
+    public enum TaskType
     {
         None,
         Chores,
