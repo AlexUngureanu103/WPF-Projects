@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace To_Do_List_Management_App.ResourceManagement
 {
-    internal class LoadImages
+    public class LoadImages
     {
         private string folderPath;
 

@@ -1,6 +1,6 @@
 ﻿namespace To_Do_List_Management_App.ToRegistribute
 {
-    internal class StatisticsPanel
+    public class StatisticsPanel
     {
         public int TotalTasks { get; set; }
 

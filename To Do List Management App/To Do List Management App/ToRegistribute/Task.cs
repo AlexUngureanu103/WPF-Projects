@@ -3,7 +3,8 @@ using To_Do_List_Management_App.Enums;
 
 namespace To_Do_List_Management_App.ToRegistribute
 {
-    internal class Task
+    [Serializable]
+    public class Task
     {
         public string Name { get; set; }
 

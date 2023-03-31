@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace To_Do_List_Management_App.ToRegistribute
 {
-    internal class Category
+    [Serializable]
+    public class Category
     {
         public string Name { get; set; }
 
