@@ -21,21 +21,41 @@
         </Grid.RowDefinitions>
         <Grid x:Name="LeftGrid" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="15"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="1" Content="Stats:"/>
+            <Label Grid.Row="1" Content="Stats:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+            <Grid x:Name="Stats" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Total tasks:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
+                <Label Grid.Row="1" Content="Completed tasks:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
+                <Label Grid.Row="2" Content="Uncompleted tasks:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
+
+                <Label Grid.Row="3" Content="Tasks due today:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
+                <Label Grid.Row="4" Content="Tasks due tomorrow:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
+                <Label Grid.Row="5" Content="Tasks overdue:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
+            </Grid>
         </Grid>
         <Grid x:Name="RightGrid" Grid.Row="1" Grid.Column="3">
             <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="1.9*"/>
+                <RowDefinition Height="1.6*"/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Row="0" Name="TaskList"/>
-            <Label Grid.Row="1"  Content="Selected tasks notes and attachments:" VerticalContentAlignment="Center"  HorizontalContentAlignment="Left"/>
-            <TextBlock Grid.Row="2" TextWrapping="Wrap" Name="TaskDescription"/>
+            <Label Grid.Row="0" Content="Tasks:"/>
+            <ListBox Grid.Row="1" Name="TaskList"/>
+            <Label Grid.Row="2"  Content="Selected tasks notes and attachments:" VerticalContentAlignment="Center"  HorizontalContentAlignment="Left"/>
+            <TextBlock Grid.Row="3" TextWrapping="Wrap" Name="TaskDescription"/>
         </Grid>
     </Grid>
 </UserControl>
