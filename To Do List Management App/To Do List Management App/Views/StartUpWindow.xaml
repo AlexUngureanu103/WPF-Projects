@@ -7,6 +7,35 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="2.3*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="LeftGrid" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Content="Stats:"/>
+        </Grid>
+        <Grid x:Name="RightGrid" Grid.Row="1" Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="1.9*"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0" Name="TaskList"/>
+            <Label Grid.Row="1"  Content="Selected tasks notes and attachments:" VerticalContentAlignment="Center"  HorizontalContentAlignment="Left"/>
+            <TextBlock Grid.Row="2" TextWrapping="Wrap" Name="TaskDescription"/>
+        </Grid>
     </Grid>
 </UserControl>
