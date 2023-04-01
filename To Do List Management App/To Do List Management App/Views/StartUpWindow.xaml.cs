@@ -24,5 +24,11 @@ namespace To_Do_List_Management_App.Views
         {
             InitializeComponent();
         }
+
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow.WindowContainer.Navigate(new AddTaskWindow());
+        }
     }
 }

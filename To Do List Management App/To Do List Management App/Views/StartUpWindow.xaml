@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:To_Do_List_Management_App.Views"
+             xmlns:vm="clr-namespace:To_Do_List_Management_App.ViewModels"
+             xmlns:views="clr-namespace:To_Do_List_Management_App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -52,7 +53,14 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="1.6*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Tasks:"/>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Tasks:"/>
+                <Button Grid.Column="1" Content="Add task" Click="AddTaskButton_Click"/>
+            </Grid>
             <ListBox Grid.Row="1" Name="TaskList"/>
             <Label Grid.Row="2"  Content="Selected tasks notes and attachments:" VerticalContentAlignment="Center"  HorizontalContentAlignment="Left"/>
             <TextBlock Grid.Row="3" TextWrapping="Wrap" Name="TaskDescription"/>
