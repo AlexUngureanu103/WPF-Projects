@@ -59,13 +59,23 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\TaskType.cs" />
     <Compile Include="ResourceManagement\LoadImages.cs" />
+    <Compile Include="Services\EnumBindingSourceExtension.cs" />
     <Compile Include="ToRegistribute\Category.cs" />
     <Compile Include="ToRegistribute\StatisticsPanel.cs" />
     <Compile Include="ToRegistribute\ToDoList.cs" />
-    <Compile Include="ToRegistribute\Task.cs" />
+    <Compile Include="ToRegistribute\TDTask.cs" />
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\StartUpPageVM.cs" />
+    <Compile Include="Views\AddTaskWindow.xaml.cs">
+      <DependentUpon>AddTaskWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartUpWindow.xaml.cs">
       <DependentUpon>StartUpWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,10 +120,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Images\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
