@@ -12,6 +12,6 @@ namespace To_Do_List_Management_App.ToRegistribute
 
         public string ImageSource { get; set; }
 
-        public List<Task> Tasks { get; set; }
+        public List<TDTask> Tasks { get; set; }
     }
 }

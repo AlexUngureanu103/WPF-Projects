@@ -4,7 +4,7 @@ using To_Do_List_Management_App.Enums;
 namespace To_Do_List_Management_App.ToRegistribute
 {
     [Serializable]
-    public class Task
+    public class TDTask
     {
         public string Name { get; set; }
 
