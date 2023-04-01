@@ -10,19 +10,16 @@ namespace To_Do_List_Management_App.Views
     /// </summary>
     public partial class AddTaskWindow : UserControl
     {
-        public TDTask task { get; set; }
-        private Priority priority;
-
         public AddTaskWindow()
         {
             InitializeComponent();
-            DataContext = this;
-            task = new TDTask();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            priority = (Priority)PriorityComboBox.SelectedValue;
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow.WindowContainer.ClearValue(ContentControl.ContentProperty);
+            mainWindow.WindowContainer.Navigate(new StartUpWindow());
         }
     }
 }

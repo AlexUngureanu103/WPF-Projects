@@ -5,10 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:enums="clr-namespace:To_Do_List_Management_App.Enums"
              xmlns:services="clr-namespace:To_Do_List_Management_App.Services"
+             xmlns:vm="clr-namespace:To_Do_List_Management_App.ViewModels"
              xmlns:local="clr-namespace:To_Do_List_Management_App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <UserControl.Resources>
+        <vm:AddTaskVM x:Key="addTaskVM"/>
+    </UserControl.Resources>
+    <Grid x:Name="AddTaskGrid" DataContext="{Binding Source={StaticResource addTaskVM}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="*" />
@@ -37,9 +41,9 @@
             <Label Grid.Row="0" Grid.Column="2" Content="Task Type:"/>
             <Label Grid.Row="0" Grid.Column="3" Content="Due Date:"/>
             <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding Source=task.Name, Mode=OneWay}"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="PriorityComboBox" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:Priority}}}" SelectedValue="{Binding priority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Grid.Row="1" Grid.Column="2" x:Name="TaskTypeComboBox" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:TaskType}}}" SelectedValue="{Binding task.type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="PriorityComboBox" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:Priority}}}" SelectedValue="{Binding priority, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Grid.Row="1" Grid.Column="2" x:Name="TaskTypeComboBox" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:TaskType}}}" SelectedValue="{Binding task.type, Mode=TwoWay}"/>
+            <DatePicker Grid.Row="1" Grid.Column="3" x:Name="DateSelector" />
         </Grid>
         <Button Grid.Row="3" Grid.Column="1" x:Name="Back" Content="Back" Click="Back_Click" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="200" MaxHeight="45"/>
     </Grid>
