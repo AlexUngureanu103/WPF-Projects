@@ -59,22 +59,32 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\TaskType.cs" />
     <Compile Include="ResourceManagement\LoadImages.cs" />
+    <Compile Include="Services\AddCategoryCommands.cs" />
     <Compile Include="Services\AddTaskCommands.cs" />
+    <Compile Include="Services\CategoryValidator.cs" />
     <Compile Include="Services\EnumBindingSourceExtension.cs" />
     <Compile Include="Services\TaskValidator.cs" />
     <Compile Include="ToRegistribute\Category.cs" />
     <Compile Include="ToRegistribute\StatisticsPanel.cs" />
     <Compile Include="ToRegistribute\ToDoList.cs" />
     <Compile Include="ToRegistribute\TDTask.cs" />
+    <Compile Include="ViewModels\AddCategoryVM.cs" />
     <Compile Include="ViewModels\AddTaskVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\StartUpPageVM.cs" />
+    <Compile Include="Views\AddCategory.xaml.cs">
+      <DependentUpon>AddCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddTaskWindow.xaml.cs">
       <DependentUpon>AddTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StartUpWindow.xaml.cs">
       <DependentUpon>StartUpWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
