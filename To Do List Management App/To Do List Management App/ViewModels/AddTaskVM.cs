@@ -3,11 +3,27 @@ using System.Windows.Input;
 using To_Do_List_Management_App.Commands;
 using To_Do_List_Management_App.Enums;
 using To_Do_List_Management_App.Services;
+using To_Do_List_Management_App.ToRegistribute;
 
 namespace To_Do_List_Management_App.ViewModels
 {
     internal class AddTaskVM : BaseVM
     {
+        private TDTask taskToAdd;
+        public TDTask TaskToAdd
+        {
+            get
+            {
+                return taskToAdd;
+            }
+
+            set
+            {
+                taskToAdd = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool canExecute;
         public bool CanExecute
         {
@@ -105,13 +121,27 @@ namespace To_Do_List_Management_App.ViewModels
         {
             get
             {
-                if(backCommand == null)
+                if (backCommand == null)
                 {
                     backCommand = new RelayCommand(addTaskCommands.BackCommand, param => CanExecute);
                 }
                 return backCommand;
             }
         }
+
+        private ICommand addCommand;
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (addCommand == null)
+                {
+                    addCommand = new RelayCommand(addTaskCommands.AddTaskCommand, param => CanExecute);
+                }
+                return addCommand;
+            }
+        }
+
         public AddTaskVM()
         {
             addTaskCommands = new AddTaskCommands(this);

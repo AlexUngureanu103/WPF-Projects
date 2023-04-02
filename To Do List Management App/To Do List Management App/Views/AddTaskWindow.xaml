@@ -45,6 +45,14 @@
             <ComboBox Grid.Row="1" Grid.Column="2" x:Name="TaskTypeComboBox" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:TaskType}}}" SelectedValue="{Binding task.type, Mode=TwoWay}"/>
             <DatePicker Grid.Row="1" Grid.Column="3" x:Name="DateSelector" />
         </Grid>
-        <Button Grid.Row="3" Grid.Column="1" x:Name="Back" Content="Back" Click="Back_Click" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="200" MaxHeight="45"/>
+        <Grid x:Name="NavButtons" Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button  Grid.Column="0" x:Name="Back" Content="Back" Click="Back_Click" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="200" MinWidth="100" MaxHeight="45"/>
+            <Button  Grid.Column="1" x:Name="AddTask" Content="Add Task" Command="{Binding AddCommand}"  HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="200" MinWidth="100" MaxHeight="45"/>
+            
+        </Grid>
     </Grid>
 </UserControl>

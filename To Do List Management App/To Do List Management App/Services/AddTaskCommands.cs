@@ -1,4 +1,5 @@
 ﻿using System;
+using To_Do_List_Management_App.ToRegistribute;
 using To_Do_List_Management_App.ViewModels;
 
 namespace To_Do_List_Management_App.Services
@@ -15,6 +16,20 @@ namespace To_Do_List_Management_App.Services
         public void BackCommand()
         {
             //AddTaskVM.NavigationService.NavigateTo("MainPage");
+            return;
+        }
+
+        public void AddTaskCommand()
+        {
+            AddTaskVM.TaskToAdd = new TDTask()
+            {
+                Name = AddTaskVM.TaskName,
+                Description = AddTaskVM.TaskDescription,
+                priority = AddTaskVM.TaskPriority,
+                type = AddTaskVM.TaskType,
+                DueDate = AddTaskVM.TaskDueDate,
+                status = Enums.Status.NotStarted
+            };
             return;
         }
     }
