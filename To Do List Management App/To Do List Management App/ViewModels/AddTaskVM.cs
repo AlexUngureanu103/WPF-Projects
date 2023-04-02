@@ -1,6 +1,8 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using To_Do_List_Management_App.Commands;
+using To_Do_List_Management_App.Enums;
 using To_Do_List_Management_App.Services;
-using To_Do_List_Management_App.ToRegistribute;
 
 namespace To_Do_List_Management_App.ViewModels
 {
@@ -15,20 +17,104 @@ namespace To_Do_List_Management_App.ViewModels
                 canExecute = value;
             }
         }
-        
-        private TDTask task;
-        public TDTask Task
+
+        private AddTaskCommands addTaskCommands;
+
+        private string taskName;
+        public string TaskName
         {
-            get { return task; }
+            get { return taskName; }
             set
             {
-                task = value;
-                canExecute = TaskValidator.CanExecuteAddTask(task);
+                taskName = value;
+                canExecute = TaskValidator.CanExecuteAddTask(
+                     taskName: TaskName,
+                     taskDescription: TaskDescription,
+                     taskPriority: TaskPriority,
+                     taskType: TaskType,
+                     taskDueDate: TaskDueDate);
             }
         }
 
+        private string taskDescription;
+        public string TaskDescription
+        {
+            get { return taskDescription; }
+            set
+            {
+                taskDescription = value;
+                canExecute = TaskValidator.CanExecuteAddTask(
+                     taskName: TaskName,
+                     taskDescription: TaskDescription,
+                     taskPriority: TaskPriority,
+                     taskType: TaskType,
+                     taskDueDate: TaskDueDate);
+            }
+        }
+
+        private Priority taskPriority;
+        public Priority TaskPriority
+        {
+            get { return taskPriority; }
+            set
+            {
+                taskPriority = value;
+                canExecute = TaskValidator.CanExecuteAddTask(
+                     taskName: TaskName,
+                     taskDescription: TaskDescription,
+                     taskPriority: TaskPriority,
+                     taskType: TaskType,
+                     taskDueDate: TaskDueDate);
+            }
+        }
+
+        private TaskType taskType;
+        public TaskType TaskType
+        {
+            get { return taskType; }
+            set
+            {
+                taskType = value;
+                canExecute = TaskValidator.CanExecuteAddTask(
+                     taskName: TaskName,
+                     taskDescription: TaskDescription,
+                     taskPriority: TaskPriority,
+                     taskType: TaskType,
+                     taskDueDate: TaskDueDate);
+            }
+        }
+
+        private DateTime taskDueDate;
+        public DateTime TaskDueDate
+        {
+            get { return taskDueDate; }
+            set
+            {
+                taskDueDate = value;
+                canExecute = TaskValidator.CanExecuteAddTask(
+                     taskName: TaskName,
+                     taskDescription: TaskDescription,
+                     taskPriority: TaskPriority,
+                     taskType: TaskType,
+                     taskDueDate: TaskDueDate);
+            }
+        }
+
+        private ICommand backCommand;
+        public ICommand BackCommand
+        {
+            get
+            {
+                if(backCommand == null)
+                {
+                    backCommand = new RelayCommand(addTaskCommands.BackCommand, param => CanExecute);
+                }
+                return backCommand;
+            }
+        }
         public AddTaskVM()
         {
+            addTaskCommands = new AddTaskCommands(this);
         }
     }
 }

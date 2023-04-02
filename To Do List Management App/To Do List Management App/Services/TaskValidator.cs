@@ -1,25 +1,24 @@
-﻿using To_Do_List_Management_App.ToRegistribute;
+﻿using System;
+using To_Do_List_Management_App.Enums;
 
 namespace To_Do_List_Management_App.Services
 {
     internal class TaskValidator
     {
-        public static bool CanExecuteAddTask(TDTask task)
+        public static bool CanExecuteAddTask(string taskName, string taskDescription, Priority taskPriority, TaskType taskType, DateTime taskDueDate)
         {
-            if (task == null ||
-                task.type == Enums.TaskType.None ||
-                task.priority == Enums.Priority.None ||
-                string.IsNullOrEmpty(task.Name) ||
-                string.IsNullOrEmpty(task.Description) ||
-                task.DueDate == null
+            if (
+                taskType == Enums.TaskType.None ||
+                taskPriority == Enums.Priority.None ||
+                string.IsNullOrEmpty(taskName) ||
+                string.IsNullOrEmpty(taskDescription) ||
+                taskDueDate == null || taskDueDate < DateTime.Now
                 )
             {
                 return false;
             }
             else
             {
-                if (task.status == Enums.Status.None)
-                    task.status = Enums.Status.NotStarted;
                 return true;
             }
         }
