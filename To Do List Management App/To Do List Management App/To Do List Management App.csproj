@@ -63,6 +63,7 @@
     <Compile Include="Services\AddTaskCommands.cs" />
     <Compile Include="Services\CategoryValidator.cs" />
     <Compile Include="Services\EnumBindingSourceExtension.cs" />
+    <Compile Include="Services\StartUpPageCommands.cs" />
     <Compile Include="Services\TaskValidator.cs" />
     <Compile Include="ToRegistribute\Category.cs" />
     <Compile Include="ToRegistribute\StatisticsPanel.cs" />

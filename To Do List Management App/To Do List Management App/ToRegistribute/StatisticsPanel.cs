@@ -11,5 +11,7 @@
         public int TasksDueTomorrow { get; set; }
 
         public int TasksDueToday { get; set; }
+
+        public int UncompletedTasks { get; set; }
     }
 }
