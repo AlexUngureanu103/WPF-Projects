@@ -22,5 +22,10 @@ namespace To_Do_List_Management_App.Views
         {
             WindowContainer.Navigate(new AddTaskWindow(WindowContainer));
         }
+
+        private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowContainer.Navigate(new AddCategory(WindowContainer));
+        }
     }
 }

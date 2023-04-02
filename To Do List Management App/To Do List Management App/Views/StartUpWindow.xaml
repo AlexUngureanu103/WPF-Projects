@@ -55,11 +55,13 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Tasks:"/>
-                <Button Grid.Column="1" Content="Add task" Click="AddTaskButton_Click"/>
+                <Button Grid.Column="1" Name="AddTaskButton" Content="Add task" Click="AddTaskButton_Click"/>
+                <Button Grid.Column="2" Name="AddCategoryButton"  Content="Add Category" Click="AddCategoryButton_Click"/>
             </Grid>
             <ListBox Grid.Row="1" Name="TaskList"/>
             <Label Grid.Row="2"  Content="Selected tasks notes and attachments:" VerticalContentAlignment="Center"  HorizontalContentAlignment="Left"/>
