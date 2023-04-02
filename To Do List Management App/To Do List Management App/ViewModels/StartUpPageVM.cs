@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
 using To_Do_List_Management_App.ToRegistribute;
 
@@ -76,10 +77,16 @@ namespace To_Do_List_Management_App.ViewModels
             startUpPageCommands = new StartUpPageCommands(this);
             Categories = new List<Category>();
             ThisStatisticsPanel = new StatisticsPanel();
+            PopulateForTest();
+        }
+
+        private void PopulateForTest()
+        {
             selectedToDoList = new ToDoList()
             {
                 Tasks = new List<TDTask>()
             };
+
             selectedToDoList.Tasks.Add(new TDTask()
             {
                 Description = "aff",
@@ -98,7 +105,94 @@ namespace To_Do_List_Management_App.ViewModels
                 DueDate = System.DateTime.Now,
                 status = Enums.Status.InProgress
             });
-            SelectedTDTast = null;
+            LoadImages load = new LoadImages(@"Images\CategoriesFolderIcons");
+            categories = new List<Category>()
+            {
+                new Category()
+                {
+                    Name ="1",
+                    ImageSource = "\\"+load.ImagePaths[1],
+                    ToDoLists = new List<ToDoList>()
+                    {
+                        new ToDoList()
+                        {
+                            Name= "tdl1",
+                            ImageSource = "\\"+load.ImagePaths[1],
+                            Tasks = new List<TDTask>()
+                            {
+                                new TDTask()
+                                {
+                                    Description = "fffff",
+                                    Name = "Task2",
+                                    priority = Enums.Priority.Urgent,
+                                    type = Enums.TaskType.Event,
+                                    DueDate = System.DateTime.Now,
+                                    status = Enums.Status.InProgress
+                                }
+                            }
+                        },
+                        new ToDoList()
+                        {
+                            Name= "tdl2",
+                            ImageSource = "\\"+load.ImagePaths[5],
+                            Tasks = new List<TDTask>()
+                            {
+                                new TDTask()
+                                {
+                                    Description = "fsaf",
+                                    Name = "Trwqrwqrqwrqask2",
+                                    priority = Enums.Priority.Low,
+                                    type = Enums.TaskType.Project,
+                                    DueDate = System.DateTime.Now,
+                                    status = Enums.Status.InProgress
+                                }
+                            }
+                        },
+                    }
+                },
+                new Category()
+                {
+                    Name ="fsafas1",
+                    ImageSource = "\\"+load.ImagePaths[8],
+                    ToDoLists = new List<ToDoList>()
+                    {
+                        new ToDoList()
+                        {
+                            Name= "trwqdl1",
+                            ImageSource = "\\"+load.ImagePaths[1],
+                            Tasks = new List<TDTask>()
+                            {
+                                new TDTask()
+                                {
+                                    Description = "fffvdssvsdff",
+                                    Name = "fdsbbbbbbbbbbfsd",
+                                    priority = Enums.Priority.None,
+                                    type = Enums.TaskType.MajorTask,
+                                    DueDate = System.DateTime.Now,
+                                    status = Enums.Status.InProgress
+                                }
+                            }
+                        },
+                        new ToDoList()
+                        {
+                            Name= "tdfdsfl2",
+                            ImageSource = "\\"+load.ImagePaths[5],
+                            Tasks = new List<TDTask>()
+                            {
+                                new TDTask()
+                                {
+                                    Description = "fsfdsfdsaf",
+                                    Name = "Trwqrwqrqwxxxxxrqask2",
+                                    priority = Enums.Priority.Low,
+                                    type = Enums.TaskType.Project,
+                                    DueDate = System.DateTime.Now,
+                                    status = Enums.Status.InProgress
+                                }
+                            }
+                        },
+                    }
+                }
+            };
         }
     }
 }
