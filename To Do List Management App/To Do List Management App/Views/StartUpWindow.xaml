@@ -78,27 +78,6 @@
                 <Button Grid.Column="1" Name="AddTaskButton" Content="Add task" Click="AddTaskButton_Click"/>
                 <Button Grid.Column="2" Name="AddCategoryButton"  Content="Add Category" Click="AddCategoryButton_Click"/>
             </Grid>
-            <!--<ListBox Grid.Row="1" Name="TaskList" ItemsSource="{Binding SelectedToDoList.Tasks}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid x:Name="TasksGrid">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0" Text="{Binding Name}" Margin="5,0,0,0"/>
-                            <TextBlock Grid.Column="1" Text="{Binding DueDate}" Margin="5,0,0,0"/>
-                            <TextBlock Grid.Column="2" Text="{Binding priority}" Margin="5,0,0,0" />
-                            <TextBlock Grid.Column="3" Text="{Binding type}" Margin="5,0,0,0"/>
-                            <TextBlock Grid.Column="4" Text="{Binding status}" Margin="5,0,0,0"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>-->
             <ListView x:Name="taskListView" Grid.Row="1" ItemsSource="{Binding SelectedToDoList.Tasks}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
                     <GridView>
