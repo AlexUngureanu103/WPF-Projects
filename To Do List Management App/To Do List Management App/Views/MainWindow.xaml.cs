@@ -9,12 +9,12 @@ namespace To_Do_List_Management_App.Views
     public partial class MainWindow : Window
     {
         LoadImages loadImages;
-        
+
         public MainWindow()
         {
             loadImages = new LoadImages(@"Images\CategoriesFolderIcons");
             InitializeComponent();
-            WindowContainer.Navigate(new StartUpWindow());
+            WindowContainer.Navigate(new StartUpWindow(WindowContainer));
         }
     }
 }

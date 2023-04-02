@@ -1,7 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
-using To_Do_List_Management_App.Enums;
-using To_Do_List_Management_App.ToRegistribute;
 
 namespace To_Do_List_Management_App.Views
 {
@@ -10,16 +9,24 @@ namespace To_Do_List_Management_App.Views
     /// </summary>
     public partial class AddTaskWindow : UserControl
     {
-        public AddTaskWindow()
+        public Frame WindowContainer { get; set; }
+
+        public AddTaskWindow(Frame windowContainer)
         {
+            WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             InitializeComponent();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = Application.Current.MainWindow as MainWindow;
-            mainWindow.WindowContainer.ClearValue(ContentControl.ContentProperty);
-            mainWindow.WindowContainer.Navigate(new StartUpWindow());
+            if (WindowContainer.CanGoBack)
+            {
+                WindowContainer.GoBack();
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot navigate back, no pages in navigation history.");
+            }
         }
     }
 }
