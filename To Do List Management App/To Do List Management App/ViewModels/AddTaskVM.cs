@@ -20,6 +20,7 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 taskToAdd = value;
+                startUpPageVM.SelectedToDoList.Tasks.Add(taskToAdd);
                 OnPropertyChanged();
             }
         }
@@ -35,6 +36,8 @@ namespace To_Do_List_Management_App.ViewModels
         }
 
         private AddTaskCommands addTaskCommands;
+
+        private StartUpPageVM startUpPageVM;
 
         private string taskName;
         public string TaskName
@@ -142,8 +145,9 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        public AddTaskVM()
+        public AddTaskVM(StartUpPageVM startUpPageVM)
         {
+            this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             addTaskCommands = new AddTaskCommands(this);
         }
     }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using To_Do_List_Management_App.ViewModels;
 
 namespace To_Do_List_Management_App.Views
 {
@@ -21,10 +22,15 @@ namespace To_Do_List_Management_App.Views
     public partial class AddCategory : UserControl
     {
         private Frame WindowContainer;
-        public AddCategory(Frame windowContainer)
+
+        private StartUpPageVM startUpPageVM;
+        public AddCategory(Frame windowContainer, StartUpPageVM startUpPageVM)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
+            startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             InitializeComponent();
+
+            DataContext = new AddCategoryVM(startUpPageVM);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

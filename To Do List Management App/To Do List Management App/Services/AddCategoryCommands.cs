@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using To_Do_List_Management_App.ToRegistribute;
 using To_Do_List_Management_App.ViewModels;
 
@@ -27,7 +28,7 @@ namespace To_Do_List_Management_App.Services
                 Name = addCategoryVM.CategoryName,
                 Description = addCategoryVM.CategoryDescription,
                 ImageSource = addCategoryVM.CategoryImageSource,
-                ToDoLists = new List<ToDoList>()
+                ToDoLists = new ObservableCollection<ToDoList>()
             };
             return;
         }

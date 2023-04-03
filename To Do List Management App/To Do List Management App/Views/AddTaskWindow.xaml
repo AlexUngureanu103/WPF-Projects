@@ -12,7 +12,7 @@
     <UserControl.Resources>
         <vm:AddTaskVM x:Key="addTaskVM"/>
     </UserControl.Resources>
-    <Grid x:Name="AddTaskGrid" DataContext="{Binding Source={StaticResource addTaskVM}}">
+    <Grid x:Name="AddTaskGrid" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="*" />
@@ -60,7 +60,7 @@
             </Grid.ColumnDefinitions>
             <Button  Grid.Column="0" x:Name="Back" Content="Back" Click="Back_Click" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="200" MinWidth="100" MaxHeight="45"/>
             <Button  Grid.Column="1" x:Name="AddTask" Content="Add Task" Command="{Binding AddCommand}"  HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="200" MinWidth="100" MaxHeight="45"/>
-            
+
         </Grid>
     </Grid>
 </UserControl>

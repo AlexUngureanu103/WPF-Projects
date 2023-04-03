@@ -6,6 +6,7 @@ using To_Do_List_Management_App.Commands;
 using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
 using To_Do_List_Management_App.ToRegistribute;
+using To_Do_List_Management_App.Views;
 
 namespace To_Do_List_Management_App.ViewModels
 {
@@ -18,6 +19,7 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 categoryToAdd = value;
+                startUpPageVM.Categories.Add(categoryToAdd);
                 OnPropertyChanged();
             }
         }
@@ -32,6 +34,8 @@ namespace To_Do_List_Management_App.ViewModels
         }
 
         private AddCategoryCommands addCategoryCommands;
+
+        private StartUpPageVM startUpPageVM;
 
         private List<string> categoryImageSources;
         public List<string> CategoryImageSources
@@ -137,8 +141,9 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        public AddCategoryVM()
+        public AddCategoryVM(StartUpPageVM startUpPageVM)
         {
+            this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             addCategoryCommands = new AddCategoryCommands(this);
             categoryImageSources = new LoadImages(@"Images\CategoriesFolderIcons").ImagePaths;
             categoryImageIndex = 0;

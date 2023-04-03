@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
 using To_Do_List_Management_App.ToRegistribute;
@@ -24,6 +24,7 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 selectedToDoList = value;
+                ThisStatisticsPanel = updateStatisticsPanel.UpdatedStatisticsPnael(categories);
                 OnPropertyChanged();
             }
         }
@@ -52,13 +53,17 @@ namespace To_Do_List_Management_App.ViewModels
 
         private StartUpPageCommands startUpPageCommands;
 
-        private List<Category> categories;
-        public List<Category> Categories
+        private UpdateStatisticsPanel updateStatisticsPanel;
+
+        private ObservableCollection<Category> categories;
+        public ObservableCollection<Category> Categories
         {
             get { return categories; }
             set
             {
                 categories = value;
+                ThisStatisticsPanel = updateStatisticsPanel.UpdatedStatisticsPnael(categories);
+                OnPropertyChanged();
             }
         }
 
@@ -69,22 +74,37 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 thisStatisticsPanel = value;
+                OnPropertyChanged();
             }
         }
 
+        //private ICommand addTaskCommand;
+        //public ICommand AddTaskCommand
+        //{
+        //    get
+        //    {
+        //        if(addTaskCommand == null)
+        //        {
+        //            addTaskCommand = new RelayCommand()
+        //        }
+        //    }
+        //}
+
         public StartUpPageVM()
         {
+            updateStatisticsPanel = new UpdateStatisticsPanel(ThisStatisticsPanel);
             startUpPageCommands = new StartUpPageCommands(this);
-            Categories = new List<Category>();
+            Categories = new ObservableCollection<Category>();
             ThisStatisticsPanel = new StatisticsPanel();
             PopulateForTest();
+            ThisStatisticsPanel = updateStatisticsPanel.UpdatedStatisticsPnael(categories);
         }
 
         private void PopulateForTest()
         {
             selectedToDoList = new ToDoList()
             {
-                Tasks = new List<TDTask>()
+                Tasks = new ObservableCollection<TDTask>()
             };
 
             selectedToDoList.Tasks.Add(new TDTask()
@@ -106,19 +126,19 @@ namespace To_Do_List_Management_App.ViewModels
                 status = Enums.Status.InProgress
             });
             LoadImages load = new LoadImages(@"Images\CategoriesFolderIcons");
-            categories = new List<Category>()
+            categories = new ObservableCollection<Category>()
             {
                 new Category()
                 {
                     Name ="1",
                     ImageSource = "\\"+load.ImagePaths[1],
-                    ToDoLists = new List<ToDoList>()
+                    ToDoLists = new ObservableCollection<ToDoList>()
                     {
                         new ToDoList()
                         {
                             Name= "tdl1",
                             ImageSource = "\\"+load.ImagePaths[1],
-                            Tasks = new List<TDTask>()
+                            Tasks = new ObservableCollection<TDTask>()
                             {
                                 new TDTask()
                                 {
@@ -126,7 +146,7 @@ namespace To_Do_List_Management_App.ViewModels
                                     Name = "Task2",
                                     priority = Enums.Priority.Urgent,
                                     type = Enums.TaskType.Event,
-                                    DueDate = System.DateTime.Now,
+                                    DueDate = System.DateTime.Now.AddDays(-2),
                                     status = Enums.Status.InProgress
                                 }
                             }
@@ -135,7 +155,7 @@ namespace To_Do_List_Management_App.ViewModels
                         {
                             Name= "tdl2",
                             ImageSource = "\\"+load.ImagePaths[5],
-                            Tasks = new List<TDTask>()
+                            Tasks = new ObservableCollection<TDTask>()
                             {
                                 new TDTask()
                                 {
@@ -154,13 +174,13 @@ namespace To_Do_List_Management_App.ViewModels
                 {
                     Name ="fsafas1",
                     ImageSource = "\\"+load.ImagePaths[8],
-                    ToDoLists = new List<ToDoList>()
+                    ToDoLists = new ObservableCollection<ToDoList>()
                     {
                         new ToDoList()
                         {
                             Name= "trwqdl1",
                             ImageSource = "\\"+load.ImagePaths[1],
-                            Tasks = new List<TDTask>()
+                            Tasks = new ObservableCollection<TDTask>()
                             {
                                 new TDTask()
                                 {
@@ -177,7 +197,7 @@ namespace To_Do_List_Management_App.ViewModels
                         {
                             Name= "tdfdsfl2",
                             ImageSource = "\\"+load.ImagePaths[5],
-                            Tasks = new List<TDTask>()
+                            Tasks = new ObservableCollection<TDTask>()
                             {
                                 new TDTask()
                                 {
