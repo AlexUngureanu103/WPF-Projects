@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:To_Do_List_Management_App.ViewModels"
              xmlns:models ="clr-namespace:To_Do_List_Management_App.Models"
              xmlns:views="clr-namespace:To_Do_List_Management_App.Views"
+             xmlns:service="clr-namespace:To_Do_List_Management_App.Services"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="StartUpGrid">
@@ -45,7 +46,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>-->
-            <TreeView Grid.Row="0" ItemsSource="{Binding Categories}">
+            <service:ExtendedTreeView Grid.Row="0" ItemsSource="{Binding Categories}" SelectedItem_="{Binding SelectedToDoList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate ItemsSource="{Binding ToDoLists}" DataType="{x:Type models:Category}">
                         <StackPanel Orientation="Horizontal">
@@ -62,7 +63,7 @@
                         </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>
                 </TreeView.Resources>
-            </TreeView>
+            </service:ExtendedTreeView>
             <Label Grid.Row="1" Content="Stats:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
             <Grid x:Name="Stats" Grid.Row="2">
                 <Grid.RowDefinitions>
