@@ -66,10 +66,10 @@
     <Compile Include="Services\StartUpPageCommands.cs" />
     <Compile Include="Services\TaskValidator.cs" />
     <Compile Include="Services\UpdateStatisticsPanel.cs" />
-    <Compile Include="ToRegistribute\Category.cs" />
-    <Compile Include="ToRegistribute\StatisticsPanel.cs" />
-    <Compile Include="ToRegistribute\ToDoList.cs" />
-    <Compile Include="ToRegistribute\TDTask.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\StatisticsPanel.cs" />
+    <Compile Include="Models\ToDoList.cs" />
+    <Compile Include="Models\TDTask.cs" />
     <Compile Include="ViewModels\AddCategoryVM.cs" />
     <Compile Include="ViewModels\AddTaskVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />

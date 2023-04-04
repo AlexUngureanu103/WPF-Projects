@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
-namespace To_Do_List_Management_App.ToRegistribute
+﻿namespace To_Do_List_Management_App.Models
 {
     public class StatisticsPanel
     {

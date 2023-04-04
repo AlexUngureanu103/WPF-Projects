@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace To_Do_List_Management_App.ToRegistribute
+namespace To_Do_List_Management_App.Models
 {
     [Serializable]
-    public class ToDoList
+    public class Category
     {
         public string Name { get; set; }
 
@@ -13,6 +12,6 @@ namespace To_Do_List_Management_App.ToRegistribute
 
         public string ImageSource { get; set; }
 
-        public ObservableCollection<TDTask> Tasks { get; set; }
+        public ObservableCollection<ToDoList> ToDoLists { get; set; }
     }
 }

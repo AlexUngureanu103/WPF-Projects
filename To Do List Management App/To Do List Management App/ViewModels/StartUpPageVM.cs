@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
-using To_Do_List_Management_App.ToRegistribute;
 
 namespace To_Do_List_Management_App.ViewModels
 {
@@ -130,13 +130,13 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 new Category()
                 {
-                    Name ="1",
+                    Name ="Category 1",
                     ImageSource = "\\"+load.ImagePaths[1],
                     ToDoLists = new ObservableCollection<ToDoList>()
                     {
                         new ToDoList()
                         {
-                            Name= "tdl1",
+                            Name= "C1  TD1",
                             ImageSource = "\\"+load.ImagePaths[1],
                             Tasks = new ObservableCollection<TDTask>()
                             {
@@ -153,7 +153,7 @@ namespace To_Do_List_Management_App.ViewModels
                         },
                         new ToDoList()
                         {
-                            Name= "tdl2",
+                            Name= "C1  TD2",
                             ImageSource = "\\"+load.ImagePaths[5],
                             Tasks = new ObservableCollection<TDTask>()
                             {
@@ -172,13 +172,13 @@ namespace To_Do_List_Management_App.ViewModels
                 },
                 new Category()
                 {
-                    Name ="fsafas1",
+                    Name ="Category2",
                     ImageSource = "\\"+load.ImagePaths[8],
                     ToDoLists = new ObservableCollection<ToDoList>()
                     {
                         new ToDoList()
                         {
-                            Name= "trwqdl1",
+                            Name= "C2  TD1",
                             ImageSource = "\\"+load.ImagePaths[1],
                             Tasks = new ObservableCollection<TDTask>()
                             {
@@ -195,7 +195,7 @@ namespace To_Do_List_Management_App.ViewModels
                         },
                         new ToDoList()
                         {
-                            Name= "tdfdsfl2",
+                            Name= "C2 TD2",
                             ImageSource = "\\"+load.ImagePaths[5],
                             Tasks = new ObservableCollection<TDTask>()
                             {

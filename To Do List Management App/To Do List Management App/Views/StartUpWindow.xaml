@@ -4,12 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:To_Do_List_Management_App.ViewModels"
+             xmlns:models ="clr-namespace:To_Do_List_Management_App.Models"
              xmlns:views="clr-namespace:To_Do_List_Management_App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <vm:StartUpPageVM x:Key="startUpPageVM"/>
-    </UserControl.Resources>
     <Grid x:Name="StartUpGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -29,7 +27,7 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Row="0" ItemsSource="{Binding Categories}">
+            <!--<ListBox Grid.Row="0" ItemsSource="{Binding Categories}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -46,7 +44,25 @@
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-            </ListBox>
+            </ListBox>-->
+            <TreeView Grid.Row="0" ItemsSource="{Binding Categories}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate ItemsSource="{Binding ToDoLists}" DataType="{x:Type models:Category}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding ImageSource}" Height="25" Width="25" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageSource}" Height="25" Width="25" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+            </TreeView>
             <Label Grid.Row="1" Content="Stats:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
             <Grid x:Name="Stats" Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -96,7 +112,7 @@
                 <Button Grid.Column="1" Name="AddTaskButton" Content="Add task" Click="AddTaskButton_Click"/>
                 <Button Grid.Column="2" Name="AddCategoryButton"  Content="Add Category" Click="AddCategoryButton_Click"/>
             </Grid>
-            <ListView x:Name="taskListView" Grid.Row="1" ItemsSource="{Binding SelectedToDoList.Tasks}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
+            <ListView x:Name="taskListView" Grid.Row="1" ItemsSource="{Binding SelectedToDoList.Tasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />

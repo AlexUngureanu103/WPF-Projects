@@ -9,9 +9,6 @@
              xmlns:local="clr-namespace:To_Do_List_Management_App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <vm:AddTaskVM x:Key="addTaskVM"/>
-    </UserControl.Resources>
     <Grid x:Name="AddTaskGrid" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
