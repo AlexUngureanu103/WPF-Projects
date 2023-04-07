@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="To_Do_List_Management_App.Views.FindTaskWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:To_Do_List_Management_App.ViewModels"
+             xmlns:enums="clr-namespace:To_Do_List_Management_App.Enums"
+             xmlns:local="clr-namespace:To_Do_List_Management_App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="FindTask">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Content="Find Task" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="2" Grid.Column="1" Content="Activate search by name" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Text=""/>
+
+        <Label Grid.Row="3" Grid.Column="2" Content="Search By due date" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="3" Grid.Column="1" Content="Activate search by date" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <DatePickerTextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+        <Button Grid.Row="7" Grid.Column="7" x:Name="BackButton" Content="Back" Click="BackButton_Click" MaxHeight="50" MaxWidth="100"/>
+    </Grid>
+</UserControl>

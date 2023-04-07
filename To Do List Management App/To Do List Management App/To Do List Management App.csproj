@@ -85,8 +85,8 @@
     <Compile Include="Views\AddTaskWindow.xaml.cs">
       <DependentUpon>AddTaskWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FindTaskWindowxaml.xaml.cs">
-      <DependentUpon>FindTaskWindowxaml.xaml</DependentUpon>
+    <Compile Include="Views\FindTaskWindow.xaml.cs">
+      <DependentUpon>FindTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StartUpWindow.xaml.cs">
       <DependentUpon>StartUpWindow.xaml</DependentUpon>
@@ -99,7 +99,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FindTaskWindowxaml.xaml">
+    <Page Include="Views\FindTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
