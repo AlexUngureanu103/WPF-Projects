@@ -49,6 +49,62 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private bool searchByName;
+        public bool SearchByName
+        {
+            get { return searchByName; }
+            set
+            {
+                searchByName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool searchByDueDate;
+        public bool SearchByDueDate
+        {
+            get { return searchByDueDate; }
+            set
+            {
+                searchByDueDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool searchByPriority;
+        public bool SearchByPriority
+        {
+            get { return searchByPriority; }
+            set
+            {
+                searchByPriority = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string nameToFind;
+        public string NameToFind
+        {
+            get { return nameToFind; }
+            set
+            {
+                nameToFind = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime dueDateToFind;
+        public DateTime DueDateToFind
+        {
+            get { return dueDateToFind; }
+            set
+            {
+                dueDateToFind = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public FindTaskVM(StartUpPageVM startUpPage)
         {
             this.startUpPage = startUpPage ?? throw new ArgumentNullException(nameof(startUpPage));

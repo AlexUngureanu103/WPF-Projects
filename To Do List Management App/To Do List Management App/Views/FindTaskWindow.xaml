@@ -32,12 +32,15 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Content="Find Task" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <CheckBox Grid.Row="2" Grid.Column="1" Content="Activate search by name" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="2" Grid.Column="1" Content="Activate search by name" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding SearchByName}"/>
         <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Text=""/>
 
-        <Label Grid.Row="3" Grid.Column="2" Content="Search By due date" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <CheckBox Grid.Row="3" Grid.Column="1" Content="Activate search by date" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <DatePickerTextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Content="Find task with priority" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="3" Grid.Column="1" Content="Activate search by priority" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding SearchByPriority}"/>
+
+        <Label Grid.Row="4" Grid.Column="2" Content="Search By due date" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="4" Grid.Column="1" Content="Activate search by date" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding SearchByDueDate}"/>
+        <DatePickerTextBox Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
         <Button Grid.Row="7" Grid.Column="7" x:Name="BackButton" Content="Back" Click="BackButton_Click" MaxHeight="50" MaxWidth="100"/>
