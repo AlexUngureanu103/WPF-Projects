@@ -21,6 +21,7 @@ namespace To_Do_List_Management_App.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private bool canExecute;
         public bool CanExecute
         {
@@ -144,7 +145,7 @@ namespace To_Do_List_Management_App.ViewModels
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             addCategoryCommands = new AddCategoryCommands(this);
             categoryImageSources = new LoadImages(@"Images\CategoriesFolderIcons").ImagePaths;
-            categoryImageIndex = 0;
+            CategoryImageIndex = 0;
         }
     }
 }

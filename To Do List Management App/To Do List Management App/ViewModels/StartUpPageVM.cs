@@ -149,6 +149,42 @@ namespace To_Do_List_Management_App.ViewModels
                                     DueDate = System.DateTime.Now.AddDays(-2),
                                     status = Enums.Status.InProgress
                                 }
+                            },
+                            toDoLists = new ObservableCollection<ToDoList>(){
+                                new ToDoList()
+                                {
+                                    Name = "C1 TD1 TD1",
+                                    ImageSource = "\\"+load.ImagePaths[1],
+                                    Tasks = new ObservableCollection<TDTask>()
+                                    {
+                                        new TDTask()
+                                        {
+                                            Description = "fffff",
+                                            Name = "Task2",
+                                            priority = Enums.Priority.Urgent,
+                                            type = Enums.TaskType.Event,
+                                            DueDate = System.DateTime.Now.AddDays(-2),
+                                            status = Enums.Status.InProgress
+                                        }
+                                    }
+                                },
+                                new ToDoList()
+                                {
+                                    Name = "C1 TD1 TD2",
+                                    ImageSource = "\\"+load.ImagePaths[1],
+                                    Tasks = new ObservableCollection<TDTask>()
+                                    {
+                                        new TDTask()
+                                        {
+                                            Description = "fffff",
+                                            Name = "Task2",
+                                            priority = Enums.Priority.Urgent,
+                                            type = Enums.TaskType.Event,
+                                            DueDate = System.DateTime.Now.AddDays(-2),
+                                            status = Enums.Status.InProgress
+                                        }
+                                    }
+                                }
                             }
                         },
                         new ToDoList()
