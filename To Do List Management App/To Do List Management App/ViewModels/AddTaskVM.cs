@@ -14,11 +14,7 @@ namespace To_Do_List_Management_App.ViewModels
         private TDTask taskToAdd;
         public TDTask TaskToAdd
         {
-            get
-            {
-                return taskToAdd;
-            }
-
+            get { return taskToAdd; }
             set
             {
                 taskToAdd = value;

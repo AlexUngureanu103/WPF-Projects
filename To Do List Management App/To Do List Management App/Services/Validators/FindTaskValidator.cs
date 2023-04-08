@@ -5,7 +5,6 @@ namespace To_Do_List_Management_App.Services.Validators
 {
     internal class FindTaskValidator
     {
-
         public static bool CanExecuteFindTask(string taskName, Priority taskPriority, DateTime taskDueDate, bool searchByName, bool searchByPriority, bool searchByDueDate)
         {
             if (!searchByDueDate && !searchByName && !searchByPriority)

@@ -5,7 +5,6 @@ namespace To_Do_List_Management_App.Services
 {
     internal static class ExtractTasks
     {
-
         private static ObservableCollection<TDTask> GetTasks(ObservableCollection<ToDoList> toDoList)
         {
             ObservableCollection<TDTask> allTasks = new ObservableCollection<TDTask>();
