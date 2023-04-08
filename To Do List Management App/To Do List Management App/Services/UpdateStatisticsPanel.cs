@@ -5,7 +5,7 @@ namespace To_Do_List_Management_App.Services
 {
     public static class UpdateStatisticsPanel
     {
-        public static StatisticsPanel UpdatedStatisticsPnael(ObservableCollection<Category> categories)
+        public static StatisticsPanel UpdatedStatisticsPanel(ObservableCollection<Category> categories)
         {
             StatisticsPanel statisticsPanel = new StatisticsPanel();
             var allTasks = ExtractTasks.GetAllTasks(categories);

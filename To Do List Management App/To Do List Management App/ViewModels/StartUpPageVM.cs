@@ -25,7 +25,7 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 selectedToDoList = value;
-                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPnael(categories);
+                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(categories);
                 OnPropertyChanged();
             }
         }
@@ -61,7 +61,7 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 categories = value;
-                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPnael(categories);
+                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(categories);
                 OnPropertyChanged();
             }
         }
@@ -93,7 +93,7 @@ namespace To_Do_List_Management_App.ViewModels
         {
             startUpPageCommands = new StartUpPageCommands(this);
             Categories = new ObservableCollection<Category>();
-            ThisStatisticsPanel = new StatisticsPanel();
+            ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(categories);
             PopulateForTest();
         }
 

@@ -19,7 +19,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 taskToAdd = value;
                 startUpPageVM.SelectedToDoList.Tasks.Add(taskToAdd);
-                startUpPageVM.ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPnael(startUpPageVM.Categories);
+                startUpPageVM.ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(startUpPageVM.Categories);
                 OnPropertyChanged();
             }
         }
