@@ -142,10 +142,10 @@ namespace To_Do_List_Management_App.ViewModels
                             {
                                 new TDTask()
                                 {
-                                    Description = "fffff",
-                                    Name = "Task2",
+                                    Description = "Dishes",
+                                    Name = "task C1 TD1 T1",
                                     priority = Enums.Priority.Urgent,
-                                    type = Enums.TaskType.Event,
+                                    type = Enums.TaskType.Chores,
                                     DueDate = System.DateTime.Now.AddDays(-2),
                                     status = Enums.Status.InProgress
                                 }
@@ -159,10 +159,10 @@ namespace To_Do_List_Management_App.ViewModels
                                     {
                                         new TDTask()
                                         {
-                                            Description = "fffff",
-                                            Name = "Task2",
-                                            priority = Enums.Priority.Urgent,
-                                            type = Enums.TaskType.Event,
+                                            Description = "MVP",
+                                            Name = "task C1 TD1 TD1 T1",
+                                            priority = Enums.Priority.High,
+                                            type = Enums.TaskType.Project,
                                             DueDate = System.DateTime.Now.AddDays(-2),
                                             status = Enums.Status.InProgress
                                         }
@@ -176,8 +176,8 @@ namespace To_Do_List_Management_App.ViewModels
                                     {
                                         new TDTask()
                                         {
-                                            Description = "fffff",
-                                            Name = "Task2",
+                                            Description = "BRTA",
+                                            Name = "task C1 TD1 TD2 T1",
                                             priority = Enums.Priority.Urgent,
                                             type = Enums.TaskType.Event,
                                             DueDate = System.DateTime.Now.AddDays(-2),
@@ -195,8 +195,8 @@ namespace To_Do_List_Management_App.ViewModels
                             {
                                 new TDTask()
                                 {
-                                    Description = "fsaf",
-                                    Name = "Trwqrwqrqwrqask2",
+                                    Description = "RC",
+                                    Name = "task C1 TD2 T1",
                                     priority = Enums.Priority.Low,
                                     type = Enums.TaskType.Project,
                                     DueDate = System.DateTime.Now,
@@ -220,8 +220,8 @@ namespace To_Do_List_Management_App.ViewModels
                             {
                                 new TDTask()
                                 {
-                                    Description = "fffvdssvsdff",
-                                    Name = "fdsbbbbbbbbbbfsd",
+                                    Description = "None",
+                                    Name = "task C2 TD1 T1",
                                     priority = Enums.Priority.None,
                                     type = Enums.TaskType.MajorTask,
                                     DueDate = System.DateTime.Now,
@@ -237,8 +237,8 @@ namespace To_Do_List_Management_App.ViewModels
                             {
                                 new TDTask()
                                 {
-                                    Description = "fsfdsfdsaf",
-                                    Name = "Trwqrwqrqwxxxxxrqask2",
+                                    Description = "Trivia",
+                                    Name = "task C2 TD2 T1",
                                     priority = Enums.Priority.Low,
                                     type = Enums.TaskType.Project,
                                     DueDate = System.DateTime.Now,

@@ -14,6 +14,8 @@ namespace To_Do_List_Management_App.ViewModels
     {
         public readonly StartUpPageVM startUpPage;
 
+        private FindTaskCommands findTaskCommands;
+
         private bool canExecute;
         public bool CanExecute
         {
@@ -142,7 +144,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 if (findCommand == null)
                 {
-                    findCommand = null;
+                    findCommand = new RelayCommand(findTaskCommands.FindTaskCommand , param => canExecute);
                 }
                 return findCommand;
             }
@@ -151,6 +153,7 @@ namespace To_Do_List_Management_App.ViewModels
         public FindTaskVM(StartUpPageVM startUpPage)
         {
             this.startUpPage = startUpPage ?? throw new ArgumentNullException(nameof(startUpPage));
+            findTaskCommands = new FindTaskCommands(this);
             categoryImageSources = new LoadImages(@"Images\SpecifiecIcons").ImagePaths;
             specifiedImageSource = categoryImageSources[0];
             DueDateToFind = DateTime.Now.Date;
