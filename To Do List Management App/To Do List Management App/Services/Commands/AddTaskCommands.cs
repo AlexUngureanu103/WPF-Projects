@@ -2,7 +2,7 @@
 using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ViewModels;
 
-namespace To_Do_List_Management_App.Services
+namespace To_Do_List_Management_App.Services.Commands
 {
     internal class AddTaskCommands
     {
@@ -30,6 +30,7 @@ namespace To_Do_List_Management_App.Services
                 DueDate = AddTaskVM.TaskDueDate,
                 status = Enums.Status.NotStarted
             };
+            
             return;
         }
     }

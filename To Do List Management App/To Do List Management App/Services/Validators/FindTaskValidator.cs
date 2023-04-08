@@ -1,7 +1,7 @@
 ﻿using System;
 using To_Do_List_Management_App.Enums;
 
-namespace To_Do_List_Management_App.Services
+namespace To_Do_List_Management_App.Services.Validators
 {
     internal class FindTaskValidator
     {

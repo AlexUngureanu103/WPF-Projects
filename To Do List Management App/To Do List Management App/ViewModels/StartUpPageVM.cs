@@ -2,6 +2,7 @@
 using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
+using To_Do_List_Management_App.Services.Commands;
 
 namespace To_Do_List_Management_App.ViewModels
 {
@@ -24,7 +25,7 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 selectedToDoList = value;
-                ThisStatisticsPanel = updateStatisticsPanel.UpdatedStatisticsPnael(categories);
+                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPnael(categories);
                 OnPropertyChanged();
             }
         }
@@ -53,8 +54,6 @@ namespace To_Do_List_Management_App.ViewModels
 
         private StartUpPageCommands startUpPageCommands;
 
-        private UpdateStatisticsPanel updateStatisticsPanel;
-
         private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
         {
@@ -62,7 +61,7 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 categories = value;
-                ThisStatisticsPanel = updateStatisticsPanel.UpdatedStatisticsPnael(categories);
+                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPnael(categories);
                 OnPropertyChanged();
             }
         }
@@ -92,12 +91,10 @@ namespace To_Do_List_Management_App.ViewModels
 
         public StartUpPageVM()
         {
-            updateStatisticsPanel = new UpdateStatisticsPanel(ThisStatisticsPanel);
             startUpPageCommands = new StartUpPageCommands(this);
             Categories = new ObservableCollection<Category>();
             ThisStatisticsPanel = new StatisticsPanel();
             PopulateForTest();
-            ThisStatisticsPanel = updateStatisticsPanel.UpdatedStatisticsPnael(categories);
         }
 
         private void PopulateForTest()

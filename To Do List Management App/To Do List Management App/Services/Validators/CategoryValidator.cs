@@ -1,4 +1,4 @@
-﻿namespace To_Do_List_Management_App.Services
+﻿namespace To_Do_List_Management_App.Services.Validators
 {
     internal class CategoryValidator
     {

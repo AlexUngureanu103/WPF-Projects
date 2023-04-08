@@ -1,13 +1,12 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms.Design.Behavior;
 
 namespace To_Do_List_Management_App.Services
 {
     public class ExtendedTreeView : TreeView
     {
         public ExtendedTreeView()
-            :base()
+            : base()
         {
             this.SelectedItemChanged += new RoutedPropertyChangedEventHandler<object>(___ICH);
         }

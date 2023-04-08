@@ -6,7 +6,8 @@ using To_Do_List_Management_App.Commands;
 using To_Do_List_Management_App.Enums;
 using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ResourceManagement;
-using To_Do_List_Management_App.Services;
+using To_Do_List_Management_App.Services.Commands;
+using To_Do_List_Management_App.Services.Validators;
 
 namespace To_Do_List_Management_App.ViewModels
 {
@@ -144,7 +145,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 if (findCommand == null)
                 {
-                    findCommand = new RelayCommand(findTaskCommands.FindTaskCommand , param => canExecute);
+                    findCommand = new RelayCommand(findTaskCommands.FindTaskCommand, param => canExecute);
                 }
                 return findCommand;
             }

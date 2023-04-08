@@ -28,7 +28,7 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-    
+
             <service:ExtendedTreeView Grid.Row="0" ItemsSource="{Binding Categories}" SelectedItem_="{Binding SelectedToDoList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate ItemsSource="{Binding ToDoLists}" DataType="{x:Type models:Category}">
@@ -47,7 +47,7 @@
                     </HierarchicalDataTemplate>
                 </TreeView.Resources>
             </service:ExtendedTreeView>
-            
+
             <Label Grid.Row="1" Content="Stats:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
             <Grid x:Name="Stats" Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -71,12 +71,12 @@
                 <Label Grid.Row="4" Grid.Column="0" Content="Tasks due tomorrow:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
                 <Label Grid.Row="5" Grid.Column="0" Content="Tasks overdue:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
 
-                <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TotalTasks}"/>
-                <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksCompleted}"/>
-                <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.UncompletedTasks}"/>
-                <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksDueToday}"/>
-                <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksDueTomorrow}"/>
-                <Label Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksOverdue}"/>
+                <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TotalTasks, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksCompleted, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.UncompletedTasks, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksDueToday, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksDueTomorrow, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksOverdue, UpdateSourceTrigger=PropertyChanged}"/>
 
             </Grid>
         </Grid>
