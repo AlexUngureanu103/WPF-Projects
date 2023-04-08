@@ -65,10 +65,12 @@
     <Compile Include="Services\ExtendedTreeView.cs" />
     <Compile Include="Services\CategoryValidator.cs" />
     <Compile Include="Services\EnumBindingSourceExtension.cs" />
+    <Compile Include="Services\ExtractTasks.cs" />
     <Compile Include="Services\FindTaskCommands.cs" />
     <Compile Include="Services\FindTaskValidator.cs" />
     <Compile Include="Services\StartUpPageCommands.cs" />
     <Compile Include="Services\StringMatching.cs" />
+    <Compile Include="Services\TaskSearchFilters.cs" />
     <Compile Include="Services\TaskValidator.cs" />
     <Compile Include="Services\UpdateStatisticsPanel.cs" />
     <Compile Include="Models\Category.cs" />
