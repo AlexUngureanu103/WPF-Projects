@@ -6,19 +6,25 @@ namespace To_Do_List_Management_App.Services
     internal class FindTaskValidator
     {
 
-        public static bool CanExecuteFindTask(string taskName, Priority taskPriority)
+        public static bool CanExecuteFindTask(string taskName, Priority taskPriority, DateTime taskDueDate, bool searchByName, bool searchByPriority, bool searchByDueDate)
         {
-            if (
-                taskPriority == Enums.Priority.None ||
-                string.IsNullOrEmpty(taskName)
-                )
+            if (!searchByDueDate && !searchByName && !searchByPriority)
             {
                 return false;
             }
-            else
+            if (searchByName && string.IsNullOrEmpty(taskName))
             {
-                return true;
+                return false;
             }
+            if (searchByPriority && taskPriority == Priority.None)
+            {
+                return false;
+            }
+            if (searchByDueDate && taskDueDate == DateTime.MinValue)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

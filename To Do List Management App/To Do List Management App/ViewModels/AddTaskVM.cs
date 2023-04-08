@@ -149,6 +149,7 @@ namespace To_Do_List_Management_App.ViewModels
         {
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             addTaskCommands = new AddTaskCommands(this);
+            TaskDueDate = DateTime.Now.Date;
         }
     }
 }

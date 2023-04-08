@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using To_Do_List_Management_App.Commands;
+using To_Do_List_Management_App.Enums;
 using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
@@ -49,6 +52,17 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private TDTask selectedTDTast;
+        public TDTask SelectedTDTast
+        {
+            get { return selectedTDTast; }
+            set
+            {
+                selectedTDTast = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool searchByName;
         public bool SearchByName
         {
@@ -57,6 +71,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 searchByName = value;
                 OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
             }
         }
 
@@ -68,6 +83,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 searchByDueDate = value;
                 OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
             }
         }
 
@@ -79,6 +95,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 searchByPriority = value;
                 OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
             }
         }
 
@@ -90,6 +107,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 nameToFind = value;
                 OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
             }
         }
 
@@ -101,15 +119,41 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 dueDateToFind = value;
                 OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
             }
         }
 
+        private Priority priorityToFInd;
+        public Priority PriorityToFind
+        {
+            get { return priorityToFInd; }
+            set
+            {
+                priorityToFInd = value;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
+            }
+        }
+
+        private ICommand findCommand;
+        public ICommand FindCommand
+        {
+            get
+            {
+                if (findCommand == null)
+                {
+                    findCommand = null;
+                }
+                return findCommand;
+            }
+        }
 
         public FindTaskVM(StartUpPageVM startUpPage)
         {
             this.startUpPage = startUpPage ?? throw new ArgumentNullException(nameof(startUpPage));
             categoryImageSources = new LoadImages(@"Images\SpecifiecIcons").ImagePaths;
             specifiedImageSource = categoryImageSources[0];
+            DueDateToFind = DateTime.Now.Date;
         }
     }
 }

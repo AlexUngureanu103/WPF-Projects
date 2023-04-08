@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:To_Do_List_Management_App.ViewModels"
+             xmlns:services="clr-namespace:To_Do_List_Management_App.Services"
              xmlns:enums="clr-namespace:To_Do_List_Management_App.Enums"
              xmlns:local="clr-namespace:To_Do_List_Management_App.Views"
              mc:Ignorable="d" 
@@ -11,6 +12,7 @@
     <Grid x:Name="FindTask">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -29,20 +31,36 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Content="Find Task" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <CheckBox Grid.Row="2" Grid.Column="1" Content="Activate search by name" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding SearchByName}"/>
-        <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Text=""/>
+        <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Content="Find Task" FontSize="19" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="Activate search by name" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchByName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="4" Text="{Binding NameToFind, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Content="Find task with priority" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <CheckBox Grid.Row="3" Grid.Column="1" Content="Activate search by priority" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding SearchByPriority}"/>
+        <Label Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Content="Find task with priority" FontSize="19" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Activate search by priority" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchByPriority, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox Grid.Row="3" Grid.Column="5" Margin="10" MaxHeight="75" MaxWidth="200" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:Priority}}}" SelectedValue="{Binding PriorityToFind, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="4" Grid.Column="2" Content="Search By due date" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <CheckBox Grid.Row="4" Grid.Column="1" Content="Activate search by date" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding SearchByDueDate}"/>
-        <DatePickerTextBox Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Content="Search By due date" FontSize="19" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="Activate search by date" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchByDueDate, UpdateSourceTrigger=PropertyChanged}"/>
+        <DatePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDate="{Binding DueDateToFind, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <ListView x:Name="taskListView" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="5" Margin="10" ItemsSource="{Binding FoundedTasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" />
+                    <GridViewColumn Header="Priority" DisplayMemberBinding="{Binding priority}" />
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding type}" />
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding status}" />
+                    <GridViewColumn Header="Due Date" DisplayMemberBinding="{Binding DueDate}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-        <Button Grid.Row="7" Grid.Column="7" x:Name="BackButton" Content="Back" Click="BackButton_Click" MaxHeight="50" MaxWidth="100"/>
+        <Button Grid.Row="5" Grid.Column="8" Content="Find" Margin="10" MaxHeight="50" MaxWidth="100"/>
+        <Button Grid.Row="9" Grid.Column="8" x:Name="BackButton" Content="Back" Click="BackButton_Click" Margin="10" MaxHeight="50" MaxWidth="100"/>
     </Grid>
 </UserControl>
