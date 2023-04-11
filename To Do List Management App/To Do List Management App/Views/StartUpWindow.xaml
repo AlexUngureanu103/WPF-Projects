@@ -124,7 +124,9 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Selected tasks notes and attachments:" VerticalContentAlignment="Center"  HorizontalContentAlignment="Left"/>
             <TextBlock Grid.Row="5" Grid.Column="0" Grid.RowSpan="3" TextWrapping="Wrap" Name="TaskDescription" Text="{Binding SelectedTDTast.Description}" Margin="10"/>
 
-            <Button Grid.Row="1" Grid.Column="1" Command="{Binding DeleteToDoListCommand}" Margin="5" MaxWidth="40" MaxHeight="35" Content="Delete" />
+            <Button Grid.Row="1" Grid.Column="1" Margin="5" MaxWidth="40" MaxHeight="35" Content="Up"/>
+            <Button Grid.Row="2" Grid.Column="1" Margin="5" MaxWidth="40" MaxHeight="35" Content="Down"/>
+            <Button Grid.Row="6" Grid.Column="1" Command="{Binding DeleteToDoListCommand}" Margin="5" MaxWidth="40" MaxHeight="35" Content="Delete" />
         </Grid>
     </Grid>
 </UserControl>

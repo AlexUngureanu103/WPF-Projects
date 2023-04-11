@@ -12,7 +12,7 @@ namespace To_Do_List_Management_App.Services
         public static ObservableCollection<TDTask> FindTasksByName(string taskName, ObservableCollection<TDTask> tasksToFindIn)
         {
             ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => StringMatching.IsMatch(x.Name, taskName)));
-            
+
             return foundedTasks;
         }
 
@@ -26,6 +26,34 @@ namespace To_Do_List_Management_App.Services
         public static ObservableCollection<TDTask> FindTasksByDueDate(DateTime dueDate, ObservableCollection<TDTask> tasksToFindIn)
         {
             ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => DateTime.Compare(x.DueDate.Date, dueDate.Date) <= 0));
+
+            return foundedTasks;
+        }
+
+        public static ObservableCollection<TDTask> FindCompletedTasks(ObservableCollection<TDTask> tasksToFindIn)
+        {
+            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => x.status == Status.Completed));
+
+            return foundedTasks;
+        }
+
+        public static ObservableCollection<TDTask> FindOverDueUncompletedTasks(ObservableCollection<TDTask> tasksToFindIn)
+        {
+            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => x.status != Status.Completed && DateTime.Compare(x.DueDate, DateTime.Now) <= 0));
+
+            return foundedTasks;
+        }
+
+        public static ObservableCollection<TDTask> FindNotOverDueUncompletedTasks(ObservableCollection<TDTask> tasksToFindIn)
+        {
+            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => x.status != Status.Completed && DateTime.Compare(x.DueDate, DateTime.Now) > 0));
+
+            return foundedTasks;
+        }
+
+        public static ObservableCollection<TDTask> FindTasksByStatus(Status status, ObservableCollection<TDTask> tasksToFindIn)
+        {
+            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => x.status == status));
 
             return foundedTasks;
         }
