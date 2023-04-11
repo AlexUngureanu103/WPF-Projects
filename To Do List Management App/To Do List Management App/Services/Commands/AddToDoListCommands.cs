@@ -24,9 +24,9 @@ namespace To_Do_List_Management_App.Services.Commands
         {
             addToDoListVM.ToDoListToAdd = new ToDoList()
             {
-                Name = addToDoListVM.CategoryName,
-                Description = addToDoListVM.CategoryDescription,
-                ImageSource = addToDoListVM.CategoryImageSource,
+                Name = addToDoListVM.TDLName,
+                Description = addToDoListVM.TDLDescription,
+                ImageSource = addToDoListVM.TDLImageSource,
                 Tasks = new ObservableCollection<TDTask>(),
                 toDoLists = new ObservableCollection<ToDoList>()
             };
@@ -35,28 +35,26 @@ namespace To_Do_List_Management_App.Services.Commands
 
         public void PrevImageIndexCommand()
         {
-            if (addToDoListVM.CategoryImageIndex == 0)
+            if (addToDoListVM.TDLImageIndex == 0)
             {
-                addToDoListVM.CategoryImageIndex = addToDoListVM.CategoryImageSources.Count - 1;
+                addToDoListVM.TDLImageIndex = addToDoListVM.TDLImageSources.Count - 1;
             }
             else
             {
-                addToDoListVM.CategoryImageIndex--;
+                addToDoListVM.TDLImageIndex--;
             }
-            addToDoListVM.CategoryImageSource = addToDoListVM.CategoryImageSources[addToDoListVM.CategoryImageIndex];
         }
 
         public void NextImageIndexCommand()
         {
-            if (addToDoListVM.CategoryImageIndex == addToDoListVM.CategoryImageSources.Count - 1)
+            if (addToDoListVM.TDLImageIndex == addToDoListVM.TDLImageSources.Count - 1)
             {
-                addToDoListVM.CategoryImageIndex = 0;
+                addToDoListVM.TDLImageIndex = 0;
             }
             else
             {
-                addToDoListVM.CategoryImageIndex++;
+                addToDoListVM.TDLImageIndex++;
             }
-            addToDoListVM.CategoryImageSource = addToDoListVM.CategoryImageSources[addToDoListVM.CategoryImageIndex];
         }
     }
 }

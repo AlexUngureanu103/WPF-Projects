@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using To_Do_List_Management_App.Models;
 
 namespace To_Do_List_Management_App.Services
@@ -29,6 +30,22 @@ namespace To_Do_List_Management_App.Services
             }
 
             return allTasks;
+        }
+
+        public static List<string> GetTDLNames(ObservableCollection<ToDoList> toDoLists)
+        {
+            List<string> tDLNames = new List<string>();
+
+            foreach (ToDoList tdlList in toDoLists)
+            {
+                tDLNames.Add(tdlList.Name);
+                if (tdlList.toDoLists != null && tdlList.toDoLists.Count > 0)
+                {
+                    var names = GetTDLNames(tdlList.toDoLists);
+                    tDLNames.AddRange(names);
+                }
+            }
+            return tDLNames;
         }
 
         //public static ObservableCollection<TDTask> GetAllTasks(ObservableCollection<Category> categories)

@@ -65,7 +65,7 @@
     <Compile Include="Services\ExtendedTreeView.cs" />
     <Compile Include="Services\SerializeData\CurrentStructure.cs" />
     <Compile Include="Services\SerializeData\ManageDataUsage.cs" />
-    <Compile Include="Services\Validators\CategoryValidator.cs" />
+    <Compile Include="Services\Validators\ToDoListValidator.cs" />
     <Compile Include="Services\EnumBindingSourceExtension.cs" />
     <Compile Include="Services\ExtractTasks.cs" />
     <Compile Include="Services\Commands\FindTaskCommands.cs" />

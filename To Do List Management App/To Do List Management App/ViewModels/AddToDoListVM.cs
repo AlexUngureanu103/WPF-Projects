@@ -4,6 +4,7 @@ using System.Windows.Input;
 using To_Do_List_Management_App.Commands;
 using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ResourceManagement;
+using To_Do_List_Management_App.Services;
 using To_Do_List_Management_App.Services.Commands;
 using To_Do_List_Management_App.Services.Validators;
 
@@ -24,6 +25,13 @@ namespace To_Do_List_Management_App.ViewModels
                 {
                     SelectedToDoList.toDoLists.Add(toDoListToAdd);
                 }
+                TDLNames.Add(tdlName);
+                canExecute = ToDoListValidator.CanExecuteAddCategory(
+                    categoryName: tdlName,
+                    tdlNames: TDLNames,
+                    categoryDescription: tdlDescription,
+                    categoryImageSource: tdlImageSource
+                    );
                 OnPropertyChanged();
             }
         }
@@ -38,85 +46,91 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        private AddToDoListCommands addCategoryCommands;
+        private List<string> TDLNames;
+
+        private AddToDoListCommands addTDLCommands;
 
         private StartUpPageVM startUpPageVM;
 
-        private List<string> categoryImageSources;
-        public List<string> CategoryImageSources
+        private List<string> tdkImageSources;
+        public List<string> TDLImageSources
         {
-            get { return categoryImageSources; }
+            get { return tdkImageSources; }
         }
 
-        private string categoryName;
-        public string CategoryName
+        private string tdlName;
+        public string TDLName
         {
-            get { return categoryName; }
+            get { return tdlName; }
             set
             {
-                categoryName = value;
-                canExecute = CategoryValidator.CanExecuteAddCategory(
-                    categoryName: categoryName,
-                    categoryDescription: categoryDescription,
-                    categoryImageSource: categoryImageSource
+                tdlName = value;
+                canExecute = ToDoListValidator.CanExecuteAddCategory(
+                    categoryName: tdlName,
+                    tdlNames: TDLNames,
+                    categoryDescription: tdlDescription,
+                    categoryImageSource: tdlImageSource
                     );
             }
         }
 
-        private string categoryImageSource;
-        public string CategoryImageSource
+        private string tdlImageSource;
+        public string TDLImageSource
         {
-            get { return categoryImageSource; }
+            get { return tdlImageSource; }
             set
             {
-                categoryImageSource = "\\" + value;
+                tdlImageSource = "\\" + value;
                 OnPropertyChanged();
-                canExecute = CategoryValidator.CanExecuteAddCategory(
-                    categoryName: categoryName,
-                    categoryDescription: categoryDescription,
-                    categoryImageSource: categoryImageSource
+                canExecute = ToDoListValidator.CanExecuteAddCategory(
+                    categoryName: tdlName,
+                    tdlNames: TDLNames,
+                    categoryDescription: tdlDescription,
+                    categoryImageSource: tdlImageSource
                     );
             }
         }
 
-        private string categoryDescription;
-        public string CategoryDescription
+        private string tdlDescription;
+        public string TDLDescription
         {
-            get { return categoryDescription; }
+            get { return tdlDescription; }
             set
             {
-                categoryDescription = value;
-                canExecute = CategoryValidator.CanExecuteAddCategory(
-                    categoryName: categoryName,
-                    categoryDescription: categoryDescription,
-                    categoryImageSource: categoryImageSource
+                tdlDescription = value;
+                canExecute = ToDoListValidator.CanExecuteAddCategory(
+                    categoryName: tdlName,
+                    tdlNames: TDLNames,
+                    categoryDescription: tdlDescription,
+                    categoryImageSource: tdlImageSource
                     );
             }
         }
 
-        private int categoryImageIndex;
-        public int CategoryImageIndex
+        private int tdlImageIndex;
+        public int TDLImageIndex
         {
             get
             {
-                return categoryImageIndex;
+                return tdlImageIndex;
             }
             set
             {
-                categoryImageIndex = value;
+                tdlImageIndex = value;
+                TDLImageSource = TDLImageSources[tdlImageIndex];
             }
         }
 
-        private ICommand addCategoryCommand;
-        public ICommand AddCategoryCommand
+        private ICommand addTDLCommand;
+        public ICommand AddTDLCommand
         {
             get
             {
-                if (addCategoryCommand == null)
+                if (addTDLCommand == null)
                 {
-                    addCategoryCommand = new RelayCommand(addCategoryCommands.AddRootToDoListCommand, param => CanExecute);
+                    addTDLCommand = new RelayCommand(addTDLCommands.AddRootToDoListCommand, param => CanExecute);
                 }
-                return addCategoryCommand;
+                return addTDLCommand;
             }
         }
 
@@ -127,7 +141,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 if (prevImageCommand == null)
                 {
-                    prevImageCommand = new RelayCommand(addCategoryCommands.PrevImageIndexCommand, param => true);
+                    prevImageCommand = new RelayCommand(addTDLCommands.PrevImageIndexCommand, param => true);
                 }
                 return prevImageCommand;
             }
@@ -140,7 +154,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 if (nextImageCommand == null)
                 {
-                    nextImageCommand = new RelayCommand(addCategoryCommands.NextImageIndexCommand, param => true);
+                    nextImageCommand = new RelayCommand(addTDLCommands.NextImageIndexCommand, param => true);
                 }
                 return nextImageCommand;
             }
@@ -152,9 +166,11 @@ namespace To_Do_List_Management_App.ViewModels
         {
             SelectedToDoList = selectedToDoList;
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
-            addCategoryCommands = new AddToDoListCommands(this);
-            categoryImageSources = new LoadImages(@"Images\CategoriesFolderIcons").ImagePaths;
-            CategoryImageIndex = 0;
+            addTDLCommands = new AddToDoListCommands(this);
+            tdkImageSources = new LoadImages(@"Images\CategoriesFolderIcons").ImagePaths;
+            TDLImageIndex = 0;
+
+            TDLNames = ExtractTasks.GetTDLNames(startUpPageVM.RootToDoList);
         }
     }
 }

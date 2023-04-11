@@ -84,10 +84,18 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="1.6*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -101,7 +109,7 @@
                 <Button Grid.Column="3" Name="FindTaskButton" Content="Find Tasks" Click="FindTaskButton_Click" Margin="5" MaxHeight="75" MaxWidth="150"/>
                 <Button Grid.Column="4" Name="AddToDoList" Content="Add ToDoList" Click="AddToDoList_Click" Margin="5" MaxHeight="75" MaxWidth="150"/>
             </Grid>
-            <ListView x:Name="taskListView" Grid.Row="1" ItemsSource="{Binding SelectedToDoList.Tasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
+            <ListView x:Name="taskListView" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding SelectedToDoList.Tasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
@@ -113,8 +121,10 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Grid.Row="2"  Content="Selected tasks notes and attachments:" VerticalContentAlignment="Center"  HorizontalContentAlignment="Left"/>
-            <TextBlock Grid.Row="3" TextWrapping="Wrap" Name="TaskDescription" Text="{Binding SelectedTDTast.Description}"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Selected tasks notes and attachments:" VerticalContentAlignment="Center"  HorizontalContentAlignment="Left"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Grid.RowSpan="3" TextWrapping="Wrap" Name="TaskDescription" Text="{Binding SelectedTDTast.Description}" Margin="10"/>
+
+            <Button Grid.Row="1" Grid.Column="1" Command="{Binding DeleteToDoListCommand}" Margin="5" MaxWidth="40" MaxHeight="35" Content="Delete" />
         </Grid>
     </Grid>
 </UserControl>

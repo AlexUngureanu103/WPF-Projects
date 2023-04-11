@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using To_Do_List_Management_App.Commands;
 using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
@@ -85,6 +87,19 @@ namespace To_Do_List_Management_App.ViewModels
         //        }
         //    }
         //}
+
+        private ICommand deleteToDoListCommand;
+        public ICommand DeleteToDoListCommand
+        {
+            get
+            {
+                if (deleteToDoListCommand == null)
+                {
+                    deleteToDoListCommand = new RelayCommand(startUpPageCommands.DeleteToDoList, param => selectedTDTask != null);
+                }
+                return deleteToDoListCommand;
+            }
+        }
 
         public StartUpPageVM()
         {
