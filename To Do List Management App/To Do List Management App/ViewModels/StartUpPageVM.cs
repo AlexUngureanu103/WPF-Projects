@@ -6,6 +6,7 @@ using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
 using To_Do_List_Management_App.Services.Commands;
 using To_Do_List_Management_App.Services.SerializeData;
+using To_Do_List_Management_App.Services.Validators;
 
 namespace To_Do_List_Management_App.ViewModels
 {
@@ -22,6 +23,17 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private bool isEneabledAddTDL;
+        public bool IsEneabledAddTDL
+        {
+            get { return isEneabledAddTDL; }
+            set
+            {
+                isEneabledAddTDL = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ToDoList selectedToDoList;
         public ToDoList SelectedToDoList
         {
@@ -31,6 +43,7 @@ namespace To_Do_List_Management_App.ViewModels
                 selectedToDoList = value;
                 ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(rootToDoList);
                 SaveApplication();
+                IsEneabledAddTDL = StartUpPageValidators.CanAddTDL(selectedToDoList);
                 OnPropertyChanged();
             }
         }
