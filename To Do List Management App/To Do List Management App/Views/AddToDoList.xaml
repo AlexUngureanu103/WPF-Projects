@@ -30,9 +30,9 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="Category Name:" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="Category Description:" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="Category Icon:" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="TDL Name:" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="TDL Description:" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="TDL Icon:" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <TextBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Text="{Binding TDLName, UpdateSourceTrigger=PropertyChanged}" MaxHeight="50" MaxWidth="300"/>
         <TextBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2" Text="{Binding TDLDescription, UpdateSourceTrigger=PropertyChanged}" MaxWidth="350" MaxHeight="125"/>
