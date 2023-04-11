@@ -5,11 +5,11 @@ using To_Do_List_Management_App.ViewModels;
 
 namespace To_Do_List_Management_App.Services.Commands
 {
-    internal class AddCategoryCommands
+    internal class AddToDoListCommands
     {
-        private AddCategoryVM addCategoryVM;
+        private AddRootToDoListVM addCategoryVM;
 
-        public AddCategoryCommands(AddCategoryVM addCategoryVM)
+        public AddToDoListCommands(AddRootToDoListVM addCategoryVM)
         {
             this.addCategoryVM = addCategoryVM ?? throw new ArgumentNullException(nameof(addCategoryVM));
         }

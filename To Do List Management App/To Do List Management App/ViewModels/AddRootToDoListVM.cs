@@ -9,7 +9,7 @@ using To_Do_List_Management_App.Services.Validators;
 
 namespace To_Do_List_Management_App.ViewModels
 {
-    internal class AddCategoryVM : BaseVM
+    internal class AddRootToDoListVM : BaseVM
     {
         private ToDoList rootToDoListToAdd;
         public ToDoList RootToDoListToAdd
@@ -33,7 +33,7 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        private AddCategoryCommands addCategoryCommands;
+        private AddToDoListCommands addCategoryCommands;
 
         private StartUpPageVM startUpPageVM;
 
@@ -141,10 +141,10 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        public AddCategoryVM(StartUpPageVM startUpPageVM)
+        public AddRootToDoListVM(StartUpPageVM startUpPageVM)
         {
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
-            addCategoryCommands = new AddCategoryCommands(this);
+            addCategoryCommands = new AddToDoListCommands(this);
             categoryImageSources = new LoadImages(@"Images\CategoriesFolderIcons").ImagePaths;
             CategoryImageIndex = 0;
         }

@@ -60,7 +60,7 @@
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\TaskType.cs" />
     <Compile Include="ResourceManagement\LoadImages.cs" />
-    <Compile Include="Services\Commands\AddCategoryCommands.cs" />
+    <Compile Include="Services\Commands\AddToDoListCommands.cs" />
     <Compile Include="Services\Commands\AddTaskCommands.cs" />
     <Compile Include="Services\ExtendedTreeView.cs" />
     <Compile Include="Services\SerializeData\CurrentStructure.cs" />
@@ -78,7 +78,8 @@
     <Compile Include="Models\StatisticsPanel.cs" />
     <Compile Include="Models\ToDoList.cs" />
     <Compile Include="Models\TDTask.cs" />
-    <Compile Include="ViewModels\AddCategoryVM.cs" />
+    <Compile Include="ViewModels\AddNonRootToDoListVM.cs" />
+    <Compile Include="ViewModels\AddRootToDoListVM.cs" />
     <Compile Include="ViewModels\AddTaskVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\FindTaskVM.cs" />

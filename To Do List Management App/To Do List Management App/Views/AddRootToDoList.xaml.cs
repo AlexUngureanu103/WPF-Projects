@@ -30,7 +30,7 @@ namespace To_Do_List_Management_App.Views
             startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             InitializeComponent();
 
-            DataContext = new AddCategoryVM(startUpPageVM);
+            DataContext = new AddRootToDoListVM(startUpPageVM);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
