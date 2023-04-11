@@ -63,6 +63,7 @@
     <Compile Include="Services\Commands\AddToDoListCommands.cs" />
     <Compile Include="Services\Commands\AddTaskCommands.cs" />
     <Compile Include="Services\ExtendedTreeView.cs" />
+    <Compile Include="Services\GetParentOrRootTDL.cs" />
     <Compile Include="Services\SerializeData\CurrentStructure.cs" />
     <Compile Include="Services\SerializeData\ManageDataUsage.cs" />
     <Compile Include="Services\Validators\StartUpPageValidators.cs" />
