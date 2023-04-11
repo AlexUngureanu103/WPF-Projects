@@ -106,8 +106,8 @@
                 <Label Grid.Column="0" Content="Tasks:"/>
                 <Button Grid.Column="1" Name="AddTaskButton" Content="Add task" Click="AddTaskButton_Click" Margin="5" MaxHeight="75" MaxWidth="150"/>
                 <Button Grid.Column="2" Name="AddRootToDoListButton"  Content="Add Root ToDoList" Click="AddRootToDoListButton_Click" Margin="5" MaxHeight="75" MaxWidth="150"/>
-                <Button Grid.Column="3" Name="FindTaskButton" Content="Find Tasks" Click="FindTaskButton_Click" Margin="5" MaxHeight="75" MaxWidth="150"/>
-                <Button Grid.Column="4" Name="AddToDoList" Content="Add ToDoList" Click="AddToDoList_Click" Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding IsEneabledAddTDL, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <Button Grid.Column="3" Name="FindTaskButton" Content="Find Tasks" Click="FindTaskButton_Click" Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding CanFindTasks , UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="4" Name="AddToDoList" Content="Add ToDoList" Click="AddToDoList_Click" Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding IsEneabledAddTDL, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
             <ListView x:Name="taskListView" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding SelectedToDoList.Tasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>

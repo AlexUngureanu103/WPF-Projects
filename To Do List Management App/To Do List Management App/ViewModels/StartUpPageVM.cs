@@ -34,10 +34,25 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private bool canFindTasks;
+        public bool CanFindTasks
+        {
+            get { return canFindTasks; }
+            set
+            {
+                canFindTasks = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ToDoList selectedToDoList;
         public ToDoList SelectedToDoList
         {
-            get { return selectedToDoList; }
+            get
+            {
+                CanFindTasks = StartUpPageValidators.CanFindTasks(rootToDoList);
+                return selectedToDoList;
+            }
             set
             {
                 selectedToDoList = value;
@@ -67,7 +82,11 @@ namespace To_Do_List_Management_App.ViewModels
         private ObservableCollection<ToDoList> rootToDoList;
         public ObservableCollection<ToDoList> RootToDoList
         {
-            get { return rootToDoList; }
+            get
+            {
+                CanFindTasks = StartUpPageValidators.CanFindTasks(rootToDoList);
+                return rootToDoList;
+            }
             set
             {
                 rootToDoList = value;
@@ -89,18 +108,6 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        //private ICommand addTaskCommand;
-        //public ICommand AddTaskCommand
-        //{
-        //    get
-        //    {
-        //        if(addTaskCommand == null)
-        //        {
-        //            addTaskCommand = new RelayCommand()
-        //        }
-        //    }
-        //}
-
         private ICommand deleteToDoListCommand;
         public ICommand DeleteToDoListCommand
         {
@@ -119,6 +126,7 @@ namespace To_Do_List_Management_App.ViewModels
             ManageData = new ManageDataUsage("Save");
             ReloadApplication();
             startUpPageCommands = new StartUpPageCommands(this);
+            CanFindTasks = StartUpPageValidators.CanFindTasks(rootToDoList);
             //PupulateForTest();
         }
 
