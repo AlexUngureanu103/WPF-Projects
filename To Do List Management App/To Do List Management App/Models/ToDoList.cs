@@ -15,5 +15,11 @@ namespace To_Do_List_Management_App.Models
         public ObservableCollection<TDTask> Tasks { get; set; }
 
         public ObservableCollection<ToDoList> toDoLists { get; set; }
+
+        public ToDoList()
+        {
+            Tasks = new ObservableCollection<TDTask>();
+            toDoLists = new ObservableCollection<ToDoList>();
+        }
     }
 }

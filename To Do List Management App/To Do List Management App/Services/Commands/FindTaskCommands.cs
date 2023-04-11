@@ -22,7 +22,7 @@ namespace To_Do_List_Management_App.Services.Commands
         public void FindTaskCommand()
         {
             ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>();
-            var allTasks = ExtractTasks.GetAllTasks(findTaskVM.startUpPage.Categories);
+            var allTasks = ExtractTasks.GetTasks(findTaskVM.startUpPage.RootToDoList);
 
             if (findTaskVM.SearchByName)
             {

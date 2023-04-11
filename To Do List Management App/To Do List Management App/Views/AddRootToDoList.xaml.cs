@@ -19,12 +19,12 @@ namespace To_Do_List_Management_App.Views
     /// <summary>
     /// Interaction logic for AddCategory.xaml
     /// </summary>
-    public partial class AddCategory : UserControl
+    public partial class AddRootToDoList : UserControl
     {
         private Frame WindowContainer;
 
         private StartUpPageVM startUpPageVM;
-        public AddCategory(Frame windowContainer, StartUpPageVM startUpPageVM)
+        public AddRootToDoList(Frame windowContainer, StartUpPageVM startUpPageVM)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));

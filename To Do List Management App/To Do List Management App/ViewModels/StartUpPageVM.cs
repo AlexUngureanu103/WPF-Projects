@@ -27,19 +27,7 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 selectedToDoList = value;
-                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(categories);
-                SaveApplication();
-                OnPropertyChanged();
-            }
-        }
-
-        private Category selectedCategory;
-        public Category SelectedCategory
-        {
-            get { return selectedCategory; }
-            set
-            {
-                selectedCategory = value;
+                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(rootToDoList);
                 SaveApplication();
                 OnPropertyChanged();
             }
@@ -61,14 +49,14 @@ namespace To_Do_List_Management_App.ViewModels
 
         private ManageDataUsage ManageData;
 
-        private ObservableCollection<Category> categories;
-        public ObservableCollection<Category> Categories
+        private ObservableCollection<ToDoList> rootToDoList;
+        public ObservableCollection<ToDoList> RootToDoList
         {
-            get { return categories; }
+            get { return rootToDoList; }
             set
             {
-                categories = value;
-                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(categories);
+                rootToDoList = value;
+                ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(rootToDoList);
                 SaveApplication();
                 OnPropertyChanged();
             }
@@ -103,16 +91,16 @@ namespace To_Do_List_Management_App.ViewModels
             ManageData = new ManageDataUsage("Save");
             ReloadApplication();
             startUpPageCommands = new StartUpPageCommands(this);
+            //PupulateForTest();
         }
 
         private void ReloadApplication()
         {
             var structure = ManageData.LoadData();
 
-            selectedCategory = structure.SelectedCategory;
             selectedToDoList = structure.SelectedToDoList;
             selectedTDTask = structure.SelectedTDTask;
-            categories = structure.Categories;
+            rootToDoList = structure.Categories;
             thisStatisticsPanel = structure.StatisticsPanel;
         }
 
@@ -120,13 +108,140 @@ namespace To_Do_List_Management_App.ViewModels
         {
             CurrentStructure currentStructure = new CurrentStructure()
             {
-                Categories = this.categories,
-                SelectedCategory = this.selectedCategory,
+                Categories = this.rootToDoList,
                 SelectedTDTask = this.selectedTDTask,
                 SelectedToDoList = this.selectedToDoList,
                 StatisticsPanel = this.thisStatisticsPanel
             };
             ManageData.SaveData(currentStructure);
+        }
+
+        private void PupulateForTest()
+        {
+            LoadImages load = new LoadImages(@"Images\CategoriesFolderIcons");
+            rootToDoList = new ObservableCollection<ToDoList>()
+            {
+                new ToDoList()
+                {
+                    Name ="Category 1",
+                    ImageSource = "\\"+load.ImagePaths[1],
+                    toDoLists = new ObservableCollection<ToDoList>()
+                    {
+                        new ToDoList()
+                        {
+                            Name= "C1  TD1",
+                            ImageSource = "\\"+load.ImagePaths[1],
+                            Tasks = new ObservableCollection<TDTask>()
+                            {
+                                new TDTask()
+                                {
+                                    Description = "Dishes",
+                                    Name = "task C1 TD1 T1",
+                                    priority = Enums.Priority.Urgent,
+                                    type = Enums.TaskType.Chores,
+                                    DueDate = System.DateTime.Now.AddDays(-2),
+                                    status = Enums.Status.InProgress
+                                }
+                            },
+                            toDoLists = new ObservableCollection<ToDoList>(){
+                                new ToDoList()
+                                {
+                                    Name = "C1 TD1 TD1",
+                                    ImageSource = "\\"+load.ImagePaths[1],
+                                    Tasks = new ObservableCollection<TDTask>()
+                                    {
+                                        new TDTask()
+                                        {
+                                            Description = "MVP",
+                                            Name = "task C1 TD1 TD1 T1",
+                                            priority = Enums.Priority.High,
+                                            type = Enums.TaskType.Project,
+                                            DueDate = System.DateTime.Now.AddDays(-2),
+                                            status = Enums.Status.InProgress
+                                        }
+                                    }
+                                },
+                                new ToDoList()
+                                {
+                                    Name = "C1 TD1 TD2",
+                                    ImageSource = "\\"+load.ImagePaths[1],
+                                    Tasks = new ObservableCollection<TDTask>()
+                                    {
+                                        new TDTask()
+                                        {
+                                            Description = "BRTA",
+                                            Name = "task C1 TD1 TD2 T1",
+                                            priority = Enums.Priority.Urgent,
+                                            type = Enums.TaskType.Event,
+                                            DueDate = System.DateTime.Now.AddDays(-2),
+                                            status = Enums.Status.InProgress
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new ToDoList()
+                        {
+                            Name= "C1  TD2",
+                            ImageSource = "\\"+load.ImagePaths[5],
+                            Tasks = new ObservableCollection<TDTask>()
+                            {
+                                new TDTask()
+                                {
+                                    Description = "RC",
+                                    Name = "task C1 TD2 T1",
+                                    priority = Enums.Priority.Low,
+                                    type = Enums.TaskType.Project,
+                                    DueDate = System.DateTime.Now,
+                                    status = Enums.Status.InProgress
+                                }
+                            }
+                        },
+                    }
+                },
+                new ToDoList()
+                {
+                    Name ="Category2",
+                    ImageSource = "\\"+load.ImagePaths[8],
+                    toDoLists = new ObservableCollection<ToDoList>()
+                    {
+                        new ToDoList()
+                        {
+                            Name= "C2  TD1",
+                            ImageSource = "\\"+load.ImagePaths[1],
+                            Tasks = new ObservableCollection<TDTask>()
+                            {
+                                new TDTask()
+                                {
+                                    Description = "None",
+                                    Name = "task C2 TD1 T1",
+                                    priority = Enums.Priority.None,
+                                    type = Enums.TaskType.MajorTask,
+                                    DueDate = System.DateTime.Now,
+                                    status = Enums.Status.InProgress
+                                }
+                            }
+                        },
+                        new ToDoList()
+                        {
+                            Name= "C2 TD2",
+                            ImageSource = "\\"+load.ImagePaths[5],
+                            Tasks = new ObservableCollection<TDTask>()
+                            {
+                                new TDTask()
+                                {
+                                    Description = "Trivia",
+                                    Name = "task C2 TD2 T1",
+                                    priority = Enums.Priority.Low,
+                                    type = Enums.TaskType.Project,
+                                    DueDate = System.DateTime.Now,
+                                    status = Enums.Status.InProgress
+                                }
+                            }
+                        },
+                    }
+                }
+            };
         }
     }
 }

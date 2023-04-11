@@ -11,14 +11,14 @@ namespace To_Do_List_Management_App.ViewModels
 {
     internal class AddCategoryVM : BaseVM
     {
-        private Category categoryToAdd;
-        public Category CategoryToAdd
+        private ToDoList rootToDoListToAdd;
+        public ToDoList RootToDoListToAdd
         {
-            get { return categoryToAdd; }
+            get { return rootToDoListToAdd; }
             set
             {
-                categoryToAdd = value;
-                startUpPageVM.Categories.Add(categoryToAdd);
+                rootToDoListToAdd = value;
+                startUpPageVM.RootToDoList.Add(rootToDoListToAdd);
                 OnPropertyChanged();
             }
         }

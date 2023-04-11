@@ -29,23 +29,23 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <service:ExtendedTreeView Grid.Row="0" ItemsSource="{Binding Categories}" SelectedItem_="{Binding SelectedToDoList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate ItemsSource="{Binding ToDoLists}" DataType="{x:Type models:Category}">
+            <service:ExtendedTreeView Grid.Row="0" ItemsSource="{Binding RootToDoList}" SelectedItem_="{Binding SelectedToDoList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding toDoLists}" DataType="{x:Type models:ToDoList}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding ImageSource}" Height="25" Width="25" Margin="0,0,5,0"/>
                             <TextBlock Text="{Binding Name}"/>
                         </StackPanel>
-                        <HierarchicalDataTemplate.ItemTemplate>
-                            <DataTemplate>
+                        <!--<HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate >
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{Binding ImageSource}" Height="25" Width="25" Margin="0,0,5,0"/>
                                     <TextBlock Text="{Binding Name}"/>
                                 </StackPanel>
                             </DataTemplate>
-                        </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>-->
                     </HierarchicalDataTemplate>
-                </TreeView.Resources>
+                </TreeView.ItemTemplate>
             </service:ExtendedTreeView>
 
             <Label Grid.Row="1" Content="Stats:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
@@ -96,7 +96,7 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Tasks:"/>
                 <Button Grid.Column="1" Name="AddTaskButton" Content="Add task" Click="AddTaskButton_Click"/>
-                <Button Grid.Column="2" Name="AddCategoryButton"  Content="Add Category" Click="AddCategoryButton_Click"/>
+                <Button Grid.Column="2" Name="AddRootToDoListButton"  Content="Add Root ToDoList" Click="AddRootToDoListButton_Click"/>
                 <Button Grid.Column="3" Name="FindTaskButton" Content="Find Tasks" Click="FindTaskButton_Click"/>
             </Grid>
             <ListView x:Name="taskListView" Grid.Row="1" ItemsSource="{Binding SelectedToDoList.Tasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">

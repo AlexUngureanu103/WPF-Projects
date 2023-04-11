@@ -32,9 +32,9 @@ namespace To_Do_List_Management_App.Views
             WindowContainer.Navigate(new AddTaskWindow(WindowContainer, _viewModel));
         }
 
-        private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
+        private void AddRootToDoListButton_Click(object sender, RoutedEventArgs e)
         {
-            WindowContainer.Navigate(new AddCategory(WindowContainer, _viewModel));
+            WindowContainer.Navigate(new AddRootToDoList(WindowContainer, _viewModel));
         }
 
         private void FindTaskButton_Click(object sender, RoutedEventArgs e)

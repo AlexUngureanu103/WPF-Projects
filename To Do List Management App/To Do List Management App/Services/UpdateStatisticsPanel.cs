@@ -5,10 +5,10 @@ namespace To_Do_List_Management_App.Services
 {
     public static class UpdateStatisticsPanel
     {
-        public static StatisticsPanel UpdatedStatisticsPanel(ObservableCollection<Category> categories)
+        public static StatisticsPanel UpdatedStatisticsPanel(ObservableCollection<ToDoList> categories)
         {
             StatisticsPanel statisticsPanel = new StatisticsPanel();
-            var allTasks = ExtractTasks.GetAllTasks(categories);
+            var allTasks = ExtractTasks.GetTasks(categories);
 
             foreach (TDTask task in allTasks)
             {

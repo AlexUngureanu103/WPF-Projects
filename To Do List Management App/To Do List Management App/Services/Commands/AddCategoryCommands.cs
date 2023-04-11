@@ -22,12 +22,12 @@ namespace To_Do_List_Management_App.Services.Commands
 
         public void AddCategoryCommand()
         {
-            addCategoryVM.CategoryToAdd = new Category()
+            addCategoryVM.RootToDoListToAdd = new ToDoList()
             {
                 Name = addCategoryVM.CategoryName,
                 Description = addCategoryVM.CategoryDescription,
                 ImageSource = addCategoryVM.CategoryImageSource,
-                ToDoLists = new ObservableCollection<ToDoList>()
+                toDoLists = new ObservableCollection<ToDoList>()
             };
             return;
         }
