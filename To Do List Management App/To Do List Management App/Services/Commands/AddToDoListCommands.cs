@@ -7,11 +7,11 @@ namespace To_Do_List_Management_App.Services.Commands
 {
     internal class AddToDoListCommands
     {
-        private AddRootToDoListVM addCategoryVM;
+        private AddToDoListVM addToDoListVM;
 
-        public AddToDoListCommands(AddRootToDoListVM addCategoryVM)
+        public AddToDoListCommands(AddToDoListVM addCategoryVM)
         {
-            this.addCategoryVM = addCategoryVM ?? throw new ArgumentNullException(nameof(addCategoryVM));
+            this.addToDoListVM = addCategoryVM ?? throw new ArgumentNullException(nameof(addCategoryVM));
         }
 
         public void BackCommand()
@@ -20,13 +20,14 @@ namespace To_Do_List_Management_App.Services.Commands
             return;
         }
 
-        public void AddCategoryCommand()
+        public void AddRootToDoListCommand()
         {
-            addCategoryVM.RootToDoListToAdd = new ToDoList()
+            addToDoListVM.ToDoListToAdd = new ToDoList()
             {
-                Name = addCategoryVM.CategoryName,
-                Description = addCategoryVM.CategoryDescription,
-                ImageSource = addCategoryVM.CategoryImageSource,
+                Name = addToDoListVM.CategoryName,
+                Description = addToDoListVM.CategoryDescription,
+                ImageSource = addToDoListVM.CategoryImageSource,
+                Tasks = new ObservableCollection<TDTask>(),
                 toDoLists = new ObservableCollection<ToDoList>()
             };
             return;
@@ -34,28 +35,28 @@ namespace To_Do_List_Management_App.Services.Commands
 
         public void PrevImageIndexCommand()
         {
-            if (addCategoryVM.CategoryImageIndex == 0)
+            if (addToDoListVM.CategoryImageIndex == 0)
             {
-                addCategoryVM.CategoryImageIndex = addCategoryVM.CategoryImageSources.Count - 1;
+                addToDoListVM.CategoryImageIndex = addToDoListVM.CategoryImageSources.Count - 1;
             }
             else
             {
-                addCategoryVM.CategoryImageIndex--;
+                addToDoListVM.CategoryImageIndex--;
             }
-            addCategoryVM.CategoryImageSource = addCategoryVM.CategoryImageSources[addCategoryVM.CategoryImageIndex];
+            addToDoListVM.CategoryImageSource = addToDoListVM.CategoryImageSources[addToDoListVM.CategoryImageIndex];
         }
 
         public void NextImageIndexCommand()
         {
-            if (addCategoryVM.CategoryImageIndex == addCategoryVM.CategoryImageSources.Count - 1)
+            if (addToDoListVM.CategoryImageIndex == addToDoListVM.CategoryImageSources.Count - 1)
             {
-                addCategoryVM.CategoryImageIndex = 0;
+                addToDoListVM.CategoryImageIndex = 0;
             }
             else
             {
-                addCategoryVM.CategoryImageIndex++;
+                addToDoListVM.CategoryImageIndex++;
             }
-            addCategoryVM.CategoryImageSource = addCategoryVM.CategoryImageSources[addCategoryVM.CategoryImageIndex];
+            addToDoListVM.CategoryImageSource = addToDoListVM.CategoryImageSources[addToDoListVM.CategoryImageIndex];
         }
     }
 }

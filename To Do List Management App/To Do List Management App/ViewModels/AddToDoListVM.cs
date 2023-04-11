@@ -9,16 +9,21 @@ using To_Do_List_Management_App.Services.Validators;
 
 namespace To_Do_List_Management_App.ViewModels
 {
-    internal class AddRootToDoListVM : BaseVM
+    internal class AddToDoListVM : BaseVM
     {
-        private ToDoList rootToDoListToAdd;
-        public ToDoList RootToDoListToAdd
+        private ToDoList toDoListToAdd;
+        public ToDoList ToDoListToAdd
         {
-            get { return rootToDoListToAdd; }
+            get { return toDoListToAdd; }
             set
             {
-                rootToDoListToAdd = value;
-                startUpPageVM.RootToDoList.Add(rootToDoListToAdd);
+                toDoListToAdd = value;
+                if (SelectedToDoList == null)
+                    startUpPageVM.RootToDoList.Add(toDoListToAdd);
+                else
+                {
+                    SelectedToDoList.toDoLists.Add(toDoListToAdd);
+                }
                 OnPropertyChanged();
             }
         }
@@ -109,7 +114,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 if (addCategoryCommand == null)
                 {
-                    addCategoryCommand = new RelayCommand(addCategoryCommands.AddCategoryCommand, param => CanExecute);
+                    addCategoryCommand = new RelayCommand(addCategoryCommands.AddRootToDoListCommand, param => CanExecute);
                 }
                 return addCategoryCommand;
             }
@@ -141,8 +146,11 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        public AddRootToDoListVM(StartUpPageVM startUpPageVM)
+        public ToDoList SelectedToDoList { get; private set; }
+
+        public AddToDoListVM(StartUpPageVM startUpPageVM, ToDoList selectedToDoList)
         {
+            SelectedToDoList = selectedToDoList;
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             addCategoryCommands = new AddToDoListCommands(this);
             categoryImageSources = new LoadImages(@"Images\CategoriesFolderIcons").ImagePaths;

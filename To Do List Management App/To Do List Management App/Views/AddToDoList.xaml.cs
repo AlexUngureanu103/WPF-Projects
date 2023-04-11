@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ViewModels;
 
 namespace To_Do_List_Management_App.Views
@@ -19,18 +9,18 @@ namespace To_Do_List_Management_App.Views
     /// <summary>
     /// Interaction logic for AddCategory.xaml
     /// </summary>
-    public partial class AddRootToDoList : UserControl
+    public partial class AddToDoList : UserControl
     {
         private Frame WindowContainer;
 
         private StartUpPageVM startUpPageVM;
-        public AddRootToDoList(Frame windowContainer, StartUpPageVM startUpPageVM)
+        public AddToDoList(Frame windowContainer, StartUpPageVM startUpPageVM, ToDoList selectedToDoList)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             InitializeComponent();
 
-            DataContext = new AddRootToDoListVM(startUpPageVM);
+            DataContext = new AddToDoListVM(startUpPageVM , selectedToDoList);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

@@ -34,12 +34,17 @@ namespace To_Do_List_Management_App.Views
 
         private void AddRootToDoListButton_Click(object sender, RoutedEventArgs e)
         {
-            WindowContainer.Navigate(new AddRootToDoList(WindowContainer, _viewModel));
+            WindowContainer.Navigate(new AddToDoList(WindowContainer, _viewModel, null));
         }
 
         private void FindTaskButton_Click(object sender, RoutedEventArgs e)
         {
             WindowContainer.Navigate(new FindTaskWindow(WindowContainer, _viewModel));
+        }
+
+        private void AddToDoList_Click(object sender, RoutedEventArgs e)
+        {
+            WindowContainer.Navigate(new AddToDoList(WindowContainer, _viewModel, _viewModel.SelectedToDoList));
         }
     }
 }

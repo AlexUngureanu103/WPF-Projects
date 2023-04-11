@@ -78,14 +78,13 @@
     <Compile Include="Models\StatisticsPanel.cs" />
     <Compile Include="Models\ToDoList.cs" />
     <Compile Include="Models\TDTask.cs" />
-    <Compile Include="ViewModels\AddNonRootToDoListVM.cs" />
-    <Compile Include="ViewModels\AddRootToDoListVM.cs" />
+    <Compile Include="ViewModels\AddToDoListVM.cs" />
     <Compile Include="ViewModels\AddTaskVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\FindTaskVM.cs" />
     <Compile Include="ViewModels\StartUpPageVM.cs" />
-    <Compile Include="Views\AddRootToDoList.xaml.cs">
-      <DependentUpon>AddRootToDoList.xaml</DependentUpon>
+    <Compile Include="Views\AddToDoList.xaml.cs">
+      <DependentUpon>AddToDoList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddTaskWindow.xaml.cs">
       <DependentUpon>AddTaskWindow.xaml</DependentUpon>
@@ -96,7 +95,7 @@
     <Compile Include="Views\StartUpWindow.xaml.cs">
       <DependentUpon>StartUpWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AddRootToDoList.xaml">
+    <Page Include="Views\AddToDoList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
