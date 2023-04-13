@@ -21,7 +21,7 @@ namespace To_Do_List_Management_App.Services
             foreach (var tdl in RootTDLLists)
             {
                 parent = FindParentToDoList(selectedTDL.Name, tdl);
-                if(parent != null)
+                if (parent != null)
                 {
                     return parent;
                 }
@@ -48,17 +48,5 @@ namespace To_Do_List_Management_App.Services
             }
             return null;
         }
-
-        //private static bool CheckIfCurrentTDLIsTheParent(ToDoList parentTDL, ToDoList selectedTDL)
-        //{
-        //    foreach (var child in parentTDL.toDoLists)
-        //    {
-        //        if (child.Name == selectedTDL.Name)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
     }
 }

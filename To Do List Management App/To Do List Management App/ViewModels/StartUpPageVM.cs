@@ -45,6 +45,17 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private bool canMoveUpDownTask;
+        public bool CanMoveUpDownTask
+        {
+            get { return canMoveUpDownTask; }
+            set
+            {
+                canMoveUpDownTask = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ToDoList selectedToDoList;
         public ToDoList SelectedToDoList
         {
@@ -59,6 +70,7 @@ namespace To_Do_List_Management_App.ViewModels
                 ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(rootToDoList);
                 SaveApplication();
                 IsEneabledAddTDL = StartUpPageValidators.CanAddTDL(selectedToDoList);
+                CanMoveUpDownTask = StartUpPageValidators.CanMoveUpDownTask(selectedToDoList, selectedTDTask);
                 OnPropertyChanged();
             }
         }
@@ -71,6 +83,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 selectedTDTask = value;
                 SaveApplication();
+                CanMoveUpDownTask = StartUpPageValidators.CanMoveUpDownTask(selectedToDoList, selectedTDTask);
                 OnPropertyChanged();
             }
         }
@@ -118,6 +131,32 @@ namespace To_Do_List_Management_App.ViewModels
                     deleteToDoListCommand = new RelayCommand(startUpPageCommands.DeleteToDoList, param => selectedTDTask != null);
                 }
                 return deleteToDoListCommand;
+            }
+        }
+
+        private ICommand moveUpTaskCommand;
+        public ICommand MoveUpTaskCommand
+        {
+            get
+            {
+                if (moveUpTaskCommand == null)
+                {
+                    moveUpTaskCommand = new RelayCommand(startUpPageCommands.MoveTaskUp, param => canMoveUpDownTask);
+                }
+                return moveUpTaskCommand;
+            }
+        }
+
+        private ICommand moveDownTaskCommand;
+        public ICommand MoveDownTaskCommand
+        {
+            get
+            {
+                if (moveDownTaskCommand == null)
+                {
+                    moveDownTaskCommand = new RelayCommand(startUpPageCommands.MoveTaskDown, param => canMoveUpDownTask);
+                }
+                return moveDownTaskCommand;
             }
         }
 

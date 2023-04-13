@@ -20,5 +20,14 @@ namespace To_Do_List_Management_App.Services.Validators
             }
             return true;
         }
+
+        public static bool CanMoveUpDownTask(ToDoList selectedTDL, TDTask selectedTask)
+        {
+            if (selectedTDL == null || selectedTask == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

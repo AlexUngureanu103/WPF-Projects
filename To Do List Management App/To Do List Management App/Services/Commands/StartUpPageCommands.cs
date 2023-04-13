@@ -25,5 +25,23 @@ namespace To_Do_List_Management_App.Services.Commands
             }
             startUpPageVM.SelectedToDoList = null;
         }
+
+        public void MoveTaskUp()
+        {
+            int index = startUpPageVM.SelectedToDoList.Tasks.IndexOf(startUpPageVM.SelectedTDTast);
+            if (index > 0)
+            {
+                startUpPageVM.SelectedToDoList.Tasks.Move(index, index - 1);
+            }
+        }
+
+        public void MoveTaskDown()
+        {
+            int index = startUpPageVM.SelectedToDoList.Tasks.IndexOf(startUpPageVM.SelectedTDTast);
+            if (index < startUpPageVM.SelectedToDoList.Tasks.Count - 1)
+            {
+                startUpPageVM.SelectedToDoList.Tasks.Move(index, index + 1);
+            }
+        }
     }
 }
