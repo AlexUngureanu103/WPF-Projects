@@ -30,12 +30,10 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="TDL Name:" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="TDL Description:" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="TDL Name:" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="TDL Icon:" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-        <TextBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Text="{Binding TDLName, UpdateSourceTrigger=PropertyChanged}" MaxHeight="50" MaxWidth="300"/>
-        <TextBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2" Text="{Binding TDLDescription, UpdateSourceTrigger=PropertyChanged}" MaxWidth="350" MaxHeight="125"/>
+        <TextBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" Text="{Binding TDLName, UpdateSourceTrigger=PropertyChanged}" MaxHeight="50" MaxWidth="300"/>
         <Image Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="{Binding TDLImageSource , UpdateSourceTrigger=PropertyChanged}" MaxWidth="350" MaxHeight="125"/>
 
         <Button Grid.Row="5" Grid.Column="5" MaxHeight="50" MaxWidth="100" Content="Prev"  Command="{Binding PrevImageCommand}"/>

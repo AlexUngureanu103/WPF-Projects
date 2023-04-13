@@ -29,7 +29,6 @@ namespace To_Do_List_Management_App.ViewModels
                 canExecute = ToDoListValidator.CanExecuteAddCategory(
                     categoryName: tdlName,
                     tdlNames: TDLNames,
-                    categoryDescription: tdlDescription,
                     categoryImageSource: tdlImageSource
                     );
                 OnPropertyChanged();
@@ -68,7 +67,6 @@ namespace To_Do_List_Management_App.ViewModels
                 canExecute = ToDoListValidator.CanExecuteAddCategory(
                     categoryName: tdlName,
                     tdlNames: TDLNames,
-                    categoryDescription: tdlDescription,
                     categoryImageSource: tdlImageSource
                     );
             }
@@ -85,23 +83,6 @@ namespace To_Do_List_Management_App.ViewModels
                 canExecute = ToDoListValidator.CanExecuteAddCategory(
                     categoryName: tdlName,
                     tdlNames: TDLNames,
-                    categoryDescription: tdlDescription,
-                    categoryImageSource: tdlImageSource
-                    );
-            }
-        }
-
-        private string tdlDescription;
-        public string TDLDescription
-        {
-            get { return tdlDescription; }
-            set
-            {
-                tdlDescription = value;
-                canExecute = ToDoListValidator.CanExecuteAddCategory(
-                    categoryName: tdlName,
-                    tdlNames: TDLNames,
-                    categoryDescription: tdlDescription,
                     categoryImageSource: tdlImageSource
                     );
             }

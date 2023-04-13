@@ -25,7 +25,6 @@ namespace To_Do_List_Management_App.Services.Commands
             addToDoListVM.ToDoListToAdd = new ToDoList()
             {
                 Name = addToDoListVM.TDLName,
-                Description = addToDoListVM.TDLDescription,
                 ImageSource = addToDoListVM.TDLImageSource,
                 Tasks = new ObservableCollection<TDTask>(),
                 toDoLists = new ObservableCollection<ToDoList>()

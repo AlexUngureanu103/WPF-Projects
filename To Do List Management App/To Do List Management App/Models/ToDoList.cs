@@ -8,8 +8,6 @@ namespace To_Do_List_Management_App.Models
     {
         public string Name { get; set; }
 
-        public string Description { get; set; }
-
         public string ImageSource { get; set; }
 
         public ObservableCollection<TDTask> Tasks { get; set; }
