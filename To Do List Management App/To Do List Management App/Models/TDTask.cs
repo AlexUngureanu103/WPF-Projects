@@ -17,5 +17,7 @@ namespace To_Do_List_Management_App.Models
         public Status status { get; set; }
 
         public DateTime DueDate { get; set; }
+
+        public DateTime FinishDate { get; set; }
     }
 }

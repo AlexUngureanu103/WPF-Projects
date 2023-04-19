@@ -28,7 +28,8 @@ namespace To_Do_List_Management_App.Services.Commands
                 priority = AddTaskVM.TaskPriority,
                 type = AddTaskVM.TaskType,
                 DueDate = AddTaskVM.TaskDueDate,
-                status = Enums.Status.NotStarted
+                status = Enums.Status.NotStarted,
+                FinishDate = DateTime.MinValue
             };
             
             return;

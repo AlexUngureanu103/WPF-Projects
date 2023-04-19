@@ -28,7 +28,7 @@ namespace To_Do_List_Management_App.Services.Commands
 
         public void MoveTaskUp()
         {
-            int index = startUpPageVM.SelectedToDoList.Tasks.IndexOf(startUpPageVM.SelectedTDTast);
+            int index = startUpPageVM.SelectedToDoList.Tasks.IndexOf(startUpPageVM.SelectedTDTask);
             if (index > 0)
             {
                 startUpPageVM.SelectedToDoList.Tasks.Move(index, index - 1);
@@ -37,7 +37,7 @@ namespace To_Do_List_Management_App.Services.Commands
 
         public void MoveTaskDown()
         {
-            int index = startUpPageVM.SelectedToDoList.Tasks.IndexOf(startUpPageVM.SelectedTDTast);
+            int index = startUpPageVM.SelectedToDoList.Tasks.IndexOf(startUpPageVM.SelectedTDTask);
             if (index < startUpPageVM.SelectedToDoList.Tasks.Count - 1)
             {
                 startUpPageVM.SelectedToDoList.Tasks.Move(index, index + 1);

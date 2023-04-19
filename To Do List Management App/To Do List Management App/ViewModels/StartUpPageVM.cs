@@ -76,14 +76,45 @@ namespace To_Do_List_Management_App.ViewModels
         }
 
         private TDTask selectedTDTask;
-        public TDTask SelectedTDTast
+        public TDTask SelectedTDTask
         {
             get { return selectedTDTask; }
             set
             {
+                if (value != null)
+                {
+                    if (value.status == Enums.Status.Completed && value.FinishDate == System.DateTime.MinValue)
+                    {
+                        value.FinishDate = System.DateTime.Now;
+                    }
+                    else if (value.status != Enums.Status.Completed)
+                    {
+                        value.FinishDate = System.DateTime.MinValue;
+                    }
+                }
                 selectedTDTask = value;
+
                 SaveApplication();
                 CanMoveUpDownTask = StartUpPageValidators.CanMoveUpDownTask(selectedToDoList, selectedTDTask);
+                OnPropertyChanged();
+                if (value != null)
+                {
+                    IsSelectedTDTask = true;
+                }
+                else
+                {
+                    IsSelectedTDTask = false;
+                }
+            }
+        }
+
+        private bool isSelectedTDTask;
+        public bool IsSelectedTDTask
+        {
+            get { return isSelectedTDTask; }
+            set
+            {
+                isSelectedTDTask = value;
                 OnPropertyChanged();
             }
         }
