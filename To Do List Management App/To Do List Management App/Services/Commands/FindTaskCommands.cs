@@ -24,38 +24,49 @@ namespace To_Do_List_Management_App.Services.Commands
             ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>();
             var allTasks = ExtractTasks.GetTasks(findTaskVM.startUpPage.RootToDoList);
 
+            findTaskVM.FoundedTasks = ApplyFilters(allTasks); ;
+            return;
+        }
+
+        private ObservableCollection<TDTask> ApplyFilters(ObservableCollection<TDTask> tasks)
+        {
             if (findTaskVM.SearchByName)
             {
-                if (foundedTasks.Count == 0)
-                {
-                    foundedTasks = TaskSearchFilters.FindTasksByName(findTaskVM.NameToFind, allTasks);
-                }
+                tasks = TaskSearchFilters.FindTasksByName(findTaskVM.NameToFind, tasks);
             }
             if (findTaskVM.SearchByDueDate)
             {
-                if (foundedTasks.Count == 0)
-                {
-                    foundedTasks = TaskSearchFilters.FindTasksByDueDate(findTaskVM.DueDateToFind, allTasks);
-                }
-                else
-                {
-                    foundedTasks = TaskSearchFilters.FindTasksByDueDate(findTaskVM.DueDateToFind, foundedTasks);
-                }
+                tasks = TaskSearchFilters.FindTasksByDueDate(findTaskVM.DueDateToFind, tasks);
             }
             if (findTaskVM.SearchByPriority)
             {
-                if (foundedTasks.Count == 0)
-                {
-                    foundedTasks = TaskSearchFilters.FindTasksByPriority(findTaskVM.PriorityToFind, allTasks);
-                }
-                else
-                {
-                    foundedTasks = TaskSearchFilters.FindTasksByPriority(findTaskVM.PriorityToFind, foundedTasks);
-                }
+                tasks = TaskSearchFilters.FindTasksByPriority(findTaskVM.PriorityToFind, tasks);
             }
-
-            findTaskVM.FoundedTasks = foundedTasks;
-            return;
+            if (findTaskVM.SearchByTaskStatus)
+            {
+                tasks = TaskSearchFilters.FindTasksByStatus(findTaskVM.TaskStatusToFind, tasks);
+            }
+            if (findTaskVM.SearchByTaskType)
+            {
+                tasks = TaskSearchFilters.FindTasksByType(findTaskVM.TaskTypeToFind, tasks);
+            }
+            if (findTaskVM.SearchCompletedTasks)
+            {
+                tasks = TaskSearchFilters.FindCompletedTasks(tasks);
+            }
+            if (findTaskVM.SearchUncompletedTasks)
+            {
+                tasks = TaskSearchFilters.FindUnCompletedTasks(tasks);
+            }
+            if (findTaskVM.SearchOverDueTasks)
+            {
+                tasks = TaskSearchFilters.FindOverDueTasks(tasks);
+            }
+            if (findTaskVM.SearchNotOverDueTasks)
+            {
+                tasks = TaskSearchFilters.FindNotOverDueTasks(tasks);
+            }
+            return tasks;
         }
     }
 }

@@ -74,7 +74,14 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 searchByName = value;
                 OnPropertyChanged();
-                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
@@ -86,7 +93,14 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 searchByDueDate = value;
                 OnPropertyChanged();
-                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
@@ -98,7 +112,136 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 searchByPriority = value;
                 OnPropertyChanged();
-                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private bool searchByTaskType;
+        public bool SearchByTaskType
+        {
+            get { return searchByTaskType; }
+            set
+            {
+                searchByTaskType = value;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private bool searchByTaskStatus;
+        public bool SearchByTaskStatus
+        {
+            get { return searchByTaskStatus; }
+            set
+            {
+                searchByTaskStatus = value;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private bool searchCompletedTasks;
+        public bool SearchCompletedTasks
+        {
+            get { return searchCompletedTasks; }
+            set
+            {
+                searchCompletedTasks = value;
+                if (value == true)
+                    SearchUncompletedTasks = false;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private bool searchUncompletedTasks;
+        public bool SearchUncompletedTasks
+        {
+            get { return searchUncompletedTasks; }
+            set
+            {
+                searchUncompletedTasks = value;
+                if (value == true)
+                    SearchCompletedTasks = false;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private bool searchOverDueTasks;
+        public bool SearchOverDueTasks
+        {
+            get { return searchOverDueTasks; }
+            set
+            {
+                searchOverDueTasks = value;
+                if (value == true)
+                    SearchNotOverDueTasks = false;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private bool searchNotOverDueTasks;
+        public bool SearchNotOverDueTasks
+        {
+            get { return searchNotOverDueTasks; }
+            set
+            {
+                searchNotOverDueTasks = value;
+                if (value == true)
+                    SearchOverDueTasks = false;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
@@ -110,7 +253,14 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 nameToFind = value;
                 OnPropertyChanged();
-                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority:priorityToFind, searchByPriority:searchByPriority,
+                    taskDueDate:dueDateToFind, searchByDueDate:searchByDueDate,
+                    status:taskStatusToFind, searchByStatus:searchByTaskStatus,
+                    type:taskTypeToFind, searchByType:searchByTaskType,
+                    searchByCompleted:searchCompletedTasks, searchByUnCompleted:searchUncompletedTasks,
+                    searchByOverDue:searchOverDueTasks, searchByNotOverDue:searchNotOverDueTasks);
             }
         }
 
@@ -122,19 +272,71 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 dueDateToFind = value;
                 OnPropertyChanged();
-                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
-        private Priority priorityToFInd;
-        public Priority PriorityToFind
+        private TaskType taskTypeToFind;
+        public TaskType TaskTypeToFind
         {
-            get { return priorityToFInd; }
+            get { return taskTypeToFind; }
             set
             {
-                priorityToFInd = value;
+                taskTypeToFind = value;
                 OnPropertyChanged();
-                CanExecute = FindTaskValidator.CanExecuteFindTask(NameToFind, PriorityToFind, DueDateToFind, SearchByName, SearchByPriority, SearchByDueDate);
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private Status taskStatusToFind;
+        public Status TaskStatusToFind
+        {
+            get { return taskStatusToFind; }
+            set
+            {
+                taskStatusToFind = value;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private Priority priorityToFind;
+        public Priority PriorityToFind
+        {
+            get { return priorityToFind; }
+            set
+            {
+                priorityToFind = value;
+                OnPropertyChanged();
+                CanExecute = FindTaskValidator.CanExecuteFindTask(
+                    taskName: nameToFind, searchByName: searchByName,
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
