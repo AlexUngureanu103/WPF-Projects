@@ -9,8 +9,10 @@ namespace To_Do_List_Management_App.Services.SerializeData
 
         public TDTask SelectedTDTask { get; set; }
 
-        public ObservableCollection<ToDoList> Categories { get; set; }
+        public ObservableCollection<ToDoList> TDL { get; set; }
 
         public StatisticsPanel StatisticsPanel { get; set; }
+
+        public ObservableCollection<string> Categories { get; set; }
     }
 }

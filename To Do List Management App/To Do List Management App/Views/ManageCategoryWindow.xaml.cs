@@ -1,26 +1,23 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ViewModels;
 
 namespace To_Do_List_Management_App.Views
 {
     /// <summary>
-    /// Interaction logic for AddCategory.xaml
+    /// Interaction logic for ManageCategoryWindow.xaml
     /// </summary>
-    public partial class AddToDoList : UserControl
+    public partial class ManageCategoryWindow : UserControl
     {
         private Frame WindowContainer;
 
-        private StartUpPageVM startUpPageVM;
-        public AddToDoList(Frame windowContainer, StartUpPageVM startUpPageVM, ToDoList selectedToDoList)
+        public ManageCategoryWindow(Frame windowContainer, StartUpPageVM startUpPageVM)
         {
-            WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-            this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
+            this.WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             InitializeComponent();
 
-            DataContext = new AddToDoListVM(this.startUpPageVM, selectedToDoList);
+            DataContext = new ManageCategoryVM(startUpPageVM);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

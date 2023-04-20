@@ -46,5 +46,10 @@ namespace To_Do_List_Management_App.Views
         {
             WindowContainer.Navigate(new AddToDoList(WindowContainer, _viewModel, _viewModel.SelectedToDoList));
         }
+
+        private void ManageCategory_Click(object sender, RoutedEventArgs e)
+        {
+            WindowContainer.Navigate(new ManageCategoryWindow(WindowContainer, _viewModel));
+        }
     }
 }

@@ -123,6 +123,17 @@ namespace To_Do_List_Management_App.ViewModels
 
         private ManageDataUsage ManageData;
 
+        private ObservableCollection<string> availableCategories;
+        public ObservableCollection<string> AvailableCategories
+        {
+            get { return availableCategories; }
+            set
+            {
+                availableCategories = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<ToDoList> rootToDoList;
         public ObservableCollection<ToDoList> RootToDoList
         {
@@ -206,7 +217,7 @@ namespace To_Do_List_Management_App.ViewModels
 
             selectedToDoList = structure.SelectedToDoList;
             selectedTDTask = structure.SelectedTDTask;
-            rootToDoList = structure.Categories;
+            rootToDoList = structure.TDL;
             thisStatisticsPanel = structure.StatisticsPanel;
         }
 
@@ -214,7 +225,7 @@ namespace To_Do_List_Management_App.ViewModels
         {
             CurrentStructure currentStructure = new CurrentStructure()
             {
-                Categories = this.rootToDoList,
+                TDL = this.rootToDoList,
                 SelectedTDTask = this.selectedTDTask,
                 SelectedToDoList = this.selectedToDoList,
                 StatisticsPanel = this.thisStatisticsPanel
