@@ -15,6 +15,17 @@ namespace To_Do_List_Management_App.ViewModels
     {
         public readonly StartUpPageVM startUpPage;
 
+        private ObservableCollection<string> availablePriorities;
+        public ObservableCollection<string> AvailableCategories
+        {
+            get { return availablePriorities; }
+            set
+            {
+                availablePriorities = value;
+                OnPropertyChanged();
+            }
+        }
+
         private FindTaskCommands findTaskCommands;
 
         private bool canExecute;
@@ -79,7 +90,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -98,7 +109,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -117,26 +128,26 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
-        private bool searchByTaskType;
-        public bool SearchByTaskType
+        private bool searchByTaskCategory;
+        public bool SearchByTaskCategory
         {
-            get { return searchByTaskType; }
+            get { return searchByTaskCategory; }
             set
             {
-                searchByTaskType = value;
+                searchByTaskCategory = value;
                 OnPropertyChanged();
                 CanExecute = FindTaskValidator.CanExecuteFindTask(
                     taskName: nameToFind, searchByName: searchByName,
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -155,7 +166,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -176,7 +187,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -197,7 +208,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -218,7 +229,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -239,7 +250,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -258,7 +269,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority:priorityToFind, searchByPriority:searchByPriority,
                     taskDueDate:dueDateToFind, searchByDueDate:searchByDueDate,
                     status:taskStatusToFind, searchByStatus:searchByTaskStatus,
-                    type:taskTypeToFind, searchByType:searchByTaskType,
+                    taskCategory:taskCategoryToFind, searchByType:searchByTaskCategory,
                     searchByCompleted:searchCompletedTasks, searchByUnCompleted:searchUncompletedTasks,
                     searchByOverDue:searchOverDueTasks, searchByNotOverDue:searchNotOverDueTasks);
             }
@@ -277,26 +288,26 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
-        private TaskType taskTypeToFind;
-        public TaskType TaskTypeToFind
+        private string taskCategoryToFind;
+        public string TaskCategoryToFind
         {
-            get { return taskTypeToFind; }
+            get { return taskCategoryToFind; }
             set
             {
-                taskTypeToFind = value;
+                taskCategoryToFind = value;
                 OnPropertyChanged();
                 CanExecute = FindTaskValidator.CanExecuteFindTask(
                     taskName: nameToFind, searchByName: searchByName,
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -315,7 +326,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -334,7 +345,7 @@ namespace To_Do_List_Management_App.ViewModels
                     taskPriority: priorityToFind, searchByPriority: searchByPriority,
                     taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
                     status: taskStatusToFind, searchByStatus: searchByTaskStatus,
-                    type: taskTypeToFind, searchByType: searchByTaskType,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
@@ -360,6 +371,7 @@ namespace To_Do_List_Management_App.ViewModels
             categoryImageSources = new LoadImages(@"Images\SpecifiecIcons").ImagePaths;
             specifiedImageSource = categoryImageSources[0];
             DueDateToFind = DateTime.Now.Date;
+            AvailableCategories = startUpPage.AvailableCategories;
         }
     }
 }

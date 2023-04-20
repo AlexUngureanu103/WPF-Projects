@@ -92,8 +92,9 @@ namespace To_Do_List_Management_App.ViewModels
             }
             manageCategoriesCommands = new ManageCategoriesCommands(this);
             this.AvailableCategories = startUpPageVM.AvailableCategories;
-            startUpPageVM.AvailableCategories.Add("Scoala");
-            startUpPageVM.AvailableCategories.Add("Munca");
+            this.StartUpPageVM = startUpPageVM;
         }
+
+        public StartUpPageVM StartUpPageVM;
     }
 }

@@ -30,9 +30,9 @@ namespace To_Do_List_Management_App.Services
             return foundedTasks;
         }
 
-        public static ObservableCollection<TDTask> FindTasksByType(TaskType type, ObservableCollection<TDTask> tasksToFindIn)
+        public static ObservableCollection<TDTask> FindTasksByType(string category, ObservableCollection<TDTask> tasksToFindIn)
         {
-            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => x.type == type));
+            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => x.Category == category));
 
             return foundedTasks;
         }

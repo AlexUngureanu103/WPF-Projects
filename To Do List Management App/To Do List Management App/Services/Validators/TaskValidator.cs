@@ -5,10 +5,10 @@ namespace To_Do_List_Management_App.Services.Validators
 {
     internal class TaskValidator
     {
-        public static bool CanExecuteAddTask(string taskName, string taskDescription, Priority taskPriority, TaskType taskType, DateTime taskDueDate)
+        public static bool CanExecuteAddTask(string taskName, string taskDescription, Priority taskPriority, string taskCategory, DateTime taskDueDate)
         {
             if (
-                taskType == Enums.TaskType.None ||
+                string.IsNullOrEmpty(taskCategory) ||
                 taskPriority == Enums.Priority.None ||
                 string.IsNullOrEmpty(taskName) ||
                 string.IsNullOrEmpty(taskDescription) ||

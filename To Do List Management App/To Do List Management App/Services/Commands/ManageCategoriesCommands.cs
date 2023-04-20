@@ -16,11 +16,13 @@ namespace To_Do_List_Management_App.Services.Commands
         {
             manageCategoryVM.AvailableCategories.Remove(manageCategoryVM.SelectedCategory);
             manageCategoryVM.SelectedCategory = null;
+            manageCategoryVM.StartUpPageVM.SaveApplication();
         }
 
         public void AddCategory()
         {
             manageCategoryVM.AvailableCategories.Add(manageCategoryVM.CategoryToAdd);
+            manageCategoryVM.StartUpPageVM.SaveApplication();
         }
     }
 }

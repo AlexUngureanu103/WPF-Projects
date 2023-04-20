@@ -44,8 +44,8 @@
         <CheckBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="By priority" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchByPriority, UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="10" MaxHeight="75" MaxWidth="200" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:Priority}}}" SelectedValue="{Binding PriorityToFind, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <CheckBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="By type" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchByTaskType, UpdateSourceTrigger=PropertyChanged}"/>
-        <ComboBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Margin="10" MaxHeight="75" MaxWidth="200" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:TaskType}}}" SelectedValue="{Binding TaskTypeToFind, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="By category" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchByTaskCategory, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Margin="10" MaxHeight="75" MaxWidth="200" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding AvailableCategories}" SelectedValue="{Binding TaskCategoryToFind, UpdateSourceTrigger=PropertyChanged}"/>
 
         <CheckBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Content="By status" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchByTaskStatus, UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Margin="10" MaxHeight="75" MaxWidth="200" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:Status}}}" SelectedValue="{Binding TaskStatusToFind, UpdateSourceTrigger=PropertyChanged}"/>
@@ -65,7 +65,7 @@
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" />
                     <GridViewColumn Header="Priority" DisplayMemberBinding="{Binding priority}" />
-                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding type}" />
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Category}" />
                     <GridViewColumn Header="Status" DisplayMemberBinding="{Binding status}" />
                     <GridViewColumn Header="Due Date" DisplayMemberBinding="{Binding DueDate}" />
                     <GridViewColumn Header="Fin Date" DisplayMemberBinding="{Binding FinishDate}"/>

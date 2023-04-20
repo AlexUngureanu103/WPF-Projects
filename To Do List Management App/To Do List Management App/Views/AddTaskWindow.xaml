@@ -39,7 +39,7 @@
             <Label Grid.Row="0" Grid.Column="3" Content="Due Date:"/>
             <TextBox Grid.Row="1" Grid.Column="0" Margin="10"  Text="{Binding TaskName, UpdateSourceTrigger=PropertyChanged}"/>
             <ComboBox Grid.Row="1" Grid.Column="1" x:Name="PriorityComboBox" Margin="10" MaxHeight="75" MaxWidth="225" ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:Priority}}}" SelectedValue="{Binding TaskPriority, UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Grid.Row="1" Grid.Column="2" x:Name="TaskTypeComboBox" Margin="10" MaxHeight="75" MaxWidth="225"  ItemsSource="{Binding Source={services:EnumBindingSource {x:Type enums:TaskType}}}" SelectedValue="{Binding TaskType, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Grid.Row="1" Grid.Column="2" x:Name="TaskTypeComboBox" Margin="10" MaxHeight="75" MaxWidth="225"  ItemsSource="{Binding AvailableCategories }" SelectedValue="{Binding TaskCategory, UpdateSourceTrigger=PropertyChanged}"/>
             <DatePicker Grid.Row="1" Grid.Column="3" x:Name="DateSelector" Margin="10" MaxHeight="75" MaxWidth="225"  SelectedDate="{Binding TaskDueDate, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid x:Name="TaskDescriptionGrid" Grid.Row="2" Grid.Column="1">

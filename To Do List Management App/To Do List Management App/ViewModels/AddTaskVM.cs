@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using To_Do_List_Management_App.Commands;
 using To_Do_List_Management_App.Enums;
@@ -49,7 +50,7 @@ namespace To_Do_List_Management_App.ViewModels
                      taskName: TaskName,
                      taskDescription: TaskDescription,
                      taskPriority: TaskPriority,
-                     taskType: TaskType,
+                     taskCategory: TaskCategory,
                      taskDueDate: TaskDueDate);
             }
         }
@@ -65,7 +66,7 @@ namespace To_Do_List_Management_App.ViewModels
                      taskName: TaskName,
                      taskDescription: TaskDescription,
                      taskPriority: TaskPriority,
-                     taskType: TaskType,
+                     taskCategory: TaskCategory,
                      taskDueDate: TaskDueDate);
             }
         }
@@ -81,23 +82,23 @@ namespace To_Do_List_Management_App.ViewModels
                      taskName: TaskName,
                      taskDescription: TaskDescription,
                      taskPriority: TaskPriority,
-                     taskType: TaskType,
+                     taskCategory: TaskCategory,
                      taskDueDate: TaskDueDate);
             }
         }
 
-        private TaskType taskType;
-        public TaskType TaskType
+        private string taskCategory;
+        public string TaskCategory
         {
-            get { return taskType; }
+            get { return taskCategory; }
             set
             {
-                taskType = value;
+                taskCategory = value;
                 canExecute = TaskValidator.CanExecuteAddTask(
                      taskName: TaskName,
                      taskDescription: TaskDescription,
                      taskPriority: TaskPriority,
-                     taskType: TaskType,
+                     taskCategory: TaskCategory,
                      taskDueDate: TaskDueDate);
             }
         }
@@ -113,7 +114,7 @@ namespace To_Do_List_Management_App.ViewModels
                      taskName: TaskName,
                      taskDescription: TaskDescription,
                      taskPriority: TaskPriority,
-                     taskType: TaskType,
+                     taskCategory: TaskCategory,
                      taskDueDate: TaskDueDate);
             }
         }
@@ -149,6 +150,18 @@ namespace To_Do_List_Management_App.ViewModels
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             addTaskCommands = new AddTaskCommands(this);
             TaskDueDate = DateTime.Now.Date;
+            AvailableCategories = startUpPageVM.AvailableCategories;
+        }
+
+        private ObservableCollection<string> availableCategories;
+        public ObservableCollection<string> AvailableCategories
+        {
+            get { return availableCategories; }
+            set
+            {
+                this.availableCategories = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

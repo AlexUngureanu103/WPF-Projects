@@ -40,6 +40,6 @@
         <Button Grid.Row="5" Grid.Column="6" MaxHeight="50" MaxWidth="100" Content="Next"  Command="{Binding NextImageCommand}"/>
 
         <Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Content="Back" Click="Back_Click" MaxHeight="50" MaxWidth="200"/>
-        <Button Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" Content="Add Category" Command="{Binding AddTDLCommand}" MaxHeight="50" MaxWidth="200"/>
+        <Button Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" Content="Add TDL" Command="{Binding AddTDLCommand}" MaxHeight="50" MaxWidth="200"/>
     </Grid>
 </UserControl>

@@ -170,7 +170,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 if (deleteToDoListCommand == null)
                 {
-                    deleteToDoListCommand = new RelayCommand(startUpPageCommands.DeleteToDoList, param => selectedTDTask != null);
+                    deleteToDoListCommand = new RelayCommand(startUpPageCommands.DeleteToDoList, param => selectedToDoList != null);
                 }
                 return deleteToDoListCommand;
             }
@@ -219,16 +219,18 @@ namespace To_Do_List_Management_App.ViewModels
             selectedTDTask = structure.SelectedTDTask;
             rootToDoList = structure.TDL;
             thisStatisticsPanel = structure.StatisticsPanel;
+            this.availableCategories = structure.Categories;
         }
 
-        private void SaveApplication()
+        public void SaveApplication()
         {
             CurrentStructure currentStructure = new CurrentStructure()
             {
                 TDL = this.rootToDoList,
                 SelectedTDTask = this.selectedTDTask,
                 SelectedToDoList = this.selectedToDoList,
-                StatisticsPanel = this.thisStatisticsPanel
+                StatisticsPanel = this.thisStatisticsPanel,
+                Categories = this.availableCategories
             };
             ManageData.SaveData(currentStructure);
         }
@@ -255,7 +257,7 @@ namespace To_Do_List_Management_App.ViewModels
                                     Description = "Dishes",
                                     Name = "task C1 TD1 T1",
                                     priority = Enums.Priority.Urgent,
-                                    type = Enums.TaskType.Chores,
+                                    Category = "Chores",
                                     DueDate = System.DateTime.Now.AddDays(-2),
                                     status = Enums.Status.InProgress
                                 }
@@ -272,7 +274,7 @@ namespace To_Do_List_Management_App.ViewModels
                                             Description = "MVP",
                                             Name = "task C1 TD1 TD1 T1",
                                             priority = Enums.Priority.High,
-                                            type = Enums.TaskType.Project,
+                                            Category = "Project",
                                             DueDate = System.DateTime.Now.AddDays(-2),
                                             status = Enums.Status.InProgress
                                         }
@@ -289,7 +291,7 @@ namespace To_Do_List_Management_App.ViewModels
                                             Description = "BRTA",
                                             Name = "task C1 TD1 TD2 T1",
                                             priority = Enums.Priority.Urgent,
-                                            type = Enums.TaskType.Event,
+                                            Category = "event",
                                             DueDate = System.DateTime.Now.AddDays(-2),
                                             status = Enums.Status.InProgress
                                         }
@@ -308,7 +310,7 @@ namespace To_Do_List_Management_App.ViewModels
                                     Description = "RC",
                                     Name = "task C1 TD2 T1",
                                     priority = Enums.Priority.Low,
-                                    type = Enums.TaskType.Project,
+                                    Category = "Project",
                                     DueDate = System.DateTime.Now,
                                     status = Enums.Status.InProgress
                                 }
@@ -333,7 +335,7 @@ namespace To_Do_List_Management_App.ViewModels
                                     Description = "None",
                                     Name = "task C2 TD1 T1",
                                     priority = Enums.Priority.None,
-                                    type = Enums.TaskType.MajorTask,
+                                    Category = "Major task",
                                     DueDate = System.DateTime.Now,
                                     status = Enums.Status.InProgress
                                 }
@@ -350,7 +352,7 @@ namespace To_Do_List_Management_App.ViewModels
                                     Description = "Trivia",
                                     Name = "task C2 TD2 T1",
                                     priority = Enums.Priority.Low,
-                                    type = Enums.TaskType.Project,
+                                    Category = "Project",
                                     DueDate = System.DateTime.Now,
                                     status = Enums.Status.InProgress
                                 }

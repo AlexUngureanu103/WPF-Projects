@@ -26,7 +26,7 @@ namespace To_Do_List_Management_App.Services.Commands
                 Name = AddTaskVM.TaskName,
                 Description = AddTaskVM.TaskDescription,
                 priority = AddTaskVM.TaskPriority,
-                type = AddTaskVM.TaskType,
+                Category = AddTaskVM.TaskCategory,
                 DueDate = AddTaskVM.TaskDueDate,
                 status = Enums.Status.NotStarted,
                 FinishDate = DateTime.MinValue

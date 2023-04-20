@@ -46,9 +46,9 @@ namespace To_Do_List_Management_App.Services.Commands
             {
                 tasks = TaskSearchFilters.FindTasksByStatus(findTaskVM.TaskStatusToFind, tasks);
             }
-            if (findTaskVM.SearchByTaskType)
+            if (findTaskVM.SearchByTaskCategory)
             {
-                tasks = TaskSearchFilters.FindTasksByType(findTaskVM.TaskTypeToFind, tasks);
+                tasks = TaskSearchFilters.FindTasksByType(findTaskVM.TaskCategoryToFind, tasks);
             }
             if (findTaskVM.SearchCompletedTasks)
             {

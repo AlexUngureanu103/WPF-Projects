@@ -12,7 +12,7 @@ namespace To_Do_List_Management_App.Models
 
         public Priority priority { get; set; }
 
-        public TaskType type { get; set; }
+        public string Category { get; set; }
 
         public Status status { get; set; }
 

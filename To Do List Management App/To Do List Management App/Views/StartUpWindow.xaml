@@ -108,7 +108,7 @@
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" />
                         <GridViewColumn Header="Priority" DisplayMemberBinding="{Binding priority}" />
-                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding type}" />
+                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Category}" />
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding status}" />
                         <GridViewColumn Header="Due Date" DisplayMemberBinding="{Binding DueDate}" />
                         <GridViewColumn Header="Fin Date" DisplayMemberBinding="{Binding FinishDate}"/>
