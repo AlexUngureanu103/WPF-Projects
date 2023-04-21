@@ -202,6 +202,19 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private ICommand deleteTaskCommand;
+        public ICommand DeleteTaskCommand
+        {
+            get
+            {
+                if (deleteTaskCommand == null)
+                {
+                    deleteTaskCommand = new RelayCommand(startUpPageCommands.DeleteTask, param => isSelectedTDTask);
+                }
+                return deleteTaskCommand;
+            }
+        }
+
         public StartUpPageVM()
         {
             ManageData = new ManageDataUsage("Save");

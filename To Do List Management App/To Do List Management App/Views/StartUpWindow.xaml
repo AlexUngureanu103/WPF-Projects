@@ -73,7 +73,7 @@
 
             </Grid>
         </Grid>
-        <Grid x:Name="RightGrid" Grid.Row="1" Grid.Column="3">
+        <Grid x:Name="RightGrid" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Margin="22,0,-12,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
@@ -95,12 +95,14 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Name="ManageCategory" Content="Manage Category" Click="ManageCategory_Click"  Margin="5" MaxHeight="75" MaxWidth="175"/>
                 <Button Grid.Column="1" Name="AddTaskButton" Content="Add task" Click="AddTaskButton_Click" Margin="5" MaxHeight="75" MaxWidth="150"/>
                 <Button Grid.Column="2" Name="AddRootToDoListButton"  Content="Add Root ToDoList" Click="AddRootToDoListButton_Click" Margin="5" MaxHeight="75" MaxWidth="150"/>
                 <Button Grid.Column="3" Name="FindTaskButton" Content="Find Tasks" Click="FindTaskButton_Click" Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding CanFindTasks , UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="4" Name="AddToDoList" Content="Add ToDoList" Click="AddToDoList_Click" Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding IsEneabledAddTDL, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="5" Name="EditTask" Content="Edit Task" Click="EditTask_Click"  Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding IsSelectedTDTask, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
             <ListView x:Name="taskListView" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding SelectedToDoList.Tasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTask , UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
@@ -122,7 +124,8 @@
 
             <Button Grid.Row="1" Grid.Column="1" Margin="5" MaxWidth="40" MaxHeight="35" Content="Up" Command="{Binding MoveUpTaskCommand}"/>
             <Button Grid.Row="2" Grid.Column="1" Margin="5" MaxWidth="40" MaxHeight="35" Content="Down" Command="{Binding MoveDownTaskCommand}"/>
-            <Button Grid.Row="6" Grid.Column="1" Command="{Binding DeleteToDoListCommand}" Margin="5" MaxWidth="40" MaxHeight="35" Content="Delete" />
+            <Button Grid.Row="6" Grid.Column="1" Command="{Binding DeleteToDoListCommand}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Delete TDL"/>
+            <Button Grid.Row="5" Grid.Column="1" Command="{Binding DeleteTaskCommand}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Delete Task"/>
         </Grid>
     </Grid>
 </UserControl>

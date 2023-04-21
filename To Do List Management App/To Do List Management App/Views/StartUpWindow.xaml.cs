@@ -51,5 +51,10 @@ namespace To_Do_List_Management_App.Views
         {
             WindowContainer.Navigate(new ManageCategoryWindow(WindowContainer, _viewModel));
         }
+
+        private void EditTask_Click(object sender, RoutedEventArgs e)
+        {
+            WindowContainer.Navigate(new EditTaskWindow(WindowContainer, _viewModel));
+        }
     }
 }

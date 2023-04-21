@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using To_Do_List_Management_App.ViewModels;
 
 namespace To_Do_List_Management_App.Services.Commands
@@ -14,6 +15,10 @@ namespace To_Do_List_Management_App.Services.Commands
 
         public void DeleteToDoList()
         {
+            if (!ConfirmAction())
+            {
+                return;
+            }
             var parentTDL = GetParentOrRootTDL.GetParentOfSelectedTDL(startUpPageVM.RootToDoList, startUpPageVM.SelectedToDoList);
             if (parentTDL != startUpPageVM.SelectedToDoList)
             {
@@ -24,6 +29,26 @@ namespace To_Do_List_Management_App.Services.Commands
                 startUpPageVM.RootToDoList.Remove(startUpPageVM.SelectedToDoList);
             }
             startUpPageVM.SelectedToDoList = null;
+            startUpPageVM.SelectedTDTask = null;
+        }
+
+        private bool ConfirmAction()
+        {
+            var result = MessageBox.Show("Are you sure you want to perform this action?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.No)
+                return false;
+            return true;
+        }
+
+        public void DeleteTask()
+        {
+            if (!ConfirmAction())
+            {
+                return;
+            }
+
+            startUpPageVM.SelectedToDoList.Tasks.Remove(startUpPageVM.SelectedTDTask);
+            startUpPageVM.SelectedTDTask = null;
         }
 
         public void MoveTaskUp()

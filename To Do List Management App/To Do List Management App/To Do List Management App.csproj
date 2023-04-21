@@ -62,6 +62,7 @@
     <Compile Include="ResourceManagement\LoadImages.cs" />
     <Compile Include="Services\Commands\AddToDoListCommands.cs" />
     <Compile Include="Services\Commands\AddTaskCommands.cs" />
+    <Compile Include="Services\Commands\EditTaskCommands.cs" />
     <Compile Include="Services\Commands\ManageCategoriesCommands.cs" />
     <Compile Include="Services\ExtendedTreeView.cs" />
     <Compile Include="Services\GetParentOrRootTDL.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="ViewModels\AddToDoListVM.cs" />
     <Compile Include="ViewModels\AddTaskVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\EditTaskVM.cs" />
     <Compile Include="ViewModels\FindTaskVM.cs" />
     <Compile Include="ViewModels\ManageCategoryVM.cs" />
     <Compile Include="ViewModels\StartUpPageVM.cs" />
@@ -93,6 +95,9 @@
     </Compile>
     <Compile Include="Views\AddTaskWindow.xaml.cs">
       <DependentUpon>AddTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditTaskWindow.xaml.cs">
+      <DependentUpon>EditTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FindTaskWindow.xaml.cs">
       <DependentUpon>FindTaskWindow.xaml</DependentUpon>
@@ -108,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
