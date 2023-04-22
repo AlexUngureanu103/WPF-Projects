@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Xml.Serialization;
 
 namespace To_Do_List_Management_App.Models
 {
@@ -12,6 +13,7 @@ namespace To_Do_List_Management_App.Models
 
         public ObservableCollection<TDTask> Tasks { get; set; }
 
+        [XmlIgnore]
         public ObservableCollection<ToDoList> toDoLists { get; set; }
 
         public ToDoList()

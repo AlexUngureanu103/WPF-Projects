@@ -66,8 +66,8 @@
     <Compile Include="Services\Commands\ManageCategoriesCommands.cs" />
     <Compile Include="Services\ExtendedTreeView.cs" />
     <Compile Include="Services\GetParentOrRootTDL.cs" />
+    <Compile Include="Services\SerializeData\ArchiveData.cs" />
     <Compile Include="Services\SerializeData\CurrentStructure.cs" />
-    <Compile Include="Services\SerializeData\ManageDataUsage.cs" />
     <Compile Include="Services\Validators\ManagaCategoryValidators.cs" />
     <Compile Include="Services\Validators\StartUpPageValidators.cs" />
     <Compile Include="Services\Validators\ToDoListValidator.cs" />

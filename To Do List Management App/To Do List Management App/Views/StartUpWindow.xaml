@@ -83,6 +83,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -124,8 +125,10 @@
 
             <Button Grid.Row="1" Grid.Column="1" Margin="5" MaxWidth="40" MaxHeight="35" Content="Up" Command="{Binding MoveUpTaskCommand}"/>
             <Button Grid.Row="2" Grid.Column="1" Margin="5" MaxWidth="40" MaxHeight="35" Content="Down" Command="{Binding MoveDownTaskCommand}"/>
-            <Button Grid.Row="6" Grid.Column="1" Command="{Binding DeleteToDoListCommand}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Delete TDL"/>
-            <Button Grid.Row="5" Grid.Column="1" Command="{Binding DeleteTaskCommand}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Delete Task"/>
+            <Button Grid.Row="5" Grid.Column="1" Command="{Binding DeleteToDoListCommand}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Delete TDL"/>
+            <Button Grid.Row="4" Grid.Column="1" Command="{Binding DeleteTaskCommand}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Delete Task"/>
+            <Button Grid.Row="6" Grid.Column="1" Command="{Binding DisplayAbout}" Margin="5" MaxHeight="35" MaxWidth="100" Content="About"/>
+            <Button Grid.Row="8" Grid.Column="1" Command="{Binding ArchiveData}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Archive"/>
         </Grid>
     </Grid>
 </UserControl>

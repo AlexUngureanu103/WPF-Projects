@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using To_Do_List_Management_App.Services.SerializeData;
 using To_Do_List_Management_App.ViewModels;
 
 namespace To_Do_List_Management_App.Services.Commands
@@ -8,9 +9,11 @@ namespace To_Do_List_Management_App.Services.Commands
     {
         private StartUpPageVM startUpPageVM;
 
+        private readonly ArchiveData archiveData;
         public StartUpPageCommands(StartUpPageVM startUpPageVM)
         {
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
+            archiveData = new ArchiveData(startUpPageVM);
         }
 
         public void DeleteToDoList()
@@ -67,6 +70,26 @@ namespace To_Do_List_Management_App.Services.Commands
             {
                 startUpPageVM.SelectedToDoList.Tasks.Move(index, index + 1);
             }
+        }
+
+        public void DisplayAbout()
+        {
+            MessageBox.Show("Nume: Ungureanu Alexandru\nGrupa: 10LF213\nSpecializare: Informatica", "About");
+        }
+
+        public void ArchiveCurrentData()
+        {
+            archiveData.ArchiveSavedData();
+        }
+
+        public void LoadArchivedData()
+        {
+            var structure = archiveData.LoadArchive();
+            startUpPageVM.AvailableCategories = structure.Categories;
+            startUpPageVM.RootToDoList = structure.TDL;
+            startUpPageVM.ThisStatisticsPanel = structure.StatisticsPanel;
+            startUpPageVM.SelectedTDTask = null;
+            startUpPageVM.SelectedToDoList = null;
         }
     }
 }

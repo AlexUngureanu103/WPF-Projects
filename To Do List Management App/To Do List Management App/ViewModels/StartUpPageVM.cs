@@ -5,7 +5,6 @@ using To_Do_List_Management_App.Models;
 using To_Do_List_Management_App.ResourceManagement;
 using To_Do_List_Management_App.Services;
 using To_Do_List_Management_App.Services.Commands;
-using To_Do_List_Management_App.Services.SerializeData;
 using To_Do_List_Management_App.Services.Validators;
 
 namespace To_Do_List_Management_App.ViewModels
@@ -19,7 +18,6 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 canExecute = value;
-                SaveApplication();
             }
         }
 
@@ -68,7 +66,6 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 selectedToDoList = value;
                 ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(rootToDoList);
-                SaveApplication();
                 IsEneabledAddTDL = StartUpPageValidators.CanAddTDL(selectedToDoList);
                 CanMoveUpDownTask = StartUpPageValidators.CanMoveUpDownTask(selectedToDoList, selectedTDTask);
                 OnPropertyChanged();
@@ -94,7 +91,6 @@ namespace To_Do_List_Management_App.ViewModels
                 }
                 selectedTDTask = value;
 
-                SaveApplication();
                 CanMoveUpDownTask = StartUpPageValidators.CanMoveUpDownTask(selectedToDoList, selectedTDTask);
                 OnPropertyChanged();
                 if (value != null)
@@ -121,8 +117,6 @@ namespace To_Do_List_Management_App.ViewModels
 
         private StartUpPageCommands startUpPageCommands;
 
-        private ManageDataUsage ManageData;
-
         private ObservableCollection<string> availableCategories;
         public ObservableCollection<string> AvailableCategories
         {
@@ -146,7 +140,6 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 rootToDoList = value;
                 ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(rootToDoList);
-                SaveApplication();
                 OnPropertyChanged();
             }
         }
@@ -158,7 +151,6 @@ namespace To_Do_List_Management_App.ViewModels
             set
             {
                 thisStatisticsPanel = value;
-                SaveApplication();
                 OnPropertyChanged();
             }
         }
@@ -215,37 +207,52 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private ICommand displayAbout;
+        public ICommand DisplayAbout
+        {
+            get
+            {
+                if (displayAbout == null)
+                {
+                    displayAbout = new RelayCommand(startUpPageCommands.DisplayAbout, param => true);
+                }
+                return displayAbout;
+            }
+        }
+
+        private ICommand archiveData;
+        public ICommand ArchiveData
+        {
+            get
+            {
+                if (archiveData == null)
+                {
+                    archiveData = new RelayCommand(startUpPageCommands.ArchiveCurrentData, param => true);
+                }
+                return archiveData;
+            }
+        }
+
+        private ICommand loadData;
+        public ICommand LoadData
+        {
+            get
+            {
+                if (loadData == null)
+                {
+                    loadData = new RelayCommand(startUpPageCommands.LoadArchivedData, param => true);
+                }
+                return loadData;
+            }
+        }
+
         public StartUpPageVM()
         {
-            ManageData = new ManageDataUsage("Save");
-            ReloadApplication();
             startUpPageCommands = new StartUpPageCommands(this);
+            startUpPageCommands.LoadArchivedData();
             CanFindTasks = StartUpPageValidators.CanFindTasks(rootToDoList);
+
             //PupulateForTest();
-        }
-
-        private void ReloadApplication()
-        {
-            var structure = ManageData.LoadData();
-
-            selectedToDoList = structure.SelectedToDoList;
-            selectedTDTask = structure.SelectedTDTask;
-            rootToDoList = structure.TDL;
-            thisStatisticsPanel = structure.StatisticsPanel;
-            this.availableCategories = structure.Categories;
-        }
-
-        public void SaveApplication()
-        {
-            CurrentStructure currentStructure = new CurrentStructure()
-            {
-                TDL = this.rootToDoList,
-                SelectedTDTask = this.selectedTDTask,
-                SelectedToDoList = this.selectedToDoList,
-                StatisticsPanel = this.thisStatisticsPanel,
-                Categories = this.availableCategories
-            };
-            ManageData.SaveData(currentStructure);
         }
 
         private void PupulateForTest()
