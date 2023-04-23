@@ -59,6 +59,8 @@
         <CheckBox Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2" Content="Overdue" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchOverDueTasks, UpdateSourceTrigger=PropertyChanged}"/>
         <CheckBox Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" Content="NotOverdue" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding SearchNotOverDueTasks, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <CheckBox Grid.Row="5" Grid.Column="5" Content="Show All" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding DisplayAll,UpdateSourceTrigger=PropertyChanged}"/>
+
         <ListView x:Name="taskListView" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="5" Margin="10" ItemsSource="{Binding FoundedTasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTast , UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView>

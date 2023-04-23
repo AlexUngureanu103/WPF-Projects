@@ -96,6 +96,30 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private bool displayAllTasks;
+        public bool DisplayAll
+        {
+            get { return displayAllTasks; }
+            set
+            {
+                displayAllTasks = value;
+                if (value == true)
+                {
+                    SearchByName = false;
+                    SearchByDueDate = false;
+                    SearchByPriority = false;
+                    SearchByTaskStatus = false;
+                    SearchByTaskCategory = false;
+                    SearchCompletedTasks = false;
+                    SearchUncompletedTasks = false;
+                    SearchOverDueTasks = false;
+                    SearchNotOverDueTasks = false;
+                    CanExecute = true;
+                }
+                OnPropertyChanged();
+            }
+        }
+
         private bool searchByDueDate;
         public bool SearchByDueDate
         {
@@ -266,12 +290,12 @@ namespace To_Do_List_Management_App.ViewModels
                 OnPropertyChanged();
                 CanExecute = FindTaskValidator.CanExecuteFindTask(
                     taskName: nameToFind, searchByName: searchByName,
-                    taskPriority:priorityToFind, searchByPriority:searchByPriority,
-                    taskDueDate:dueDateToFind, searchByDueDate:searchByDueDate,
-                    status:taskStatusToFind, searchByStatus:searchByTaskStatus,
-                    taskCategory:taskCategoryToFind, searchByType:searchByTaskCategory,
-                    searchByCompleted:searchCompletedTasks, searchByUnCompleted:searchUncompletedTasks,
-                    searchByOverDue:searchOverDueTasks, searchByNotOverDue:searchNotOverDueTasks);
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
