@@ -134,6 +134,58 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+        private ICommand moveTdlToParent;
+        public ICommand MoveToParent
+        {
+            get
+            {
+                if (moveTdlToParent == null)
+                {
+                    moveTdlToParent = new RelayCommand(editTDLCommands.MoveSelectedTDLToParent, param => selectedToDoList != null);
+                }
+                return moveTdlToParent;
+            }
+        }
+
+        private ICommand moveTdlToChild;
+        public ICommand MoveToChild
+        {
+            get
+            {
+                if (moveTdlToChild == null)
+                {
+                    moveTdlToChild = new RelayCommand(editTDLCommands.MoveSelectedTDLToChild, param => selectedToDoList != null);
+                }
+                return moveTdlToChild;
+            }
+        }
+
+        private ICommand moveTDLUp;
+        public ICommand MoveTDLUp
+        {
+            get
+            {
+                if (moveTDLUp == null)
+                {
+                    moveTDLUp = new RelayCommand(editTDLCommands.MoveTDLUp, param => selectedToDoList != null);
+                }
+                return moveTDLUp;
+            }
+        }
+
+        private ICommand moveTDLDown;
+        public ICommand MoveTDLDown
+        {
+            get
+            {
+                if (moveTDLDown == null)
+                {
+                    moveTDLDown = new RelayCommand(editTDLCommands.MoveTDLDown, param => selectedToDoList != null);
+                }
+                return moveTDLDown;
+            }
+        }
+
         public EditTDLVM(StartUpPageVM startUpPageVM)
         {
             StartUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
