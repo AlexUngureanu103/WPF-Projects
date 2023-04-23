@@ -115,7 +115,9 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        public StartUpPageCommands startUpPageCommands;
+        public readonly StartUpPageCommands startUpPageCommands;
+
+        public readonly SortListViewCommands SortCommands;
 
         private ObservableCollection<string> availableCategories;
         public ObservableCollection<string> AvailableCategories
@@ -246,10 +248,25 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+
+        private ICommand sortCommand;
+        public ICommand SortCommand
+        {
+            get
+            {
+                if (sortCommand == null)
+                {
+                    sortCommand = new RelayCommand(SortCommands.SortTasksCommand, param => true);
+                }
+                return sortCommand;
+            }
+        }
+
         public StartUpPageVM()
         {
             startUpPageCommands = new StartUpPageCommands(this);
             startUpPageCommands.LoadArchivedData();
+            SortCommands = new SortListViewCommands(this);
             CanFindTasks = StartUpPageValidators.CanFindTasks(rootToDoList);
 
             //PupulateForTest();

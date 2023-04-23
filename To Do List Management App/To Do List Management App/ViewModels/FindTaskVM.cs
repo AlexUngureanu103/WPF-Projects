@@ -13,7 +13,7 @@ namespace To_Do_List_Management_App.ViewModels
 {
     internal class FindTaskVM : BaseVM
     {
-        public readonly StartUpPageVM startUpPage;
+        public StartUpPageVM startUpPage;
 
         private ObservableCollection<string> availablePriorities;
         public ObservableCollection<string> AvailableCategories
@@ -385,6 +385,21 @@ namespace To_Do_List_Management_App.ViewModels
                     findCommand = new RelayCommand(findTaskCommands.FindTaskCommand, param => canExecute);
                 }
                 return findCommand;
+            }
+        }
+
+
+
+        private ICommand sortCommand;
+        public ICommand SortCommand
+        {
+            get
+            {
+                if (sortCommand == null)
+                {
+                    sortCommand = new RelayCommand(startUpPage.SortCommands.SortTasksCommand, param => true);
+                }
+                return sortCommand;
             }
         }
 

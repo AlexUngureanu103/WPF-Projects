@@ -65,6 +65,7 @@
     <Compile Include="Services\Commands\EditTaskCommands.cs" />
     <Compile Include="Services\Commands\EditTDLCommands.cs" />
     <Compile Include="Services\Commands\ManageCategoriesCommands.cs" />
+    <Compile Include="Services\Commands\SortListViewCommands.cs" />
     <Compile Include="Services\ExtendedTreeView.cs" />
     <Compile Include="Services\GetParentOrRootTDL.cs" />
     <Compile Include="Services\SerializeData\ArchiveData.cs" />
