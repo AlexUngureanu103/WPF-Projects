@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CD220DAF-ACF9-4429-803E-7FAF79371707}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>To_Do_List_Management_App</RootNamespace>
+    <AssemblyName>To Do List Management App</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Enums\Priority.cs" />
+    <Compile Include="Enums\Status.cs" />
+    <Compile Include="Enums\TaskType.cs" />
+    <Compile Include="ResourceManagement\LoadImages.cs" />
+    <Compile Include="Services\Commands\AddToDoListCommands.cs" />
+    <Compile Include="Services\Commands\AddTaskCommands.cs" />
+    <Compile Include="Services\Commands\EditTaskCommands.cs" />
+    <Compile Include="Services\Commands\EditTDLCommands.cs" />
+    <Compile Include="Services\Commands\ManageCategoriesCommands.cs" />
+    <Compile Include="Services\ExtendedTreeView.cs" />
+    <Compile Include="Services\GetParentOrRootTDL.cs" />
+    <Compile Include="Services\SerializeData\ArchiveData.cs" />
+    <Compile Include="Services\SerializeData\CurrentStructure.cs" />
+    <Compile Include="Services\Validators\ManagaCategoryValidators.cs" />
+    <Compile Include="Services\Validators\StartUpPageValidators.cs" />
+    <Compile Include="Services\Validators\ToDoListValidator.cs" />
+    <Compile Include="Services\EnumBindingSourceExtension.cs" />
+    <Compile Include="Services\ExtractTasks.cs" />
+    <Compile Include="Services\Commands\FindTaskCommands.cs" />
+    <Compile Include="Services\Validators\FindTaskValidator.cs" />
+    <Compile Include="Services\Commands\StartUpPageCommands.cs" />
+    <Compile Include="Services\StringMatching.cs" />
+    <Compile Include="Services\TaskSearchFilters.cs" />
+    <Compile Include="Services\Validators\TaskValidator.cs" />
+    <Compile Include="Services\UpdateStatisticsPanel.cs" />
+    <Compile Include="Models\StatisticsPanel.cs" />
+    <Compile Include="Models\ToDoList.cs" />
+    <Compile Include="Models\TDTask.cs" />
+    <Compile Include="ViewModels\AddToDoListVM.cs" />
+    <Compile Include="ViewModels\AddTaskVM.cs" />
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\EditTaskVM.cs" />
+    <Compile Include="ViewModels\EditTDLVM.cs" />
+    <Compile Include="ViewModels\FindTaskVM.cs" />
+    <Compile Include="ViewModels\ManageCategoryVM.cs" />
+    <Compile Include="ViewModels\StartUpPageVM.cs" />
+    <Compile Include="Views\AddToDoList.xaml.cs">
+      <DependentUpon>AddToDoList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddTaskWindow.xaml.cs">
+      <DependentUpon>AddTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditTaskWindow.xaml.cs">
+      <DependentUpon>EditTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditTDLWindow.xaml.cs">
+      <DependentUpon>EditTDLWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FindTaskWindow.xaml.cs">
+      <DependentUpon>FindTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageCategoryWindow.xaml.cs">
+      <DependentUpon>ManageCategoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartUpWindow.xaml.cs">
+      <DependentUpon>StartUpWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AddToDoList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTDLWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FindTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\ManageCategoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StartUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
