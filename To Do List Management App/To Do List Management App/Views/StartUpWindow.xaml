@@ -31,12 +31,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <service:ExtendedTreeView Grid.Row="0" ItemsSource="{Binding RootToDoList}" SelectedItem_="{Binding SelectedToDoList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <service:ExtendedTreeView x:Name="RootTreeView" Grid.Row="0" ItemsSource="{Binding RootToDoList, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectedItem_="{Binding SelectedToDoList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding toDoLists}" DataType="{x:Type models:ToDoList}">
+                    <HierarchicalDataTemplate ItemsSource="{Binding toDoLists, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" DataType="{x:Type models:ToDoList}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding ImageSource}" Height="25" Width="25" Margin="0,0,5,0"/>
-                            <TextBlock Text="{Binding Name}"/>
+                            <Image Source="{Binding ImageSource , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="25" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Name , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
@@ -98,6 +98,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Name="ManageCategory" Content="Manage Category" Click="ManageCategory_Click"  Margin="5" MaxHeight="75" MaxWidth="175"/>
                 <Button Grid.Column="1" Name="AddTaskButton" Content="Add task" Click="AddTaskButton_Click" Margin="5" MaxHeight="75" MaxWidth="150"/>
@@ -105,6 +106,7 @@
                 <Button Grid.Column="3" Name="FindTaskButton" Content="Find Tasks" Click="FindTaskButton_Click" Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding CanFindTasks , UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="4" Name="AddToDoList" Content="Add ToDoList" Click="AddToDoList_Click" Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding IsEneabledAddTDL, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="5" Name="EditTask" Content="Edit Task" Click="EditTask_Click"  Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding IsSelectedTDTask, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="6" Name="EditTDL" Content="Edit TDL" Click="EditTDL_Click"  Margin="5" MaxHeight="75" MaxWidth="150"/>
             </Grid>
             <ListView x:Name="taskListView" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding SelectedToDoList.Tasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTask , UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>

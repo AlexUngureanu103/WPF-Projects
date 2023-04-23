@@ -5,7 +5,7 @@ using To_Do_List_Management_App.ViewModels;
 
 namespace To_Do_List_Management_App.Services.Commands
 {
-    internal class StartUpPageCommands
+    public class StartUpPageCommands
     {
         private StartUpPageVM startUpPageVM;
 
@@ -13,7 +13,7 @@ namespace To_Do_List_Management_App.Services.Commands
         public StartUpPageCommands(StartUpPageVM startUpPageVM)
         {
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
-            archiveData = new ArchiveData(startUpPageVM);
+            archiveData = new ArchiveData(startUpPageVM, "Archive");
         }
 
         public void DeleteToDoList()

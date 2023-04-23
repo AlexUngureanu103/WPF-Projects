@@ -115,7 +115,7 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        private StartUpPageCommands startUpPageCommands;
+        public StartUpPageCommands startUpPageCommands;
 
         private ObservableCollection<string> availableCategories;
         public ObservableCollection<string> AvailableCategories

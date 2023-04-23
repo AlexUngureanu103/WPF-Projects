@@ -12,11 +12,12 @@ namespace To_Do_List_Management_App.Services.SerializeData
     {
         private readonly StartUpPageVM startUpPageVM;
 
-        private string dirName => "Archive";
+        private string dirName;
 
-        public ArchiveData(StartUpPageVM startUpPageVM)
+        public ArchiveData(StartUpPageVM startUpPageVM, string dirName)
         {
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
+            this.dirName = dirName;
         }
 
         /// <summary>
