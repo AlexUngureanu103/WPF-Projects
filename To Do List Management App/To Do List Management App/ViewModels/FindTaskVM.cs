@@ -397,7 +397,7 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 if (sortCommand == null)
                 {
-                    sortCommand = new RelayCommand(startUpPage.SortCommands.SortTasksCommand, param => true);
+                    sortCommand = new RelayCommand(startUpPage.SortCommands.SortTasksByPriorityCommand, param => true);
                 }
                 return sortCommand;
             }

@@ -111,13 +111,41 @@
             <ListView x:Name="taskListView" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding SelectedToDoList.Tasks , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTDTask , UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" />
-                        <GridViewColumn Header="Priority" DisplayMemberBinding="{Binding priority}" />
-                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Category}" />
-                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding status}" />
-                        <GridViewColumn Header="Due Date" DisplayMemberBinding="{Binding DueDate}" />
-                        <GridViewColumn Header="Fin Date" DisplayMemberBinding="{Binding FinishDate}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Name" Command="{Binding SortByName}" Content="Name"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Description}" >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Description" Command="{Binding SortByDescription}" Content="Description"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding priority}" >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Priority" Command="{Binding SortByPriorityCommand}" Content="Priority"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn  DisplayMemberBinding="{Binding Category}" >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Category" Command="{Binding SortByCategory}" Content="Category"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding status}" >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Status" Command="{Binding SortByStatus}" Content="Status"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding DueDate}" >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="DueDate" Command="{Binding SortByDueDateCommand}" Content="DueDate"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding FinishDate}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="FinishDate" Command="{Binding SortByFinishDate}" Content="FinishDate"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

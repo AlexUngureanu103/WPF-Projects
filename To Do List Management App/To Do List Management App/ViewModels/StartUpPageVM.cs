@@ -249,16 +249,94 @@ namespace To_Do_List_Management_App.ViewModels
         }
 
 
-        private ICommand sortCommand;
-        public ICommand SortCommand
+        private ICommand sortByPriorityCommand;
+        public ICommand SortByPriorityCommand
         {
             get
             {
-                if (sortCommand == null)
+                if (sortByPriorityCommand == null)
                 {
-                    sortCommand = new RelayCommand(SortCommands.SortTasksCommand, param => true);
+                    sortByPriorityCommand = new RelayCommand(SortCommands.SortTasksByPriorityCommand, param => true);
                 }
-                return sortCommand;
+                return sortByPriorityCommand;
+            }
+        }
+
+        private ICommand sortByDueDateCommand;
+        public ICommand SortByDueDateCommand
+        {
+            get
+            {
+                if (sortByDueDateCommand == null)
+                {
+                    sortByDueDateCommand = new RelayCommand(SortCommands.SortTasksByDueDate, param => true);
+                }
+                return sortByDueDateCommand;
+            }
+        }
+
+        private ICommand sortByFinishDate;
+        public ICommand SortByFinishDate
+        {
+            get
+            {
+                if(sortByFinishDate == null)
+                {
+                    sortByFinishDate = new RelayCommand(SortCommands.SortTasksFinishDate, param => true);
+                }
+                return sortByFinishDate;
+            }
+        }
+
+        private ICommand sortByName;
+        public ICommand SortByName
+        {
+            get
+            {
+                if (sortByName == null)
+                {
+                    sortByName = new RelayCommand(SortCommands.SortTasksName, param => true);
+                }
+                return sortByName;
+            }
+        }
+
+        private ICommand sortByDescription;
+        public ICommand SortByDescription
+        {
+            get
+            {
+                if (sortByDescription == null)
+                {
+                    sortByDescription = new RelayCommand(SortCommands.SortTasksDescription, param => true);
+                }
+                return sortByDescription;
+            }
+        }
+
+        private ICommand sortByStatus;
+        public ICommand SortByStatus
+        {
+            get
+            {
+                if (sortByStatus == null)
+                {
+                    sortByStatus = new RelayCommand(SortCommands.SortTasksStatus, param => true);
+                }
+                return sortByStatus;
+            }
+        }
+
+        private ICommand sortByCategory;
+        public ICommand SortByCategory
+        {
+            get
+            {
+                if (sortByCategory == null)
+                {
+                    sortByCategory = new RelayCommand(SortCommands.SortTasksCategory, param => true);
+                }
+                return sortByCategory;
             }
         }
 
