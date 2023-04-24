@@ -135,19 +135,43 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-        public EditTaskVM(StartUpPageVM startUpPageVM)
+        private TDTask givenTDTask;
+        public TDTask GivenTask
+        {
+            get { return givenTDTask; }
+            set
+            {
+                givenTDTask = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public EditTaskVM(StartUpPageVM startUpPageVM, TDTask givenTDTask)
         {
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
             addTaskCommands = new EditTaskCommands(this);
             TaskDueDate = DateTime.Now.Date;
             AvailableCategories = startUpPageVM.AvailableCategories;
 
-            TaskCategory = startUpPageVM.SelectedTDTask.Category;
-            TaskDescription = startUpPageVM.SelectedTDTask.Description;
-            TaskName = startUpPageVM.SelectedTDTask.Name;
-            TaskDueDate = startUpPageVM.SelectedTDTask.DueDate;
-            TaskPriority = startUpPageVM.SelectedTDTask.priority;
-            TaskStatus = startUpPageVM.SelectedTDTask.status;
+            if (givenTDTask == null)
+            {
+                TaskCategory = startUpPageVM.SelectedTDTask.Category;
+                TaskDescription = startUpPageVM.SelectedTDTask.Description;
+                TaskName = startUpPageVM.SelectedTDTask.Name;
+                TaskDueDate = startUpPageVM.SelectedTDTask.DueDate;
+                TaskPriority = startUpPageVM.SelectedTDTask.priority;
+                TaskStatus = startUpPageVM.SelectedTDTask.status;
+            }
+            else
+            {
+                GivenTask = givenTDTask;
+                taskCategory = givenTDTask.Category;
+                TaskDescription = givenTDTask.Description;
+                TaskName = givenTDTask.Name;
+                TaskDueDate = givenTDTask.DueDate;
+                TaskPriority = givenTDTask.priority;
+                TaskStatus = givenTDTask.status;
+            }
         }
 
         private ObservableCollection<string> availableCategories;

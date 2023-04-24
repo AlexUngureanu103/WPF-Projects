@@ -54,12 +54,12 @@ namespace To_Do_List_Management_App.Views
 
         private void EditTask_Click(object sender, RoutedEventArgs e)
         {
-            WindowContainer.Navigate(new EditTaskWindow(WindowContainer, _viewModel));
+            WindowContainer.Navigate(new EditTaskWindow(WindowContainer, _viewModel, null));
         }
 
         private void EditTDL_Click(object sender, RoutedEventArgs e)
         {
-            WindowContainer.Navigate(new EditTDLWindow(WindowContainer, _viewModel , this));
+            WindowContainer.Navigate(new EditTDLWindow(WindowContainer, _viewModel, this));
         }
     }
 }

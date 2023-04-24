@@ -74,6 +74,14 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 selectedTDTast = value;
                 OnPropertyChanged();
+                if (value != null)
+                {
+                    IsSelectedTDTask = true;
+                }
+                else
+                {
+                    IsSelectedTDTask = false;
+                }
             }
         }
 
@@ -372,6 +380,18 @@ namespace To_Do_List_Management_App.ViewModels
                     taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+
+        private bool isSelectedTDTask;
+        public bool IsSelectedTDTask
+        {
+            get { return isSelectedTDTask; }
+            set
+            {
+                isSelectedTDTask = value;
+                OnPropertyChanged();
             }
         }
 
