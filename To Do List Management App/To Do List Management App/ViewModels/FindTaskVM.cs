@@ -499,6 +499,19 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+
+        private ICommand displayStatsPanel;
+        public ICommand DisplayStatsPanel
+        {
+            get
+            {
+                if(displayStatsPanel == null)
+                {
+                    displayStatsPanel = new RelayCommand(findTaskCommands.DisplayStatsPanel, param => true);
+                }
+                return displayStatsPanel;
+            }
+        }
         public FindTaskVM(StartUpPageVM startUpPage)
         {
             this.startUpPage = startUpPage ?? throw new ArgumentNullException(nameof(startUpPage));

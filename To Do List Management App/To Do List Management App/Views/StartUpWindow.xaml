@@ -9,7 +9,8 @@
              xmlns:enums="clr-namespace:To_Do_List_Management_App.Enums"
              xmlns:service="clr-namespace:To_Do_List_Management_App.Services"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:MinHeight="500" d:MinWidth="800"
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid x:Name="StartUpGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -52,6 +53,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -64,6 +66,7 @@
                 <Label Grid.Row="3" Grid.Column="0" Content="Tasks due today:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
                 <Label Grid.Row="4" Grid.Column="0" Content="Tasks due tomorrow:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
                 <Label Grid.Row="5" Grid.Column="0" Content="Tasks overdue:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
+                <Label Grid.Row="6" Grid.Column="0" Content="Tasks Finished Late:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" MinHeight="30"/>
 
                 <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TotalTasks, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksCompleted, UpdateSourceTrigger=PropertyChanged}"/>
@@ -71,6 +74,7 @@
                 <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksDueToday, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksDueTomorrow, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.TasksOverdue, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding ThisStatisticsPanel.FinishedLate, UpdateSourceTrigger=PropertyChanged}"/>
 
             </Grid>
         </Grid>

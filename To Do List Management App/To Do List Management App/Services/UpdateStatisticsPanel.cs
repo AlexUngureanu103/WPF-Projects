@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using To_Do_List_Management_App.Models;
 
 namespace To_Do_List_Management_App.Services
@@ -21,9 +22,14 @@ namespace To_Do_List_Management_App.Services
                 {
                     statisticsPanel.UncompletedTasks++;
                 }
-                if (task.DueDate < System.DateTime.Now)
+                if (task.DueDate < DateTime.Now && (task.status != Enums.Status.Completed))
                 {
                     statisticsPanel.TasksOverdue++;
+                }
+                else
+                    if (task.status == Enums.Status.Completed && task.DueDate < task.FinishDate)
+                {
+                    statisticsPanel.FinishedLate++;
                 }
                 if (task.DueDate.Date == System.DateTime.Today.Date)
                 {
@@ -34,7 +40,6 @@ namespace To_Do_List_Management_App.Services
                     statisticsPanel.TasksDueTomorrow++;
                 }
             }
-
             return statisticsPanel;
         }
     }

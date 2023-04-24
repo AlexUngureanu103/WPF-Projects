@@ -106,5 +106,6 @@
         <Button Grid.Row="5" Grid.Column="8" Content="Find" Margin="10" MaxHeight="50" MaxWidth="100" Command="{Binding FindCommand}"/>
         <Button Grid.Row="6" Grid.Column="8" Name="EditTask" Content="Edit Task" Click="EditTask_Click"  Margin="5" MaxHeight="75" MaxWidth="150" IsEnabled="{Binding IsSelectedTDTask, UpdateSourceTrigger=PropertyChanged}"/>
         <Button Grid.Row="9" Grid.Column="8" x:Name="BackButton" Content="Back" Click="BackButton_Click" Margin="10" MaxHeight="50" MaxWidth="100"/>
+        <Button Grid.Row="7" Grid.Column="8" x:Name="DisplayStatsPanel" Content="Display Stats" Command="{Binding DisplayStatsPanel}" Margin="10" MaxHeight="50" MaxWidth="100"/>
     </Grid>
 </UserControl>
