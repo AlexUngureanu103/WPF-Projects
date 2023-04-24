@@ -248,7 +248,6 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
-
         private ICommand sortByPriorityCommand;
         public ICommand SortByPriorityCommand
         {

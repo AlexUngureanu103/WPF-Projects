@@ -70,6 +70,7 @@
     <Compile Include="Services\GetParentOrRootTDL.cs" />
     <Compile Include="Services\SerializeData\ArchiveData.cs" />
     <Compile Include="Services\SerializeData\CurrentStructure.cs" />
+    <Compile Include="Services\SortMethods.cs" />
     <Compile Include="Services\TaskSortingAlgorithms.cs" />
     <Compile Include="Services\Validators\ManagaCategoryValidators.cs" />
     <Compile Include="Services\Validators\StartUpPageValidators.cs" />

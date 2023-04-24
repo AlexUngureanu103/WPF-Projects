@@ -66,37 +66,37 @@
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Name" Command="{Binding SortCommand}" Content="Name"/>
+                            <GridViewColumnHeader Tag="Name" Command="{Binding SortByName}" Content="Name"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Description}" >
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Description" Command="{Binding SortCommand}" Content="Description"/>
+                            <GridViewColumnHeader Tag="Description" Command="{Binding SortByDescription}" Content="Description"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding priority}" >
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Priority" Command="{Binding SortCommand}" Content="Priority"/>
+                            <GridViewColumnHeader Tag="Priority" Command="{Binding SortByPriorityCommand}" Content="Priority"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn  DisplayMemberBinding="{Binding Category}" >
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Category" Command="{Binding SortCommand}" Content="Category"/>
+                            <GridViewColumnHeader Tag="Category" Command="{Binding SortByCategory}" Content="Category"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding status}" >
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Status" Command="{Binding SortCommand}" Content="Status"/>
+                            <GridViewColumnHeader Tag="Status" Command="{Binding SortByStatus}" Content="Status"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding DueDate}" >
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="DueDate" Command="{Binding SortCommand}" Content="DueDate"/>
+                            <GridViewColumnHeader Tag="DueDate" Command="{Binding SortByDueDateCommand}" Content="DueDate"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding FinishDate}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="FinishDate" Command="{Binding SortCommand}" Content="FinishDate"/>
+                            <GridViewColumnHeader Tag="FinishDate" Command="{Binding SortByFinishDate}" Content="FinishDate"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>
