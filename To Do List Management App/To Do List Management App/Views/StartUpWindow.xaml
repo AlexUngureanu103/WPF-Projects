@@ -159,6 +159,7 @@
             <Button Grid.Row="5" Grid.Column="1" Command="{Binding DeleteToDoListCommand}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Delete TDL"/>
             <Button Grid.Row="4" Grid.Column="1" Command="{Binding DeleteTaskCommand}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Delete Task"/>
             <Button Grid.Row="6" Grid.Column="1" Command="{Binding DisplayAbout}" Margin="5" MaxHeight="35" MaxWidth="100" Content="About"/>
+            <Button Grid.Row="7" Grid.Column="1" Click="LoadDb_Click" Margin="5" MaxHeight="35" MaxWidth="100" Content="Manage DB"/>
             <Button Grid.Row="8" Grid.Column="1" Command="{Binding ArchiveData}" Margin="5" MaxHeight="35" MaxWidth="100" Content="Archive"/>
         </Grid>
     </Grid>
