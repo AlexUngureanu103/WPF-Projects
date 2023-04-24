@@ -54,12 +54,23 @@ namespace To_Do_List_Management_App.Views
 
         private void EditTask_Click(object sender, RoutedEventArgs e)
         {
-            WindowContainer.Navigate(new EditTaskWindow(WindowContainer, _viewModel));
+            WindowContainer.Navigate(new EditTaskWindow(WindowContainer, _viewModel, null));
         }
 
         private void EditTDL_Click(object sender, RoutedEventArgs e)
         {
-            WindowContainer.Navigate(new EditTDLWindow(WindowContainer, _viewModel , this));
+            WindowContainer.Navigate(new EditTDLWindow(WindowContainer, _viewModel, this));
+        }
+
+        private void LoadDb_Click(object sender, RoutedEventArgs e)
+        {
+            LoadDbDialog loadDbDialog = new LoadDbDialog(_viewModel,_viewModel.startUpPageCommands.archiveData.Databases);
+            loadDbDialog.ShowDialog();
+
+            if (loadDbDialog.SelectedDB != null)
+            {
+                _viewModel.startUpPageCommands.LoadDb(loadDbDialog.SelectedDB);
+            }
         }
     }
 }

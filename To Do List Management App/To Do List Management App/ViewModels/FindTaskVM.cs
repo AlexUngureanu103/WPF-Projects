@@ -13,7 +13,7 @@ namespace To_Do_List_Management_App.ViewModels
 {
     internal class FindTaskVM : BaseVM
     {
-        public readonly StartUpPageVM startUpPage;
+        public StartUpPageVM startUpPage;
 
         private ObservableCollection<string> availablePriorities;
         public ObservableCollection<string> AvailableCategories
@@ -74,6 +74,14 @@ namespace To_Do_List_Management_App.ViewModels
             {
                 selectedTDTast = value;
                 OnPropertyChanged();
+                if (value != null)
+                {
+                    IsSelectedTDTask = true;
+                }
+                else
+                {
+                    IsSelectedTDTask = false;
+                }
             }
         }
 
@@ -93,6 +101,30 @@ namespace To_Do_List_Management_App.ViewModels
                     taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
                     searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
                     searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
+            }
+        }
+
+        private bool displayAllTasks;
+        public bool DisplayAll
+        {
+            get { return displayAllTasks; }
+            set
+            {
+                displayAllTasks = value;
+                if (value == true)
+                {
+                    SearchByName = false;
+                    SearchByDueDate = false;
+                    SearchByPriority = false;
+                    SearchByTaskStatus = false;
+                    SearchByTaskCategory = false;
+                    SearchCompletedTasks = false;
+                    SearchUncompletedTasks = false;
+                    SearchOverDueTasks = false;
+                    SearchNotOverDueTasks = false;
+                    CanExecute = true;
+                }
+                OnPropertyChanged();
             }
         }
 
@@ -266,12 +298,12 @@ namespace To_Do_List_Management_App.ViewModels
                 OnPropertyChanged();
                 CanExecute = FindTaskValidator.CanExecuteFindTask(
                     taskName: nameToFind, searchByName: searchByName,
-                    taskPriority:priorityToFind, searchByPriority:searchByPriority,
-                    taskDueDate:dueDateToFind, searchByDueDate:searchByDueDate,
-                    status:taskStatusToFind, searchByStatus:searchByTaskStatus,
-                    taskCategory:taskCategoryToFind, searchByType:searchByTaskCategory,
-                    searchByCompleted:searchCompletedTasks, searchByUnCompleted:searchUncompletedTasks,
-                    searchByOverDue:searchOverDueTasks, searchByNotOverDue:searchNotOverDueTasks);
+                    taskPriority: priorityToFind, searchByPriority: searchByPriority,
+                    taskDueDate: dueDateToFind, searchByDueDate: searchByDueDate,
+                    status: taskStatusToFind, searchByStatus: searchByTaskStatus,
+                    taskCategory: taskCategoryToFind, searchByType: searchByTaskCategory,
+                    searchByCompleted: searchCompletedTasks, searchByUnCompleted: searchUncompletedTasks,
+                    searchByOverDue: searchOverDueTasks, searchByNotOverDue: searchNotOverDueTasks);
             }
         }
 
@@ -351,6 +383,18 @@ namespace To_Do_List_Management_App.ViewModels
             }
         }
 
+
+        private bool isSelectedTDTask;
+        public bool IsSelectedTDTask
+        {
+            get { return isSelectedTDTask; }
+            set
+            {
+                isSelectedTDTask = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ICommand findCommand;
         public ICommand FindCommand
         {
@@ -361,6 +405,97 @@ namespace To_Do_List_Management_App.ViewModels
                     findCommand = new RelayCommand(findTaskCommands.FindTaskCommand, param => canExecute);
                 }
                 return findCommand;
+            }
+        }
+
+        private ICommand sortByPriorityCommand;
+        public ICommand SortByPriorityCommand
+        {
+            get
+            {
+                if (sortByPriorityCommand == null)
+                {
+                    sortByPriorityCommand = new RelayCommand(findTaskCommands.SortTasksByPriorityCommand, param => true);
+                }
+                return sortByPriorityCommand;
+            }
+        }
+
+        private ICommand sortByDueDateCommand;
+        public ICommand SortByDueDateCommand
+        {
+            get
+            {
+                if (sortByDueDateCommand == null)
+                {
+                    sortByDueDateCommand = new RelayCommand(findTaskCommands.SortTasksByDueDate, param => true);
+                }
+                return sortByDueDateCommand;
+            }
+        }
+
+        private ICommand sortByFinishDate;
+        public ICommand SortByFinishDate
+        {
+            get
+            {
+                if (sortByFinishDate == null)
+                {
+                    sortByFinishDate = new RelayCommand(findTaskCommands.SortTasksFinishDate, param => true);
+                }
+                return sortByFinishDate;
+            }
+        }
+
+        private ICommand sortByName;
+        public ICommand SortByName
+        {
+            get
+            {
+                if (sortByName == null)
+                {
+                    sortByName = new RelayCommand(findTaskCommands.SortTasksName, param => true);
+                }
+                return sortByName;
+            }
+        }
+
+        private ICommand sortByDescription;
+        public ICommand SortByDescription
+        {
+            get
+            {
+                if (sortByDescription == null)
+                {
+                    sortByDescription = new RelayCommand(findTaskCommands.SortTasksDescription, param => true);
+                }
+                return sortByDescription;
+            }
+        }
+
+        private ICommand sortByStatus;
+        public ICommand SortByStatus
+        {
+            get
+            {
+                if (sortByStatus == null)
+                {
+                    sortByStatus = new RelayCommand(findTaskCommands.SortTasksStatus, param => true);
+                }
+                return sortByStatus;
+            }
+        }
+
+        private ICommand sortByCategory;
+        public ICommand SortByCategory
+        {
+            get
+            {
+                if (sortByCategory == null)
+                {
+                    sortByCategory = new RelayCommand(findTaskCommands.SortTasksCategory, param => true);
+                }
+                return sortByCategory;
             }
         }
 

@@ -9,7 +9,7 @@ namespace To_Do_List_Management_App.Services.Commands
     {
         private StartUpPageVM startUpPageVM;
 
-        private readonly ArchiveData archiveData;
+        public readonly ArchiveData archiveData;
         public StartUpPageCommands(StartUpPageVM startUpPageVM)
         {
             this.startUpPageVM = startUpPageVM ?? throw new ArgumentNullException(nameof(startUpPageVM));
@@ -83,8 +83,17 @@ namespace To_Do_List_Management_App.Services.Commands
         }
 
         public void LoadArchivedData()
+        {      
+            LoadData(archiveData.LoadLastArchive());
+        }
+
+        public void LoadDb(string database)
         {
-            var structure = archiveData.LoadArchive();
+            LoadData(archiveData.LoadArchive(database));
+        }
+        
+        private void LoadData(CurrentStructure structure)
+        {
             startUpPageVM.AvailableCategories = structure.Categories;
             startUpPageVM.RootToDoList = structure.TDL;
             startUpPageVM.ThisStatisticsPanel = structure.StatisticsPanel;

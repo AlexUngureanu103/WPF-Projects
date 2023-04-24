@@ -65,10 +65,14 @@
     <Compile Include="Services\Commands\EditTaskCommands.cs" />
     <Compile Include="Services\Commands\EditTDLCommands.cs" />
     <Compile Include="Services\Commands\ManageCategoriesCommands.cs" />
+    <Compile Include="Services\Commands\ManageDbCommands.cs" />
+    <Compile Include="Services\Commands\SortListViewCommands.cs" />
     <Compile Include="Services\ExtendedTreeView.cs" />
     <Compile Include="Services\GetParentOrRootTDL.cs" />
     <Compile Include="Services\SerializeData\ArchiveData.cs" />
     <Compile Include="Services\SerializeData\CurrentStructure.cs" />
+    <Compile Include="Services\SortMethods.cs" />
+    <Compile Include="Services\TaskSortingAlgorithms.cs" />
     <Compile Include="Services\Validators\ManagaCategoryValidators.cs" />
     <Compile Include="Services\Validators\StartUpPageValidators.cs" />
     <Compile Include="Services\Validators\ToDoListValidator.cs" />
@@ -87,9 +91,11 @@
     <Compile Include="ViewModels\AddToDoListVM.cs" />
     <Compile Include="ViewModels\AddTaskVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\CustomDialogVM.cs" />
     <Compile Include="ViewModels\EditTaskVM.cs" />
     <Compile Include="ViewModels\EditTDLVM.cs" />
     <Compile Include="ViewModels\FindTaskVM.cs" />
+    <Compile Include="ViewModels\LoadDBDialogVM.cs" />
     <Compile Include="ViewModels\ManageCategoryVM.cs" />
     <Compile Include="ViewModels\StartUpPageVM.cs" />
     <Compile Include="Views\AddToDoList.xaml.cs">
@@ -97,6 +103,9 @@
     </Compile>
     <Compile Include="Views\AddTaskWindow.xaml.cs">
       <DependentUpon>AddTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomDialog.xaml.cs">
+      <DependentUpon>CustomDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditTaskWindow.xaml.cs">
       <DependentUpon>EditTaskWindow.xaml</DependentUpon>
@@ -106,6 +115,9 @@
     </Compile>
     <Compile Include="Views\FindTaskWindow.xaml.cs">
       <DependentUpon>FindTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoadDbDialog.xaml.cs">
+      <DependentUpon>LoadDbDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManageCategoryWindow.xaml.cs">
       <DependentUpon>ManageCategoryWindow.xaml</DependentUpon>
@@ -121,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CustomDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FindTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadDbDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

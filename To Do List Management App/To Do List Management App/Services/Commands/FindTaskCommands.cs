@@ -7,10 +7,13 @@ namespace To_Do_List_Management_App.Services.Commands
     internal class FindTaskCommands
     {
         private FindTaskVM findTaskVM;
-
+        
+        private SortMethods sortMethods;
+        
         public FindTaskCommands(FindTaskVM findTaskVM)
         {
             this.findTaskVM = findTaskVM ?? throw new System.ArgumentNullException(nameof(findTaskVM));
+            sortMethods = new SortMethods();
         }
 
         public void BackCommand()
@@ -67,6 +70,70 @@ namespace To_Do_List_Management_App.Services.Commands
                 tasks = TaskSearchFilters.FindNotOverDueTasks(tasks);
             }
             return tasks;
+        }
+
+
+        public void SortTasksByPriorityCommand()
+        {
+            if (findTaskVM.FoundedTasks.Count>0)
+            {
+                findTaskVM.FoundedTasks = sortMethods.SortTasksByPriority(findTaskVM.FoundedTasks);
+                findTaskVM.FoundedTasks = findTaskVM.FoundedTasks;
+            }
+        }
+
+        public void SortTasksByDueDate()
+        {
+            if (findTaskVM.FoundedTasks.Count > 0)
+            {
+                findTaskVM.FoundedTasks = sortMethods.SortTasksByDueDate(findTaskVM.FoundedTasks);
+                findTaskVM.FoundedTasks = findTaskVM.FoundedTasks;
+            }
+        }
+
+        public void SortTasksName()
+        {
+            if (findTaskVM.FoundedTasks.Count > 0)
+            {
+                findTaskVM.FoundedTasks = sortMethods.SortTasksByName(findTaskVM.FoundedTasks);
+                findTaskVM.FoundedTasks = findTaskVM.FoundedTasks;
+            }
+        }
+
+        public void SortTasksDescription()
+        {
+            if (findTaskVM.FoundedTasks.Count > 0)
+            {
+                findTaskVM.FoundedTasks = sortMethods.SortTasksByDescription(findTaskVM.FoundedTasks);
+                findTaskVM.FoundedTasks = findTaskVM.FoundedTasks;
+            }
+        }
+
+        public void SortTasksStatus()
+        {
+            if (findTaskVM.FoundedTasks.Count > 0)
+            {
+                findTaskVM.FoundedTasks = sortMethods.SortTasksByStatus(findTaskVM.FoundedTasks);
+                findTaskVM.FoundedTasks = findTaskVM.FoundedTasks;
+            }
+        }
+
+        public void SortTasksCategory()
+        {
+            if (findTaskVM.FoundedTasks.Count > 0)
+            {
+                findTaskVM.FoundedTasks = sortMethods.SortTasksByCategory(findTaskVM.FoundedTasks);
+                findTaskVM.FoundedTasks = findTaskVM.FoundedTasks;
+            }
+        }
+
+        public void SortTasksFinishDate()
+        {
+            if (findTaskVM.FoundedTasks.Count > 0)
+            {
+                findTaskVM.FoundedTasks = sortMethods.SortTasksByFinishDate(findTaskVM.FoundedTasks);
+                findTaskVM.FoundedTasks = findTaskVM.FoundedTasks;
+            }
         }
     }
 }
