@@ -60,14 +60,14 @@ namespace To_Do_List_Management_App.Services
 
         public static ObservableCollection<TDTask> FindOverDueTasks(ObservableCollection<TDTask> tasksToFindIn)
         {
-            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => DateTime.Compare(x.DueDate, DateTime.Now) <= 0));
+            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x => DateTime.Compare(x.DueDate, x.FinishDate ==DateTime.MinValue ?DateTime.Now :x.FinishDate) <= 0));
 
             return foundedTasks;
         }
 
         public static ObservableCollection<TDTask> FindNotOverDueTasks(ObservableCollection<TDTask> tasksToFindIn)
         {
-            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x =>  DateTime.Compare(x.DueDate, DateTime.Now) > 0));
+            ObservableCollection<TDTask> foundedTasks = new ObservableCollection<TDTask>(tasksToFindIn.Where(x =>  DateTime.Compare(x.DueDate, x.FinishDate == DateTime.MinValue ? DateTime.Now : x.FinishDate) > 0));
 
             return foundedTasks;
         }
