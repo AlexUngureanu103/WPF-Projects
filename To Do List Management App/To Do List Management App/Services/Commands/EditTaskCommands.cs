@@ -48,6 +48,7 @@ namespace To_Do_List_Management_App.Services.Commands
                 }
                 editTaskVM.GivenTask.status = editTaskVM.TaskStatus;
             }
+            editTaskVM.startUpPageVM.ThisStatisticsPanel = UpdateStatisticsPanel.UpdatedStatisticsPanel(editTaskVM.startUpPageVM.RootToDoList);
         }
     }
 }
