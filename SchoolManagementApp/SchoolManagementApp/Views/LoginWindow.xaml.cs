@@ -21,11 +21,12 @@ namespace SchoolManagementApp.Views
             string connectionString = ConfigurationManager.ConnectionStrings["SchoolManagement"].ConnectionString;
             SchoolManagementDbContext schoolManagementDbContext = new SchoolManagementDbContext(connectionString);
             RoleRepository roleRepository = new RoleRepository(schoolManagementDbContext);
-            var result = roleRepository.GetAll();
+            CourseRepository courseRepository = new CourseRepository(schoolManagementDbContext);
+            var result = courseRepository.GetAll();
             string s = "";
             foreach (var rol in result)
             {
-                s += $"Role: {rol.AssignedRole}; Id:{rol.Id}\n";
+                s += $"Role: {rol.Course}; Id:{rol.Id}\n";
             }
             MessageBox.Show(s);
         }

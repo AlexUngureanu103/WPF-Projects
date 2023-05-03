@@ -285,6 +285,10 @@
     <Compile Include="Migrations\202305030545343_init.designer.cs">
       <DependentUpon>202305030545343_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305030641059_CourseMig.cs" />
+    <Compile Include="Migrations\202305030641059_CourseMig.designer.cs">
+      <DependentUpon>202305030641059_CourseMig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Class.cs" />
@@ -295,6 +299,7 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="SchoolManagementDbContext.cs" />
   </ItemGroup>
@@ -308,6 +313,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202305030545343_init.resx">
       <DependentUpon>202305030545343_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305030641059_CourseMig.resx">
+      <DependentUpon>202305030641059_CourseMig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
