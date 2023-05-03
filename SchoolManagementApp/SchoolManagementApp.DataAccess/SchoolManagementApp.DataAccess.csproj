@@ -293,6 +293,14 @@
     <Compile Include="Migrations\202305031215310_BaseModels_v1.designer.cs">
       <DependentUpon>202305031215310_BaseModels_v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305031230014_BaseModels_v2.cs" />
+    <Compile Include="Migrations\202305031230014_BaseModels_v2.designer.cs">
+      <DependentUpon>202305031230014_BaseModels_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305031246177_ModelsConstraints.cs" />
+    <Compile Include="Migrations\202305031246177_ModelsConstraints.designer.cs">
+      <DependentUpon>202305031246177_ModelsConstraints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\StudentRelated\Absences.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -326,6 +334,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305031215310_BaseModels_v1.resx">
       <DependentUpon>202305031215310_BaseModels_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305031230014_BaseModels_v2.resx">
+      <DependentUpon>202305031230014_BaseModels_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305031246177_ModelsConstraints.resx">
+      <DependentUpon>202305031246177_ModelsConstraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

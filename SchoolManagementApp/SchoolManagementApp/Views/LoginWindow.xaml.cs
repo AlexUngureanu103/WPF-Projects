@@ -1,5 +1,6 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Repositories;
+using SchoolManagementApp.Services;
 using System;
 using System.Configuration;
 using System.Windows;
@@ -29,6 +30,11 @@ namespace SchoolManagementApp.Views
                 s += $"Role: {rol.Course}; Id:{rol.Id}\n";
             }
             MessageBox.Show(s);
+            AuthorizationService autorizationService = new AuthorizationService();
+
+            var pass = autorizationService.HashPassword("12345678");
+
+            var ok = autorizationService.VerifyHashedPassword(pass, "12345678");
         }
     }
 }

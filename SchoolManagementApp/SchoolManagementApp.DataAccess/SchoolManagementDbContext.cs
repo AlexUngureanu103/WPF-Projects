@@ -30,5 +30,7 @@ namespace SchoolManagementApp.DataAccess
         public DbSet<ClassMaster> ClassMasters { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<CourseClass> CourseClasses { get; set; }
     }
 }
