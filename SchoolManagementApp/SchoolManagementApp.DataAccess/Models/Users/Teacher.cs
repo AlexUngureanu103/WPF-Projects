@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolManagementApp.DataAccess.Models.StudentRelated;
+using System;
 using System.Collections.Generic;
 
 namespace SchoolManagementApp.DataAccess.Models
@@ -9,9 +10,9 @@ namespace SchoolManagementApp.DataAccess.Models
 
         public string LastName { get; set; }
 
-        public int RoleId { get; set; }
+        public int UserId { get; set; }
 
-        public Role Role { get; set; }
+        public User User { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 

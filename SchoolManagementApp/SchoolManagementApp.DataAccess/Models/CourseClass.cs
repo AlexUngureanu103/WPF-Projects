@@ -1,4 +1,4 @@
-﻿namespace SchoolManagementApp.DataAccess.Models
+﻿namespace SchoolManagementApp.DataAccess.Models.StudentRelated
 {
     internal class CourseClass : BaseEntity
     {
