@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SchoolManagementApp.DataAccess.Models
 {
-    internal class Teacher
+    internal class Teacher : BaseEntity
     {
         public string FirstName { get; set; }
 
