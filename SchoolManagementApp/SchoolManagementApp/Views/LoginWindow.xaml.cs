@@ -1,4 +1,8 @@
-﻿using System;
+﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.DataAccess.Repositories;
+using System;
+using System.Configuration;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SchoolManagementApp.Views
@@ -14,6 +18,16 @@ namespace SchoolManagementApp.Views
         {
             this.WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             InitializeComponent();
+            string connectionString = ConfigurationManager.ConnectionStrings["SchoolManagement"].ConnectionString;
+            SchoolManagementDbContext schoolManagementDbContext = new SchoolManagementDbContext(connectionString);
+            RoleRepository roleRepository = new RoleRepository(schoolManagementDbContext);
+            var result = roleRepository.GetAll();
+            string s = "";
+            foreach (var rol in result)
+            {
+                s += $"Role: {rol.AssignedRole}; Id:{rol.Id}\n";
+            }
+            MessageBox.Show(s);
         }
     }
 }
