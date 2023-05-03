@@ -289,6 +289,10 @@
     <Compile Include="Migrations\202305030641059_CourseMig.designer.cs">
       <DependentUpon>202305030641059_CourseMig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305031215310_BaseModels_v1.cs" />
+    <Compile Include="Migrations\202305031215310_BaseModels_v1.designer.cs">
+      <DependentUpon>202305031215310_BaseModels_v1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\StudentRelated\Absences.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -319,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305030641059_CourseMig.resx">
       <DependentUpon>202305030641059_CourseMig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305031215310_BaseModels_v1.resx">
+      <DependentUpon>202305031215310_BaseModels_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
