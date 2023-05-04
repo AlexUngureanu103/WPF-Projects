@@ -1,4 +1,5 @@
-﻿using SchoolManagementApp.DataAccess.Models;
+﻿using SchoolManagementApp.DataAccess.Abstractions;
+using SchoolManagementApp.DataAccess.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -6,7 +7,7 @@ using System.Linq;
 
 namespace SchoolManagementApp.DataAccess.Repositories
 {
-    internal class CourseRepository
+    internal class CourseRepository : ICourseRepository
     {
         private readonly SchoolManagementDbContext _dbContext;
 
@@ -26,7 +27,7 @@ namespace SchoolManagementApp.DataAccess.Repositories
 
             if (roleFromDb == null)
             {
-                throw new ArgumentNullException($"The role with Id: {id} was not found");
+                throw new ArgumentNullException($"The course with Id: {id} was not found");
             }
 
             return roleFromDb;
@@ -40,7 +41,7 @@ namespace SchoolManagementApp.DataAccess.Repositories
             }
             if (_dbContext.Courses.Any(x => x.Course == courseType.Course))
             {
-                throw new ArgumentException($"The role with name: {courseType.Course} already exists");
+                throw new ArgumentException($"The course with name: {courseType.Course} already exists");
             }
             _dbContext.Courses.Add(courseType);
             _dbContext.SaveChanges();

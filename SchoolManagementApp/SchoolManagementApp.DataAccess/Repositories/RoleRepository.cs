@@ -75,5 +75,17 @@ namespace SchoolManagementApp.DataAccess.Repositories
             _dbContext.Roles.Remove(entity);
             _dbContext.SaveChanges();
         }
+
+        public Role GetByRole(string assignedRole)
+        {
+            var roleFromDb = _dbContext.Roles.FirstOrDefault(role => role.AssignedRole == assignedRole);
+
+            if (roleFromDb == null)
+            {
+                throw new ArgumentNullException($"The role with name: {assignedRole} was not found");
+            }
+
+            return roleFromDb;
+        }
     }
 }

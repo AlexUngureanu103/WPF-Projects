@@ -1,4 +1,5 @@
 ﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Repositories;
 using SchoolManagementApp.Services;
 using System;
@@ -23,18 +24,29 @@ namespace SchoolManagementApp.Views
             SchoolManagementDbContext schoolManagementDbContext = new SchoolManagementDbContext(connectionString);
             RoleRepository roleRepository = new RoleRepository(schoolManagementDbContext);
             CourseRepository courseRepository = new CourseRepository(schoolManagementDbContext);
-            var result = courseRepository.GetAll();
+            UserRepository userRepository = new UserRepository(schoolManagementDbContext);
+
+            AuthorizationService autorizationService = new AuthorizationService();
+
+            //User user = new User()
+            //{
+            //    Email = "admin@admin.ro",
+            //    Role = roleRepository.GetByRole("Admin"),
+            //    PasswordHash = autorizationService.HashPassword("admin")
+            //};
+            //userRepository.Add(user);
+
+            var result = userRepository.GetAll();
             string s = "";
             foreach (var rol in result)
             {
-                s += $"Role: {rol.Course}; Id:{rol.Id}\n";
+                s += $"Email: {rol.Email}; passwordHash: {rol.PasswordHash}\n; role: {roleRepository.GetById(rol.RoleId).AssignedRole}";
             }
             MessageBox.Show(s);
-            AuthorizationService autorizationService = new AuthorizationService();
 
-            var pass = autorizationService.HashPassword("12345678");
+            //var pass = autorizationService.HashPassword("12345678");
 
-            var ok = autorizationService.VerifyHashedPassword(pass, "12345678");
+            //var ok = autorizationService.VerifyHashedPassword(pass, "12345678");
         }
     }
 }

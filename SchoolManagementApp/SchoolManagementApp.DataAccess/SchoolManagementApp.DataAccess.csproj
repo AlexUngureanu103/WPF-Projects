@@ -280,7 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\ICourseRepository.cs" />
+    <Compile Include="Abstractions\IRepository.cs" />
     <Compile Include="Abstractions\IRoleRepository.cs" />
+    <Compile Include="Abstractions\IUserRepository.cs" />
     <Compile Include="Migrations\202305030545343_init.cs" />
     <Compile Include="Migrations\202305030545343_init.designer.cs">
       <DependentUpon>202305030545343_init.cs</DependentUpon>
@@ -326,6 +328,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="SchoolManagementDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
