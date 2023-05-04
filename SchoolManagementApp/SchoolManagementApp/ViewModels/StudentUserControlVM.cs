@@ -1,5 +1,4 @@
 ﻿using SchoolManagementApp.DataAccess;
-using System;
 using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels
@@ -8,9 +7,9 @@ namespace SchoolManagementApp.ViewModels
     {
         public readonly SchoolManagementDbContext _dbContext;
 
-        public StudentUserControlVM(SchoolManagementDbContext dbContext)
+        public StudentUserControlVM(string connectionString)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _dbContext = new SchoolManagementDbContext(connectionString);
         }
     }
 }

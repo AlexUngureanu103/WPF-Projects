@@ -87,9 +87,8 @@ namespace SchoolManagementApp.ViewModels
 
         private readonly AuthorizationService authorizationService;
 
-        public LoginWindowVM()
+        public LoginWindowVM(string connectionString)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["SchoolManagement"].ConnectionString;
             _dbContext = new SchoolManagementDbContext(connectionString);
             RoleRepository roleRepository = new RoleRepository(_dbContext);
             UserRepository userRepository = new UserRepository(_dbContext);

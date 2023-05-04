@@ -1,5 +1,6 @@
 ﻿using SchoolManagementApp.ViewModels;
 using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,33 +15,35 @@ namespace SchoolManagementApp.Views
 
         private LoginWindowVM LoginWindowVM;
 
+        private string connectionString;
 
         public LoginWindow(Frame windowContainer)
         {
             this.WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-            LoginWindowVM = new LoginWindowVM();
+            connectionString = ConfigurationManager.ConnectionStrings["SchoolManagement"].ConnectionString;
+            LoginWindowVM = new LoginWindowVM(connectionString);
             InitializeComponent();
 
             DataContext = LoginWindowVM;
         }
 
-        private async void Login_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
             if (LoginWindowVM.User.Role.AssignedRole == "Admin")
             {
-                MessageBox.Show("U're an Admin");
+                WindowContainer.Navigate(new AdminUserControl(WindowContainer, connectionString));
             }
             else if (LoginWindowVM.User.Role.AssignedRole == "Teacher")
             {
-                MessageBox.Show("U're an Teacher");
+                WindowContainer.Navigate(new TeacherUserControl(WindowContainer, connectionString));
             }
             else if (LoginWindowVM.User.Role.AssignedRole == "Student")
             {
-                MessageBox.Show("U're an Student");
+                WindowContainer.Navigate(new StudentUserControl(WindowContainer, connectionString));
             }
             else if (LoginWindowVM.User.Role.AssignedRole == "Class master")
             {
-                MessageBox.Show("U're an Class master");
+                WindowContainer.Navigate(new ClassMasterUserControl(WindowContainer, connectionString));
             }
         }
     }

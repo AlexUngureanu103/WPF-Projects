@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using SchoolManagementApp.ViewModels;
+using System;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SchoolManagementApp.Views
 {
@@ -20,9 +9,24 @@ namespace SchoolManagementApp.Views
     /// </summary>
     public partial class ClassMasterUserControl : UserControl
     {
-        public ClassMasterUserControl()
+        private readonly Frame WindowContainer;
+
+        private readonly string connectionString;
+
+        private ClassMasterUserControlVM ClassMasterUserControlVM;
+        public ClassMasterUserControl(Frame windowContainer, string connectionString)
         {
+            WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new ArgumentNullException(nameof(connectionString));
+            }
+            this.connectionString = connectionString;
             InitializeComponent();
+
+            ClassMasterUserControlVM = new ClassMasterUserControlVM(connectionString);
+
+            DataContext = ClassMasterUserControlVM;
         }
     }
 }
