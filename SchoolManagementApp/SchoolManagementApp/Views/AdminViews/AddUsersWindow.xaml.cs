@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolManagementApp.ViewModels.ManageUserVM;
+using System;
 using System.Windows.Controls;
 
 namespace SchoolManagementApp.Views.AdminViews
@@ -12,6 +13,8 @@ namespace SchoolManagementApp.Views.AdminViews
 
         private readonly string connectionString;
 
+        private readonly AddUsersWindowVM addUsersWindowVM;
+
         public AddUsersWindow(Frame AdminControl, string connectionString)
         {
             this.AdminControl = AdminControl ?? throw new ArgumentNullException(nameof(AdminControl));
@@ -21,6 +24,10 @@ namespace SchoolManagementApp.Views.AdminViews
             }
             this.connectionString = connectionString;
             InitializeComponent();
+
+            addUsersWindowVM = new AddUsersWindowVM(connectionString);
+
+            DataContext = addUsersWindowVM;
         }
     }
 }

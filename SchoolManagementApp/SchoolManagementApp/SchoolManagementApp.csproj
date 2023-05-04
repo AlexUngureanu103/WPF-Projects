@@ -87,12 +87,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\LoginCommands.cs" />
+    <Compile Include="Commands\AddUsersCommands.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
+    <Compile Include="Services\Validators\UsersValidators.cs" />
     <Compile Include="ViewModels\AdminUserControlVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
+    <Compile Include="ViewModels\ManageUserVM\AddUsersWindowVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
