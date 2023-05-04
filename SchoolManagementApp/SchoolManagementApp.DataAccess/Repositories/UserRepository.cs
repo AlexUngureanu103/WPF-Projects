@@ -16,6 +16,10 @@ namespace SchoolManagementApp.DataAccess.Repositories
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
+        public User GetByEmail(string email)
+        {
+            return _dbContext.Users.AsQueryable().FirstOrDefault(user => user.Email == email);
+        }
         public void Add(User user)
         {
             if (user == null)

@@ -86,7 +86,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\LoginCommands.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
+    <Compile Include="Services\Validators\LoginValidators.cs" />
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\LoginWindowVM.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -135,9 +139,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagementApp.DataAccess\SchoolManagementApp.DataAccess.csproj">
       <Project>{1cdd6f5f-4f16-44c7-9039-5fbf1912d9fe}</Project>
