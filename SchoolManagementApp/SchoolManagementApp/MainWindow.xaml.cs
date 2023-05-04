@@ -1,4 +1,6 @@
-﻿using SchoolManagementApp.Views;
+﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.Views;
+using System.Configuration;
 using System.Windows;
 
 namespace SchoolManagementApp
@@ -7,7 +9,7 @@ namespace SchoolManagementApp
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {        
         public MainWindow()
         {
             InitializeComponent();

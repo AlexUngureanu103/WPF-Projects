@@ -4,6 +4,7 @@ using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Repositories;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.Services.Validators;
+using System.Configuration;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
@@ -82,11 +83,16 @@ namespace SchoolManagementApp.ViewModels
             }
         }
 
+        public readonly SchoolManagementDbContext _dbContext;
+
+        private readonly AuthorizationService authorizationService;
+
         public LoginWindowVM()
         {
-            SchoolManagementDbContext dbContext = new SchoolManagementDbContext();
-            RoleRepository roleRepository = new RoleRepository(dbContext);
-            UserRepository userRepository = new UserRepository(dbContext);
+            string connectionString = ConfigurationManager.ConnectionStrings["SchoolManagement"].ConnectionString;
+            _dbContext = new SchoolManagementDbContext(connectionString);
+            RoleRepository roleRepository = new RoleRepository(_dbContext);
+            UserRepository userRepository = new UserRepository(_dbContext);
             AuthorizationService authorizationService = new AuthorizationService();
             loginCommands = new LoginCommands(this, roleRepository, userRepository, authorizationService);
         }

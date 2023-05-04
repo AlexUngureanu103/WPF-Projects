@@ -89,10 +89,26 @@
     <Compile Include="Commands\LoginCommands.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
+    <Compile Include="ViewModels\AdminUserControlVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
+    <Compile Include="ViewModels\StudentUserControlVM.cs" />
+    <Compile Include="Views\AdminUserControl.xaml.cs">
+      <DependentUpon>AdminUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassMasterUserControl.xaml.cs">
+      <DependentUpon>ClassMasterUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TeacherUserControlVM.cs" />
+    <Compile Include="Views\StudentUserControl.xaml.cs">
+      <DependentUpon>StudentUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherUserControl.xaml.cs">
+      <DependentUpon>TeacherUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -107,7 +123,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AdminUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassMasterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
