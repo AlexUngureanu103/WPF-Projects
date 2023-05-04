@@ -9,6 +9,10 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
         public DateTime Date { get; set; }
 
         [Required]
+        [Range(1, 2)]
+        public int Semester { get; set; }
+
+        [Required]
         public bool IsMotivated { get; set; }
 
         [Required]

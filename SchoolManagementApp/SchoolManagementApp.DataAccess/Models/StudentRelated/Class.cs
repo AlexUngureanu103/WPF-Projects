@@ -9,6 +9,11 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public int SpecializationId { get; set; }
+
+        public Specialization Specialization { get; set; }
+
         public List<Student> Students { get; set; }
 
         [NotMapped]

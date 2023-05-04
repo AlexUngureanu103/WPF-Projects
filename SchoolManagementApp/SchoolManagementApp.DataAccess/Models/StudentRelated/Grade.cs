@@ -12,6 +12,10 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
         public bool IsThesis { get; set; }
 
         [Required]
+        [Range(1, 2)]
+        public int Semester { get; set; }
+
+        [Required]
         public int CourseTypeId { get; set; }
 
         public CourseType CourseType { get; set; }
