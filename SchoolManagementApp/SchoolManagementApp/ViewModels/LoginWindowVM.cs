@@ -111,6 +111,15 @@ namespace SchoolManagementApp.ViewModels
             UserRepository userRepository = new UserRepository(_dbContext);
             AuthorizationService authorizationService = new AuthorizationService();
             loginCommands = new LoginCommands(this, roleRepository, userRepository, authorizationService);
+
+            LoginAsAdmin();
+        }
+
+        private void LoginAsAdmin()
+        {
+            Email = "admin@admin.ro";
+            Password = "admin";
+            CanLogin = true;
         }
     }
 }

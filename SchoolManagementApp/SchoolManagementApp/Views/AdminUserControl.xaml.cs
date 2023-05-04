@@ -3,7 +3,6 @@ using SchoolManagementApp.Views.AdminViews;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace SchoolManagementApp.Views
 {
@@ -31,8 +30,6 @@ namespace SchoolManagementApp.Views
             AdminUserControlVM = new AdminUserControlVM(connectionString);
 
             DataContext = AdminUserControlVM;
-
-            AdminControls.NavigationService.Source = new Uri("AdminUserControl.xaml", UriKind.Relative);
         }
 
         private void ManageUsers_Click(object sender, RoutedEventArgs e)
@@ -64,7 +61,11 @@ namespace SchoolManagementApp.Views
         {
             if (WindowContainer.CanGoBack)
             {
-                WindowContainer.GoBack();
+                while (WindowContainer.CanGoBack)
+                {
+                    WindowContainer.RemoveBackEntry();
+                }
+                WindowContainer.Navigate(new LoginWindow(WindowContainer));
             }
             else
             {

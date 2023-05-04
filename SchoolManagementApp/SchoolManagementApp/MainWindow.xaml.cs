@@ -1,6 +1,4 @@
-﻿using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.Views;
-using System.Configuration;
+﻿using SchoolManagementApp.Views;
 using System.Windows;
 
 namespace SchoolManagementApp
@@ -9,10 +7,11 @@ namespace SchoolManagementApp
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {        
+    {
         public MainWindow()
         {
             InitializeComponent();
+            //WindowContainer.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
             WindowContainer.Navigate(new LoginWindow(WindowContainer));
         }
     }
