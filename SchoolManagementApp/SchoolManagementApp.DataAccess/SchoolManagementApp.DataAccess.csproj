@@ -301,13 +301,23 @@
     <Compile Include="Migrations\202305031246177_ModelsConstraints.designer.cs">
       <DependentUpon>202305031246177_ModelsConstraints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305040639170_Specializations.cs" />
+    <Compile Include="Migrations\202305040639170_Specializations.designer.cs">
+      <DependentUpon>202305040639170_Specializations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305040641180_Specializations1.cs" />
+    <Compile Include="Migrations\202305040641180_Specializations1.designer.cs">
+      <DependentUpon>202305040641180_Specializations1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\SpecializationCourse.cs" />
     <Compile Include="Models\StudentRelated\Absences.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\StudentRelated\Class.cs" />
     <Compile Include="Models\CourseClass.cs" />
     <Compile Include="Models\CourseType.cs" />
     <Compile Include="Models\StudentRelated\Grade.cs" />
+    <Compile Include="Models\StudentRelated\Specialization.cs" />
     <Compile Include="Models\Users\Role.cs" />
     <Compile Include="Models\Users\ClassMaster.cs" />
     <Compile Include="Models\Users\Student.cs" />
@@ -340,6 +350,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305031246177_ModelsConstraints.resx">
       <DependentUpon>202305031246177_ModelsConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305040639170_Specializations.resx">
+      <DependentUpon>202305040639170_Specializations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305040641180_Specializations1.resx">
+      <DependentUpon>202305040641180_Specializations1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
