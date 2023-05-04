@@ -30,6 +30,6 @@
 
         <Button x:Name="Validate" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" Content="Validate" Margin="10" MaxHeight="65" MaxWidth="140" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding LoginCommand}"/>
         <Button Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Content="Login" Margin="10" MaxHeight="65" MaxWidth="140" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="{Binding CredentialsOk}" Click="Login_Click"/>
-
+        <Label Grid.Row="4" Grid.Column="4" Content="{Binding AccountType}" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Grid>
 </UserControl>

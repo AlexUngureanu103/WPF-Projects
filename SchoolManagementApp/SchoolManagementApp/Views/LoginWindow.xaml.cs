@@ -45,6 +45,9 @@ namespace SchoolManagementApp.Views
             {
                 WindowContainer.Navigate(new ClassMasterUserControl(WindowContainer, connectionString));
             }
+            LoginWindowVM.Email = string.Empty;
+            LoginWindowVM.Password = string.Empty;
+            LoginWindowVM.User = null;
         }
     }
 }

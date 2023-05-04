@@ -4,7 +4,6 @@ using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Repositories;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.Services.Validators;
-using System.Configuration;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
@@ -65,8 +64,15 @@ namespace SchoolManagementApp.ViewModels
             set
             {
                 if (value == null)
+                {
                     CredentialsOk = false;
-                else CredentialsOk = true;
+                    AccountType = string.Empty;
+                }
+                else
+                {
+                    CredentialsOk = true;
+                    AccountType = value.Role.AssignedRole;
+                }
                 user = value;
                 OnPropertyChanged();
             }
@@ -79,6 +85,17 @@ namespace SchoolManagementApp.ViewModels
             set
             {
                 credentialsOk = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string accountType;
+        public string AccountType
+        {
+            get { return "Account Type: " + accountType; }
+            set
+            {
+                accountType = value;
                 OnPropertyChanged();
             }
         }

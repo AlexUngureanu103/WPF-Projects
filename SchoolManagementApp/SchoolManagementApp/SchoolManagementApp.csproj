@@ -97,6 +97,12 @@
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AdminViews\AddTeachersWindow.xaml.cs">
+      <DependentUpon>AddTeachersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\AddUsersWindow.xaml.cs">
+      <DependentUpon>AddUsersWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClassMasterUserControl.xaml.cs">
       <DependentUpon>ClassMasterUserControl.xaml</DependentUpon>
     </Compile>
@@ -124,6 +130,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AdminUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\AddTeachersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\AddUsersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

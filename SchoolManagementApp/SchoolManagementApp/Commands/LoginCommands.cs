@@ -1,5 +1,4 @@
 ﻿using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels;
 using System;
@@ -35,8 +34,8 @@ namespace SchoolManagementApp.Commands
 
             if (passwordFine)
             {
+                user.Role = _roleRepository.GetById(user.RoleId);
                 _loginWindowVM.User = user;
-                _loginWindowVM.User.Role = _roleRepository.GetById(user.RoleId);
             }
             else
             {
@@ -46,22 +45,8 @@ namespace SchoolManagementApp.Commands
             {
                 MessageBox.Show("Invalid credentials", "Error");
             }
-            else if (_loginWindowVM.User.Role.AssignedRole == "Admin")
-            {
-                MessageBox.Show("U're an Admin");
-            }
-            else if (_loginWindowVM.User.Role.AssignedRole == "Teacher")
-            {
-                MessageBox.Show("U're an Teacher");
-            }
-            else if (_loginWindowVM.User.Role.AssignedRole == "Student")
-            {
-                MessageBox.Show("U're an Student");
-            }
-            else if (_loginWindowVM.User.Role.AssignedRole == "Class master")
-            {
-                MessageBox.Show("U're an Class master");
-            }
+            else
+                _loginWindowVM.AccountType = _loginWindowVM.User.Role.AssignedRole;
         }
     }
 }
