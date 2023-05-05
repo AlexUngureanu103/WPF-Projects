@@ -69,5 +69,16 @@ namespace SchoolManagementApp.Views
                 throw new ArgumentException("Invalid  navigation operation");
             }
         }
+
+        private void ManageSpecializations_Click(object sender, RoutedEventArgs e)
+        {
+            AdminControls.Navigate(new ManageSpecializationsAdminControl(_dbContext));
+            MessageBox.Show("Add Specializations Page");
+        }
+
+        private void ManageCourses_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Add Courses Page");
+        }
     }
 }

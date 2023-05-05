@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
-namespace SchoolManagementApp.ViewModels.ManageUserVMs
+namespace SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs
 {
     internal class AddUsersWindowVM : BaseVM
     {

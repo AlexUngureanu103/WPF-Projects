@@ -1,7 +1,7 @@
 ﻿using SchoolManagementApp.DataAccess.Abstractions;
 using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.Services;
-using SchoolManagementApp.ViewModels.ManageUserVMs;
+using SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs;
 using System;
 using System.Windows;
 

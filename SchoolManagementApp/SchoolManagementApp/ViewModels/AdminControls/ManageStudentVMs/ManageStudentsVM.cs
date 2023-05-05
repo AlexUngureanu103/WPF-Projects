@@ -7,35 +7,35 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
-namespace SchoolManagementApp.ViewModels.ManageUserVMs
+namespace SchoolManagementApp.ViewModels.AdminControls.ManageStudentVMs
 {
-    public class ManageUsersVM : BaseVM
+    internal class ManageStudentsVM : BaseVM
     {
         private readonly SchoolManagementDbContext _dbContext;
 
-        private readonly UserRepository userRepository;
+        private readonly StudentRepository studentRepository;
 
-        private readonly DeleteUserCommands deleteUsersCommands;
+        private readonly DeleteStudentsCommands deleteStudentsCommands;
 
-        private ObservableCollection<User> _users;
-        public ObservableCollection<User> Users
+        private ObservableCollection<Student> _students;
+        public ObservableCollection<Student> Students
         {
-            get { return _users; }
+            get { return _students; }
             set
             {
-                _users = value;
+                _students = value;
                 OnPropertyChanged();
             }
         }
 
-        private User selectedUser;
-        public User SelectedUser
+        private User selectedStudent;
+        public User SelectedStudent
         {
-            get { return selectedUser; }
+            get { return selectedStudent; }
             set
             {
-                selectedUser = value;
-                if (selectedUser != null)
+                selectedStudent = value;
+                if (selectedStudent != null)
                 {
                     CanEditUser = true;
                 }
@@ -54,7 +54,7 @@ namespace SchoolManagementApp.ViewModels.ManageUserVMs
             {
                 if (deleteUser == null)
                 {
-                    deleteUser = new RelayCommand(deleteUsersCommands.DeleteUserCommand, param => SelectedUser != null);
+                    deleteUser = new RelayCommand(deleteStudentsCommands.DeleteStudentCommand, param => SelectedStudent != null);
                 }
                 return deleteUser;
             }
@@ -72,12 +72,12 @@ namespace SchoolManagementApp.ViewModels.ManageUserVMs
         }
 
 
-        public ManageUsersVM(SchoolManagementDbContext dbContext)
+        public ManageStudentsVM(SchoolManagementDbContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            userRepository = new UserRepository(_dbContext);
-            deleteUsersCommands = new DeleteUserCommands(this, userRepository);
-            Users = new ObservableCollection<User>(userRepository.GetAll());
+            studentRepository = new StudentRepository(_dbContext);
+            deleteStudentsCommands = new DeleteStudentsCommands(this, studentRepository);
+            Students = new ObservableCollection<Student>(studentRepository.GetAll());
         }
     }
 }

@@ -8,18 +8,21 @@
     <Grid x:Name="AdminControl">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -30,14 +33,18 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Content="Admin User" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+        <Label Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Content="Admin User" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15"/>
         <Button Grid.Row="2" Grid.Column="1" x:Name="ManageUsers" Content="Manage User" Margin="5" MaxHeight="50" MaxWidth="100" Click="ManageUsers_Click"/>
         <Button Grid.Row="2" Grid.Column="2" x:Name="ManageClasses" Content="Manage Classes" Margin="5" MaxHeight="50" MaxWidth="100" Click="ManageClasses_Click"/>
         <Button Grid.Row="2" Grid.Column="3" x:Name="ManageTeachers" Content="Manage Teachers" Margin="5" MaxHeight="50" MaxWidth="100" Click="ManageTeachers_Click"/>
         <Button Grid.Row="2" Grid.Column="4" x:Name="ManageClassMasters" Content="Manage ClassMasters" Margin="5" MaxHeight="50" MaxWidth="100" Click="ManageClassMasters_Click"/>
         <Button Grid.Row="2" Grid.Column="5" x:Name="ManageStudents" Content="Manage Students" Margin="5" MaxHeight="50" MaxWidth="100" Click="ManageStudents_Click"/>
-        <Button Grid.Row="2" Grid.Column="7" x:Name="Logout" Content="Logout" Margin="5" MaxHeight="50" MaxWidth="100" Click="Logout_Click"/>
+        <Button Grid.Row="2" Grid.Column="6" x:Name="ManageSpecializations" Content="Manage Specializations" Margin="5" MaxHeight="50" MaxWidth="100" Click="ManageSpecializations_Click"/>
+        <Button Grid.Row="2" Grid.Column="7" x:Name="ManageCourses" Content="Manage Courses" Margin="5" MaxHeight="50" MaxWidth="100" Click="ManageCourses_Click"/>
+        
+        
+        <Button Grid.Row="2" Grid.Column="10" x:Name="Logout" Content="Logout" Margin="5" MaxHeight="50" MaxWidth="100" Click="Logout_Click"/>
 
-        <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="7" x:Name="AdminControls"/>
+        <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="10" x:Name="AdminControls"/>
     </Grid>
 </UserControl>

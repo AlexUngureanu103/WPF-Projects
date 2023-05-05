@@ -1,11 +1,6 @@
 ﻿using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.ViewModels.ManageStudentVMs;
-using SchoolManagementApp.ViewModels.ManageUserVMs;
+using SchoolManagementApp.ViewModels.AdminControls.ManageStudentVMs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace SchoolManagementApp.Commands

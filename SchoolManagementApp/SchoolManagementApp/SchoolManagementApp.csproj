@@ -97,9 +97,9 @@
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
-    <Compile Include="ViewModels\ManageStudentVMs\ManageStudentsVM.cs" />
-    <Compile Include="ViewModels\ManageUserVMs\AddUsersWindowVM.cs" />
-    <Compile Include="ViewModels\ManageUserVMs\ManageUsersVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageStudentVMs\ManageStudentsVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageUserVMs\AddUsersWindowVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageUserVMs\ManageUsersVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
@@ -109,6 +109,9 @@
     </Compile>
     <Compile Include="Views\AdminViews\AddUsersWindow.xaml.cs">
       <DependentUpon>AddUsersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManageSpecializationsAdminControl.xaml.cs">
+      <DependentUpon>ManageSpecializationsAdminControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageStudentsAdminControl.xaml.cs">
       <DependentUpon>ManageStudentsAdminControl.xaml</DependentUpon>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\AddUsersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManageSpecializationsAdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

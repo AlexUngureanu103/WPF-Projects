@@ -1,6 +1,6 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.ViewModels.ManageUserVMs;
+using SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs;
 using System;
 using System.Windows.Controls;
 
