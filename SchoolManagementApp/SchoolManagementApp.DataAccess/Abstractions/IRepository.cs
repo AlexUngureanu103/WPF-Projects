@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using SchoolManagementApp.DataAccess.Models;
+using System.Collections.Generic;
 
 namespace SchoolManagementApp.DataAccess.Abstractions
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : BaseEntity
     {
         IEnumerable<T> GetAll();
 
@@ -14,5 +14,7 @@ namespace SchoolManagementApp.DataAccess.Abstractions
         void Update(T entity);
 
         void Delete(int entityId);
+
+        void Remove(T entity);
     }
 }

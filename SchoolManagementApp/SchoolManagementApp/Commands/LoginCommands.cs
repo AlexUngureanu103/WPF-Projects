@@ -28,7 +28,10 @@ namespace SchoolManagementApp.Commands
         {
             var user = _userRepository.GetByEmail(_loginWindowVM.Email);
             if (user == null)
+            {
                 _loginWindowVM.User = null;
+                return;
+            }
 
             bool passwordFine = authorizationService.VerifyHashedPassword(user.PasswordHash, _loginWindowVM.Password);
 
