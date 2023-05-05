@@ -30,7 +30,7 @@ namespace SchoolManagementApp.Views
 
         private void ManageUsers_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new AddUsersWindow(AdminControls, _dbContext, null));
+            AdminControls.Navigate(new AddUsersWindow(AdminControls, _dbContext, AdminUserControlVM, null));
         }
 
         private void ManageClasses_Click(object sender, RoutedEventArgs e)
@@ -45,7 +45,7 @@ namespace SchoolManagementApp.Views
 
         private void ManageClassMasters_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new AddUsersWindow(AdminControls, _dbContext, AdminUserControlVM.SelectedUser));
+            AdminControls.Navigate(new AddUsersWindow(AdminControls, _dbContext, AdminUserControlVM, AdminUserControlVM.SelectedUser));
             MessageBox.Show("Add Class Master Page");
         }
 

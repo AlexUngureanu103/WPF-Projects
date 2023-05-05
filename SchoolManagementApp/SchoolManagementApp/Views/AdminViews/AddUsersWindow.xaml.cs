@@ -1,5 +1,6 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models;
+using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.ManageUserVM;
 using System;
 using System.Windows.Controls;
@@ -15,17 +16,20 @@ namespace SchoolManagementApp.Views.AdminViews
 
         private readonly SchoolManagementDbContext _dbContext;
 
-        private readonly AddUsersWindowVM addUsersWindowVM;
+        private readonly AddUsersWindowVM _addUsersWindowVM;
 
-        public AddUsersWindow(Frame AdminControl, SchoolManagementDbContext dbContext, User selectedUser)
+        private readonly AdminUserControlVM _adminUserControlVM;
+
+        public AddUsersWindow(Frame AdminControl, SchoolManagementDbContext dbContext, AdminUserControlVM adminUserControlVM, User selectedUser)
         {
             this.AdminControl = AdminControl ?? throw new ArgumentNullException(nameof(AdminControl));
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            this._adminUserControlVM = adminUserControlVM ?? throw new ArgumentNullException(nameof(adminUserControlVM));
             InitializeComponent();
 
-            addUsersWindowVM = new AddUsersWindowVM(_dbContext, selectedUser);
+            _addUsersWindowVM = new AddUsersWindowVM(_dbContext, adminUserControlVM, selectedUser);
 
-            DataContext = addUsersWindowVM;
+            DataContext = _addUsersWindowVM;
         }
     }
 }

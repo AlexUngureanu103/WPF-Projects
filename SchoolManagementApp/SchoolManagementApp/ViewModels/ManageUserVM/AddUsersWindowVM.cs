@@ -109,9 +109,12 @@ namespace SchoolManagementApp.ViewModels.ManageUserVM
 
         public User selectedUser;
 
-        public AddUsersWindowVM(SchoolManagementDbContext dbContext, User selectedUser)
+        public AdminUserControlVM adminUserControlVM;
+
+        public AddUsersWindowVM(SchoolManagementDbContext dbContext, AdminUserControlVM adminUserControlVM, User selectedUser)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            this.adminUserControlVM = adminUserControlVM ?? throw new ArgumentNullException(nameof(adminUserControlVM));
             _roleRepository = new RoleRepository(_dbContext);
             Roles = new ObservableCollection<Role>(_roleRepository.GetAll());
             AuthorizationService authorizationService = new AuthorizationService();

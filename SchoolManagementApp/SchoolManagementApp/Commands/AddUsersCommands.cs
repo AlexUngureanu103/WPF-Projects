@@ -57,8 +57,8 @@ namespace SchoolManagementApp.Commands
                 PasswordHash = authorizationService.HashPassword(addUsersWindowVM.NewUserPassword),
                 RoleId = addUsersWindowVM.NewUserRole.Id
             };
-
             _userRepository.Update(user);
+            addUsersWindowVM.adminUserControlVM.Users = new System.Collections.ObjectModel.ObservableCollection<User>(_userRepository.GetAll());
         }
     }
 }
