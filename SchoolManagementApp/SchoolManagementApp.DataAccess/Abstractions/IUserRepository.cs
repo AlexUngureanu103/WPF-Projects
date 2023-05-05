@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.DataAccess.Abstractions
 {
-    internal interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         User GetByEmail(string email);
     }

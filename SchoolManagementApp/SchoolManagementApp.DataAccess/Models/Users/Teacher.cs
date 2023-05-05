@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementApp.DataAccess.Models
 {
-    internal class Teacher : BaseEntity
+    public class Teacher : BaseEntity
     {
         [Required]
         [MaxLength(50)]

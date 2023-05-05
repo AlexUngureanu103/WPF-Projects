@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementApp.DataAccess.Models.StudentRelated
 {
-    internal class Grade : BaseEntity
+    public class Grade : BaseEntity
     {
         [Required]
         [Range(1, 10)]

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementApp.DataAccess.Models.Users
 {
-    internal class ClassMaster : BaseEntity
+    public class ClassMaster : BaseEntity
     {
         [Required]
         public int TeacherId { get; set; }

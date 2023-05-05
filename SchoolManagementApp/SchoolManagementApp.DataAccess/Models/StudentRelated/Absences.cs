@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementApp.DataAccess.Models.StudentRelated
 {
-    internal class Absences : BaseEntity
+    public class Absences : BaseEntity
     {
         [Required]
         public DateTime Date { get; set; }

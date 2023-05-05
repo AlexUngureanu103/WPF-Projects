@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.DataAccess.Models
 {
-    internal class SpecializationCourse : BaseEntity
+    public class SpecializationCourse : BaseEntity
     {
         public int SpecializationId { get; set; }
 

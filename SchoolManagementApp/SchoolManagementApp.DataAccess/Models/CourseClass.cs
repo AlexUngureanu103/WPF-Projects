@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.DataAccess.Models.StudentRelated
 {
-    internal class CourseClass : BaseEntity
+    public class CourseClass : BaseEntity
     {
         [Required]
         public int CourseTypeId { get; set; }

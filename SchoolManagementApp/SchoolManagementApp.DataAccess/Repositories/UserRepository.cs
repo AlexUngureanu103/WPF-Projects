@@ -9,7 +9,7 @@ namespace SchoolManagementApp.DataAccess.Repositories
 {
     internal class UserRepository : IUserRepository
     {
-        private readonly SchoolManagementDbContext _dbContext;
+        public readonly SchoolManagementDbContext _dbContext;
 
         public UserRepository(SchoolManagementDbContext dbContext)
         {

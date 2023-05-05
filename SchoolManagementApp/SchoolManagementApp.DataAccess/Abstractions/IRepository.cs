@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SchoolManagementApp.DataAccess.Abstractions
 {
-    internal interface IRepository<T>
+    public interface IRepository<T>
     {
         IEnumerable<T> GetAll();
 

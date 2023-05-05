@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SchoolManagementApp.DataAccess.Repositories
 {
-    internal class CourseRepository : ICourseRepository
+    public class CourseRepository : ICourseRepository
     {
         private readonly SchoolManagementDbContext _dbContext;
 

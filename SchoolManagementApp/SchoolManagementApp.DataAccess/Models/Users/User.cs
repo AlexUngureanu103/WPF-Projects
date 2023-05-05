@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolManagementApp.DataAccess.Models
 {
-    internal class User : BaseEntity
+    public class User : BaseEntity
     {
         [Required]
         public int RoleId { get; set; }

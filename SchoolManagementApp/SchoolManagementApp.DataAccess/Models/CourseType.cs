@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.DataAccess.Models
 {
-    internal class CourseType : BaseEntity
+    public class CourseType : BaseEntity
     {
         [Required]
         public string Course { get; set; }

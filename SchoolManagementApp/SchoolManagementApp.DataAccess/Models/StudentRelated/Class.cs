@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolManagementApp.DataAccess.Models.StudentRelated
 {
-    internal class Class : BaseEntity
+    public class Class : BaseEntity
     {
         [Required]
         public string Name { get; set; }

@@ -9,7 +9,7 @@ namespace SchoolManagementApp.DataAccess.Repositories
 {
     internal class RoleRepository : IRoleRepository
     {
-        private readonly SchoolManagementDbContext _dbContext;
+        public readonly SchoolManagementDbContext _dbContext;
 
         public RoleRepository(SchoolManagementDbContext dbContext)
         {
