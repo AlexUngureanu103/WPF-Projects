@@ -18,16 +18,16 @@ namespace SchoolManagementApp.Views.AdminViews
 
         private readonly AddUsersWindowVM _addUsersWindowVM;
 
-        private readonly AdminUserControlVM _adminUserControlVM;
+        private readonly ManageUsersVM manageUsersVM;
 
-        public AddUsersWindow(Frame AdminControl, SchoolManagementDbContext dbContext, AdminUserControlVM adminUserControlVM, User selectedUser)
+        public AddUsersWindow(Frame AdminControl, SchoolManagementDbContext dbContext, ManageUsersVM manageUsersVM, User selectedUser)
         {
             this.AdminControl = AdminControl ?? throw new ArgumentNullException(nameof(AdminControl));
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            this._adminUserControlVM = adminUserControlVM ?? throw new ArgumentNullException(nameof(adminUserControlVM));
+            this.manageUsersVM = manageUsersVM ?? throw new ArgumentNullException(nameof(manageUsersVM));
             InitializeComponent();
 
-            _addUsersWindowVM = new AddUsersWindowVM(_dbContext, adminUserControlVM, selectedUser);
+            _addUsersWindowVM = new AddUsersWindowVM(_dbContext, manageUsersVM, selectedUser);
 
             DataContext = _addUsersWindowVM;
         }

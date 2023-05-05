@@ -17,7 +17,7 @@ namespace SchoolManagementApp.ViewModels.ManageUserVM
 
         public readonly RoleRepository _roleRepository;
 
-        private readonly AddUsersCommands addUsersCommands;
+        private readonly ManageUsersCommands addUsersCommands;
 
         private bool canAddUser;
         public bool CanAddUser
@@ -109,17 +109,17 @@ namespace SchoolManagementApp.ViewModels.ManageUserVM
 
         public User selectedUser;
 
-        public AdminUserControlVM adminUserControlVM;
+        public ManageUsersVM manageUsersVM;
 
-        public AddUsersWindowVM(SchoolManagementDbContext dbContext, AdminUserControlVM adminUserControlVM, User selectedUser)
+        public AddUsersWindowVM(SchoolManagementDbContext dbContext, ManageUsersVM manageUsersVM, User selectedUser)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            this.adminUserControlVM = adminUserControlVM ?? throw new ArgumentNullException(nameof(adminUserControlVM));
+            this.manageUsersVM = manageUsersVM ?? throw new ArgumentNullException(nameof(manageUsersVM));
             _roleRepository = new RoleRepository(_dbContext);
             Roles = new ObservableCollection<Role>(_roleRepository.GetAll());
             AuthorizationService authorizationService = new AuthorizationService();
             UserRepository userRepository = new UserRepository(_dbContext);
-            addUsersCommands = new AddUsersCommands(authorizationService, userRepository, this);
+            addUsersCommands = new ManageUsersCommands(authorizationService, userRepository, this);
             this.selectedUser = selectedUser;
             if (selectedUser != null)
             {

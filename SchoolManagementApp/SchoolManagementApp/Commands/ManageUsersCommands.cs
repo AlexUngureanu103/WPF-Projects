@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace SchoolManagementApp.Commands
 {
-    internal class AddUsersCommands
+    internal class ManageUsersCommands
     {
         private readonly AddUsersWindowVM addUsersWindowVM;
 
@@ -15,7 +15,7 @@ namespace SchoolManagementApp.Commands
 
         private readonly IUserRepository _userRepository;
 
-        public AddUsersCommands(AuthorizationService authorizationService, IUserRepository userRepository, AddUsersWindowVM addUsersWindowVM)
+        public ManageUsersCommands(AuthorizationService authorizationService, IUserRepository userRepository, AddUsersWindowVM addUsersWindowVM)
         {
             this.authorizationService = authorizationService ?? throw new ArgumentNullException(nameof(authorizationService));
             this._userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
@@ -39,6 +39,7 @@ namespace SchoolManagementApp.Commands
             };
 
             _userRepository.Add(user);
+            addUsersWindowVM.manageUsersVM.Users = new System.Collections.ObjectModel.ObservableCollection<User>(_userRepository.GetAll());
         }
 
         public void EditUserCommand()
@@ -58,7 +59,7 @@ namespace SchoolManagementApp.Commands
                 RoleId = addUsersWindowVM.NewUserRole.Id
             };
             _userRepository.Update(user);
-            addUsersWindowVM.adminUserControlVM.Users = new System.Collections.ObjectModel.ObservableCollection<User>(_userRepository.GetAll());
+            addUsersWindowVM.manageUsersVM.Users = new System.Collections.ObjectModel.ObservableCollection<User>(_userRepository.GetAll());
         }
     }
 }
