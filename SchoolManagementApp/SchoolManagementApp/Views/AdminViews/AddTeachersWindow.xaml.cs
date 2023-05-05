@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolManagementApp.DataAccess;
+using System;
 using System.Windows.Controls;
 
 namespace SchoolManagementApp.Views.AdminViews
@@ -10,16 +11,12 @@ namespace SchoolManagementApp.Views.AdminViews
     {
         private readonly Frame AdminControl;
 
-        private readonly string connectionString;
+        private readonly SchoolManagementDbContext _dbContext;
 
-        public AddTeachersWindow(Frame AdminControl, string connectionString)
+        public AddTeachersWindow(Frame AdminControl, SchoolManagementDbContext dbContext)
         {
             this.AdminControl = AdminControl ?? throw new ArgumentNullException(nameof(AdminControl));
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new ArgumentNullException(nameof(connectionString));
-            }
-            this.connectionString = connectionString;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             InitializeComponent();
         }
     }

@@ -40,5 +40,25 @@ namespace SchoolManagementApp.Commands
 
             _userRepository.Add(user);
         }
+
+        public void EditUserCommand()
+        {
+            var user = _userRepository.GetById(addUsersWindowVM.selectedUser.Id);
+            if (user == null)
+            {
+                MessageBox.Show("User invalid", "Error");
+                return;
+            }
+
+            user = new User
+            {
+                Id = addUsersWindowVM.selectedUser.Id,
+                Email = addUsersWindowVM.NewUserEmail,
+                PasswordHash = authorizationService.HashPassword(addUsersWindowVM.NewUserPassword),
+                RoleId = addUsersWindowVM.NewUserRole.Id
+            };
+
+            _userRepository.Update(user);
+        }
     }
 }

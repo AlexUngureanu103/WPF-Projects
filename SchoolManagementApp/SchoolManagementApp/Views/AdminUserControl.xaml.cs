@@ -1,4 +1,5 @@
-﻿using SchoolManagementApp.ViewModels;
+﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.Views.AdminViews;
 using System;
 using System.Windows;
@@ -13,28 +14,23 @@ namespace SchoolManagementApp.Views
     {
         private readonly Frame WindowContainer;
 
-        private readonly string connectionString;
+        private readonly SchoolManagementDbContext _dbContext;
 
         private AdminUserControlVM AdminUserControlVM;
-        public AdminUserControl(Frame windowContainer, string connectionString)
+        public AdminUserControl(Frame windowContainer, SchoolManagementDbContext dbContext)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new ArgumentNullException(nameof(connectionString));
-            }
-            this.connectionString = connectionString;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             InitializeComponent();
 
-            AdminUserControlVM = new AdminUserControlVM(connectionString);
+            AdminUserControlVM = new AdminUserControlVM(_dbContext);
 
             DataContext = AdminUserControlVM;
         }
 
         private void ManageUsers_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new AddUsersWindow(AdminControls, connectionString));
+            AdminControls.Navigate(new AddUsersWindow(AdminControls, _dbContext, null));
         }
 
         private void ManageClasses_Click(object sender, RoutedEventArgs e)
@@ -44,11 +40,12 @@ namespace SchoolManagementApp.Views
 
         private void ManageTeachers_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new AddTeachersWindow(AdminControls, connectionString));
+            AdminControls.Navigate(new AddTeachersWindow(AdminControls, _dbContext));
         }
 
         private void ManageClassMasters_Click(object sender, RoutedEventArgs e)
         {
+            AdminControls.Navigate(new AddUsersWindow(AdminControls, _dbContext, AdminUserControlVM.SelectedUser));
             MessageBox.Show("Add Class Master Page");
         }
 

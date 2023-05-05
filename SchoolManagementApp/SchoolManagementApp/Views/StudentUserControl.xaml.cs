@@ -1,4 +1,5 @@
-﻿using SchoolManagementApp.ViewModels;
+﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.ViewModels;
 using System;
 using System.Windows.Controls;
 
@@ -11,20 +12,16 @@ namespace SchoolManagementApp.Views
     {
         private readonly Frame WindowContainer;
 
-        private readonly string connectionString;
+        private readonly SchoolManagementDbContext _dbContext;
 
         private StudentUserControlVM StudentUserControlVM;
-        public StudentUserControl(Frame windowContainer, string connectionString)
+        public StudentUserControl(Frame windowContainer, SchoolManagementDbContext dbContext)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new ArgumentNullException(nameof(connectionString));
-            }
-            this.connectionString = connectionString;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             InitializeComponent();
 
-            StudentUserControlVM = new StudentUserControlVM(connectionString);
+            StudentUserControlVM = new StudentUserControlVM(_dbContext);
 
             DataContext = StudentUserControlVM;
         }

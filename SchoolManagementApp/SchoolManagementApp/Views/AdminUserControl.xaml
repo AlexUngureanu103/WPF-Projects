@@ -38,6 +38,22 @@
         <Button Grid.Row="2" Grid.Column="5" x:Name="ManageStudents" Content="Manage Students" Margin="5" MaxHeight="50" MaxWidth="100" Click="ManageStudents_Click"/>
         <Button Grid.Row="2" Grid.Column="7" x:Name="Logout" Content="Logout" Margin="5" MaxHeight="50" MaxWidth="100" Click="Logout_Click"/>
 
-        <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="7" x:Name="AdminControls"/>
+        <ListView Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" Margin="10" ItemsSource="{Binding Users}"  SelectedItem="{Binding SelectedUser}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Id}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Command="{Binding SortById}" Content="Id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn  Width="auto" DisplayMemberBinding="{Binding Email}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Command="{Binding SortAlphabetically}"  Content="Email"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="3" Grid.ColumnSpan="5" x:Name="AdminControls"/>
     </Grid>
 </UserControl>

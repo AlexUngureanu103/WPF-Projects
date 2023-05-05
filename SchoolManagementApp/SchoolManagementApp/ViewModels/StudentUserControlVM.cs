@@ -7,9 +7,9 @@ namespace SchoolManagementApp.ViewModels
     {
         public readonly SchoolManagementDbContext _dbContext;
 
-        public StudentUserControlVM(string connectionString)
+        public StudentUserControlVM(SchoolManagementDbContext dbContext)
         {
-            _dbContext = new SchoolManagementDbContext(connectionString);
+            _dbContext = dbContext ?? throw new System.ArgumentNullException(nameof(dbContext));
         }
     }
 }
