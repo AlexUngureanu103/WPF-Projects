@@ -1,5 +1,5 @@
 ﻿using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.ViewModels.ManageUserVM;
+using SchoolManagementApp.ViewModels.ManageUserVMs;
 using System;
 using System.Windows;
 

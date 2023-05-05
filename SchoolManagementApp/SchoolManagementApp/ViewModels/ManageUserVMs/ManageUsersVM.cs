@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
-namespace SchoolManagementApp.ViewModels.ManageUserVM
+namespace SchoolManagementApp.ViewModels.ManageUserVMs
 {
     public class ManageUsersVM : BaseVM
     {

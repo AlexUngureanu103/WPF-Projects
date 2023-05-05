@@ -45,12 +45,12 @@ namespace SchoolManagementApp.Views
 
         private void ManageClassMasters_Click(object sender, RoutedEventArgs e)
         {
-            //AdminControls.Navigate(new AddUsersWindow(AdminControls, _dbContext, AdminUserControlVM, AdminUserControlVM.SelectedUser));
             MessageBox.Show("Add Class Master Page");
         }
 
         private void ManageStudents_Click(object sender, RoutedEventArgs e)
         {
+            AdminControls.Navigate(new ManageStudentsAdminControl(_dbContext));
             MessageBox.Show("Add Student Page");
         }
 
