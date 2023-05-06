@@ -1,7 +1,16 @@
 ﻿namespace SchoolManagementApp.DataAccess.Models
 {
-    public class BaseEntity
+    public class BaseEntity : BasePropertyChanged
     {
-        public int Id { get; set; }
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                NotifyPropertyChanged("Id");
+            }
+        }
     }
 }

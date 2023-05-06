@@ -316,6 +316,7 @@
       <DependentUpon>202305040641180_Specializations1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BasePropertyChanged.cs" />
     <Compile Include="Models\SpecializationCourse.cs" />
     <Compile Include="Models\StudentRelated\Absences.cs" />
     <Compile Include="Models\BaseEntity.cs" />

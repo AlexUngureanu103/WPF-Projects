@@ -6,17 +6,42 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
 {
     public class Class : BaseEntity
     {
+        private string name;
         [Required]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; NotifyPropertyChanged("Name"); }
+        }
 
+        private int specializationId;
         [Required]
-        public int SpecializationId { get; set; }
+        public int SpecializationId
+        {
+            get { return specializationId; }
+            set { specializationId = value; NotifyPropertyChanged("SpecializationId"); }
+        }
 
-        public Specialization Specialization { get; set; }
+        private Specialization specialization;
+        public Specialization Specialization
+        {
+            get { return specialization; }
+            set { specialization = value; NotifyPropertyChanged("Specialization"); }
+        }
 
-        public List<Student> Students { get; set; }
+        private List<Student> students;
+        public List<Student> Students
+        {
+            get { return students; }
+            set { students = value; NotifyPropertyChanged("Students"); }
+        }
 
+        private int studentCount;
         [NotMapped]
-        public int StudentCount { get; set; }
+        public int StudentCount
+        {
+            get { return studentCount; }
+            set { studentCount = value; NotifyPropertyChanged("StudentCount"); }
+        }
     }
 }

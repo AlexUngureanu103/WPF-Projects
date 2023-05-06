@@ -4,14 +4,34 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
 {
     public class CourseClass : BaseEntity
     {
+        private int courseTypeId;
         [Required]
-        public int CourseTypeId { get; set; }
+        public int CourseTypeId
+        {
+            get { return courseTypeId; }
+            set { courseTypeId = value; NotifyPropertyChanged("CourseTypeId"); }
+        }
 
-        public CourseType CourseType { get; set; }
+        private CourseType courseType;
+        public CourseType CourseType
+        {
+            get { return courseType; }
+            set { courseType = value; NotifyPropertyChanged("CourseType"); }
+        }
 
+        private int classId;
         [Required]
-        public int ClassId { get; set; }
+        public int ClassId
+        {
+            get { return classId; }
+            set { classId = value; NotifyPropertyChanged("ClassId"); }
+        }
 
-        public Class Class { get; set; }
+        private Class classs;
+        public Class Class
+        {
+            get { return classs; }
+            set { classs = value; NotifyPropertyChanged("Class"); }
+        }
     }
 }
