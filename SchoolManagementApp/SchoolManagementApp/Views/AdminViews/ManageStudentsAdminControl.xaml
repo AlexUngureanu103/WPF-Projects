@@ -36,38 +36,15 @@
         <Button Grid.Row="2" Grid.Column="2" x:Name="EditStudent" Content="Edit Student" Margin="5" MaxHeight="50" MaxWidth="100" Click="EditStudent_Click"  IsEnabled="{Binding CanEditStudent}"/>
         <Button Grid.Row="2" Grid.Column="3" x:Name="DeleteStudent" Content="Delete Student" Margin="5" MaxHeight="50" MaxWidth="100" Command="{Binding DeleteStudent}"/>
 
-        <ListView Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" Margin="10" ItemsSource="{Binding Students}"  SelectedItem="{Binding SelectedStudent}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortById}" Content="Id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn  Width="auto" DisplayMemberBinding="{Binding FirstName}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortByFirstName}"  Content="FirstName"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn  Width="auto" DisplayMemberBinding="{Binding LastName}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortByLastName}"  Content="LastName"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn  Width="auto" DisplayMemberBinding="{Binding ClassId}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortByClassId}"  Content="ClassId"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn  Width="auto" DisplayMemberBinding="{Binding Address}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortByAddress}"  Content="Address"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" AutoGenerateColumns="False" Margin="10" ItemsSource="{Binding Students}"  SelectedItem="{Binding SelectedStudent}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto" Header="Id"  Binding="{Binding Id}"/>
+                <DataGridTextColumn  Width="auto" Header="FirstName" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn  Width="auto" Header="LastName" Binding="{Binding LastName}"/>
+                <DataGridTextColumn  Width="auto" Header="ClassId" Binding="{Binding ClassId}"/>
+                <DataGridTextColumn  Width="auto" Header="Adress" Binding="{Binding Address}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="3" Grid.ColumnSpan="5" x:Name="ManageUsersFrame"/>
     </Grid>

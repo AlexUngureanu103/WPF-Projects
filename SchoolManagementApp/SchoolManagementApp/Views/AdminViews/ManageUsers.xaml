@@ -36,22 +36,13 @@
         <Button Grid.Row="2" Grid.Column="2" x:Name="EditUser" Content="Edit User" Margin="5" MaxHeight="50" MaxWidth="100" Click="EditUser_Click" IsEnabled="{Binding CanEditUser}"/>
         <Button Grid.Row="2" Grid.Column="3" x:Name="DeleteUser" Content="Delete User" Margin="5" MaxHeight="50" MaxWidth="100" Command="{Binding DeleteUser}"/>
 
-        <ListView Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" Margin="10" ItemsSource="{Binding Users}"  SelectedItem="{Binding SelectedUser}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortById}" Content="Id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn  Width="auto" DisplayMemberBinding="{Binding Email}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortAlphabetically}"  Content="Email"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" AutoGenerateColumns="False" Margin="10" ItemsSource="{Binding Users}"  SelectedItem="{Binding SelectedUser}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto" Header="Id"  Binding="{Binding Id}"/>
+                <DataGridTextColumn  Width="auto" Header="Email"  Binding="{Binding Email}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="3" Grid.ColumnSpan="5" x:Name="ManageUsersFrame"/>
     </Grid>

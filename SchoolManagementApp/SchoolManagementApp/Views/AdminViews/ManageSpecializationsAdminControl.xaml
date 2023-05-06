@@ -35,22 +35,12 @@
         <Button Grid.Row="2" Grid.Column="2" x:Name="EditSpecialization" Content="Edit Specialization" Margin="5" MaxHeight="50" MaxWidth="100" Command="{Binding EditCommand}" IsEnabled="{Binding CanEditSpecialization, Mode=TwoWay}"/>
         <Button Grid.Row="2" Grid.Column="3" x:Name="DeleteSpecialization" Content="Delete Specialization" Margin="5" MaxHeight="50" MaxWidth="100" Command="{Binding DeleteSpecialization}" Click="DeleteSpecialization_Click"/>
 
-        <ListView Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" Margin="10" ItemsSource="{Binding Specializations}"  SelectedItem="{Binding SelectedSpecialization}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortById}" Content="Id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn  Width="auto" DisplayMemberBinding="{Binding Name}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Command="{Binding SortByName}"  Content="Name"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" AutoGenerateColumns="False"  Margin="10" ItemsSource="{Binding Specializations}"  SelectedItem="{Binding SelectedSpecialization}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn  Width="auto" Header="Name" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Content="{Binding AddOrEditWindow}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Content="Specialization Name:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
