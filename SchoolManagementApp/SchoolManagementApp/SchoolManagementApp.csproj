@@ -93,6 +93,7 @@
     <Compile Include="Commands\ManageUsersCommands.cs" />
     <Compile Include="Enums\AddOrEdit.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
+    <Compile Include="Services\RepositoryServices\ClassService.cs" />
     <Compile Include="Services\RepositoryServices\SpecializationService.cs" />
     <Compile Include="Services\RepositoryServices\StudentService.cs" />
     <Compile Include="Services\RepositoryServices\UserService.cs" />
