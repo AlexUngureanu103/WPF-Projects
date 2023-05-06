@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SchoolManagementApp.DataAccess.Repositories
 {
-    internal class UserRepository : RepositoryBase<User>, IUserRepository
+    public class UserRepository : RepositoryBase<User>, IUserRepository
     {
         public UserRepository(SchoolManagementDbContext dbContext) : base(dbContext)
         {

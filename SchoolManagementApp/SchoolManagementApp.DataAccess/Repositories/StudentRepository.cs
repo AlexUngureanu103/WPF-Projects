@@ -4,7 +4,7 @@ using System;
 
 namespace SchoolManagementApp.DataAccess.Repositories
 {
-    internal class StudentRepository : RepositoryBase<Student>, IStudentRepository
+    public class StudentRepository : RepositoryBase<Student>, IStudentRepository
     {
         public StudentRepository(SchoolManagementDbContext dbContext) : base(dbContext)
         {

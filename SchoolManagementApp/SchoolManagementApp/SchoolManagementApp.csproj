@@ -93,6 +93,9 @@
     <Compile Include="Commands\ManageUsersCommands.cs" />
     <Compile Include="Enums\AddOrEdit.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
+    <Compile Include="Services\RepositoryServices\SpecializationService.cs" />
+    <Compile Include="Services\RepositoryServices\StudentService.cs" />
+    <Compile Include="Services\RepositoryServices\UserService.cs" />
     <Compile Include="Services\SortById.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
     <Compile Include="Services\Validators\UsersValidators.cs" />
@@ -225,6 +228,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\Dtos\" />
     <Folder Include="Views\ClassMasterViews\" />
     <Folder Include="Views\StudentViews\" />
     <Folder Include="Views\TeacherViews\" />
