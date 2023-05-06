@@ -71,6 +71,18 @@ namespace SchoolManagementApp.ViewModels.AdminControls.ManageStudentVMs
             }
         }
 
+        private ICommand sortById;
+        public ICommand SortById
+        {
+            get
+            {
+                if (sortById == null)
+                {
+                    sortById = new RelayCommand(deleteStudentsCommands.SortEntitiesById, param => true);
+                }
+                return sortById;
+            }
+        }
 
         public ManageStudentsVM(SchoolManagementDbContext dbContext)
         {

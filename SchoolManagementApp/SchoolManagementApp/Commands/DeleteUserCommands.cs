@@ -1,4 +1,5 @@
 ﻿using SchoolManagementApp.DataAccess.Abstractions;
+using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs;
 using System;
 using System.Windows;
@@ -26,6 +27,14 @@ namespace SchoolManagementApp.Commands
                 userRepository.Delete(manageUsersVM.SelectedUser.Id);
                 manageUsersVM.Users = new System.Collections.ObjectModel.ObservableCollection<DataAccess.Models.User>(userRepository.GetAll());
                 manageUsersVM.SelectedUser = null;
+            }
+        }
+
+        public void SortEntitiesById()
+        {
+            if (manageUsersVM.Users != null && manageUsersVM.Users.Count > 0)
+            {
+                manageUsersVM.Users = SortById.SortEntitiesById(manageUsersVM.Users);
             }
         }
     }

@@ -60,6 +60,19 @@ namespace SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs
             }
         }
 
+        private ICommand sortById;
+        public ICommand SortById
+        {
+            get
+            {
+                if (sortById == null)
+                {
+                    sortById = new RelayCommand(deleteUsersCommands.SortEntitiesById, param => true);
+                }
+                return sortById;
+            }
+        }
+
         private bool canEditUser;
         public bool CanEditUser
         {
