@@ -23,20 +23,35 @@ namespace SchoolManagementApp.Services.RepositoryServices
             return new ObservableCollection<Class>(unitOfWork.Classes.GetAll());
         }
 
-        public void Add(Class @class)
+        private bool ValidateClass(Class @class)
         {
-            if (@class == null)
+            if (@class == null || string.IsNullOrEmpty(@class.Name))
             {
-                errorMessage = "Class cannot be null";
-                return;
+                errorMessage = "Course name cannot be empty";
+                return false;
             }
 
             var hasNameConflicts = unitOfWork.Classes.Any(c => c.Name == @class.Name);
             if (hasNameConflicts)
             {
                 errorMessage = $"Class with name: {@class.Name} already exists";
-                return;
+                return false;
             }
+
+            var specialization = unitOfWork.Specializations.GetById(@class.SpecializationId);
+            if (specialization == null)
+            {
+                errorMessage = "Specialization cannot be null";
+                return false;
+            }
+
+            return true;
+        }
+
+        public void Add(Class @class)
+        {
+            if (!ValidateClass(@class))
+                return;
 
             unitOfWork.Classes.Add(@class);
             ClassList.Add(@class);
@@ -45,19 +60,16 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(Class @class)
         {
-            if (@class == null || string.IsNullOrEmpty(@class.Name))
-            {
-                errorMessage = "Course name cannot be empty";
-                return;
-            }
 
             Class result = unitOfWork.Classes.GetById(@class.Id);
-
             if (result == null)
             {
                 errorMessage = "Course not found";
                 return;
             }
+
+            if (!ValidateClass(@class))
+                return;
 
             unitOfWork.Classes.Update(@class);
             unitOfWork.SaveChanges();
