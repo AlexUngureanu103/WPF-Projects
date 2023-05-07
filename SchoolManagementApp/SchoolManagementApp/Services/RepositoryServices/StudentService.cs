@@ -1,10 +1,8 @@
-﻿using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.DataAccess;
+﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.DataAccess.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
@@ -12,43 +10,82 @@ namespace SchoolManagementApp.Services.RepositoryServices
     {
         private readonly UnitOfWork unitOfWork;
 
+        public ObservableCollection<Student> StudentList { get; set; }
+
+        private string errorMessage;
+
         public StudentService(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public Student Add(Student student)
+        public ObservableCollection<Student> GetAll()
         {
-            if (student == null) return null;
-
-            unitOfWork.Students.Add(student);
-            unitOfWork.SaveChanges();
-            return student;
+            return new ObservableCollection<Student>(unitOfWork.Students.GetAll());
         }
-        
-        public bool Edit(Student student)
+        private bool ValidateStudent(Student student)
         {
             if (student == null || string.IsNullOrEmpty(student.FirstName) || string.IsNullOrEmpty(student.LastName) || string.IsNullOrEmpty(student.Address))
             {
+                errorMessage = "Student cannot be null";
                 return false;
             }
 
-            Student Student = unitOfWork.Students.GetById(student.Id);
+            var validClass = unitOfWork.Classes.GetById(student.ClassId);
+            if (validClass == null)
+            {
+                errorMessage = "Class not found";
+                return false;
+            }
 
-            if (Student == null) return false;
-
-            unitOfWork.Students.Update(student);
-            unitOfWork.SaveChanges();
+            var validUser = unitOfWork.Users.GetById(student.UserId);
+            if (validUser == null)
+            {
+                errorMessage = "User not found";
+                return false;
+            }
             return true;
         }
 
-        public Student Remove(Student student)
+        public void Add(Student student)
         {
-            if (student == null) return null;
+            if (!ValidateStudent(student))
+                return;
+
+            unitOfWork.Students.Add(student);
+            StudentList.Add(student);
+            unitOfWork.SaveChanges();
+        }
+
+        public void Edit(Student student)
+        {
+            Student Student = unitOfWork.Students.GetById(student.Id);
+
+            if (Student == null)
+            {
+                errorMessage = "Student not found";
+                return;
+            }
+
+            if (!ValidateStudent(student))
+                return;
+
+            unitOfWork.Students.Update(student);
+            unitOfWork.SaveChanges();
+        }
+
+        public void Remove(Student student)
+        {
+            var result = MessageBox.Show($"Are u sure u want to delete the student with {student.Id}?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No) return;
+            if (student == null)
+            {
+                errorMessage = "Student cannot be null";
+                return;
+            }
 
             unitOfWork.Students.Remove(student);
             unitOfWork.SaveChanges();
-            return student;
         }
     }
 }

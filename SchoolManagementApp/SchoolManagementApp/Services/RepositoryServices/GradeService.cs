@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
@@ -13,47 +16,102 @@ namespace SchoolManagementApp.Services.RepositoryServices
     {
         private readonly UnitOfWork unitOfWork;
 
+        public ObservableCollection<Grade> GradeList { get; set; }
+
+        public ObservableCollection<Grade> CurrentStudentGrades { get; set; }
+
+        private string errorMessage;
+
         public GradeService(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public Grade Add(Grade grade)
+        public ObservableCollection<Grade> GetAll()
         {
-            if (grade == null) return null;
-            //validate Id's
-            
-            //var hasNameConflicts = unitOfWork.Grades.Any(c => c. == grade.Course);
-            //if (hasNameConflicts) return null;
-
-            unitOfWork.Grades.Add(grade);
-            unitOfWork.SaveChanges();
-            return grade;
+            return new ObservableCollection<Grade>(unitOfWork.Grades.GetAll());
         }
 
-        public bool Edit(Grade grade)
+        public ObservableCollection<Grade> GetStudentGrades(Student student)
         {
-            if (grade == null )
+            return new ObservableCollection<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
+        }
+
+        private bool ValidateGrade(Grade grade)
+        {
+            if (grade == null)
             {
+                errorMessage = "Grade cannot be null";
                 return false;
             }
 
+            if (grade.Value < 1 || grade.Value > 10)
+            {
+                errorMessage = "Invalid grade value";
+                return false;
+            }
+
+            if (grade.Semester < 1 || grade.Semester > 2)
+            {
+                errorMessage = "Invalid semester";
+                return false;
+            }
+
+            var courseType = unitOfWork.Courses.GetById(grade.CourseTypeId);
+            if (courseType == null)
+            {
+                errorMessage = "Invalid course";
+                return false;
+            }
+
+            var student = unitOfWork.Students.GetById(grade.StudentId);
+            if (student == null)
+            {
+                errorMessage = "invalid Student";
+                return false;
+            }
+            return true;
+        }
+        
+        public void Add(Grade grade)
+        {
+            if (!ValidateGrade(grade))
+                return;
+            
+            unitOfWork.Grades.Add(grade);
+            GradeList.Add(grade);
+            unitOfWork.SaveChanges();
+        }
+        
+        public void Edit(Grade grade)
+        {
             Grade result = unitOfWork.Grades.GetById(grade.Id);
 
-            if (result == null) return false;
+            if (result == null)
+            {
+                errorMessage = "Grade not found";
+                return;
+            }
+            if (!ValidateGrade(grade))
+                return;
 
             unitOfWork.Grades.Update(grade);
             unitOfWork.SaveChanges();
-            return true;
         }
-
-        public Grade Remove(Grade grade)
+        
+        public void Remove(Grade grade)
         {
-            if (grade == null) return null;
+            var result = MessageBox.Show($"Are u sure u want to delete the {grade.Id} Grade?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No) return;
+
+            if (grade == null)
+            {
+                errorMessage = "Grade cannot be null";
+                return;
+            }
 
             unitOfWork.Grades.Remove(grade);
             unitOfWork.SaveChanges();
-            return grade;
         }
     }
 }

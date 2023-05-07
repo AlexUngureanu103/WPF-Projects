@@ -1,6 +1,7 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
 using System;
+using System.Collections.ObjectModel;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
@@ -8,46 +9,71 @@ namespace SchoolManagementApp.Services.RepositoryServices
     {
         private readonly UnitOfWork unitOfWork;
 
+        public ObservableCollection<Class> ClassList { get; set; }
+
+        private string errorMessage;
+
         public ClassService(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public Class Add(Class @class)
+        public ObservableCollection<Class> GetAll()
         {
-            if (@class == null) return null;
-
-            var hasNameConflicts = unitOfWork.Classes.Any(c => c.Name == @class.Name);
-            if (hasNameConflicts) return null;
-
-            unitOfWork.Classes.Add(@class);
-            unitOfWork.SaveChanges();
-            return @class;
+            return new ObservableCollection<Class>(unitOfWork.Classes.GetAll());
         }
 
-        public bool Edit(Class @class)
+        public void Add(Class @class)
+        {
+            if (@class == null)
+            {
+                errorMessage = "Class cannot be null";
+                return;
+            }
+
+            var hasNameConflicts = unitOfWork.Classes.Any(c => c.Name == @class.Name);
+            if (hasNameConflicts)
+            {
+                errorMessage = $"Class with name: {@class.Name} already exists";
+                return;
+            }
+
+            unitOfWork.Classes.Add(@class);
+            ClassList.Add(@class);
+            unitOfWork.SaveChanges();
+        }
+
+        public void Edit(Class @class)
         {
             if (@class == null || string.IsNullOrEmpty(@class.Name))
             {
-                return false;
+                errorMessage = "Course name cannot be empty";
+                return;
             }
 
             Class result = unitOfWork.Classes.GetById(@class.Id);
 
-            if (result == null) return false;
+            if (result == null)
+            {
+                errorMessage = "Course not found";
+                return;
+            }
 
             unitOfWork.Classes.Update(@class);
             unitOfWork.SaveChanges();
-            return true;
         }
 
-        public Class Remove(Class @class)
+        public void Remove(Class @class)
         {
-            if (@class == null) return null;
+            if (@class == null)
+            {
+                errorMessage = "Course cannot be null";
+                return;
+            }
 
             unitOfWork.Classes.Remove(@class);
+            ClassList.Remove(@class);
             unitOfWork.SaveChanges();
-            return @class;
         }
     }
 }
