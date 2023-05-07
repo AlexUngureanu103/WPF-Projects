@@ -1,6 +1,8 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models;
 using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
@@ -8,46 +10,84 @@ namespace SchoolManagementApp.Services.RepositoryServices
     {
         private readonly UnitOfWork unitOfWork;
 
+        public ObservableCollection<CourseType> CourseList { get; set; }
+
+        private string errorMessage;
+
         public CourseService(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public CourseType Add(CourseType course)
+        public ObservableCollection<CourseType> GetAll()
         {
-            if (course == null) return null;
-
-            var hasNameConflicts = unitOfWork.Courses.Any(c => c.Course == course.Course);
-            if (hasNameConflicts) return null;
-
-            unitOfWork.Courses.Add(course);
-            unitOfWork.SaveChanges();
-            return course;
+            return new ObservableCollection<CourseType>(unitOfWork.Courses.GetAll());
         }
 
-        public bool Edit(CourseType course)
+        public bool EntityAlreadyExists(CourseType courseType)
+        {
+            var entity = unitOfWork.Courses.GetById(courseType.Id);
+            if(entity == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void Add(CourseType course)
+        {
+            if (course == null)
+            {
+                errorMessage = "Course cannot be null";
+                return;
+            }
+
+            var hasNameConflicts = unitOfWork.Courses.Any(c => c.Course == course.Course);
+            if (hasNameConflicts)
+            {
+                errorMessage = "Course with this name already exists";
+                return;
+            }
+
+            unitOfWork.Courses.Add(course);
+            CourseList.Add(course);
+            unitOfWork.SaveChanges();
+        }
+
+        public void Edit(CourseType course)
         {
             if (course == null || string.IsNullOrEmpty(course.Course))
             {
-                return false;
+                errorMessage = "Course name cannot be empty";
+                return;
             }
 
             CourseType result = unitOfWork.Courses.GetById(course.Id);
 
-            if (result == null) return false;
+            if (result == null)
+            {
+                errorMessage = "Course not found";
+                return;
+            }
 
             unitOfWork.Courses.Update(course);
             unitOfWork.SaveChanges();
-            return true;
         }
 
-        public CourseType Remove(CourseType course)
+        public void Remove(CourseType course)
         {
-            if (course == null) return null;
+            var result = MessageBox.Show($"Are u sure u want to delete the {course.Course} Course?", "Warning", MessageBoxButton.YesNo ,MessageBoxImage.Question);
+            if (result == MessageBoxResult.No) return;
+
+            if (course == null)
+            {
+                errorMessage = "Course cannot be null";
+                return;
+            }
 
             unitOfWork.Courses.Remove(course);
+            CourseList.Remove(course);
             unitOfWork.SaveChanges();
-            return course;
         }
     }
 }

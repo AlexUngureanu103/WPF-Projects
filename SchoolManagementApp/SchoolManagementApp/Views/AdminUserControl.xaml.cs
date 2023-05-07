@@ -73,12 +73,11 @@ namespace SchoolManagementApp.Views
         private void ManageSpecializations_Click(object sender, RoutedEventArgs e)
         {
             AdminControls.Navigate(new ManageSpecializationsAdminControl(_dbContext));
-            MessageBox.Show("Add Specializations Page");
         }
 
         private void ManageCourses_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Add Courses Page");
+            AdminControls.Navigate(new ManageCoursesAdminControl(_dbContext));
         }
     }
 }
