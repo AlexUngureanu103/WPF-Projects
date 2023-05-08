@@ -22,7 +22,6 @@ namespace SchoolManagementApp.Converters
             CourseType course = value as CourseType;
             object[] result = new object[1] { course.Course };
             return result;
-            throw new NotImplementedException();
         }
     }
 }

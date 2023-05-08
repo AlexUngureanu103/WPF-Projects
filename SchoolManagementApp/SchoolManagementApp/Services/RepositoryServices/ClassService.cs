@@ -2,6 +2,7 @@
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
@@ -31,7 +32,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return false;
             }
 
-            var hasNameConflicts = unitOfWork.Classes.Any(c => c.Name == @class.Name);
+            var hasNameConflicts = unitOfWork.Classes.Any(c => c.Name == @class.Name && c.Id!=@class.Id);
             if (hasNameConflicts)
             {
                 errorMessage = $"Class with name: {@class.Name} already exists";
@@ -72,6 +73,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return;
 
             unitOfWork.Classes.Update(@class);
+            var cl = ClassList.First(c => c.Id == @class.Id);
+            cl = @class;
             unitOfWork.SaveChanges();
         }
 

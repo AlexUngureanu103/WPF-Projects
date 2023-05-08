@@ -35,7 +35,7 @@ namespace SchoolManagementApp.Views
 
         private void ManageClasses_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Add Class Page");
+            AdminControls.Navigate(new ManageClasses(_dbContext));
         }
 
         private void ManageTeachers_Click(object sender, RoutedEventArgs e)

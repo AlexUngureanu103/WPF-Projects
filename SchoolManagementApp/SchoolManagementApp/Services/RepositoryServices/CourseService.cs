@@ -27,7 +27,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
         public bool EntityAlreadyExists(CourseType courseType)
         {
             var entity = unitOfWork.Courses.GetById(courseType.Id);
-            if(entity == null)
+            if (entity == null)
             {
                 return false;
             }
@@ -36,7 +36,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Add(CourseType course)
         {
-            if (course == null)
+            if (course == null || string.IsNullOrEmpty(course.Course))
             {
                 errorMessage = "Course cannot be null";
                 return;
@@ -76,7 +76,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Remove(CourseType course)
         {
-            var result = MessageBox.Show($"Are u sure u want to delete the {course.Course} Course?", "Warning", MessageBoxButton.YesNo ,MessageBoxImage.Question);
+            var result = MessageBox.Show($"Are u sure u want to delete the {course.Course} Course?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.No) return;
 
             if (course == null)

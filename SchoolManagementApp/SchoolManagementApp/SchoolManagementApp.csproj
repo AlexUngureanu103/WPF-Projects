@@ -92,6 +92,7 @@
     <Compile Include="Commands\LoginCommands.cs" />
     <Compile Include="Commands\ManageUsersCommands.cs" />
     <Compile Include="Commands\RelayCommands.cs" />
+    <Compile Include="Converters\ClassConvert.cs" />
     <Compile Include="Converters\CourseConvert.cs" />
     <Compile Include="Enums\AddOrEdit.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Services\SortById.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
     <Compile Include="Services\Validators\UsersValidators.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageClassesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageCoursesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationVMs\ManageSpecializationsVM.cs" />
     <Compile Include="ViewModels\AdminUserControlVM.cs" />
@@ -122,6 +124,9 @@
     </Compile>
     <Compile Include="Views\AdminViews\AddUsersWindow.xaml.cs">
       <DependentUpon>AddUsersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManageClasses.xaml.cs">
+      <DependentUpon>ManageClasses.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageCoursesAdminControl.xaml.cs">
       <DependentUpon>ManageCoursesAdminControl.xaml</DependentUpon>
@@ -173,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\AddUsersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManageClasses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
