@@ -1,18 +1,13 @@
-﻿using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
+using System;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    internal class GradeService
+    internal class GradeService : ICollectionService<Grade>
     {
         private readonly UnitOfWork unitOfWork;
 
@@ -72,17 +67,17 @@ namespace SchoolManagementApp.Services.RepositoryServices
             }
             return true;
         }
-        
+
         public void Add(Grade grade)
         {
             if (!ValidateGrade(grade))
                 return;
-            
+
             unitOfWork.Grades.Add(grade);
             GradeList.Add(grade);
             unitOfWork.SaveChanges();
         }
-        
+
         public void Edit(Grade grade)
         {
             Grade result = unitOfWork.Grades.GetById(grade.Id);
@@ -98,7 +93,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.Grades.Update(grade);
             unitOfWork.SaveChanges();
         }
-        
+
         public void Remove(Grade grade)
         {
             var result = MessageBox.Show($"Are u sure u want to delete the {grade.Id} Grade?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);

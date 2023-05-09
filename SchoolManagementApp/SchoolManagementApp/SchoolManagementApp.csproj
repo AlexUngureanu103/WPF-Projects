@@ -100,6 +100,8 @@
     <Compile Include="Services\RepositoryServices\ClassService.cs" />
     <Compile Include="Services\RepositoryServices\CourseService.cs" />
     <Compile Include="Services\RepositoryServices\GradeService.cs" />
+    <Compile Include="Services\RepositoryServices\ICollectionService.cs" />
+    <Compile Include="Services\RepositoryServices\PersonService.cs" />
     <Compile Include="Services\RepositoryServices\SpecializationCourseService.cs" />
     <Compile Include="Services\RepositoryServices\SpecializationService.cs" />
     <Compile Include="Services\RepositoryServices\StudentService.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Services\Validators\UsersValidators.cs" />
     <Compile Include="ViewModels\AdminControls\ManageClassesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageCoursesVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManagePersonsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationCourseVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationVMs\ManageSpecializationsVM.cs" />
     <Compile Include="ViewModels\AdminUserControlVM.cs" />
@@ -133,6 +136,9 @@
     </Compile>
     <Compile Include="Views\AdminViews\ManageCoursesAdminControl.xaml.cs">
       <DependentUpon>ManageCoursesAdminControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManagePersonsAdminCrontrol.xaml.cs">
+      <DependentUpon>ManagePersonsAdminCrontrol.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageSpecializationCourseAdminControl.xaml.cs">
       <DependentUpon>ManageSpecializationCourseAdminControl.xaml</DependentUpon>
@@ -192,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\ManageCoursesAdminControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManagePersonsAdminCrontrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

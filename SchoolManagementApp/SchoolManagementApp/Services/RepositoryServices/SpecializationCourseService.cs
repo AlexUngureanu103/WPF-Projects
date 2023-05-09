@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    internal class SpecializationCourseService
+    internal class SpecializationCourseService : ICollectionService<SpecializationCourse>
     {
         private readonly UnitOfWork unitOfWork;
 

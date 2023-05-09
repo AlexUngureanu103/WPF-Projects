@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    internal class StudentService
+    internal class StudentService : ICollectionService<Student>
     {
         private readonly UnitOfWork unitOfWork;
 

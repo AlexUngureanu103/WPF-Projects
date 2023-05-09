@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    public class SpecializationService
+    public class SpecializationService /*: ICollectionService<Specialization>*/
     {
         private readonly UnitOfWork unitOfWork;
 

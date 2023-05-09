@@ -4,7 +4,7 @@ using System;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    internal class UserService
+    internal class UserService/* : ICollectionService<User>*/
     {
         private readonly UnitOfWork unitOfWork;
 

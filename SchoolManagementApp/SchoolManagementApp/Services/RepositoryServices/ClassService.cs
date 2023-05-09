@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    internal class ClassService
+    internal class ClassService:ICollectionService<Class>
     {
         private readonly UnitOfWork unitOfWork;
 
