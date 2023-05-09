@@ -16,22 +16,31 @@
                     Command="{Binding AddCommand}">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource specializationCourseConvert}">
-                        <Binding ElementName="txtSpecializationId" Path="SelectedValue" />
-                        <Binding ElementName="txtCourseId" Path="SelectedValue" />
-                        <Binding ElementName="hasThesis" Path="SelectedValue" />
+                        <Binding ElementName="txtSpecialization" Path="SelectedValue" />
+                        <Binding ElementName="txtCourse" Path="SelectedValue" />
+                        <Binding ElementName="hasThesis" Path="IsChecked" />
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
             <Button Content="Edit" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}"
-                    CommandParameter="{Binding ElementName=CourseGrid, Path=SelectedItem}"/>
+                    CommandParameter="{Binding ElementName=SpecializationCourseGrid, Path=SelectedItem}"/>
             <Button Content="Delete" Margin="15" Width="100" Height="30" Command="{Binding DeleteCommand}"
-                    CommandParameter="{Binding ElementName=CourseGrid, Path=SelectedItem}"/>
+                    CommandParameter="{Binding ElementName=SpecializationCourseGrid, Path=SelectedItem}"/>
             <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
         </WrapPanel>
         <WrapPanel Margin="0,15,0,0">
             <Label Width="150" FontSize="15">Course:</Label>
-            <TextBox Name="txtCourse" Width="200" Text ="{Binding ElementName=CourseGrid, 
-                Path=SelectedItem.Course, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Name="txtCourse" Width="200" ItemsSource="{Binding CourseList}" DisplayMemberPath="Course"
+                      SelectedItem="{Binding ElementName=SpecializationCourseGrid ,Path=SelectedItem.CourseType , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Specialization:</Label>
+            <ComboBox Name="txtSpecialization" Width="200" ItemsSource="{Binding SpecializationList}" DisplayMemberPath="Name"
+                      SelectedItem="{Binding ElementName=SpecializationCourseGrid ,Path=SelectedItem.Specialization , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Has Thesis:</Label>
+            <CheckBox x:Name="hasThesis" IsChecked="{Binding ElementName=SpecializationCourseGrid , Path=SelectedItem.HasThesis}"/>
         </WrapPanel>
         <DataGrid Name="SpecializationCourseGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding SpecializationCourseList}" SelectedItem="{Binding SelectedSpecializationCourse}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
@@ -39,6 +48,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
                 <DataGridTextColumn Header="Specialization" Binding="{Binding Specialization.Name}"/>
+                <DataGridTextColumn Header="HasThesis" Binding="{Binding HasThesis}"/>
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

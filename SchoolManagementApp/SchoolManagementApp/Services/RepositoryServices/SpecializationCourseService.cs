@@ -2,6 +2,7 @@
 using SchoolManagementApp.DataAccess.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
@@ -72,8 +73,17 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return;
             }
 
-            unitOfWork.SpecializationCourse.Add(specializationCourse);
-            SpecializationCourseList.Add(specializationCourse);
+            var entity = SpecializationCourseList.FirstOrDefault(c => c.CourseTypeId == specializationCourse.CourseTypeId && c.SpecializationId == specializationCourse.SpecializationId);
+            if(entity != null)
+            {
+                specializationCourse.Id = entity.Id;
+                unitOfWork.SpecializationCourse.Update(specializationCourse);
+            }
+            else
+            {
+                unitOfWork.SpecializationCourse.Add(specializationCourse);
+                SpecializationCourseList.Add(specializationCourse);
+            }
             unitOfWork.SaveChanges();
         }
 

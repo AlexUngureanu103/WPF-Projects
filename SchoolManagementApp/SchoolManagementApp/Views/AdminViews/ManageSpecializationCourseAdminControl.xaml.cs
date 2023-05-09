@@ -30,7 +30,8 @@ namespace SchoolManagementApp.Views.AdminViews
             this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             manageSpecializationCourseVM = new ManageSpecializationCourseVM(dbContext);
             InitializeComponent();
-            
+
+            DataContext = manageSpecializationCourseVM;
         }
     }
 }

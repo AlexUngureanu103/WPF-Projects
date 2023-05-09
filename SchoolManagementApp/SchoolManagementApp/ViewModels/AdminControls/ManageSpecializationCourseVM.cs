@@ -72,7 +72,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<CourseType>(courseService.Add, param => selectedSpecializationCourse == null);
+                    addCommand = new RelayCommands<SpecializationCourse>(specializationCourseService.Add, param => selectedSpecializationCourse == null);
                 }
                 return addCommand;
             }
@@ -85,7 +85,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<CourseType>(courseService.Edit, param => selectedSpecializationCourse != null);
+                    updateCommand = new RelayCommands<SpecializationCourse>(specializationCourseService.Edit, param => selectedSpecializationCourse != null);
                 }
                 return updateCommand;
             }
@@ -98,7 +98,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<CourseType>(courseService.Remove, param => selectedSpecializationCourse != null);
+                    deleteCommand = new RelayCommands<SpecializationCourse>(specializationCourseService.Remove, param => selectedSpecializationCourse != null);
                 }
                 return deleteCommand;
             }

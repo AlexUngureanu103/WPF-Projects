@@ -4,34 +4,39 @@ namespace SchoolManagementApp.DataAccess.Models
 {
     public class SpecializationCourse : BaseEntity
     {
+        private int specializationId;
         public int SpecializationId
         {
-            get { return SpecializationId; }
-            set { SpecializationId = value; NotifyPropertyChanged("SpecializationId"); }
+            get { return specializationId; }
+            set { specializationId = value; NotifyPropertyChanged("SpecializationId"); }
         }
 
+        private Specialization specialization;
         public Specialization Specialization
         {
-            get { return Specialization; }
-            set { Specialization = value; NotifyPropertyChanged("Specialization"); }
+            get { return specialization; }
+            set { specialization = value; NotifyPropertyChanged("Specialization"); }
         }
 
+        private int courseTypeId;
         public int CourseTypeId
         {
-            get { return CourseTypeId; }
-            set { CourseTypeId = value; NotifyPropertyChanged("CourseTypeId"); }
+            get { return courseTypeId; }
+            set { courseTypeId = value; NotifyPropertyChanged("CourseTypeId"); }
         }
 
+        private CourseType courseType;
         public CourseType CourseType
         {
-            get { return CourseType; }
-            set { CourseType = value; NotifyPropertyChanged("CourseType"); }
+            get { return courseType; }
+            set { courseType = value; NotifyPropertyChanged("CourseType"); }
         }
 
+        private bool hasThesis;
         public bool HasThesis
         {
-            get { return HasThesis; }
-            set { HasThesis = value; NotifyPropertyChanged("HasThesis"); }
+            get { return hasThesis; }
+            set { hasThesis = value; NotifyPropertyChanged("HasThesis"); }
         }
     }
 }
