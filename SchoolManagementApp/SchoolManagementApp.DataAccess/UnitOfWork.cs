@@ -21,6 +21,8 @@ namespace SchoolManagementApp.DataAccess
 
         public CourseRepository Courses { get; }
 
+        public SpecializationCourseRepository SpecializationCourse { get; }
+
         public UnitOfWork(SchoolManagementDbContext dbContext)
         {
             this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -31,6 +33,7 @@ namespace SchoolManagementApp.DataAccess
             Classes = new ClassRepository(_dbContext);
             Roles = new RoleRepository(_dbContext);
             Courses = new CourseRepository(_dbContext);
+            SpecializationCourse = new SpecializationCourseRepository(_dbContext);
         }
 
         public void SaveChanges()
