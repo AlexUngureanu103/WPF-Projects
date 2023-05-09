@@ -284,6 +284,7 @@
     <Compile Include="Abstractions\IGradeRepository.cs" />
     <Compile Include="Abstractions\IRepository.cs" />
     <Compile Include="Abstractions\IRoleRepository.cs" />
+    <Compile Include="Abstractions\ISpecializationCourseRepository.cs" />
     <Compile Include="Abstractions\ISpecializationRepository.cs" />
     <Compile Include="Abstractions\IStudentRepository.cs" />
     <Compile Include="Abstractions\IUserRepository.cs" />
@@ -336,6 +337,7 @@
     <Compile Include="Repositories\GradeRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\SpecializationCourseRepository.cs" />
     <Compile Include="Repositories\SpecializationRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />

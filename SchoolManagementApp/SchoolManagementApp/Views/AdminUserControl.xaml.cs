@@ -79,5 +79,10 @@ namespace SchoolManagementApp.Views
         {
             AdminControls.Navigate(new ManageCoursesAdminControl(_dbContext));
         }
+
+        private void Specialization_Course_Click(object sender, RoutedEventArgs e)
+        {
+            AdminControls.Navigate(new ManageSpecializationCourseAdminControl(_dbContext));
+        }
     }
 }
