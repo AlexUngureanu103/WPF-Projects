@@ -10,10 +10,10 @@
         <Menu DockPanel.Dock="Top" Height="30" FontSize="15">
             <Menu.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FF3A60AD" Offset="0.528"/>
-                    <GradientStop Color="#FF6A85D8" Offset="0.01"/>
-                    <GradientStop Color="#FF3464C4" Offset="1"/>
-                    <GradientStop Color="#FF202E7E" Offset="1"/>
+                    <GradientStop Color="#ab910f" Offset="0.528"/>
+                    <GradientStop Color="#363532" Offset="0.01"/>
+                    <GradientStop Color="#363532" Offset="1"/>
+                    <GradientStop Color="#030200" Offset="1"/>
                 </LinearGradientBrush>
             </Menu.Background>
             <MenuItem Header ="Manage">
@@ -29,6 +29,6 @@
         </Menu>
 
 
-        <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="10" x:Name="AdminControls"/>
+        <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="10" x:Name="AdminControls" />
     </DockPanel>
 </UserControl>

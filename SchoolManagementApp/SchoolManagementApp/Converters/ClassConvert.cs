@@ -16,7 +16,8 @@ namespace SchoolManagementApp.Converters
                 return new Class()
                 {
                     Name = values[0].ToString(),
-                    SpecializationId = specialization.Id
+                    SpecializationId = specialization.Id,
+                    Specialization = specialization
                 };
             }
             return null;

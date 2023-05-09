@@ -3,6 +3,7 @@ using SchoolManagementApp.DataAccess.Models.StudentRelated;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
@@ -21,7 +22,13 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Class> GetAll()
         {
-            return new ObservableCollection<Class>(unitOfWork.Classes.GetAll());
+            var classes = unitOfWork.Classes.GetAll();
+            foreach (var @class in classes)
+            {
+                @class.Specialization = unitOfWork.Specializations.GetById(@class.SpecializationId);
+            }
+
+            return new ObservableCollection<Class>(classes);
         }
 
         private bool ValidateClass(Class @class)
@@ -32,10 +39,15 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return false;
             }
 
-            var hasNameConflicts = unitOfWork.Classes.Any(c => c.Name == @class.Name && c.Id!=@class.Id);
+            var hasNameConflicts = unitOfWork.Classes.Any(c => c.Name == @class.Name && c.Id != @class.Id);
             if (hasNameConflicts)
             {
                 errorMessage = $"Class with name: {@class.Name} already exists";
+                return false;
+            }
+            string pattern = @"^(?:[5-9]|1[0-2])[A-H]$";
+            if (!Regex.IsMatch(@class.Name, pattern))
+            {
                 return false;
             }
 
