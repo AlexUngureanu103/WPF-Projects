@@ -85,8 +85,6 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return;
 
             unitOfWork.Classes.Update(@class);
-            var cl = ClassList.First(c => c.Id == @class.Id);
-            cl = @class;
             unitOfWork.SaveChanges();
         }
 
