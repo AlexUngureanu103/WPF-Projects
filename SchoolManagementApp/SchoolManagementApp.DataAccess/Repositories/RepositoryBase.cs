@@ -27,13 +27,11 @@ namespace SchoolManagementApp.DataAccess.Repositories
         public void Add(T entity)
         {
             _dbSet.Add(entity);
-            _dbContext.SaveChanges();
         }
 
         public void Update(T entity)
         {
             _dbSet.AddOrUpdate(entity);
-            _dbContext.SaveChanges();
         }
 
         public void Delete(int entityId)
@@ -44,7 +42,6 @@ namespace SchoolManagementApp.DataAccess.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
             _dbSet.Remove(entity);
-            _dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -53,7 +50,6 @@ namespace SchoolManagementApp.DataAccess.Repositories
         public void Remove(T entity)
         {
             _dbSet.Remove(entity);
-            _dbContext.SaveChanges();
         }
 
         public IEnumerable<T> GetAll()

@@ -11,7 +11,7 @@ namespace SchoolManagementApp.Converters
             Specialization specialization = values[1] as Specialization;
             if (specialization == null)
                 specialization = new Specialization();
-            if (values[0] != null)
+            if (values[0] != null && values[1] != null)
             {
                 return new Class()
                 {

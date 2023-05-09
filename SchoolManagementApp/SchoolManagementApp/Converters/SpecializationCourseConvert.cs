@@ -16,7 +16,7 @@ namespace SchoolManagementApp.Converters
             CourseType course = values[1] as CourseType;
             if (course == null)
                 course = new CourseType();
-            if (values[0] != null)
+            if (values[0] != null && values[1] != null && values[2] != null)
             {
                 return new SpecializationCourse()
                 {
@@ -31,10 +31,9 @@ namespace SchoolManagementApp.Converters
         }
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {
-            //Class @class = value as Class;
-            //object[] result = new object[2] { @class.Name, @class.SpecializationId };
-            //return result;
-            throw new NotImplementedException();
+            SpecializationCourse specializationCourse = value as SpecializationCourse;
+            object[] result = new object[3] { specializationCourse.Specialization, specializationCourse.CourseType, specializationCourse.HasThesis };
+            return result;
         }
     }
 }

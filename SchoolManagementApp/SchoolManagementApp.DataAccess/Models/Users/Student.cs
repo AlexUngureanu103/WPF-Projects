@@ -7,20 +7,6 @@ namespace SchoolManagementApp.DataAccess.Models
 {
     public class Student : BaseEntity
     {
-        private int PersonId;
-        public int personId
-        {
-            get { return PersonId; }
-            set { PersonId = value; NotifyPropertyChanged("PersonId"); }
-        }
-
-        private Person person;
-        public Person Person
-        {
-            get { return person; }
-            set { person = value; NotifyPropertyChanged("Person"); }
-        }
-
         private int userId;
         [Required]
         public int UserId

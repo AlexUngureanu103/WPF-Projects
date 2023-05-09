@@ -46,6 +46,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -270,6 +273,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -289,6 +293,7 @@
     <Compile Include="Abstractions\ISpecializationRepository.cs" />
     <Compile Include="Abstractions\IStudentRepository.cs" />
     <Compile Include="Abstractions\IUserRepository.cs" />
+    <Compile Include="LogHelper.cs" />
     <Compile Include="Migrations\202305030545343_init.cs" />
     <Compile Include="Migrations\202305030545343_init.designer.cs">
       <DependentUpon>202305030545343_init.cs</DependentUpon>
@@ -320,6 +325,10 @@
     <Compile Include="Migrations\202305091314478_PersonMig.cs" />
     <Compile Include="Migrations\202305091314478_PersonMig.designer.cs">
       <DependentUpon>202305091314478_PersonMig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305091940255_PersonUser.cs" />
+    <Compile Include="Migrations\202305091940255_PersonUser.designer.cs">
+      <DependentUpon>202305091940255_PersonUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasePropertyChanged.cs" />
@@ -382,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305091314478_PersonMig.resx">
       <DependentUpon>202305091314478_PersonMig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305091940255_PersonUser.resx">
+      <DependentUpon>202305091940255_PersonUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

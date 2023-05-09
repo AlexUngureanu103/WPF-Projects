@@ -25,6 +25,8 @@ namespace SchoolManagementApp.DataAccess
 
         public PersonRepository Persons { get; }
 
+        private static readonly log4net.ILog log = LogHelper.GetLogger();
+
         public UnitOfWork(SchoolManagementDbContext dbContext)
         {
             this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -53,6 +55,7 @@ namespace SchoolManagementApp.DataAccess
                     + $"{exception.StackTrace}\n\n";
 
                 Console.WriteLine(errorMessage);
+                log.Error(exception.Message, exception);
             }
         }
     }

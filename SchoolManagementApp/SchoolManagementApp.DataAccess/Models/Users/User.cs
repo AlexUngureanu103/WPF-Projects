@@ -19,6 +19,20 @@ namespace SchoolManagementApp.DataAccess.Models
             set { role = value; NotifyPropertyChanged("Role"); }
         }
 
+        private int? PersonId;
+        public int? personId
+        {
+            get { return PersonId; }
+            set { PersonId = value; NotifyPropertyChanged("PersonId"); }
+        }
+
+        private Person person;
+        public Person Person
+        {
+            get { return person; }
+            set { person = value; NotifyPropertyChanged("Person"); }
+        }
+
         private string email;
         [Required]
         [EmailAddress]

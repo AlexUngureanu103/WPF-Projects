@@ -25,6 +25,7 @@
                 <MenuItem Header="Specializations" Click="ManageSpecializations_Click"/>
                 <MenuItem Header="Courses" Click="ManageCourses_Click"/>
                 <MenuItem Header="Specialization Course" Click="Specialization_Course_Click"/>
+                <MenuItem Header="Person" Click="Person_Click"/>
             </MenuItem>
             <MenuItem Header="Logout" Click="Logout_Click"/>
         </Menu>
