@@ -1,5 +1,4 @@
 ﻿using SchoolManagementApp.DataAccess.Models.StudentRelated;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,22 +6,18 @@ namespace SchoolManagementApp.DataAccess.Models
 {
     public class Teacher : BaseEntity
     {
-        private string firstName;
-        [Required]
-        [MaxLength(50)]
-        public string FirstName
+        private int PersonId;
+        public int personId
         {
-            get { return firstName; }
-            set { firstName = value; NotifyPropertyChanged("FirstName"); }
+            get { return PersonId; }
+            set { PersonId = value; NotifyPropertyChanged("PersonId"); }
         }
 
-        private string lastName;
-        [Required]
-        [MaxLength(50)]
-        public string LastName
+        private Person person;
+        public Person Person
         {
-            get { return lastName; }
-            set { lastName = value; NotifyPropertyChanged("LastName"); }
+            get { return person; }
+            set { person = value; NotifyPropertyChanged("Person"); }
         }
 
         private int userId;
@@ -38,14 +33,6 @@ namespace SchoolManagementApp.DataAccess.Models
         {
             get { return user; }
             set { user = value; NotifyPropertyChanged("User"); }
-        }
-
-        private DateTime dateOfBirth;
-        [Required]
-        public DateTime DateOfBirth
-        {
-            get { return dateOfBirth; }
-            set { dateOfBirth = value; NotifyPropertyChanged("DateOfBirth"); }
         }
 
         private List<CourseClass> teachingClasses;

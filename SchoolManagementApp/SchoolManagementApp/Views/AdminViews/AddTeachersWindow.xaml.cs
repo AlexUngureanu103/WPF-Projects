@@ -1,5 +1,7 @@
 ﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.DataAccess.Repositories;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SchoolManagementApp.Views.AdminViews
@@ -18,6 +20,16 @@ namespace SchoolManagementApp.Views.AdminViews
             this.AdminControl = AdminControl ?? throw new ArgumentNullException(nameof(AdminControl));
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             InitializeComponent();
+            PersonRepository personRepository = new PersonRepository(dbContext);
+            var result = personRepository.GetAll();
+            string str = string.Empty;
+
+            foreach (var person in result)
+            {
+                str += $"{person.FirstName}  {person.LastName}  {person.Address}  {person.Id} \n";
+            }
+
+            MessageBox.Show(str, "Info");
         }
     }
 }
