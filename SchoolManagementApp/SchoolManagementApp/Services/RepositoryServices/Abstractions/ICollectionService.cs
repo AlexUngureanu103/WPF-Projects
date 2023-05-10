@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.Services.RepositoryServices.Abstractions
 {
-    internal interface ICollectionService<T>
+    public interface ICollectionService<T>
     {
         ObservableCollection<T> GetAll();
 

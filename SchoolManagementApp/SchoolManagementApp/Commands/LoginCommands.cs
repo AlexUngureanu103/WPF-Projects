@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace SchoolManagementApp.Commands
 {
-    internal class LoginCommands
+    public class LoginCommands
     {
         private readonly IUserRepository _userRepository;
 

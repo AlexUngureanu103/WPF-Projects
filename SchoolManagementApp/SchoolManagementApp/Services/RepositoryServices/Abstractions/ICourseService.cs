@@ -1,9 +1,12 @@
 ﻿using SchoolManagementApp.DataAccess.Models;
+using System.Collections.ObjectModel;
 
 namespace SchoolManagementApp.Services.RepositoryServices.Abstractions
 {
-    internal interface ICourseService : ICollectionService<CourseType>
+    public interface ICourseService : ICollectionService<CourseType>
     {
+        ObservableCollection<CourseType> CourseList { get; set; }
+        
         bool EntityAlreadyExists(CourseType courseType);
     }
 }

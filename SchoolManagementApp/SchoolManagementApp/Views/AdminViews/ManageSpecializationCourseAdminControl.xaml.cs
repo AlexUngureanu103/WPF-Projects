@@ -22,13 +22,11 @@ namespace SchoolManagementApp.Views.AdminViews
     /// </summary>
     public partial class ManageSpecializationCourseAdminControl : UserControl
     {
-        private readonly SchoolManagementDbContext _dbContext;
-
         private readonly ManageSpecializationCourseVM manageSpecializationCourseVM;
-        public ManageSpecializationCourseAdminControl(SchoolManagementDbContext dbContext)
+
+        public ManageSpecializationCourseAdminControl(ManageSpecializationCourseVM manageSpecializationCourseVM)
         {
-            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            manageSpecializationCourseVM = new ManageSpecializationCourseVM(dbContext);
+            manageSpecializationCourseVM = manageSpecializationCourseVM ?? throw new ArgumentNullException(nameof(manageSpecializationCourseVM));
             InitializeComponent();
 
             DataContext = manageSpecializationCourseVM;

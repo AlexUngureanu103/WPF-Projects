@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using SchoolManagementApp.Commands;
 using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Abstractions;
 using SchoolManagementApp.DataAccess.Repositories;
@@ -36,8 +37,9 @@ namespace SchoolManagementApp.Services
             RegisterMainUsersPage(builder);
             RegisterAdminControls(builder);
             RegisterWindows(builder);
+            RegisterCommands(builder);
 
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().SingleInstance();
+            builder.RegisterType<UnitOfWork>().AsSelf().SingleInstance();
             string connectionString = ConfigurationManager.ConnectionStrings["SchoolManagement"].ConnectionString;
             builder.Register(ctx => new SchoolManagementDbContext(connectionString)).AsSelf().SingleInstance();
             builder.Register(ctx => LogHelper.GetLogger()).As<log4net.ILog>();
@@ -75,26 +77,26 @@ namespace SchoolManagementApp.Services
 
         private static void RegisterMainUsersPage(ContainerBuilder builder)
         {
-            builder.RegisterType<TeacherUserControlVM>().AsSelf();
-            builder.RegisterType<StudentUserControlVM>().AsSelf();
-            builder.RegisterType<LoginWindowVM>().AsSelf();
-            builder.RegisterType<ClassMasterUserControlVM>().AsSelf();
-            builder.RegisterType<AdminUserControlVM>().AsSelf();
+            builder.RegisterType<TeacherUserControlVM>().AsSelf().SingleInstance();
+            builder.RegisterType<StudentUserControlVM>().AsSelf().SingleInstance();
+            builder.RegisterType<LoginWindowVM>().AsSelf().SingleInstance();
+            builder.RegisterType<ClassMasterUserControlVM>().AsSelf().SingleInstance();
+            builder.RegisterType<AdminUserControlVM>().AsSelf().SingleInstance();
         }
 
         private static void RegisterAdminControls(ContainerBuilder builder)
         {
-            builder.RegisterType<ManageSpecializationCourseVM>().AsSelf();
-            builder.RegisterType<ManagePersonsVM>().AsSelf();
-            builder.RegisterType<ManageCoursesVM>().AsSelf();
-            builder.RegisterType<ManageClassesVM>().AsSelf();
+            builder.RegisterType<ManageSpecializationCourseVM>().AsSelf().SingleInstance();
+            builder.RegisterType<ManagePersonsVM>().AsSelf().SingleInstance();
+            builder.RegisterType<ManageCoursesVM>().AsSelf().SingleInstance();
+            builder.RegisterType<ManageClassesVM>().AsSelf().SingleInstance();
 
-            builder.RegisterType<ManageUsersVM>().AsSelf();
-            builder.RegisterType<AddUsersWindowVM>().AsSelf();
+            builder.RegisterType<ManageUsersVM>().AsSelf().SingleInstance();
+            builder.RegisterType<AddUsersWindowVM>().AsSelf().SingleInstance();
 
-            builder.RegisterType<ManageStudentsVM>().AsSelf();
+            builder.RegisterType<ManageStudentsVM>().AsSelf().SingleInstance();
 
-            builder.RegisterType<ManageSpecializationsVM>().AsSelf();
+            builder.RegisterType<ManageSpecializationsVM>().AsSelf().SingleInstance();
         }
 
         private static void RegisterWindows(ContainerBuilder builder)
@@ -124,6 +126,14 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<AddUsersWindow>().AsSelf();
             builder.RegisterType<AddTeachersWindow>().AsSelf();
             builder.RegisterType<AddStudentsWindow>().AsSelf();
+        }
+
+        private static void RegisterCommands(ContainerBuilder builder)
+        {
+            builder.RegisterType<DeleteStudentsCommands>().AsSelf().SingleInstance();
+            builder.RegisterType<DeleteUserCommands>().AsSelf().SingleInstance();
+            builder.RegisterType<ManageSpecializationsCommands>().AsSelf().SingleInstance();
+            builder.RegisterType<ManageUsersCommands>().AsSelf().SingleInstance();
         }
     }
 }

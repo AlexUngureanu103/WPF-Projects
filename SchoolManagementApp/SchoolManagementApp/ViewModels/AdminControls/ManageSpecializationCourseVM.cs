@@ -1,8 +1,7 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
-using SchoolManagementApp.Services.RepositoryServices;
+using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -12,23 +11,17 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 {
     public class ManageSpecializationCourseVM : BaseVM
     {
-        private readonly SchoolManagementDbContext _dbContext;
+        private readonly ICourseService courseService;
 
-        private readonly CourseService courseService;
+        private readonly ISpecializationService specializationService;
 
-        private readonly SpecializationService specializationService;
+        private readonly ISpecializationCourseService specializationCourseService;
 
-        private readonly SpecializationCourseService specializationCourseService;
-
-        private readonly UnitOfWork unitOfWork;
-
-        public ManageSpecializationCourseVM(SchoolManagementDbContext dbContext)
+        public ManageSpecializationCourseVM(ICourseService courseService , ISpecializationService specializationService , ISpecializationCourseService specializationCourseService)
         {
-            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            unitOfWork = new UnitOfWork(_dbContext);
-            courseService = new CourseService(unitOfWork);
-            specializationCourseService = new SpecializationCourseService(unitOfWork);
-            specializationService = new SpecializationService(unitOfWork);
+            this.courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
+            this.specializationService = specializationService ?? throw new ArgumentNullException(nameof(specializationService));
+            this.specializationCourseService = specializationCourseService ?? throw new ArgumentNullException(nameof(specializationCourseService));
 
             CourseList = courseService.GetAll();
             SpecializationCourseList = specializationCourseService.GetAll();

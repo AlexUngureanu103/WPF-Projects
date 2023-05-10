@@ -1,10 +1,8 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.DataAccess.Abstractions;
 using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.DataAccess.Repositories;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.Services.Validators;
-using System;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
@@ -101,17 +99,9 @@ namespace SchoolManagementApp.ViewModels
             }
         }
 
-        public readonly SchoolManagementDbContext _dbContext;
-
-        private readonly AuthorizationService authorizationService;
-
-        public LoginWindowVM(SchoolManagementDbContext dbContext)
+        public LoginWindowVM(IUserRepository userRepository, IRoleRepository roleRepository, AuthorizationService authorizationService)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            RoleRepository roleRepository = new RoleRepository(_dbContext);
-            UserRepository userRepository = new UserRepository(_dbContext);
-            AuthorizationService authorizationService = new AuthorizationService();
-            loginCommands = new LoginCommands(this, roleRepository, userRepository, authorizationService);
+            this.loginCommands = new LoginCommands(this, roleRepository, userRepository, authorizationService);
 
             LoginAsAdmin();
         }
