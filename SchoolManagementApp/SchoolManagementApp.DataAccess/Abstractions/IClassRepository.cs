@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.DataAccess.Abstractions
 {
-    internal interface IClassRepository : IRepository<Class>
+    public interface IClassRepository : IRepository<Class>
     {
     }
 }

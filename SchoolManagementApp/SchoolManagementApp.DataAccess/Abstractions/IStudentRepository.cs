@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.DataAccess.Abstractions
 {
-    internal interface IStudentRepository : IRepository<Student>
+    public interface IStudentRepository : IRepository<Student>
     {
         Student GetByUserId(int userId);
     }

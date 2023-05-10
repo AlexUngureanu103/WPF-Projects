@@ -1,8 +1,10 @@
 ﻿using SchoolManagementApp.DataAccess.Models;
+using System.Collections.ObjectModel;
 
 namespace SchoolManagementApp.Services.RepositoryServices.Abstractions
 {
-    internal interface IUserService:ICollectionService<User>
+    public interface IUserService : ICollectionService<User>
     {
+        ObservableCollection<User> UserList { get; set; }
     }
 }

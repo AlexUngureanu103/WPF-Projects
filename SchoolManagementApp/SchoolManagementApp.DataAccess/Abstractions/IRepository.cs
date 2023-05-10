@@ -1,5 +1,7 @@
 ﻿using SchoolManagementApp.DataAccess.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SchoolManagementApp.DataAccess.Abstractions
 {
@@ -16,5 +18,7 @@ namespace SchoolManagementApp.DataAccess.Abstractions
         void Delete(int entityId);
 
         void Remove(T entity);
+        
+        bool Any(Func<T, bool> expression);
     }
 }

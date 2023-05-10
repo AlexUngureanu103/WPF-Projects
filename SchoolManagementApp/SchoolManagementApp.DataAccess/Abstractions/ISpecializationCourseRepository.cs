@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.DataAccess.Abstractions
 {
-    internal interface ISpecializationCourseRepository : IRepository<SpecializationCourse>
+    public interface ISpecializationCourseRepository : IRepository<SpecializationCourse>
     {
     }
 }

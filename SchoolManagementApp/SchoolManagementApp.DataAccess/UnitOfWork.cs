@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.DataAccess.Repositories;
+﻿using SchoolManagementApp.DataAccess.Abstractions;
 using System;
 
 namespace SchoolManagementApp.DataAccess
@@ -7,38 +7,50 @@ namespace SchoolManagementApp.DataAccess
     {
         private readonly SchoolManagementDbContext _dbContext;
 
-        public StudentRepository Students { get; }
+        public IStudentRepository Students { get; }
 
-        public UserRepository Users { get; }
+        public IUserRepository Users { get; }
 
-        public SpecializationRepository Specializations { get; }
+        public ISpecializationRepository Specializations { get; }
 
-        public GradeRepository Grades { get; }
+        public IGradeRepository Grades { get; }
 
-        public ClassRepository Classes { get; }
+        public IClassRepository Classes { get; }
 
-        public RoleRepository Roles { get; }
+        public IRoleRepository Roles { get; }
 
-        public CourseRepository Courses { get; }
+        public ICourseRepository Courses { get; }
 
-        public SpecializationCourseRepository SpecializationCourse { get; }
+        public ISpecializationCourseRepository SpecializationCourse { get; }
 
-        public PersonRepository Persons { get; }
+        public IPersonRepository Persons { get; }
 
-        private static readonly log4net.ILog log = LogHelper.GetLogger();
+        private readonly log4net.ILog log;
 
-        public UnitOfWork(SchoolManagementDbContext dbContext)
+        public UnitOfWork(SchoolManagementDbContext dbContext,
+            IStudentRepository studentRepository,
+            IUserRepository userRepository,
+            ISpecializationRepository specializationRepository,
+            IGradeRepository gradeRepository,
+            IClassRepository classRepository,
+            IRoleRepository roleRepository,
+            ICourseRepository courseRepository,
+            ISpecializationCourseRepository specializationCourseRepository,
+            IPersonRepository personRepository,
+            log4net.ILog log
+            )
         {
             this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            Students = new StudentRepository(_dbContext);
-            Users = new UserRepository(_dbContext);
-            Specializations = new SpecializationRepository(_dbContext);
-            Grades = new GradeRepository(_dbContext);
-            Classes = new ClassRepository(_dbContext);
-            Roles = new RoleRepository(_dbContext);
-            Courses = new CourseRepository(_dbContext);
-            SpecializationCourse = new SpecializationCourseRepository(_dbContext);
-            Persons = new PersonRepository(_dbContext);
+            this.Students = studentRepository ?? throw new ArgumentNullException(nameof(studentRepository));
+            this.Users = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            this.Specializations = specializationRepository ?? throw new ArgumentNullException(nameof(specializationRepository));
+            this.Grades = gradeRepository ?? throw new ArgumentNullException(nameof(gradeRepository));
+            this.Classes = classRepository ?? throw new ArgumentNullException(nameof(classRepository));
+            this.Roles = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
+            this.Courses = courseRepository ?? throw new ArgumentNullException(nameof(courseRepository));
+            this.SpecializationCourse = specializationCourseRepository ?? throw new ArgumentNullException(nameof(specializationCourseRepository));
+            this.Persons = personRepository ?? throw new ArgumentNullException(nameof(personRepository));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         public void SaveChanges()
