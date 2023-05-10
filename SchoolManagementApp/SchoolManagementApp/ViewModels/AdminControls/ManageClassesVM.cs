@@ -1,8 +1,6 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
-using SchoolManagementApp.Services.RepositoryServices;
+using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -10,20 +8,16 @@ using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels.AdminControls
 {
-    internal class ManageClassesVM : BaseVM
+    public class ManageClassesVM : BaseVM
     {
-        private readonly SchoolManagementDbContext _dbContext;
+        public readonly ISpecializationService _specializationService;
 
-        public readonly SpecializationService specializationService;
+        private readonly IClassService _classService;
 
-        private readonly ClassService classService;
-
-        public ManageClassesVM(SchoolManagementDbContext dbContext)
+        public ManageClassesVM(IClassService classService, ISpecializationService specializationService)
         {
-            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            var unitOfWork = new UnitOfWork(dbContext);
-            specializationService = new SpecializationService(unitOfWork);
-            classService = new ClassService(unitOfWork);
+            this._classService = classService ?? throw new ArgumentNullException(nameof(classService));
+            this._specializationService = specializationService ?? throw new ArgumentNullException(nameof(specializationService));
 
             ClassList = classService.GetAll();
             SpecializationList = specializationService.GetAll();
@@ -31,14 +25,14 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
         public ObservableCollection<Class> ClassList
         {
-            get => classService.ClassList;
-            set => classService.ClassList = value;
+            get => _classService.ClassList;
+            set => _classService.ClassList = value;
         }
 
         public ObservableCollection<Specialization> SpecializationList
         {
-            get => specializationService.SpecializationList;
-            set => specializationService.SpecializationList = value;
+            get => _specializationService.SpecializationList;
+            set => _specializationService.SpecializationList = value;
         }
 
         private Class selectedClass;
@@ -59,7 +53,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Class>(classService.Add, param => selectedClass == null);
+                    addCommand = new RelayCommands<Class>(_classService.Add, param => selectedClass == null);
                 }
                 return addCommand;
             }
@@ -72,7 +66,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Class>(classService.Edit, param => selectedClass != null);
+                    updateCommand = new RelayCommands<Class>(_classService.Edit, param => selectedClass != null);
                 }
                 return updateCommand;
             }
@@ -85,7 +79,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Class>(classService.Remove, param => selectedClass != null);
+                    deleteCommand = new RelayCommands<Class>(_classService.Remove, param => selectedClass != null);
                 }
                 return deleteCommand;
             }
@@ -106,7 +100,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
         private void Clear()
         {
-            selectedClass = null;
+            SelectedClass = null;
         }
     }
 }

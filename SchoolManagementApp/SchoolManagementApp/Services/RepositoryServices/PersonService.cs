@@ -40,12 +40,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return false;
             }
 
-            var hasNameConflicts = unitOfWork.Persons.Any(p => p.FirstName == person.FirstName && p.LastName == person.LastName);
-            if (hasNameConflicts)
-            {
-                errorMessage = $"Person with name: {person.FirstName}  {person.LastName} already exists";
-                return false;
-            }
+            //var hasNameConflicts = unitOfWork.Persons.Any(p => p.FirstName == person.FirstName && p.LastName == person.LastName);
+            //if (hasNameConflicts)
+            //{
+            //    errorMessage = $"Person with name: {person.FirstName}  {person.LastName} already exists";
+            //    return false;
+            //}
 
             return true;
         }

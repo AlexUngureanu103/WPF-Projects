@@ -1,7 +1,6 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.Services.RepositoryServices;
+using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -9,27 +8,21 @@ using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels.AdminControls
 {
-    internal class ManagePersonsVM : BaseVM
+    public class ManagePersonsVM : BaseVM
     {
-        private readonly SchoolManagementDbContext _dbContext;
+        private readonly IPersonService _personService;
 
-        private readonly PersonService personService;
-
-        private readonly UnitOfWork unitOfWork;
-
-        public ManagePersonsVM(SchoolManagementDbContext dbContext)
+        public ManagePersonsVM(IPersonService personService)
         {
-            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            unitOfWork = new UnitOfWork(_dbContext);
-            personService = new PersonService(unitOfWork);
+            this._personService = personService ?? throw new ArgumentNullException(nameof(personService));
 
             PersonList = personService.GetAll();
         }
 
         public ObservableCollection<Person> PersonList
         {
-            get => personService.PersonList;
-            set => personService.PersonList = value;
+            get => _personService.PersonList;
+            set => _personService.PersonList = value;
         }
 
         private Person selectedPerson;
@@ -50,7 +43,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Person>(personService.Add, param => selectedPerson == null);
+                    addCommand = new RelayCommands<Person>(_personService.Add, param => selectedPerson == null);
                 }
                 return addCommand;
             }
@@ -63,7 +56,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Person>(personService.Edit, param => selectedPerson != null);
+                    updateCommand = new RelayCommands<Person>(_personService.Edit, param => selectedPerson != null);
                 }
                 return updateCommand;
             }
@@ -76,7 +69,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Person>(personService.Remove, param => selectedPerson != null);
+                    deleteCommand = new RelayCommands<Person>(_personService.Remove, param => selectedPerson != null);
                 }
                 return deleteCommand;
             }

@@ -14,18 +14,13 @@ namespace SchoolManagementApp.Views
     {
         private readonly Frame WindowContainer;
 
-        private AdminUserControlVM AdminUserControlVM;
-
         private readonly IUserControlFactory _userControlFactory;
 
-        public AdminUserControl(Frame windowContainer, IUserControlFactory userControlFactory, AdminUserControlVM adminUserControlVM)
+        public AdminUserControl(Frame windowContainer, IUserControlFactory userControlFactory)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             _userControlFactory = userControlFactory ?? throw new ArgumentNullException(nameof(userControlFactory));
-            AdminUserControlVM = adminUserControlVM ?? throw new ArgumentNullException(nameof(adminUserControlVM));
             InitializeComponent();
-
-            DataContext = AdminUserControlVM;
         }
 
         private void ManageUsers_Click(object sender, RoutedEventArgs e)

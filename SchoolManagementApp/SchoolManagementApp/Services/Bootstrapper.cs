@@ -50,16 +50,16 @@ namespace SchoolManagementApp.Services
         }
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder.RegisterType<ClassService>().As<IClassService>().SingleInstance();
-            builder.RegisterType<CourseService>().As<ICourseService>().SingleInstance();
-            builder.RegisterType<GradeService>().As<IGradeService>().SingleInstance();
-            builder.RegisterType<PersonService>().As<IPersonService>().SingleInstance();
-            builder.RegisterType<SpecializationCourseService>().As<ISpecializationCourseService>().SingleInstance();
-            builder.RegisterType<SpecializationService>().As<ISpecializationService>().SingleInstance();
-            builder.RegisterType<StudentService>().As<IStudentService>().SingleInstance();
-            builder.RegisterType<UserService>().As<IUserService>().SingleInstance();
+            builder.RegisterType<ClassService>().As<IClassService>();
+            builder.RegisterType<CourseService>().As<ICourseService>();
+            builder.RegisterType<GradeService>().As<IGradeService>();
+            builder.RegisterType<PersonService>().As<IPersonService>();
+            builder.RegisterType<SpecializationCourseService>().As<ISpecializationCourseService>();
+            builder.RegisterType<SpecializationService>().As<ISpecializationService>();
+            builder.RegisterType<StudentService>().As<IStudentService>();
+            builder.RegisterType<UserService>().As<IUserService>();
 
-            builder.RegisterType<AuthorizationService>().AsSelf().SingleInstance();
+            builder.RegisterType<AuthorizationService>().AsSelf();
         }
 
         private static void RegisterRepositories(ContainerBuilder builder)
@@ -81,7 +81,6 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<StudentUserControlVM>().AsSelf().SingleInstance();
             builder.RegisterType<LoginWindowVM>().AsSelf().SingleInstance();
             builder.RegisterType<ClassMasterUserControlVM>().AsSelf().SingleInstance();
-            builder.RegisterType<AdminUserControlVM>().AsSelf().SingleInstance();
         }
 
         private static void RegisterAdminControls(ContainerBuilder builder)

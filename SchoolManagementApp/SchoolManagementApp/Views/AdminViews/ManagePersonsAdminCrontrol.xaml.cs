@@ -1,5 +1,4 @@
-﻿using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.ViewModels.AdminControls;
+﻿using SchoolManagementApp.ViewModels.AdminControls;
 using System;
 using System.Windows.Controls;
 
@@ -10,13 +9,11 @@ namespace SchoolManagementApp.Views.AdminViews
     /// </summary>
     public partial class ManagePersonsAdminCrontrol : UserControl
     {
-        private readonly SchoolManagementDbContext _dbContext;
-
         private readonly ManagePersonsVM managePersonsVM;
-        public ManagePersonsAdminCrontrol(SchoolManagementDbContext dbContext)
+
+        public ManagePersonsAdminCrontrol(ManagePersonsVM managePersonsVM)
         {
-            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            managePersonsVM = new ManagePersonsVM(_dbContext);
+            this.managePersonsVM = managePersonsVM ?? throw new ArgumentNullException(nameof(managePersonsVM));
             InitializeComponent();
 
             this.DataContext = managePersonsVM;
