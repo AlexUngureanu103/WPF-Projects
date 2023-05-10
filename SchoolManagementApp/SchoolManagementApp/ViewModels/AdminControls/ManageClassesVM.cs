@@ -16,11 +16,11 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
         public ManageClassesVM(IClassService classService, ISpecializationService specializationService)
         {
-            this._classService = classService ?? throw new ArgumentNullException(nameof(classService));
-            this._specializationService = specializationService ?? throw new ArgumentNullException(nameof(specializationService));
+            _classService = classService ?? throw new ArgumentNullException(nameof(classService));
+            _specializationService = specializationService ?? throw new ArgumentNullException(nameof(specializationService));
 
-            ClassList = classService.GetAll();
-            SpecializationList = specializationService.GetAll();
+            ClassList = _classService.GetAll();
+            SpecializationList = _specializationService.GetAll();
         }
 
         public ObservableCollection<Class> ClassList

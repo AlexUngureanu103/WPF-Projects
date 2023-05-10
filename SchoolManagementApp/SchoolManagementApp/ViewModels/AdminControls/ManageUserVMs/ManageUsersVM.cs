@@ -1,7 +1,7 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.DataAccess.Abstractions;
 using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.DataAccess.Repositories;
+using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -11,21 +11,35 @@ namespace SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs
 {
     public class ManageUsersVM : BaseVM
     {
-        private readonly SchoolManagementDbContext _dbContext;
+        private readonly IUserService _userService;
 
-        private readonly UserRepository userRepository;
+        private readonly IPersonService _personService;
 
-        private readonly DeleteUserCommands deleteUsersCommands;
+        private readonly IRoleRepository _roleRepository;
 
-        private ObservableCollection<User> _users;
-        public ObservableCollection<User> Users
+        public ManageUsersVM(IUserService userService, IPersonService personService, IRoleRepository roleRepository)
         {
-            get { return _users; }
-            set
-            {
-                _users = value;
-                OnPropertyChanged();
-            }
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _personService = personService ?? throw new ArgumentNullException(nameof(personService));
+            _roleRepository = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
+
+            UserList = _userService.GetAll();
+            PersonList = _personService.GetAll();
+            RoleList = new ObservableCollection<Role>(_roleRepository.GetAll());
+        }
+
+        public ObservableCollection<Role> RoleList { get; }
+
+        public ObservableCollection<User> UserList
+        {
+            get => _userService.UserList;
+            set => _userService.UserList = value;
+        }
+
+        public ObservableCollection<Person> PersonList
+        {
+            get => _personService.PersonList;
+            set => _personService.PersonList = value;
         }
 
         private User selectedUser;
@@ -35,62 +49,65 @@ namespace SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs
             set
             {
                 selectedUser = value;
-                if (selectedUser != null)
-                {
-                    CanEditUser = true;
-                }
-                else
-                {
-                    CanEditUser = false;
-                }
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedUser));
             }
         }
 
-        private ICommand deleteUser;
-        public ICommand DeleteUser
+        private ICommand addCommand;
+        public ICommand AddCommand
         {
             get
             {
-                if (deleteUser == null)
+                if (addCommand == null)
                 {
-                    deleteUser = new RelayCommand(deleteUsersCommands.DeleteUserCommand, param => SelectedUser != null);
+                    addCommand = new RelayCommands<User>(_userService.Add, param => selectedUser == null);
                 }
-                return deleteUser;
+                return addCommand;
             }
         }
 
-        private ICommand sortById;
-        public ICommand SortById
+        private ICommand updateCommand;
+        public ICommand UpdateCommand
         {
             get
             {
-                if (sortById == null)
+                if (updateCommand == null)
                 {
-                    sortById = new RelayCommand(deleteUsersCommands.SortEntitiesById, param => true);
+                    updateCommand = new RelayCommands<User>(_userService.Edit, param => selectedUser != null);
                 }
-                return sortById;
+                return updateCommand;
             }
         }
 
-        private bool canEditUser;
-        public bool CanEditUser
+        private ICommand deleteCommand;
+        public ICommand DeleteCommand
         {
-            get { return canEditUser; }
-            set
+            get
             {
-                canEditUser = value;
-                OnPropertyChanged();
+                if (deleteCommand == null)
+                {
+                    deleteCommand = new RelayCommands<User>(_userService.Remove, param => selectedUser != null);
+                }
+                return deleteCommand;
             }
         }
 
-
-        public ManageUsersVM(SchoolManagementDbContext dbContext)
+        private ICommand clearCommand;
+        public ICommand ClearCommand
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            userRepository = new UserRepository(_dbContext);
-            deleteUsersCommands = new DeleteUserCommands(this, userRepository);
-            Users = new ObservableCollection<User>(userRepository.GetAll());
+            get
+            {
+                if (clearCommand == null)
+                {
+                    clearCommand = new RelayCommand(Clear, param => selectedUser != null);
+                }
+                return clearCommand;
+            }
+        }
+
+        private void Clear()
+        {
+            SelectedUser = null;
         }
     }
 }

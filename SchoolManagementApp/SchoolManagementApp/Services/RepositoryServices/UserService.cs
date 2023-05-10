@@ -22,6 +22,11 @@ namespace SchoolManagementApp.Services.RepositoryServices
         public ObservableCollection<User> GetAll()
         {
             var users = unitOfWork.Users.GetAll();
+            foreach (User user in users)
+            {
+                if (user.personId != null)
+                    user.Person = unitOfWork.Persons.GetById((int)user.personId);
+            }
 
             return new ObservableCollection<User>(users);
         }
@@ -34,18 +39,21 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return false;
             }
 
-            var hasEmailConflicts = unitOfWork.Users.Any(c => c.Email == user.Email);
+            var hasEmailConflicts = unitOfWork.Users.Any(c => c.Email == user.Email && c.Id != user.Id);
             if (hasEmailConflicts)
             {
                 errorMessage = "Email already exists";
                 return false;
             }
 
-            Person person = unitOfWork.Persons.GetById((int)user.personId);
-            if (person == null)
+            if (user.personId != null)
             {
-                errorMessage = "Invalid personId";
-                return false;
+                Person person = unitOfWork.Persons.GetById((int)user.personId);
+                if (person == null)
+                {
+                    errorMessage = "Invalid personId";
+                    return false;
+                }
             }
 
             return true;
@@ -72,6 +80,10 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             if (!ValidateUser(user)) return;
 
+            if (user.personId == null && user.Person != null)
+            {
+                user.personId = user.Person.Id;
+            }
             unitOfWork.Users.Update(user);
             unitOfWork.SaveChanges();
         }

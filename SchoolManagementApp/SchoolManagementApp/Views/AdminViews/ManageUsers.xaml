@@ -3,47 +3,75 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:convert ="clr-namespace:SchoolManagementApp.Converters"
              xmlns:local="clr-namespace:SchoolManagementApp.Views.AdminViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="5"/>
-        </Grid.RowDefinitions>
-        <Label Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Content="Manage Users" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
-        <Button Grid.Row="2" Grid.Column="1" x:Name="AddUsers" Content="Add User" Margin="5" MaxHeight="50" MaxWidth="100" Click="AddUsers_Click"/>
-        <Button Grid.Row="2" Grid.Column="2" x:Name="EditUser" Content="Edit User" Margin="5" MaxHeight="50" MaxWidth="100" Click="EditUser_Click" IsEnabled="{Binding CanEditUser}"/>
-        <Button Grid.Row="2" Grid.Column="3" x:Name="DeleteUser" Content="Delete User" Margin="5" MaxHeight="50" MaxWidth="100" Command="{Binding DeleteUser}"/>
-
-        <DataGrid Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" AutoGenerateColumns="False" Margin="10" ItemsSource="{Binding Users}"  SelectedItem="{Binding SelectedUser}">
+    <StackPanel>
+        <StackPanel.Resources>
+            <convert:UserConvert x:Key="userConvert" />
+        </StackPanel.Resources>
+        <WrapPanel>
+            <Button Content="Add" Margin="15" Width="100" Height="30" 
+                    Command="{Binding AddCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource userConvert}">
+                        <Binding ElementName="Role" Path="SelectedValue"/>
+                        <Binding ElementName="Person" Path="SelectedValue" />
+                        <Binding ElementName="txtEmail" Path="Text" />
+                        <Binding ElementName="txtPassword" Path="Text" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="Edit" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}"
+                    CommandParameter="{Binding ElementName=UserGrid, Path=SelectedItem}"/>
+            <Button Content="Delete" Margin="15" Width="100" Height="30" Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding ElementName=UserGrid, Path=SelectedItem}"/>
+            <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
+        </WrapPanel>
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" FontSize="15">Email:</Label>
+            <TextBox Name="txtEmail" Width="200" Text ="{Binding ElementName=UserGrid, 
+                Path=SelectedItem.Email, UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel> 
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" FontSize="15">Password:</Label>
+            <TextBox Name="txtPassword" Width="200" Text ="{Binding ElementName=UserGrid, 
+                Path=SelectedItem.PasswordHash, UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" FontSize="15">Role :</Label>
+            <ComboBox Name="Role" Width="200" ItemsSource="{Binding RoleList}" 
+                      DisplayMemberPath="AssignedRole" SelectedItem="{Binding ElementName=UserGrid ,Path=SelectedItem.Role , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" FontSize="15">Person :</Label>
+            <ComboBox Name="Person" Width="200" ItemsSource="{Binding PersonList}" 
+                      SelectedItem="{Binding ElementName=UserGrid ,Path=SelectedItem.Person , UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                    <Binding Path="Id"/>
+                                    <Binding Path="FirstName"/>
+                                    <Binding Path="LastName"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </WrapPanel>
+        <DataGrid Name="UserGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                  ItemsSource="{Binding UserList}" SelectedItem="{Binding SelectedUser, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="auto" Header="Id"  Binding="{Binding Id}"/>
-                <DataGridTextColumn  Width="auto" Header="Email"  Binding="{Binding Email}"/>
-
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Role" Binding="{Binding Role.AssignedRole}"/>
+                <DataGridTextColumn Header="PersonId" Binding="{Binding personId}"/>
+                <DataGridTextColumn Header="First Name" Binding="{Binding Person.FirstName}"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding Person.LastName}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Frame Grid.Row="3" Grid.RowSpan="7" Grid.Column="3" Grid.ColumnSpan="5" x:Name="ManageUsersFrame"/>
-    </Grid>
+    </StackPanel>
 </UserControl>

@@ -91,7 +91,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageClassesVM>().AsSelf().SingleInstance();
 
             builder.RegisterType<ManageUsersVM>().AsSelf().SingleInstance();
-            builder.RegisterType<AddUsersWindowVM>().AsSelf().SingleInstance();
+            //builder.RegisterType<AddUsersWindowVM>().AsSelf().SingleInstance();
 
             builder.RegisterType<ManageStudentsVM>().AsSelf().SingleInstance();
 
@@ -130,9 +130,9 @@ namespace SchoolManagementApp.Services
         private static void RegisterCommands(ContainerBuilder builder)
         {
             builder.RegisterType<DeleteStudentsCommands>().AsSelf().SingleInstance();
-            builder.RegisterType<DeleteUserCommands>().AsSelf().SingleInstance();
+            //builder.RegisterType<DeleteUserCommands>().AsSelf().SingleInstance();
             builder.RegisterType<ManageSpecializationsCommands>().AsSelf().SingleInstance();
-            builder.RegisterType<ManageUsersCommands>().AsSelf().SingleInstance();
+            //builder.RegisterType<ManageUsersCommands>().AsSelf().SingleInstance();
         }
     }
 }

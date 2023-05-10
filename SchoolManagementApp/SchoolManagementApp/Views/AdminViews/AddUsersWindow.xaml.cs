@@ -15,7 +15,7 @@ namespace SchoolManagementApp.Views.AdminViews
 
         private readonly SchoolManagementDbContext _dbContext;
 
-        private readonly AddUsersWindowVM _addUsersWindowVM;
+        //private readonly AddUsersWindowVM _addUsersWindowVM;
 
         private readonly ManageUsersVM manageUsersVM;
 
@@ -26,9 +26,9 @@ namespace SchoolManagementApp.Views.AdminViews
             this.manageUsersVM = manageUsersVM ?? throw new ArgumentNullException(nameof(manageUsersVM));
             InitializeComponent();
 
-            _addUsersWindowVM = new AddUsersWindowVM(_dbContext, manageUsersVM, selectedUser);
+            //_addUsersWindowVM = new AddUsersWindowVM(_dbContext, manageUsersVM, selectedUser);
 
-            DataContext = _addUsersWindowVM;
+            //DataContext = _addUsersWindowVM;
         }
     }
 }
