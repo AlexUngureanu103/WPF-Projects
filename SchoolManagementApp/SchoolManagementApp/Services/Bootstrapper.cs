@@ -8,7 +8,6 @@ using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminControls;
 using SchoolManagementApp.ViewModels.AdminControls.ManageSpecializationVMs;
-using SchoolManagementApp.ViewModels.AdminControls.ManageStudentVMs;
 using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
 using SchoolManagementApp.Views.AdminViews.ManageStudentsViews;
@@ -126,7 +125,7 @@ namespace SchoolManagementApp.Services
 
         private static void RegisterCommands(ContainerBuilder builder)
         {
-            builder.RegisterType<DeleteStudentsCommands>().AsSelf().SingleInstance();
+            //builder.RegisterType<DeleteStudentsCommands>().AsSelf().SingleInstance();
             builder.RegisterType<ManageSpecializationsCommands>().AsSelf().SingleInstance();
         }
     }

@@ -1,8 +1,11 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models;
+using SchoolManagementApp.DataAccess.Models.StudentRelated;
 using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
@@ -45,6 +48,15 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 errorMessage = "User not found";
                 return false;
             }
+
+            if (student.UserId != null)
+            {
+                if (StudentList.Any(c => c.UserId == student.UserId && c.Id != student.Id))
+                {
+                    errorMessage = $"User id: {student.UserId} is already linked to naother user";
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -52,6 +64,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
         {
             if (!ValidateStudent(student))
                 return;
+
+            student.Grades = new List<Grade>();
 
             unitOfWork.Students.Add(student);
             StudentList.Add(student);
@@ -86,6 +100,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             }
 
             unitOfWork.Students.Remove(student);
+            StudentList.Remove(student);
             unitOfWork.SaveChanges();
         }
     }

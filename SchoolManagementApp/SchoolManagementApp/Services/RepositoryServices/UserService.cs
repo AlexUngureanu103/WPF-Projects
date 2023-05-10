@@ -36,6 +36,30 @@ namespace SchoolManagementApp.Services.RepositoryServices
             return new ObservableCollection<User>(users);
         }
 
+        public ObservableCollection<User> GetAllComplete()
+        {
+            var users = unitOfWork.Users.GetAll();
+            foreach (User user in users)
+            {
+                if (user.personId != null)
+                    user.Person = unitOfWork.Persons.GetById((int)user.personId);
+            }
+
+            return new ObservableCollection<User>(users);
+        }
+
+        public ObservableCollection<User> GetUsersByRole(int roleId)
+        {
+            var users = unitOfWork.Users.GetAll().Where(c => c.RoleId == roleId);
+            foreach (User user in users)
+            {
+                if (user.personId != null)
+                    user.Person = unitOfWork.Persons.GetById((int)user.personId);
+            }
+
+            return new ObservableCollection<User>(users);
+        }
+
         private bool ValidateUser(User user)
         {
             if (user == null)
@@ -65,9 +89,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
                     errorMessage = "Invalid personId";
                     return false;
                 }
-                if (UserList.Any(c => c.personId == user.personId && c.personId != user.personId))
+                if (UserList.Any(c => c.personId == user.personId && c.Id != user.Id))
                 {
-                    errorMessage = "Person is already linked to another user";
+                    errorMessage = $"Person id: {user.personId} is already linked to another user";
                     return false;
                 }
             }

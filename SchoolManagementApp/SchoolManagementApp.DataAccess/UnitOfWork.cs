@@ -1,5 +1,6 @@
 ﻿using SchoolManagementApp.DataAccess.Abstractions;
 using System;
+using System.Data.Entity.Validation;
 
 namespace SchoolManagementApp.DataAccess
 {
@@ -58,6 +59,17 @@ namespace SchoolManagementApp.DataAccess
             try
             {
                 _dbContext.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                // Iterate over the validation errors
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        log.Error($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
+                }
             }
             catch (Exception exception)
             {

@@ -304,6 +304,7 @@
     <Compile Include="Converters\CourseConvert.cs" />
     <Compile Include="Converters\PersonConvert.cs" />
     <Compile Include="Converters\SpecializationCourseConvert.cs" />
+    <Compile Include="Converters\StudentConvert.cs" />
     <Compile Include="Converters\UserConvert.cs" />
     <Compile Include="Enums\AddOrEdit.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
@@ -338,7 +339,7 @@
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageStudentVMs\ManageStudentsVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageStudentsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageUsersVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
