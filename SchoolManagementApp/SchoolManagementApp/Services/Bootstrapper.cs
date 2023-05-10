@@ -125,7 +125,6 @@ namespace SchoolManagementApp.Services
 
         private static void RegisterCommands(ContainerBuilder builder)
         {
-            //builder.RegisterType<DeleteStudentsCommands>().AsSelf().SingleInstance();
             builder.RegisterType<ManageSpecializationsCommands>().AsSelf().SingleInstance();
         }
     }
