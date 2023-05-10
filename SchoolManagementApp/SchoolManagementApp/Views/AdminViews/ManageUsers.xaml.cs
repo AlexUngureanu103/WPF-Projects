@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs;
+﻿using SchoolManagementApp.ViewModels.AdminControls;
 using System;
 using System.Windows.Controls;
 
@@ -14,7 +14,7 @@ namespace SchoolManagementApp.Views.AdminViews
         public ManageUsers(ManageUsersVM manageUsersVM)
         {
             this.manageUsersVM = manageUsersVM ?? throw new ArgumentNullException(nameof(manageUsersVM));
-            
+
             InitializeComponent();
 
             DataContext = manageUsersVM;

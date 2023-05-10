@@ -1,7 +1,6 @@
 ﻿using SchoolManagementApp.DataAccess.Abstractions;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels.AdminControls.ManageStudentVMs;
-using SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs;
 using System;
 using System.Windows;
 

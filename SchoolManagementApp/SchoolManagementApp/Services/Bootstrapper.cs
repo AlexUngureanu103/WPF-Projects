@@ -9,7 +9,6 @@ using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminControls;
 using SchoolManagementApp.ViewModels.AdminControls.ManageSpecializationVMs;
 using SchoolManagementApp.ViewModels.AdminControls.ManageStudentVMs;
-using SchoolManagementApp.ViewModels.AdminControls.ManageUserVMs;
 using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
 using SchoolManagementApp.Views.AdminViews.ManageStudentsViews;
@@ -91,7 +90,6 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageClassesVM>().AsSelf().SingleInstance();
 
             builder.RegisterType<ManageUsersVM>().AsSelf().SingleInstance();
-            //builder.RegisterType<AddUsersWindowVM>().AsSelf().SingleInstance();
 
             builder.RegisterType<ManageStudentsVM>().AsSelf().SingleInstance();
 
@@ -122,7 +120,6 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageCoursesAdminControl>().AsSelf();
             builder.RegisterType<ManageClasses>().AsSelf();
 
-            builder.RegisterType<AddUsersWindow>().AsSelf();
             builder.RegisterType<AddTeachersWindow>().AsSelf();
             builder.RegisterType<AddStudentsWindow>().AsSelf();
         }
@@ -130,9 +127,7 @@ namespace SchoolManagementApp.Services
         private static void RegisterCommands(ContainerBuilder builder)
         {
             builder.RegisterType<DeleteStudentsCommands>().AsSelf().SingleInstance();
-            //builder.RegisterType<DeleteUserCommands>().AsSelf().SingleInstance();
             builder.RegisterType<ManageSpecializationsCommands>().AsSelf().SingleInstance();
-            //builder.RegisterType<ManageUsersCommands>().AsSelf().SingleInstance();
         }
     }
 }

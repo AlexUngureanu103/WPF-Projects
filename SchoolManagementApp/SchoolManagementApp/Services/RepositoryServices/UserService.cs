@@ -3,6 +3,7 @@ using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
@@ -10,13 +11,16 @@ namespace SchoolManagementApp.Services.RepositoryServices
     {
         private readonly UnitOfWork unitOfWork;
 
+        private readonly AuthorizationService authorizationService;
+
         public ObservableCollection<User> UserList { get; set; }
 
         private string errorMessage;
 
-        public UserService(UnitOfWork unitOfWork)
+        public UserService(UnitOfWork unitOfWork, AuthorizationService authorizationService)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.authorizationService = authorizationService ?? throw new ArgumentNullException(nameof(authorizationService));
         }
 
         public ObservableCollection<User> GetAll()
@@ -26,6 +30,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             {
                 if (user.personId != null)
                     user.Person = unitOfWork.Persons.GetById((int)user.personId);
+                user.PasswordHash = string.Empty;
             }
 
             return new ObservableCollection<User>(users);
@@ -36,6 +41,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (user == null)
             {
                 errorMessage = "User cannot be null";
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(user.PasswordHash))
+            {
+                errorMessage = "Password cannot be empty";
                 return false;
             }
 
@@ -54,25 +65,35 @@ namespace SchoolManagementApp.Services.RepositoryServices
                     errorMessage = "Invalid personId";
                     return false;
                 }
+                if (UserList.Any(c => c.personId == user.personId && c.personId != user.personId))
+                {
+                    errorMessage = "Person is already linked to another user";
+                    return false;
+                }
             }
 
             return true;
         }
 
+
         public void Add(User user)
         {
             if (!ValidateUser(user)) return;
 
+            //check password
+            user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
+
             unitOfWork.Users.Add(user);
             UserList.Add(user);
             unitOfWork.SaveChanges();
+            user.PasswordHash = string.Empty;
         }
 
         public void Edit(User user)
         {
             User User = unitOfWork.Users.GetById(user.Id);
 
-            if (user == null)
+            if (User == null)
             {
                 errorMessage = "User not found";
                 return;
@@ -84,8 +105,11 @@ namespace SchoolManagementApp.Services.RepositoryServices
             {
                 user.personId = user.Person.Id;
             }
+
+            user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
             unitOfWork.Users.Update(user);
             unitOfWork.SaveChanges();
+            user.PasswordHash = string.Empty;
         }
 
         public void Remove(User user)

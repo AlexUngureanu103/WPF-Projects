@@ -298,9 +298,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\ManageSpecializationsCommands.cs" />
     <Compile Include="Commands\DeleteStudentsCommands.cs" />
-    <Compile Include="Commands\DeleteUserCommands.cs" />
     <Compile Include="Commands\LoginCommands.cs" />
-    <Compile Include="Commands\ManageUsersCommands.cs" />
     <Compile Include="Commands\RelayCommands.cs" />
     <Compile Include="Converters\ClassConvert.cs" />
     <Compile Include="Converters\CourseConvert.cs" />
@@ -341,8 +339,7 @@
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageStudentVMs\ManageStudentsVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageUserVMs\AddUsersWindowVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageUserVMs\ManageUsersVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageUsersVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
@@ -350,9 +347,6 @@
     </Compile>
     <Compile Include="Views\AdminViews\AddTeachersWindow.xaml.cs">
       <DependentUpon>AddTeachersWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AdminViews\AddUsersWindow.xaml.cs">
-      <DependentUpon>AddUsersWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageClasses.xaml.cs">
       <DependentUpon>ManageClasses.xaml</DependentUpon>
@@ -409,10 +403,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\AddTeachersWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AdminViews\AddUsersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
