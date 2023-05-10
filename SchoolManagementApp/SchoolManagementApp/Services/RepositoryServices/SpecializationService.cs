@@ -5,11 +5,13 @@ using System.Collections.ObjectModel;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    public class SpecializationService /*: ICollectionService<Specialization>*/
+    public class SpecializationService : ICollectionService<Specialization>
     {
         private readonly UnitOfWork unitOfWork;
 
         public ObservableCollection<Specialization> SpecializationList { get; set; }
+
+        private string errorMessage;
 
         public SpecializationService(UnitOfWork unitOfWork)
         {
@@ -26,43 +28,66 @@ namespace SchoolManagementApp.Services.RepositoryServices
             return unitOfWork.Specializations.GetById(id);
         }
 
-        public Specialization Add(Specialization specialization)
+        private bool ValidateSpecialization(Specialization specialization)
         {
-            if (specialization == null || string.IsNullOrEmpty(specialization.Name)) return null;
+            if (specialization == null)
+            {
+                errorMessage = "Specialization cannot be null";
+                return false;
+            }
 
-            var hasEmailConflicts = unitOfWork.Specializations.Any(c => c.Name == specialization.Name);
-            if (hasEmailConflicts) return null;
+            if (string.IsNullOrEmpty(specialization.Name))
+            {
+                errorMessage = "Name cannot be empty";
+                return false;
+            }
+            var hasNameConflicts = unitOfWork.Specializations.Any(c => c.Name == specialization.Name);
+            if (hasNameConflicts)
+            {
+                errorMessage = $"SPecialization with name {specialization.Name} already exists";
+                return false;
+            }
+            return true;
+        }
+
+        public void Add(Specialization specialization)
+        {
+            if (!ValidateSpecialization(specialization))
+                return;
 
             unitOfWork.Specializations.Add(specialization);
             SpecializationList.Add(specialization);
             unitOfWork.SaveChanges();
-            return specialization;
         }
 
-        public bool Edit(Specialization specialization)
+        public void Edit(Specialization specialization)
         {
-            if (specialization == null || string.IsNullOrEmpty(specialization.Name))
-            {
-                return false;
-            }
-
             Specialization Spec = unitOfWork.Specializations.GetById(specialization.Id);
 
-            if (Spec == null) return false;
+            if (Spec == null)
+            {
+                errorMessage = "Specialization not found";
+                return;
+            }
+
+            if (!ValidateSpecialization(specialization))
+                return;
 
             unitOfWork.Specializations.Update(specialization);
             unitOfWork.SaveChanges();
-            return true;
         }
 
-        public Specialization Remove(Specialization specialization)
+        public void Remove(Specialization specialization)
         {
-            if (specialization == null) return null;
+            if (specialization == null)
+            {
+                errorMessage = "Specialization cannot be null";
+                return;
+            }
 
             unitOfWork.Specializations.Remove(specialization);
             SpecializationList.Remove(specialization);
             unitOfWork.SaveChanges();
-            return specialization;
         }
     }
 }

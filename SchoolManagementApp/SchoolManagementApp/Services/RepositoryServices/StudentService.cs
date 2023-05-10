@@ -25,7 +25,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
         }
         private bool ValidateStudent(Student student)
         {
-            if (student == null /*|| string.IsNullOrEmpty(student.FirstName) || string.IsNullOrEmpty(student.LastName) || string.IsNullOrEmpty(student.Address)*/)
+            if (student == null)
             {
                 errorMessage = "Student cannot be null";
                 return false;

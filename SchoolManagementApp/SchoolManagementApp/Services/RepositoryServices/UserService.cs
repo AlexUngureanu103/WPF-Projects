@@ -1,53 +1,91 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models;
 using System;
+using System.Collections.ObjectModel;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    internal class UserService/* : ICollectionService<User>*/
+    internal class UserService : ICollectionService<User>
     {
         private readonly UnitOfWork unitOfWork;
+
+        public ObservableCollection<User> UserList { get; set; }
+
+        private string errorMessage;
 
         public UserService(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public User Add(User user)
+        public ObservableCollection<User> GetAll()
         {
-            if (user == null) return null;
+            var users = unitOfWork.Users.GetAll();
 
-            var hasEmailConflicts = unitOfWork.Users.Any(c => c.Email == user.Email);
-            if (hasEmailConflicts) return null;
-
-            unitOfWork.Users.Add(user);
-            unitOfWork.SaveChanges();
-            return user;
+            return new ObservableCollection<User>(users);
         }
 
-        public bool Edit(User user)
+        private bool ValidateUser(User user)
         {
-            if (user == null || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.PasswordHash))
+            if (user == null)
             {
+                errorMessage = "User cannot be null";
                 return false;
             }
 
-            User User = unitOfWork.Users.GetById(user.Id);
+            var hasEmailConflicts = unitOfWork.Users.Any(c => c.Email == user.Email);
+            if (hasEmailConflicts)
+            {
+                errorMessage = "Email already exists";
+                return false;
+            }
 
-            if (user == null) return false;
+            Person person = unitOfWork.Persons.GetById((int)user.personId);
+            if (person == null)
+            {
+                errorMessage = "Invalid personId";
+                return false;
+            }
 
-            unitOfWork.Users.Update(user);
-            unitOfWork.SaveChanges();
             return true;
         }
 
-        public User Remove(User user)
+        public void Add(User user)
         {
-            if (user == null) return null;
+            if (!ValidateUser(user)) return;
+
+            unitOfWork.Users.Add(user);
+            UserList.Add(user);
+            unitOfWork.SaveChanges();
+        }
+
+        public void Edit(User user)
+        {
+            User User = unitOfWork.Users.GetById(user.Id);
+
+            if (user == null)
+            {
+                errorMessage = "User not found";
+                return;
+            }
+
+            if (!ValidateUser(user)) return;
+
+            unitOfWork.Users.Update(user);
+            unitOfWork.SaveChanges();
+        }
+
+        public void Remove(User user)
+        {
+            if (user == null)
+            {
+                errorMessage = "User cannot be null";
+                return;
+            }
 
             unitOfWork.Users.Remove(user);
+            UserList.Remove(user);
             unitOfWork.SaveChanges();
-            return user;
         }
     }
 }
