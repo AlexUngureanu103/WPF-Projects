@@ -3,7 +3,7 @@ using System;
 
 namespace SchoolManagementApp.DataAccess
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly SchoolManagementDbContext _dbContext;
 

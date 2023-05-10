@@ -293,6 +293,7 @@
     <Compile Include="Abstractions\ISpecializationRepository.cs" />
     <Compile Include="Abstractions\IStudentRepository.cs" />
     <Compile Include="Abstractions\IUserRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="Migrations\202305030545343_init.cs" />
     <Compile Include="Migrations\202305030545343_init.designer.cs">
