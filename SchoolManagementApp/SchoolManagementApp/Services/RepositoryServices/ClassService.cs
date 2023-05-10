@@ -1,13 +1,13 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
+using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    internal class ClassService:ICollectionService<Class>
+    internal class ClassService : IClassService
     {
         private readonly UnitOfWork unitOfWork;
 

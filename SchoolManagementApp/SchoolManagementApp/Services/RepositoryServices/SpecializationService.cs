@@ -1,11 +1,12 @@
 ﻿using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
+using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
-    public class SpecializationService : ICollectionService<Specialization>
+    public class SpecializationService : ISpecializationService
     {
         private readonly UnitOfWork unitOfWork;
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace SchoolManagementApp.Services.RepositoryServices
+namespace SchoolManagementApp.Services.RepositoryServices.Abstractions
 {
     internal interface ICollectionService<T>
     {
