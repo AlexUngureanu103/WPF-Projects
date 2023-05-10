@@ -128,6 +128,7 @@
     <Compile Include="Enums\AddOrEdit.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\Bootstrapper.cs" />
+    <Compile Include="Services\IUserControlFactory.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IClassService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\ICourseService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IGradeService.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Services\RepositoryServices\StudentService.cs" />
     <Compile Include="Services\RepositoryServices\UserService.cs" />
     <Compile Include="Services\SortById.cs" />
+    <Compile Include="Services\UserControlFactory.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
     <Compile Include="Services\Validators\UsersValidators.cs" />
     <Compile Include="ViewModels\AdminControls\ManageClassesVM.cs" />

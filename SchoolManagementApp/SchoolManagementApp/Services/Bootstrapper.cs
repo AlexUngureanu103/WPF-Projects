@@ -18,7 +18,10 @@ namespace SchoolManagementApp.Services
 {
     internal class Bootstrapper
     {
-
+        public IComponentContext Run()
+        {
+            return BuildApplication().BeginLifetimeScope();
+        }
         private static IContainer BuildApplication()
         {
             var builder = new ContainerBuilder();
@@ -33,6 +36,7 @@ namespace SchoolManagementApp.Services
             string connectionString = ConfigurationManager.ConnectionStrings["SchoolManagement"].ConnectionString;
             builder.Register(ctx => new SchoolManagementDbContext(connectionString)).AsSelf().SingleInstance();
             builder.Register(ctx => LogHelper.GetLogger()).As<log4net.ILog>();
+            builder.RegisterType<UserControlFactory>().As<IUserControlFactory>().SingleInstance();
 
             return builder.Build();
         }
