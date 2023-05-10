@@ -1,4 +1,6 @@
-﻿using SchoolManagementApp.DataAccess;
+﻿using Autofac;
+using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.Services;
 using SchoolManagementApp.Views;
 using System.Windows;
 
@@ -17,9 +19,11 @@ namespace SchoolManagementApp
         {
             InitializeComponent();
             //WindowContainer.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
-
+            Bootstrapper bootstrapper = new Bootstrapper();
+            var UserControlFactory = bootstrapper.Run();
+            
             log.Info("Application started ...");
-            WindowContainer.Navigate(new LoginWindow(WindowContainer));
+            WindowContainer.Navigate(UserControlFactory.Create<LoginWindow>());
         }
     }
 }

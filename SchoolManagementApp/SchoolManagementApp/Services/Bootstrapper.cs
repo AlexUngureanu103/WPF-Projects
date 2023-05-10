@@ -18,9 +18,13 @@ namespace SchoolManagementApp.Services
 {
     internal class Bootstrapper
     {
-        public IComponentContext Run()
+        public IUserControlFactory Run()
         {
-            return BuildApplication().BeginLifetimeScope();
+            using(var scope = BuildApplication().BeginLifetimeScope())
+            {
+                var UserControlFactory = scope.Resolve<IUserControlFactory>();
+                return UserControlFactory;
+            }
         }
         private static IContainer BuildApplication()
         {
