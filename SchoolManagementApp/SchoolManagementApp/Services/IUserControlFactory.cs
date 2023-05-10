@@ -2,7 +2,7 @@
 
 namespace SchoolManagementApp.Services
 {
-    internal interface IUserControlFactory
+    public interface IUserControlFactory
     {
         T Create<T>() where T : UserControl;
     }

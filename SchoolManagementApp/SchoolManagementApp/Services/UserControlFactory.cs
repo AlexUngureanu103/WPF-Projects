@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace SchoolManagementApp.Services
 {
-    internal class UserControlFactory : IUserControlFactory
+    public class UserControlFactory : IUserControlFactory
     {
         private readonly IComponentContext _context;
 

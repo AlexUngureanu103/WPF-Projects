@@ -20,7 +20,7 @@ namespace SchoolManagementApp
             InitializeComponent();
             //WindowContainer.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
             Bootstrapper bootstrapper = new Bootstrapper();
-            var UserControlFactory = bootstrapper.Run();
+            var UserControlFactory = bootstrapper.Run(WindowContainer);
             
             log.Info("Application started ...");
             WindowContainer.Navigate(UserControlFactory.Create<LoginWindow>());

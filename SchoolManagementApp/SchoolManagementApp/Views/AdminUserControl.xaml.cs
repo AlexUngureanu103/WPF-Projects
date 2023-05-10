@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.DataAccess;
+﻿using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.Views.AdminViews;
 using System;
@@ -14,33 +14,34 @@ namespace SchoolManagementApp.Views
     {
         private readonly Frame WindowContainer;
 
-        private readonly SchoolManagementDbContext _dbContext;
-
         private AdminUserControlVM AdminUserControlVM;
-        public AdminUserControl(Frame windowContainer, SchoolManagementDbContext dbContext)
+
+        private readonly IUserControlFactory _userControlFactory;
+
+        public AdminUserControl(Frame windowContainer, IUserControlFactory userControlFactory, AdminUserControlVM adminUserControlVM)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _userControlFactory = userControlFactory ?? throw new ArgumentNullException(nameof(userControlFactory));
+            AdminUserControlVM = adminUserControlVM ?? throw new ArgumentNullException(nameof(adminUserControlVM));
             InitializeComponent();
-
-            AdminUserControlVM = new AdminUserControlVM(_dbContext);
 
             DataContext = AdminUserControlVM;
         }
 
         private void ManageUsers_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new ManageUsers(_dbContext));
+            AdminControls.Navigate(_userControlFactory.Create<ManageUsers>());
         }
 
         private void ManageClasses_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new ManageClasses(_dbContext));
+
+            AdminControls.Navigate(_userControlFactory.Create<ManageClasses>());
         }
 
         private void ManageTeachers_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new AddTeachersWindow(AdminControls, _dbContext));
+            AdminControls.Navigate(_userControlFactory.Create<AddTeachersWindow>());
         }
 
         private void ManageClassMasters_Click(object sender, RoutedEventArgs e)
@@ -50,7 +51,7 @@ namespace SchoolManagementApp.Views
 
         private void ManageStudents_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new ManageStudentsAdminControl(_dbContext));
+            AdminControls.Navigate(_userControlFactory.Create<ManageStudentsAdminControl>());
             MessageBox.Show("Add Student Page");
         }
 
@@ -62,7 +63,7 @@ namespace SchoolManagementApp.Views
                 {
                     WindowContainer.RemoveBackEntry();
                 }
-                WindowContainer.Navigate(new LoginWindow(WindowContainer));
+                WindowContainer.Navigate(_userControlFactory.Create<LoginWindow>());
             }
             else
             {
@@ -72,22 +73,22 @@ namespace SchoolManagementApp.Views
 
         private void ManageSpecializations_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new ManageSpecializationsAdminControl(_dbContext));
+            AdminControls.Navigate(_userControlFactory.Create<ManageSpecializationsAdminControl>());
         }
 
         private void ManageCourses_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new ManageCoursesAdminControl(_dbContext));
+            AdminControls.Navigate(_userControlFactory.Create<ManageCoursesAdminControl>());
         }
 
         private void Specialization_Course_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new ManageSpecializationCourseAdminControl(_dbContext));
+            AdminControls.Navigate(_userControlFactory.Create<ManageSpecializationCourseAdminControl>());
         }
 
         private void Person_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(new ManagePersonsAdminCrontrol(_dbContext));
+            AdminControls.Navigate(_userControlFactory.Create<ManagePersonsAdminCrontrol>());
         }
     }
 }

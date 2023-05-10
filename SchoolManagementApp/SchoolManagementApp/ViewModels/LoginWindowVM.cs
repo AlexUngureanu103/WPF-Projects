@@ -4,12 +4,13 @@ using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Repositories;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.Services.Validators;
+using System;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels
 {
-    internal class LoginWindowVM : BaseVM
+    public class LoginWindowVM : BaseVM
     {
         private readonly LoginCommands loginCommands;
 
@@ -104,9 +105,9 @@ namespace SchoolManagementApp.ViewModels
 
         private readonly AuthorizationService authorizationService;
 
-        public LoginWindowVM(string connectionString)
+        public LoginWindowVM(SchoolManagementDbContext dbContext)
         {
-            _dbContext = new SchoolManagementDbContext(connectionString);
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             RoleRepository roleRepository = new RoleRepository(_dbContext);
             UserRepository userRepository = new UserRepository(_dbContext);
             AuthorizationService authorizationService = new AuthorizationService();

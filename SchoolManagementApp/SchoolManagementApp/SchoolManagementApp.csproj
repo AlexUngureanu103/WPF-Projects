@@ -343,6 +343,7 @@
     <Compile Include="ViewModels\AdminControls\ManageStudentVMs\ManageStudentsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageUserVMs\AddUsersWindowVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageUserVMs\ManageUsersVM.cs" />
+    <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>

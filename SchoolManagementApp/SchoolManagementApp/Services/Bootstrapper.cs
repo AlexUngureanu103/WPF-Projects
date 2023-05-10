@@ -13,20 +13,21 @@ using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
 using SchoolManagementApp.Views.AdminViews.ManageStudentsViews;
 using System.Configuration;
+using System.Windows.Controls;
 
 namespace SchoolManagementApp.Services
 {
     internal class Bootstrapper
     {
-        public IUserControlFactory Run()
+        public IUserControlFactory Run(Frame frame)
         {
-            using(var scope = BuildApplication().BeginLifetimeScope())
+            using(var scope = BuildApplication(frame).BeginLifetimeScope())
             {
                 var UserControlFactory = scope.Resolve<IUserControlFactory>();
                 return UserControlFactory;
             }
         }
-        private static IContainer BuildApplication()
+        private static IContainer BuildApplication( Frame frame)
         {
             var builder = new ContainerBuilder();
 
@@ -41,6 +42,7 @@ namespace SchoolManagementApp.Services
             builder.Register(ctx => new SchoolManagementDbContext(connectionString)).AsSelf().SingleInstance();
             builder.Register(ctx => LogHelper.GetLogger()).As<log4net.ILog>();
             builder.RegisterType<UserControlFactory>().As<IUserControlFactory>().SingleInstance();
+            builder.Register(ctx => frame).AsSelf().SingleInstance();
 
             return builder.Build();
         }

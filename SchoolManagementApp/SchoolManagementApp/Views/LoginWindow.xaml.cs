@@ -1,4 +1,6 @@
-﻿using SchoolManagementApp.DataAccess;
+﻿using Autofac;
+using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels;
 using System;
 using System.Configuration;
@@ -16,16 +18,14 @@ namespace SchoolManagementApp.Views
 
         private LoginWindowVM LoginWindowVM;
 
-        private string connectionString;
+        private readonly IUserControlFactory _userControlFactory;
 
-        private readonly SchoolManagementDbContext _dbContext;
-
-        public LoginWindow(Frame windowContainer)
+        public LoginWindow(Frame windowContainer, IUserControlFactory userControlFactory, LoginWindowVM loginWindow)
         {
-            this.WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-            connectionString = ConfigurationManager.ConnectionStrings["SchoolManagement"].ConnectionString;
-            _dbContext = new SchoolManagementDbContext(connectionString);
-            LoginWindowVM = new LoginWindowVM(connectionString);
+            WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
+            _userControlFactory = userControlFactory ?? throw new ArgumentNullException(nameof(userControlFactory));
+            LoginWindowVM = loginWindow ?? throw new ArgumentNullException(nameof(loginWindow));
+            
             InitializeComponent();
             DataContext = LoginWindowVM;
         }
@@ -34,19 +34,19 @@ namespace SchoolManagementApp.Views
         {
             if (LoginWindowVM.User.Role.AssignedRole == "Admin")
             {
-                WindowContainer.Navigate(new AdminUserControl(WindowContainer, _dbContext));
+                WindowContainer.Navigate(_userControlFactory.Create<AdminUserControl>());
             }
             else if (LoginWindowVM.User.Role.AssignedRole == "Teacher")
             {
-                WindowContainer.Navigate(new TeacherUserControl(WindowContainer, _dbContext));
+                WindowContainer.Navigate(_userControlFactory.Create<TeacherUserControl>());
             }
             else if (LoginWindowVM.User.Role.AssignedRole == "Student")
             {
-                WindowContainer.Navigate(new StudentUserControl(WindowContainer, _dbContext));
+                WindowContainer.Navigate(_userControlFactory.Create<StudentUserControl>());
             }
             else if (LoginWindowVM.User.Role.AssignedRole == "Class master")
             {
-                WindowContainer.Navigate(new ClassMasterUserControl(WindowContainer, _dbContext));
+                WindowContainer.Navigate(_userControlFactory.Create<ClassMasterUserControl>());
             }
             UpdateMainWindowTitle($"School Management App - {LoginWindowVM.User.Role.AssignedRole} Control Panel");
             LoginWindowVM.Email = string.Empty;
