@@ -20,6 +20,19 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private bool ValidatePerson(Person person)
         {
+            int minAge = 10;
+            if (person.DateOfBirth.CompareTo(DateTime.Now.AddYears(-minAge)) >= 0)
+            {
+                errorMessage = $"Person must be at least {minAge} years old";
+                return false;
+            }
+
+            if (person.DateOfBirth.CompareTo(DateTime.Now.AddYears(-100)) <= 0)
+            {
+                errorMessage = $"Person cannot be this old";
+                return false;
+            }
+
             if (person == null || string.IsNullOrEmpty(person.FirstName) || string.IsNullOrEmpty(person.LastName))
             {
                 errorMessage = "First name and last name cannot be empty";
@@ -48,7 +61,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
         public void Edit(Person entity)
         {
             Person result = unitOfWork.Persons.GetById(entity.Id);
-            if(result == null)
+            if (result == null)
             {
                 errorMessage = "Person not found";
                 return;
@@ -68,7 +81,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Remove(Person entity)
         {
-            if(entity == null)
+            if (entity == null)
             {
                 errorMessage = "Person cannot be null";
             }
