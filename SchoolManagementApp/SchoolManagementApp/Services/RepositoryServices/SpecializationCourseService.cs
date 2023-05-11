@@ -77,6 +77,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             var entity = SpecializationCourseList.FirstOrDefault(c => c.CourseTypeId == specializationCourse.CourseTypeId && c.SpecializationId == specializationCourse.SpecializationId);
             if(entity != null)
             {
+                return;
                 specializationCourse.Id = entity.Id;
                 unitOfWork.SpecializationCourse.Update(specializationCourse);
             }

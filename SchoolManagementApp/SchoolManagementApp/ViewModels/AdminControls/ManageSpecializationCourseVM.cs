@@ -26,6 +26,20 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             CourseList = courseService.GetAll();
             SpecializationCourseList = specializationCourseService.GetAll();
             SpecializationList = specializationService.GetAll();
+
+            foreach (CourseType course in CourseList)
+            {
+                foreach(Specialization specialization in SpecializationList)
+                {
+                    specializationCourseService.Add(new SpecializationCourse
+                    {
+                        Specialization = specialization,
+                        SpecializationId=specialization.Id,
+                        CourseType=course,
+                        CourseTypeId=course.Id
+                    });
+                }
+            }
         }
 
         public ObservableCollection<CourseType> CourseList
