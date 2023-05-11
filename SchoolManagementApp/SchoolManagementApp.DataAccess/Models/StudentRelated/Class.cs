@@ -36,6 +36,13 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
             set { students = value; NotifyPropertyChanged("Students"); }
         }
 
+        private List<CourseClass> courses;
+        public List<CourseClass> Courses
+        {
+            get { return courses; }
+            set { courses = value; NotifyPropertyChanged("Courses"); }
+        }
+
         private int studentCount;
         [NotMapped]
         public int StudentCount

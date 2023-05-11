@@ -21,8 +21,8 @@ namespace SchoolManagementApp.DataAccess.Models
             set { user = value; NotifyPropertyChanged("User"); }
         }
 
-        private List<CourseClass> teachingClasses;
-        public List<CourseClass> TeachingClasses
+        private List<CourseClassTeacher> teachingClasses;
+        public List<CourseClassTeacher> TeachingClasses
         {
             get { return teachingClasses; }
             set { teachingClasses = value; NotifyPropertyChanged("TeachingClasses"); }

@@ -333,8 +333,13 @@
     <Compile Include="Migrations\202305091940255_PersonUser.designer.cs">
       <DependentUpon>202305091940255_PersonUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305110745070_CourseClassTeacher.cs" />
+    <Compile Include="Migrations\202305110745070_CourseClassTeacher.designer.cs">
+      <DependentUpon>202305110745070_CourseClassTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasePropertyChanged.cs" />
+    <Compile Include="Models\CourseClassTeacher.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\SpecializationCourse.cs" />
     <Compile Include="Models\StudentRelated\Absences.cs" />
@@ -399,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305091940255_PersonUser.resx">
       <DependentUpon>202305091940255_PersonUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305110745070_CourseClassTeacher.resx">
+      <DependentUpon>202305110745070_CourseClassTeacher.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
