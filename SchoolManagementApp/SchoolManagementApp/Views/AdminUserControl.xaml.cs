@@ -85,5 +85,10 @@ namespace SchoolManagementApp.Views
         {
             AdminControls.Navigate(_userControlFactory.Create<ManagePersonsAdminCrontrol>());
         }
+
+        private void CourseClass_Click(object sender, RoutedEventArgs e)
+        {
+            AdminControls.Navigate(_userControlFactory.Create<ManageCourseClassesAdminControl>());
+        }
     }
 }

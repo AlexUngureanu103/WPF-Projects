@@ -9,8 +9,7 @@ namespace SchoolManagementApp.Converters
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Specialization specialization = values[1] as Specialization;
-            if (specialization == null)
-                specialization = new Specialization();
+
             if (values[0] != null && values[1] != null)
             {
                 return new Class()
@@ -25,7 +24,7 @@ namespace SchoolManagementApp.Converters
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {
             Class @class = value as Class;
-            object[] result = new object[2] { @class.Name, @class.SpecializationId };
+            object[] result = new object[3] { @class.Name, @class.SpecializationId, @class.Specialization };
             return result;
         }
     }

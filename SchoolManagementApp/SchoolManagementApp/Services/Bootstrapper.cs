@@ -57,6 +57,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<StudentService>().As<IStudentService>();
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<TeacherService>().As<ITeacherService>();
+            builder.RegisterType<CourseClassService>().As<ICourseClassService>();
 
             builder.RegisterType<AuthorizationService>().AsSelf();
         }
@@ -95,7 +96,8 @@ namespace SchoolManagementApp.Services
 
             builder.RegisterType<ManageStudentsVM>().AsSelf().SingleInstance();
             builder.RegisterType<ManageTeachersVM>().AsSelf().SingleInstance();
-            
+            builder.RegisterType<ManageCourseClassesVM>().AsSelf().SingleInstance();
+
             builder.RegisterType<ManageSpecializationsVM>().AsSelf().SingleInstance();
         }
 
@@ -123,6 +125,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageCoursesAdminControl>().AsSelf();
             builder.RegisterType<ManageClasses>().AsSelf();
             builder.RegisterType<ManageTeachersAdminControl>().AsSelf();
+            builder.RegisterType<ManageCourseClassesAdminControl>().AsSelf();
 
             builder.RegisterType<AddStudentsWindow>().AsSelf();
         }

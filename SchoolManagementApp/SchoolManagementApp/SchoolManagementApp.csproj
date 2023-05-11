@@ -300,6 +300,7 @@
     <Compile Include="Commands\LoginCommands.cs" />
     <Compile Include="Commands\RelayCommands.cs" />
     <Compile Include="Converters\ClassConvert.cs" />
+    <Compile Include="Converters\CourseClassConvert.cs" />
     <Compile Include="Converters\CourseConvert.cs" />
     <Compile Include="Converters\PersonConvert.cs" />
     <Compile Include="Converters\SpecializationCourseConvert.cs" />
@@ -310,6 +311,7 @@
     <Compile Include="Services\Bootstrapper.cs" />
     <Compile Include="Services\IUserControlFactory.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IClassService.cs" />
+    <Compile Include="Services\RepositoryServices\Abstractions\ICourseClassService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\ICourseService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IGradeService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IPersonService.cs" />
@@ -319,6 +321,7 @@
     <Compile Include="Services\RepositoryServices\Abstractions\ITeacherService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IUserService.cs" />
     <Compile Include="Services\RepositoryServices\ClassService.cs" />
+    <Compile Include="Services\RepositoryServices\CourseClassService.cs" />
     <Compile Include="Services\RepositoryServices\CourseService.cs" />
     <Compile Include="Services\RepositoryServices\GradeService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\ICollectionService.cs" />
@@ -333,6 +336,7 @@
     <Compile Include="Services\Validators\LoginValidators.cs" />
     <Compile Include="Services\Validators\UsersValidators.cs" />
     <Compile Include="ViewModels\AdminControls\ManageClassesVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageCourseClassesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageCoursesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManagePersonsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationCourseVM.cs" />
@@ -350,6 +354,9 @@
     </Compile>
     <Compile Include="Views\AdminViews\ManageClasses.xaml.cs">
       <DependentUpon>ManageClasses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManageCourseClassesAdminControl.xaml.cs">
+      <DependentUpon>ManageCourseClassesAdminControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageCoursesAdminControl.xaml.cs">
       <DependentUpon>ManageCoursesAdminControl.xaml</DependentUpon>
@@ -406,6 +413,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\ManageClasses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManageCourseClassesAdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
