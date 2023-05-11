@@ -25,12 +25,19 @@ namespace SchoolManagementApp.Services.RepositoryServices
             return new ObservableCollection<CourseClass>(unitOfWork.CourseClasses.GetAll());
         }
 
-        private bool ValidateEntiry(CourseClass entity)
+        private bool ValidateEntity(CourseClass entity)
         {
-            var notUnique =  CourseClassList.Any(c=>c.ClassId == entity.ClassId && c.CourseTypeId == entity.CourseTypeId );
-            if(notUnique)
+            var clas = unitOfWork.Classes.GetById(entity.ClassId);
+            if (clas == null)
             {
-                errorMessage = "Entity already exists";
+                errorMessage = "Invalid class";
+                return false;
+            }
+
+            var course = unitOfWork.Courses.GetById(entity.CourseTypeId);
+            if (course == null)
+            {
+                errorMessage = "Invalid course";
                 return false;
             }
             return true;
@@ -38,8 +45,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Add(CourseClass entity)
         {
-            if (!ValidateEntiry(entity))
+            if (!ValidateEntity(entity))
                 return;
+            var notUnique = CourseClassList.Any(c => c.ClassId == entity.ClassId && c.CourseTypeId == entity.CourseTypeId);
+            if (notUnique)
+            {
+                errorMessage = "Entity already exists";
+                return;
+            }
 
             unitOfWork.CourseClasses.Add(entity);
             CourseClassList.Add(entity);
@@ -54,7 +67,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 errorMessage = "CourseClass not found";
                 return;
             }
-            if (!ValidateEntiry(entity))
+            if (!ValidateEntity(entity))
                 return;
 
             unitOfWork.CourseClasses.Update(entity);

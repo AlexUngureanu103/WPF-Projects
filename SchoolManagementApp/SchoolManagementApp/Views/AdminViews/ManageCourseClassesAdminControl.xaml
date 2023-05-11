@@ -18,6 +18,7 @@
                     <MultiBinding Converter="{StaticResource courseClassConvert}">
                         <Binding ElementName="Class" Path="SelectedValue"/>
                         <Binding ElementName="CourseType" Path="SelectedValue"/>
+                        <Binding ElementName="HasCourse" Path="IsChecked"/>
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
@@ -45,10 +46,15 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </WrapPanel>
+
         <WrapPanel>
             <Label Width="150" FontSize="15">Course:</Label>
             <ComboBox Name="CourseType" Width="200" ItemsSource="{Binding CourseList}" DisplayMemberPath="Course"
                       SelectedItem="{Binding ElementName=CourseClassGrid ,Path=SelectedItem.CourseType , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Has Course:</Label>
+            <CheckBox Name="HasCourse" IsChecked="{Binding ElementName=CourseClassGrid, Path=SelectedItem.HasCourse, UpdateSourceTrigger=PropertyChanged}"/>
         </WrapPanel>
         <DataGrid Name="CourseClassGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding CourseClassList}" SelectedItem="{Binding SelectedCourseClass}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
@@ -59,6 +65,7 @@
                 <DataGridTextColumn Header="Specialization" Binding="{Binding Class.Specialization.Name}"/>
                 <DataGridTextColumn Header="CourseId" Binding="{Binding CourseTypeId}"/>
                 <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
+                <DataGridTextColumn Header="Has Course" Binding="{Binding HasCourse}"/>
                  </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

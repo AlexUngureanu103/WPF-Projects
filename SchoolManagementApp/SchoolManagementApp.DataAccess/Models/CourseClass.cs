@@ -33,5 +33,12 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
             get { return classs; }
             set { classs = value; NotifyPropertyChanged("Class"); }
         }
+
+        private bool hasCourse;
+        public bool HasCourse
+        {
+            get { return hasCourse; }
+            set { hasCourse = value; NotifyPropertyChanged("HasCourse"); }
+        }
     }
 }
