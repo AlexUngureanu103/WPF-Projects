@@ -36,7 +36,7 @@ namespace SchoolManagementApp.Views
 
         private void ManageTeachers_Click(object sender, RoutedEventArgs e)
         {
-            AdminControls.Navigate(_userControlFactory.Create<AddTeachersWindow>());
+            AdminControls.Navigate(_userControlFactory.Create<ManageTeachersAdminControl>());
         }
 
         private void ManageClassMasters_Click(object sender, RoutedEventArgs e)

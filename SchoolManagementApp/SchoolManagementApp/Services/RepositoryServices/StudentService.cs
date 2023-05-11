@@ -91,13 +91,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Remove(Student student)
         {
-            var result = MessageBox.Show($"Are u sure u want to delete the student with {student.Id}?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.No) return;
             if (student == null)
             {
                 errorMessage = "Student cannot be null";
                 return;
             }
+
+            var result = MessageBox.Show($"Are u sure u want to delete the student with {student.Id}?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No) return;
 
             unitOfWork.Students.Remove(student);
             StudentList.Remove(student);

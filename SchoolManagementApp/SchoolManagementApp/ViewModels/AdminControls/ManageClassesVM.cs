@@ -10,7 +10,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 {
     public class ManageClassesVM : BaseVM
     {
-        public readonly ISpecializationService _specializationService;
+        private readonly ISpecializationService _specializationService;
 
         private readonly IClassService _classService;
 

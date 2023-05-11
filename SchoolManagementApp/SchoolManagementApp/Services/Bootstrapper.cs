@@ -20,13 +20,13 @@ namespace SchoolManagementApp.Services
     {
         public IUserControlFactory Run(Frame frame)
         {
-            using(var scope = BuildApplication(frame).BeginLifetimeScope())
+            using (var scope = BuildApplication(frame).BeginLifetimeScope())
             {
                 var UserControlFactory = scope.Resolve<IUserControlFactory>();
                 return UserControlFactory;
             }
         }
-        private static IContainer BuildApplication( Frame frame)
+        private static IContainer BuildApplication(Frame frame)
         {
             var builder = new ContainerBuilder();
 
@@ -56,6 +56,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<SpecializationService>().As<ISpecializationService>();
             builder.RegisterType<StudentService>().As<IStudentService>();
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<TeacherService>().As<ITeacherService>();
 
             builder.RegisterType<AuthorizationService>().AsSelf();
         }
@@ -71,6 +72,8 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<SpecializationRepository>().As<ISpecializationRepository>().SingleInstance();
             builder.RegisterType<StudentRepository>().As<IStudentRepository>().SingleInstance();
             builder.RegisterType<UserRepository>().As<IUserRepository>().SingleInstance();
+            builder.RegisterType<TeacherRepository>().As<ITeacherRepository>().SingleInstance();
+            builder.RegisterType<CourseClassRepository>().As<ICourseClassRepository>().SingleInstance();
         }
 
         private static void RegisterMainUsersPage(ContainerBuilder builder)
@@ -91,7 +94,8 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageUsersVM>().AsSelf().SingleInstance();
 
             builder.RegisterType<ManageStudentsVM>().AsSelf().SingleInstance();
-
+            builder.RegisterType<ManageTeachersVM>().AsSelf().SingleInstance();
+            
             builder.RegisterType<ManageSpecializationsVM>().AsSelf().SingleInstance();
         }
 
@@ -118,8 +122,8 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManagePersonsAdminCrontrol>().AsSelf();
             builder.RegisterType<ManageCoursesAdminControl>().AsSelf();
             builder.RegisterType<ManageClasses>().AsSelf();
+            builder.RegisterType<ManageTeachersAdminControl>().AsSelf();
 
-            builder.RegisterType<AddTeachersWindow>().AsSelf();
             builder.RegisterType<AddStudentsWindow>().AsSelf();
         }
 

@@ -297,7 +297,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\ManageSpecializationsCommands.cs" />
-    <Compile Include="Commands\DeleteStudentsCommands.cs" />
     <Compile Include="Commands\LoginCommands.cs" />
     <Compile Include="Commands\RelayCommands.cs" />
     <Compile Include="Converters\ClassConvert.cs" />
@@ -317,6 +316,7 @@
     <Compile Include="Services\RepositoryServices\Abstractions\ISpecializationCourseService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\ISpecializationService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IStudentService.cs" />
+    <Compile Include="Services\RepositoryServices\Abstractions\ITeacherService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IUserService.cs" />
     <Compile Include="Services\RepositoryServices\ClassService.cs" />
     <Compile Include="Services\RepositoryServices\CourseService.cs" />
@@ -326,6 +326,7 @@
     <Compile Include="Services\RepositoryServices\SpecializationCourseService.cs" />
     <Compile Include="Services\RepositoryServices\SpecializationService.cs" />
     <Compile Include="Services\RepositoryServices\StudentService.cs" />
+    <Compile Include="Services\RepositoryServices\TeacherService.cs" />
     <Compile Include="Services\RepositoryServices\UserService.cs" />
     <Compile Include="Services\SortById.cs" />
     <Compile Include="Services\UserControlFactory.cs" />
@@ -336,6 +337,7 @@
     <Compile Include="ViewModels\AdminControls\ManagePersonsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationCourseVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationVMs\ManageSpecializationsVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageTeachersVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
@@ -345,9 +347,6 @@
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AdminViews\AddTeachersWindow.xaml.cs">
-      <DependentUpon>AddTeachersWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageClasses.xaml.cs">
       <DependentUpon>ManageClasses.xaml</DependentUpon>
@@ -369,6 +368,9 @@
     </Compile>
     <Compile Include="Views\AdminViews\ManageStudentsViews\AddStudentsWindow.xaml.cs">
       <DependentUpon>AddStudentsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManageTeachersAdminControl.xaml.cs">
+      <DependentUpon>ManageTeachersAdminControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageUsers.xaml.cs">
       <DependentUpon>ManageUsers.xaml</DependentUpon>
@@ -403,10 +405,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AdminViews\AddTeachersWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\AdminViews\ManageClasses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -432,6 +430,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\ManageStudentsViews\AddStudentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManageTeachersAdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
