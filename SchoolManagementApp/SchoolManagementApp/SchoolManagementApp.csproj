@@ -299,6 +299,7 @@
     <Compile Include="Commands\ManageSpecializationsCommands.cs" />
     <Compile Include="Commands\LoginCommands.cs" />
     <Compile Include="Commands\RelayCommands.cs" />
+    <Compile Include="Converters\AbsenceConvert.cs" />
     <Compile Include="Converters\ClassConvert.cs" />
     <Compile Include="Converters\CourseClassConvert.cs" />
     <Compile Include="Converters\CourseConvert.cs" />
@@ -311,6 +312,8 @@
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\Bootstrapper.cs" />
     <Compile Include="Services\IUserControlFactory.cs" />
+    <Compile Include="Services\RepositoryServices\AbsencesService.cs" />
+    <Compile Include="Services\RepositoryServices\Abstractions\IAbsencesService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\IClassService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\ICourseClassService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\ICourseService.cs" />
@@ -336,6 +339,7 @@
     <Compile Include="Services\UserControlFactory.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
     <Compile Include="Services\Validators\UsersValidators.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageAbsencesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageClassesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageCourseClassesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageCoursesVM.cs" />
@@ -353,6 +357,9 @@
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManageAbsencesAdminControl.xaml.cs">
+      <DependentUpon>ManageAbsencesAdminControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageClasses.xaml.cs">
       <DependentUpon>ManageClasses.xaml</DependentUpon>
@@ -414,6 +421,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AdminUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManageAbsencesAdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

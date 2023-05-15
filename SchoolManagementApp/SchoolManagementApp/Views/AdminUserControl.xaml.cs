@@ -1,5 +1,4 @@
 ﻿using SchoolManagementApp.Services;
-using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.Views.AdminViews;
 using System;
 using System.Windows;
@@ -95,6 +94,10 @@ namespace SchoolManagementApp.Views
             AdminControls.Navigate(_userControlFactory.Create<ManageGradesAdminControl>());
         }
 
+        private void Absences_Click(object sender, RoutedEventArgs e)
+        {
+            AdminControls.Navigate(_userControlFactory.Create<ManageAbsencesAdminControl>());
+        }
     }
 }
 

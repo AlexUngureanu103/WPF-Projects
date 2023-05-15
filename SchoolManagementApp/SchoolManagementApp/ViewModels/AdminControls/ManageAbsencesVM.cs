@@ -10,29 +10,28 @@ using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels.AdminControls
 {
-    public class ManageGradesVM : BaseVM
+    public class ManageAbsencesVM : BaseVM
     {
         private readonly IClassService _classService;
 
         private readonly IStudentService _studentService;
 
-        private readonly IGradeService _gradeService;
+        private readonly IAbsencesService _absenceService;
 
         private readonly ICourseService _courseService;
 
-        public ManageGradesVM(IClassService classService, IStudentService studentService, IGradeService gradeService, ICourseService courseService)
+        public ManageAbsencesVM(IClassService classService, IStudentService studentService, IAbsencesService absenceService, ICourseService courseService)
         {
             this._studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
             this._classService = classService ?? throw new ArgumentNullException(nameof(classService));
-            this._gradeService = gradeService ?? throw new ArgumentNullException(nameof(gradeService));
+            this._absenceService = absenceService ?? throw new ArgumentNullException(nameof(absenceService));
             this._courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
 
             StudentList = _studentService.GetAll();
-            GradeList = _gradeService.GetAll();
+            AbsenceList = _absenceService.GetAll();
             ClassList = _classService.GetAll();
             CourseList = _courseService.GetAll();
             Semesters = new List<int> { 1, 2 };
-            GradeValues = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         }
 
         public ObservableCollection<Class> ClassList
@@ -41,10 +40,10 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             set => _classService.ClassList = value;
         }
 
-        public ObservableCollection<Grade> GradeList
+        public ObservableCollection<Absences> AbsenceList
         {
-            get => _gradeService.GradeList;
-            set => _gradeService.GradeList = value;
+            get => _absenceService.AbsenceList;
+            set => _absenceService.AbsenceList = value;
         }
 
         public ObservableCollection<Student> StudentList
@@ -59,49 +58,6 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             set => _courseService.CourseList = value;
         }
 
-        private Grade selectedGrade;
-        public Grade SelectedGrade
-        {
-            get { return selectedGrade; }
-            set
-            {
-                selectedGrade = value;
-                OnPropertyChanged(nameof(SelectedGrade));
-            }
-        }
-
-        private Student selectedStudent;
-        public Student SelectedStudent
-        {
-            get { return selectedStudent; }
-            set
-            {
-                selectedStudent = value;
-                OnPropertyChanged(nameof(SelectedStudent));
-                GradeList = _gradeService.GetStudentGrades(selectedStudent);
-                if (selectedStudent == null)
-                    CourseList = _courseService.GetAll();
-                else
-                    CourseList = _courseService.GetClassCourses(selectedStudent.ClassId);
-                OnPropertyChanged(nameof(CourseList));
-                OnPropertyChanged(nameof(GradeList));
-            }
-        }
-
-        private List<int> gradeValues;
-        public List<int> GradeValues
-        {
-            get
-            {
-                return gradeValues;
-            }
-            set
-            {
-                gradeValues = value;
-                OnPropertyChanged(nameof(GradeValues));
-            }
-        }
-
         private List<int> semesters;
         public List<int> Semesters
         {
@@ -113,6 +69,35 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             }
         }
 
+        private Absences selectedAbsence;
+        public Absences SelectedAbsence
+        {
+            get { return selectedAbsence; }
+            set
+            {
+                selectedAbsence = value;
+                OnPropertyChanged(nameof(SelectedAbsence));
+            }
+        }
+
+        private Student selectedStudent;
+        public Student SelectedStudent
+        {
+            get { return selectedStudent; }
+            set
+            {
+                selectedStudent = value;
+                OnPropertyChanged(nameof(SelectedStudent));
+                AbsenceList = _absenceService.GetStudentAbsences(selectedStudent);
+                if (selectedStudent == null)
+                    CourseList = _courseService.GetAll();
+                else
+                    CourseList = _courseService.GetClassCourses(selectedStudent.ClassId);
+                OnPropertyChanged(nameof(CourseList));
+                OnPropertyChanged(nameof(AbsenceList));
+            }
+        }
+
         private ICommand addCommand;
         public ICommand AddCommand
         {
@@ -120,7 +105,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Grade>(_gradeService.Add, param => selectedGrade == null);
+                    addCommand = new RelayCommands<Absences>(_absenceService.Add, param => selectedAbsence == null);
                 }
                 return addCommand;
             }
@@ -133,7 +118,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Grade>(_gradeService.Edit, param => selectedGrade != null);
+                    updateCommand = new RelayCommands<Absences>(_absenceService.Edit, param => selectedAbsence != null);
                 }
                 return updateCommand;
             }
@@ -146,7 +131,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Grade>(_gradeService.Remove, param => selectedGrade != null);
+                    deleteCommand = new RelayCommands<Absences>(_absenceService.Remove, param => selectedAbsence != null);
                 }
                 return deleteCommand;
             }
@@ -159,7 +144,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (clearCommand == null)
                 {
-                    clearCommand = new RelayCommand(Clear, param => selectedGrade != null);
+                    clearCommand = new RelayCommand(Clear, param => selectedAbsence != null);
                 }
                 return clearCommand;
             }
@@ -167,9 +152,9 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
         private void Clear()
         {
-            SelectedGrade = null;
-            GradeList = _gradeService.GetAll();
-            OnPropertyChanged(nameof(GradeList));
+            SelectedAbsence = null;
+            AbsenceList = _absenceService.GetAll();
+            OnPropertyChanged(nameof(AbsenceList));
         }
     }
 }

@@ -137,6 +137,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             }
 
             unitOfWork.Grades.Remove(grade);
+            GradeList.Remove(grade);
             unitOfWork.SaveChanges();
         }
     }
