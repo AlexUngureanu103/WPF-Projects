@@ -31,6 +31,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Grade> GetStudentGrades(Student student)
         {
+            if(student == null)
+                return new ObservableCollection<Grade>();
             return new ObservableCollection<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
         }
 
@@ -85,7 +87,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             if (grade.IsThesis == true)
             {
-                var unique = unitOfWork.Grades.GetAll().FirstOrDefault(g => g.StudentId == student.Id && g.CourseTypeId == grade.CourseTypeId && g.IsThesis == true);
+                var unique = unitOfWork.Grades.GetAll().FirstOrDefault(g => g.StudentId == student.Id && g.CourseTypeId == grade.CourseTypeId && g.IsThesis == true && g.Semester == grade.Semester);
 
                 if (unique != null)
                 {

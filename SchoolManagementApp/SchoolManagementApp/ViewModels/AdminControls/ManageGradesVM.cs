@@ -78,12 +78,13 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 selectedStudent = value;
                 OnPropertyChanged(nameof(SelectedStudent));
-                //GradeList = _gradeService.GetStudentGrades(selectedStudent);
+                GradeList = _gradeService.GetStudentGrades(selectedStudent);
                 if (selectedStudent == null)
                     CourseList = _courseService.GetAll();
                 else
                     CourseList = _courseService.GetClassCourses(selectedStudent.ClassId);
                 OnPropertyChanged(nameof(CourseList));
+                OnPropertyChanged(nameof(GradeList));
             }
         }
 
