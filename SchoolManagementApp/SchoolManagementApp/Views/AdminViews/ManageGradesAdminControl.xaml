@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="SchoolManagementApp.Views.AdminViews.ManageGradesAdminControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:convert ="clr-namespace:SchoolManagementApp.Converters"
+             xmlns:local="clr-namespace:SchoolManagementApp.Views.AdminViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <convert:GradeConvert x:Key="gradeConvert" />
+        </StackPanel.Resources>
+        <WrapPanel>
+            <Button Content="Add" Margin="15" Width="100" Height="30" 
+                    Command="{Binding AddCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource gradeConvert}">
+                        <Binding ElementName="Student" Path="SelectedValue"/>
+                        <Binding ElementName="CourseType" Path="SelectedValue"/>
+                        <Binding ElementName="Value" Path="SelectedValue"/>
+                        <Binding ElementName="IsThesis" Path="IsChecked"/>
+                        <Binding ElementName="Semester" Path="SelectedValue"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="Edit" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}"
+                    CommandParameter="{Binding ElementName=GradeGrid, Path=SelectedItem}"/>
+            <Button Content="Delete" Margin="15" Width="100" Height="30" Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding ElementName=GradeGrid, Path=SelectedItem}"/>
+            <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Student:</Label>
+            <ComboBox Name="Student" Width="200" ItemsSource="{Binding StudentList}" 
+                      SelectedItem="{Binding ElementName=GradeGrid ,Path=SelectedItem.Student , UpdateSourceTrigger=PropertyChanged}"
+                      SelectedValue="{Binding SelectedStudent}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} ">
+                                    <Binding Path="Id"/>
+                                    <Binding Path="User.Email"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </WrapPanel>
+
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Course:</Label>
+            <ComboBox Name="CourseType" Width="200" ItemsSource="{Binding CourseList}" DisplayMemberPath="Course"
+                      SelectedItem="{Binding ElementName=GradeGrid ,Path=SelectedItem.CourseType , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Value:</Label>
+            <ComboBox Name="Value" Width="120" Height="25" ItemsSource="{Binding GradeValues}"
+                      SelectedValue="{Binding ElementName=GradeGrid, Path=SelectedItem.Value,UpdateSourceTrigger=PropertyChanged}">
+            </ComboBox>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Semester:</Label>
+            <ComboBox Name="Semester" Width="120" Height="25" ItemsSource="{Binding Semesters}"
+                      SelectedValue="{Binding ElementName=GradeGrid, Path=SelectedItem.Semester,UpdateSourceTrigger=PropertyChanged}">
+            </ComboBox>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">IS Thesis:</Label>
+            <CheckBox Name="IsThesis" IsChecked="{Binding ElementName=GradeGrid, Path=SelectedItem.IsThesis, UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <DataGrid Name="GradeGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                  ItemsSource="{Binding GradeList}" SelectedItem="{Binding SelectedGrade}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Value" Binding="{Binding Value}"/>
+                <DataGridTextColumn Header="IsThesis" Binding="{Binding IsThesis}"/>
+                <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                <DataGridTextColumn Header="CourseId" Binding="{Binding CourseTypeId}"/>
+                <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
+                <DataGridTextColumn Header="StudentId" Binding="{Binding StudentId}"/>
+                <DataGridTextColumn Header="Student" Binding="{Binding Student.User.Email}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>

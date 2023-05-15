@@ -87,18 +87,20 @@ namespace SchoolManagementApp.Services
 
         private static void RegisterAdminControls(ContainerBuilder builder)
         {
-            builder.RegisterType<ManageSpecializationCourseVM>().AsSelf().SingleInstance();
-            builder.RegisterType<ManagePersonsVM>().AsSelf().SingleInstance();
-            builder.RegisterType<ManageCoursesVM>().AsSelf().SingleInstance();
-            builder.RegisterType<ManageClassesVM>().AsSelf().SingleInstance();
+            builder.RegisterType<ManageSpecializationCourseVM>().AsSelf();
+            builder.RegisterType<ManagePersonsVM>().AsSelf();
+            builder.RegisterType<ManageCoursesVM>().AsSelf();
+            builder.RegisterType<ManageClassesVM>().AsSelf();
 
             builder.RegisterType<ManageUsersVM>().AsSelf().SingleInstance();
 
-            builder.RegisterType<ManageStudentsVM>().AsSelf().SingleInstance();
-            builder.RegisterType<ManageTeachersVM>().AsSelf().SingleInstance();
-            builder.RegisterType<ManageCourseClassesVM>().AsSelf().SingleInstance();
+            builder.RegisterType<ManageStudentsVM>().AsSelf();
+            builder.RegisterType<ManageTeachersVM>().AsSelf();
+            builder.RegisterType<ManageCourseClassesVM>().AsSelf();
 
-            builder.RegisterType<ManageSpecializationsVM>().AsSelf().SingleInstance();
+            builder.RegisterType<ManageGradesVM>().AsSelf();
+
+            builder.RegisterType<ManageSpecializationsVM>().AsSelf();
         }
 
         private static void RegisterWindows(ContainerBuilder builder)
@@ -126,6 +128,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageClasses>().AsSelf();
             builder.RegisterType<ManageTeachersAdminControl>().AsSelf();
             builder.RegisterType<ManageCourseClassesAdminControl>().AsSelf();
+            builder.RegisterType<ManageGradesAdminControl>().AsSelf();
 
             builder.RegisterType<AddStudentsWindow>().AsSelf();
         }

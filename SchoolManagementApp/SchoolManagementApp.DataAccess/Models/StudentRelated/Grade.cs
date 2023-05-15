@@ -30,9 +30,9 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
             set { semester = value; NotifyPropertyChanged("Semester"); }
         }
 
-        private int courseTypeId;
+        private int? courseTypeId;
         [Required]
-        public int CourseTypeId
+        public int? CourseTypeId
         {
             get { return courseTypeId; }
             set { courseTypeId = value; NotifyPropertyChanged("CourseTypeId"); }
@@ -45,9 +45,9 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
             set { courseType = value; NotifyPropertyChanged("CourseType"); }
         }
 
-        private int studentId;
+        private int? studentId;
         [Required]
-        public int StudentId
+        public int? StudentId
         {
             get { return studentId; }
             set { studentId = value; NotifyPropertyChanged("StudentId"); }

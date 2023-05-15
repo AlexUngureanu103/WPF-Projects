@@ -3,6 +3,7 @@ using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
@@ -89,6 +90,19 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.Courses.Remove(course);
             CourseList.Remove(course);
             unitOfWork.SaveChanges();
+        }
+
+        public ObservableCollection<CourseType> GetClassCourses(int classId)
+        {
+            var resultFromDb = unitOfWork.Courses.GetAll();
+
+            var courseClass = unitOfWork.CourseClasses.GetAll();
+
+            var courses = courseClass
+                .Where(c => c.ClassId == classId && c.HasCourse == true)
+                .Select(c => c.CourseType);
+
+            return new ObservableCollection<CourseType>(courses);
         }
     }
 }

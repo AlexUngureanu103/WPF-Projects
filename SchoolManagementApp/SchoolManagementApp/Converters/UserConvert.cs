@@ -9,12 +9,8 @@ namespace SchoolManagementApp.Converters
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Role role = values[0] as Role;
-            if (role == null)
-                role = new Role();
-
             Person person = values[1] as Person;
-            if (person == null)
-                person = new Person();
+            
             if (values[0] != null && values[1] != null && values[2] != null && values[3] != null)
             {
                 return new User()

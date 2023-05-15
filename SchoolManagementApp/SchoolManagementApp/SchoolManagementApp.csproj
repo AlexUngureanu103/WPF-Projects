@@ -302,6 +302,7 @@
     <Compile Include="Converters\ClassConvert.cs" />
     <Compile Include="Converters\CourseClassConvert.cs" />
     <Compile Include="Converters\CourseConvert.cs" />
+    <Compile Include="Converters\GradeConvert.cs" />
     <Compile Include="Converters\PersonConvert.cs" />
     <Compile Include="Converters\SpecializationCourseConvert.cs" />
     <Compile Include="Converters\StudentConvert.cs" />
@@ -338,6 +339,7 @@
     <Compile Include="ViewModels\AdminControls\ManageClassesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageCourseClassesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageCoursesVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageGradesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManagePersonsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationCourseVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationVMs\ManageSpecializationsVM.cs" />
@@ -360,6 +362,9 @@
     </Compile>
     <Compile Include="Views\AdminViews\ManageCoursesAdminControl.xaml.cs">
       <DependentUpon>ManageCoursesAdminControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManageGradesAdminControl.xaml.cs">
+      <DependentUpon>ManageGradesAdminControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManagePersonsAdminCrontrol.xaml.cs">
       <DependentUpon>ManagePersonsAdminCrontrol.xaml</DependentUpon>
@@ -421,6 +426,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\ManageCoursesAdminControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManageGradesAdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

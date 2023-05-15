@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 
 namespace SchoolManagementApp.Services.RepositoryServices.Abstractions
 {
-    internal interface IGradeService : ICollectionService<Grade>
+    public interface IGradeService : ICollectionService<Grade>
     {
+        ObservableCollection<Grade> GradeList { get; set; }
+
         ObservableCollection<Grade> GetStudentGrades(Student student);
 
     }

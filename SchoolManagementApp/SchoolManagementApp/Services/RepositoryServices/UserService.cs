@@ -30,7 +30,6 @@ namespace SchoolManagementApp.Services.RepositoryServices
             {
                 if (user.personId != null)
                     user.Person = unitOfWork.Persons.GetById((int)user.personId);
-                user.PasswordHash = string.Empty;
             }
 
             return new ObservableCollection<User>(users);
@@ -104,13 +103,19 @@ namespace SchoolManagementApp.Services.RepositoryServices
         {
             if (!ValidateUser(user)) return;
 
-            //check password
-            user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
+            ////check password
+            //user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
 
-            unitOfWork.Users.Add(user);
+            User userForDb = new User
+            {
+                PasswordHash = user.PasswordHash,
+                Email = user.Email,
+                RoleId = user.RoleId,
+                personId = user.personId
+            };
+            unitOfWork.Users.Add(userForDb);
             UserList.Add(user);
             unitOfWork.SaveChanges();
-            user.PasswordHash = string.Empty;
         }
 
         public void Edit(User user)
@@ -130,10 +135,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 user.personId = user.Person.Id;
             }
 
-            user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
+            //user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
             unitOfWork.Users.Update(user);
             unitOfWork.SaveChanges();
-            user.PasswordHash = string.Empty;
         }
 
         public void Remove(User user)

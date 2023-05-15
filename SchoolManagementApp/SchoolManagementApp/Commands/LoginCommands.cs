@@ -33,8 +33,9 @@ namespace SchoolManagementApp.Commands
                 return;
             }
 
-            bool passwordFine = authorizationService.VerifyHashedPassword(user.PasswordHash, _loginWindowVM.Password);
+            //bool passwordFine = authorizationService.VerifyHashedPassword(user.PasswordHash, _loginWindowVM.Password);
 
+            bool passwordFine = user.PasswordHash == _loginWindowVM.Password;
             if (passwordFine)
             {
                 user.Role = _roleRepository.GetById(user.RoleId);

@@ -341,6 +341,14 @@
     <Compile Include="Migrations\202305110842090_ClassCourseUpdate.designer.cs">
       <DependentUpon>202305110842090_ClassCourseUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305151431141_Ids.cs" />
+    <Compile Include="Migrations\202305151431141_Ids.designer.cs">
+      <DependentUpon>202305151431141_Ids.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305151555376_Ids1.cs" />
+    <Compile Include="Migrations\202305151555376_Ids1.designer.cs">
+      <DependentUpon>202305151555376_Ids1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasePropertyChanged.cs" />
     <Compile Include="Models\CourseClassTeacher.cs" />
@@ -414,6 +422,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305110842090_ClassCourseUpdate.resx">
       <DependentUpon>202305110842090_ClassCourseUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305151431141_Ids.resx">
+      <DependentUpon>202305151431141_Ids.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305151555376_Ids1.resx">
+      <DependentUpon>202305151555376_Ids1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

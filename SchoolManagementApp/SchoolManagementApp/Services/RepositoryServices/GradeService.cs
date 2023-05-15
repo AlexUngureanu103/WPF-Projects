@@ -4,6 +4,7 @@ using SchoolManagementApp.DataAccess.Models.StudentRelated;
 using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace SchoolManagementApp.Services.RepositoryServices
@@ -53,19 +54,46 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return false;
             }
 
-            var courseType = unitOfWork.Courses.GetById(grade.CourseTypeId);
+            var courseType = unitOfWork.Courses.GetById((int)grade.CourseTypeId);
             if (courseType == null)
             {
                 errorMessage = "Invalid course";
                 return false;
             }
 
-            var student = unitOfWork.Students.GetById(grade.StudentId);
+            var student = unitOfWork.Students.GetById((int)grade.StudentId);
             if (student == null)
             {
                 errorMessage = "invalid Student";
                 return false;
             }
+
+            var specialization = student.Class.Specialization;
+            var course = grade.CourseType;
+            var courseSpecialization = unitOfWork.SpecializationCourse.GetAll().FirstOrDefault(c => c.SpecializationId == specialization.Id && c.CourseTypeId == course.Id);
+
+            if (courseSpecialization == null)
+            {
+                errorMessage = "Invalid course for this specialization";
+                return false;
+            }
+            if (courseSpecialization.HasThesis == false)
+            {
+                grade.IsThesis = false;
+                errorMessage = "This course does not have a thesis";
+            }
+
+            if (grade.IsThesis == true)
+            {
+                var unique = unitOfWork.Grades.GetAll().FirstOrDefault(g => g.StudentId == student.Id && g.CourseTypeId == grade.CourseTypeId && g.IsThesis == true);
+
+                if (unique != null)
+                {
+                    errorMessage = "Student already has a thesis for this course";
+                    return false;
+                }
+            }
+
             return true;
         }
 
