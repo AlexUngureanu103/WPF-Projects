@@ -19,8 +19,8 @@ namespace SchoolManagementApp.DataAccess.Models
             set { role = value; NotifyPropertyChanged("Role"); }
         }
 
-        private int? PersonId;
-        public int? personId
+        private int PersonId;
+        public int personId
         {
             get { return PersonId; }
             set { PersonId = value; NotifyPropertyChanged("PersonId"); }

@@ -25,12 +25,16 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<User> GetAll()
         {
-            var users = unitOfWork.Users.GetAll();
-            foreach (User user in users)
+            var users = unitOfWork.Users.GetAll().Select(user =>
             {
-                if (user.personId != null)
-                    user.Person = unitOfWork.Persons.GetById((int)user.personId);
-            }
+                user.Person = unitOfWork.Persons.GetById(user.personId);
+                return user;
+            });
+            //foreach (User user in users)
+            //{
+            //    if (user.personId != null)
+            //        user.Person = unitOfWork.Persons.GetById((int)user.personId);
+            //}
 
             return new ObservableCollection<User>(users);
         }
@@ -106,14 +110,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             ////check password
             //user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
 
-            User userForDb = new User
-            {
-                PasswordHash = user.PasswordHash,
-                Email = user.Email,
-                RoleId = user.RoleId,
-                personId = user.personId
-            };
-            unitOfWork.Users.Add(userForDb);
+            //User userForDb = new User
+            //{
+            //    PasswordHash = user.PasswordHash,
+            //    Email = user.Email,
+            //    RoleId = user.RoleId,
+            //    personId = user.personId
+            //};
+            unitOfWork.Users.Add(user);
             UserList.Add(user);
             unitOfWork.SaveChanges();
         }

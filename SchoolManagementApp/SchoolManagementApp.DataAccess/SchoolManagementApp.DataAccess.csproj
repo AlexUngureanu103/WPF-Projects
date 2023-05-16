@@ -350,6 +350,10 @@
     <Compile Include="Migrations\202305151555376_Ids1.designer.cs">
       <DependentUpon>202305151555376_Ids1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305161041207_personIdCascade.cs" />
+    <Compile Include="Migrations\202305161041207_personIdCascade.designer.cs">
+      <DependentUpon>202305161041207_personIdCascade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasePropertyChanged.cs" />
     <Compile Include="Models\CourseClassTeacher.cs" />
@@ -430,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305151555376_Ids1.resx">
       <DependentUpon>202305151555376_Ids1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305161041207_personIdCascade.resx">
+      <DependentUpon>202305161041207_personIdCascade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

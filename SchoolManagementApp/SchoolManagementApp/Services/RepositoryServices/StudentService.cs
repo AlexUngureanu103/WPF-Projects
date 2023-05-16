@@ -25,14 +25,20 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Student> GetAll()
         {
-            var students = new ObservableCollection<Student>(unitOfWork.Students.GetAll());
-
-            foreach (var student in students)
+            var students = new ObservableCollection<Student>(unitOfWork.Students.GetAll().Select(student =>
             {
-                student.Class = unitOfWork.Classes.GetById(student.ClassId);
-                student.User = unitOfWork.Users.GetById(student.UserId);
                 student.Grades = new List<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
-            }
+                return student;
+            }));
+            //students.Select(student =>
+            //{
+            //    student.Grades.Select(grade =>
+            //    {
+            //        grade.CourseType = unitOfWork.Courses.GetById((int)grade.CourseTypeId);
+            //        return grade;
+            //    });
+            //    return student;
+            //});
 
             return students;
         }
