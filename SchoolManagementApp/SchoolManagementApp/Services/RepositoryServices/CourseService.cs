@@ -64,15 +64,17 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return;
             }
 
-            CourseType result = unitOfWork.Courses.GetById(course.Id);
+            CourseType resultFromDb = unitOfWork.Courses.GetById(course.Id);
 
-            if (result == null)
+            if (resultFromDb == null)
             {
                 errorMessage = "Course not found";
                 return;
             }
 
-            unitOfWork.Courses.Update(course);
+            //unitOfWork.Courses.Update(course);
+            resultFromDb.Course = course.Course;
+            
             unitOfWork.SaveChanges();
         }
 

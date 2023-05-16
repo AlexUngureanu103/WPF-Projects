@@ -74,8 +74,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
         public void Edit(Class @class)
         {
 
-            Class result = unitOfWork.Classes.GetById(@class.Id);
-            if (result == null)
+            Class resultFromDb = unitOfWork.Classes.GetById(@class.Id);
+            if (resultFromDb == null)
             {
                 errorMessage = "Course not found";
                 return;
@@ -84,7 +84,10 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidateClass(@class))
                 return;
 
-            unitOfWork.Classes.Update(@class);
+            //unitOfWork.Classes.Update(@class);
+            resultFromDb.Name = @class.Name;
+            resultFromDb.SpecializationId = @class.SpecializationId;          
+
             unitOfWork.SaveChanges();
         }
 

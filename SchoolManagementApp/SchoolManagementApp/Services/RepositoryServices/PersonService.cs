@@ -61,8 +61,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(Person entity)
         {
-            Person result = unitOfWork.Persons.GetById(entity.Id);
-            if (result == null)
+            Person resultFromDb = unitOfWork.Persons.GetById(entity.Id);
+            if (resultFromDb == null)
             {
                 errorMessage = "Person not found";
                 return;
@@ -71,7 +71,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidatePerson(entity))
                 return;
 
-            unitOfWork.Persons.Update(entity);
+            //unitOfWork.Persons.Update(entity);
+            resultFromDb.FirstName = entity.FirstName;
+            resultFromDb.LastName = entity.LastName;
+            resultFromDb.DateOfBirth = entity.DateOfBirth;
+            resultFromDb.Address = entity.Address;
+            
             unitOfWork.SaveChanges();
         }
 

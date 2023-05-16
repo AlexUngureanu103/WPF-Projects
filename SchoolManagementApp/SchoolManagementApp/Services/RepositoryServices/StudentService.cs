@@ -89,9 +89,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(Student student)
         {
-            Student Student = unitOfWork.Students.GetById(student.Id);
+            Student StudentFromDb = unitOfWork.Students.GetById(student.Id);
 
-            if (Student == null)
+            if (StudentFromDb == null)
             {
                 errorMessage = "Student not found";
                 return;
@@ -100,7 +100,10 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidateStudent(student))
                 return;
 
-            unitOfWork.Students.Update(student);
+            //unitOfWork.Students.Update(student);
+            StudentFromDb.UserId = student.UserId;
+            StudentFromDb.ClassId = student.ClassId;
+
             unitOfWork.SaveChanges();
         }
 

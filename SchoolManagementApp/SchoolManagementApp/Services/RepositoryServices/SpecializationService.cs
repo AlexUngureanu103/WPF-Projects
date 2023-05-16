@@ -63,9 +63,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(Specialization specialization)
         {
-            Specialization Spec = unitOfWork.Specializations.GetById(specialization.Id);
+            Specialization specializationFromDb = unitOfWork.Specializations.GetById(specialization.Id);
 
-            if (Spec == null)
+            if (specializationFromDb == null)
             {
                 errorMessage = "Specialization not found";
                 return;
@@ -74,7 +74,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidateSpecialization(specialization))
                 return;
 
-            unitOfWork.Specializations.Update(specialization);
+            //unitOfWork.Specializations.Update(specialization);
+            specializationFromDb.Name = specialization.Name;
+
             unitOfWork.SaveChanges();
         }
 

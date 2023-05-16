@@ -124,9 +124,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(User user)
         {
-            User User = unitOfWork.Users.GetById(user.Id);
+            User UserFromDb = unitOfWork.Users.GetById(user.Id);
 
-            if (User == null)
+            if (UserFromDb == null)
             {
                 errorMessage = "User not found";
                 return;
@@ -140,7 +140,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
             }
 
             //user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
-            unitOfWork.Users.Update(user);
+            //unitOfWork.Users.Update(user);
+            UserFromDb.personId = user.personId;
+            UserFromDb.Email = user.Email;
+            UserFromDb.PasswordHash = user.PasswordHash;
+            UserFromDb.RoleId = user.RoleId;
+
             unitOfWork.SaveChanges();
         }
 

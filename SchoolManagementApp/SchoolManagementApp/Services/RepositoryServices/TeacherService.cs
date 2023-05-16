@@ -43,8 +43,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(Teacher entity)
         {
-            var teacher = unitOfWork.Teachers.GetById(entity.Id);
-            if (teacher == null)
+            Teacher teacherFromDb = unitOfWork.Teachers.GetById(entity.Id);
+            if (teacherFromDb == null)
             {
                 errorMessage = "Teacher not found";
                 return;
@@ -53,7 +53,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidateTeacher(entity))
                 return;
 
-            unitOfWork.Teachers.Update(entity);
+            //unitOfWork.Teachers.Update(entity);
+            teacherFromDb.UserId = entity.UserId;
+            
             unitOfWork.SaveChanges();
         }
 

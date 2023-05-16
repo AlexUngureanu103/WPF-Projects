@@ -31,7 +31,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Grade> GetStudentGrades(Student student)
         {
-            if(student == null)
+            if (student == null)
                 return new ObservableCollection<Grade>();
             return new ObservableCollection<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
         }
@@ -111,9 +111,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(Grade grade)
         {
-            Grade result = unitOfWork.Grades.GetById(grade.Id);
+            Grade resultFromDb = unitOfWork.Grades.GetById(grade.Id);
 
-            if (result == null)
+            if (resultFromDb == null)
             {
                 errorMessage = "Grade not found";
                 return;
@@ -121,7 +121,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidateGrade(grade))
                 return;
 
-            unitOfWork.Grades.Update(grade);
+            //unitOfWork.Grades.Update(grade);
+            resultFromDb.Value = grade.Value;
+            resultFromDb.IsThesis = grade.IsThesis;
+            resultFromDb.Semester = grade.Semester;
+            resultFromDb.CourseTypeId = grade.CourseTypeId;
+            resultFromDb.StudentId = grade.StudentId;
+            resultFromDb.Date = grade.Date;
+
             unitOfWork.SaveChanges();
         }
 

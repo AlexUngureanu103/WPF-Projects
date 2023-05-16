@@ -61,8 +61,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(CourseClass entity)
         {
-            var courseClass = unitOfWork.CourseClasses.GetById(entity.Id);
-            if (courseClass == null)
+            CourseClass resultFromDb = unitOfWork.CourseClasses.GetById(entity.Id);
+            if (resultFromDb == null)
             {
                 errorMessage = "CourseClass not found";
                 return;
@@ -70,7 +70,11 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidateEntity(entity))
                 return;
 
-            unitOfWork.CourseClasses.Update(entity);
+            //unitOfWork.CourseClasses.Update(entity);
+            resultFromDb.CourseTypeId = entity.CourseTypeId;
+            resultFromDb.ClassId = entity.ClassId;
+            resultFromDb.HasCourse = entity.HasCourse;
+            
             unitOfWork.SaveChanges();
         }
 

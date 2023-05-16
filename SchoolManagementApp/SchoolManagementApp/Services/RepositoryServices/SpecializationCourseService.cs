@@ -75,7 +75,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             }
 
             var entity = SpecializationCourseList.FirstOrDefault(c => c.CourseTypeId == specializationCourse.CourseTypeId && c.SpecializationId == specializationCourse.SpecializationId);
-            if(entity != null)
+            if (entity != null)
             {
                 return;
                 specializationCourse.Id = entity.Id;
@@ -91,9 +91,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(SpecializationCourse specializationCourse)
         {
-            SpecializationCourse result = unitOfWork.SpecializationCourse.GetById(specializationCourse.Id);
+            SpecializationCourse resultFromDb = unitOfWork.SpecializationCourse.GetById(specializationCourse.Id);
 
-            if (result == null)
+            if (resultFromDb == null)
             {
                 errorMessage = "Course not found";
                 return;
@@ -103,7 +103,11 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return;
             }
 
-            unitOfWork.SpecializationCourse.Update(specializationCourse);
+            //unitOfWork.SpecializationCourse.Update(specializationCourse);
+            resultFromDb.SpecializationId = specializationCourse.SpecializationId;
+            resultFromDb.CourseTypeId = specializationCourse.CourseTypeId;
+            resultFromDb.HasThesis = specializationCourse.HasThesis;
+            
             unitOfWork.SaveChanges();
         }
 

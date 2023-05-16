@@ -75,9 +75,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Edit(Absences entity)
         {
-            Absences result = unitOfWork.Absences.GetById(entity.Id);
+            Absences resultFromDb = unitOfWork.Absences.GetById(entity.Id);
 
-            if (result == null)
+            if (resultFromDb == null)
             {
                 errorMessage = "Grade not found";
                 return;
@@ -85,7 +85,13 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidateAbsence(entity))
                 return;
 
-            unitOfWork.Absences.Update(entity);
+            //unitOfWork.Absences.Update(entity);
+            resultFromDb.Date = entity.Date;
+            resultFromDb.Semester = entity.Semester;
+            resultFromDb.IsMotivated = entity.IsMotivated;
+            resultFromDb.StudentId = entity.StudentId;
+            resultFromDb.CourseTypeId = entity.CourseTypeId;
+            
             unitOfWork.SaveChanges();
         }
 
