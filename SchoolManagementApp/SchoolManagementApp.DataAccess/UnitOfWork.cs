@@ -32,6 +32,8 @@ namespace SchoolManagementApp.DataAccess
 
         public IAbsencesRepository Absences { get; }
 
+        public ICourseClassTeacherRepository CourseClassTeachers { get; }
+
         private readonly log4net.ILog log;
 
         public UnitOfWork(SchoolManagementDbContext dbContext,
@@ -47,6 +49,7 @@ namespace SchoolManagementApp.DataAccess
             ITeacherRepository teacherRepository,
             ICourseClassRepository courseClassRepository,
             IAbsencesRepository absencesRepository,
+            ICourseClassTeacherRepository courseClassTeacherRepository,
             log4net.ILog log
             )
         {
@@ -63,6 +66,7 @@ namespace SchoolManagementApp.DataAccess
             this.Teachers = teacherRepository ?? throw new ArgumentNullException(nameof(teacherRepository));
             this.CourseClasses = courseClassRepository ?? throw new ArgumentNullException(nameof(courseClassRepository));
             this.Absences = absencesRepository ?? throw new ArgumentNullException(nameof(absencesRepository));
+            this.CourseClassTeachers = courseClassTeacherRepository ?? throw new ArgumentNullException(nameof(courseClassTeacherRepository));
             this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 

@@ -302,6 +302,7 @@
     <Compile Include="Converters\AbsenceConvert.cs" />
     <Compile Include="Converters\ClassConvert.cs" />
     <Compile Include="Converters\CourseClassConvert.cs" />
+    <Compile Include="Converters\CourseClassTeacherConvert.cs" />
     <Compile Include="Converters\CourseConvert.cs" />
     <Compile Include="Converters\GradeConvert.cs" />
     <Compile Include="Converters\PersonConvert.cs" />
@@ -327,9 +328,11 @@
     <Compile Include="Services\RepositoryServices\Abstractions\IUserService.cs" />
     <Compile Include="Services\RepositoryServices\ClassService.cs" />
     <Compile Include="Services\RepositoryServices\CourseClassService.cs" />
+    <Compile Include="Services\RepositoryServices\CourseClassTeacherService.cs" />
     <Compile Include="Services\RepositoryServices\CourseService.cs" />
     <Compile Include="Services\RepositoryServices\GradeService.cs" />
     <Compile Include="Services\RepositoryServices\Abstractions\ICollectionService.cs" />
+    <Compile Include="Services\RepositoryServices\ICourseClassTeacherService.cs" />
     <Compile Include="Services\RepositoryServices\PersonService.cs" />
     <Compile Include="Services\RepositoryServices\SpecializationCourseService.cs" />
     <Compile Include="Services\RepositoryServices\SpecializationService.cs" />
@@ -349,6 +352,7 @@
     <Compile Include="ViewModels\AdminControls\ManageSpecializationCourseVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationVMs\ManageSpecializationsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageTeachersVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageTeachingClassesVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
@@ -391,6 +395,9 @@
     </Compile>
     <Compile Include="Views\AdminViews\ManageTeachersAdminControl.xaml.cs">
       <DependentUpon>ManageTeachersAdminControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManageTeachingClassesAdminControl.xaml.cs">
+      <DependentUpon>ManageTeachingClassesAdminControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageUsers.xaml.cs">
       <DependentUpon>ManageUsers.xaml</DependentUpon>
@@ -466,6 +473,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\ManageTeachersAdminControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManageTeachingClassesAdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

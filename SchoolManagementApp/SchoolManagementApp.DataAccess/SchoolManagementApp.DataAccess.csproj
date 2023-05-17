@@ -286,6 +286,7 @@
     <Compile Include="Abstractions\IAbsencesRepository.cs" />
     <Compile Include="Abstractions\ICourseClassRepository.cs" />
     <Compile Include="Abstractions\IClassRepository.cs" />
+    <Compile Include="Abstractions\ICourseClassTeacherRepository.cs" />
     <Compile Include="Abstractions\ICourseRepository.cs" />
     <Compile Include="Abstractions\IGradeRepository.cs" />
     <Compile Include="Abstractions\IPersonRepository.cs" />
@@ -378,6 +379,7 @@
     <Compile Include="Repositories\AbsencesRepository.cs" />
     <Compile Include="Repositories\ClassRepository.cs" />
     <Compile Include="Repositories\CourseClassRepository.cs" />
+    <Compile Include="Repositories\CourseClassTeacherRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\GradeRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />

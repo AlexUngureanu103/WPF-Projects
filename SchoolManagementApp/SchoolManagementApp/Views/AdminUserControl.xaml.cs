@@ -98,6 +98,11 @@ namespace SchoolManagementApp.Views
         {
             AdminControls.Navigate(_userControlFactory.Create<ManageAbsencesAdminControl>());
         }
+
+        private void TeachingClasses_Click(object sender, RoutedEventArgs e)
+        {
+            AdminControls.Navigate(_userControlFactory.Create<ManageTeachingClassesAdminControl>());
+        }
     }
 }
 

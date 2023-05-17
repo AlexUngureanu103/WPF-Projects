@@ -29,6 +29,7 @@
                 <MenuItem Header="Person" Click="Person_Click"/>
                 <MenuItem Header="Grades" Click="Grades_Click"/>
                 <MenuItem Header="Absences" Click="Absences_Click"/>
+                <MenuItem Header="TeachingClasses" Click="TeachingClasses_Click"/>
             </MenuItem>
             <MenuItem Header="Logout" Click="Logout_Click"/>
         </Menu>

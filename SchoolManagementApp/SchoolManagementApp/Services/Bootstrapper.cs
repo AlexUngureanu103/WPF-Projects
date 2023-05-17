@@ -26,7 +26,7 @@ namespace SchoolManagementApp.Services
                 return UserControlFactory;
             }
         }
-        
+
         private static IContainer BuildApplication(Frame frame)
         {
             var builder = new ContainerBuilder();
@@ -47,7 +47,7 @@ namespace SchoolManagementApp.Services
 
             return builder.Build();
         }
-        
+
         private static void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<ClassService>().As<IClassService>();
@@ -61,6 +61,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<TeacherService>().As<ITeacherService>();
             builder.RegisterType<CourseClassService>().As<ICourseClassService>();
             builder.RegisterType<AbsencesService>().As<IAbsencesService>();
+            builder.RegisterType<CourseClassTeacherService>().As<ICourseClassTeacherService>();
 
             builder.RegisterType<AuthorizationService>().AsSelf();
         }
@@ -79,6 +80,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<TeacherRepository>().As<ITeacherRepository>();
             builder.RegisterType<CourseClassRepository>().As<ICourseClassRepository>();
             builder.RegisterType<AbsencesRepository>().As<IAbsencesRepository>();
+            builder.RegisterType<CourseClassTeacherRepository>().As<ICourseClassTeacherRepository>();
         }
 
         private static void RegisterMainUsersPage(ContainerBuilder builder)
@@ -104,6 +106,7 @@ namespace SchoolManagementApp.Services
 
             builder.RegisterType<ManageGradesVM>().AsSelf();
             builder.RegisterType<ManageAbsencesVM>().AsSelf();
+            builder.RegisterType<ManageTeachingClassesVM>().AsSelf();
 
             builder.RegisterType<ManageSpecializationsVM>().AsSelf();
         }
@@ -135,6 +138,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageCourseClassesAdminControl>().AsSelf();
             builder.RegisterType<ManageGradesAdminControl>().AsSelf();
             builder.RegisterType<ManageAbsencesAdminControl>().AsSelf();
+            builder.RegisterType<ManageTeachingClassesAdminControl>().AsSelf();
 
             builder.RegisterType<AddStudentsWindow>().AsSelf();
         }
