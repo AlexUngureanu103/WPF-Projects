@@ -7,9 +7,9 @@ namespace SchoolManagementApp.DataAccess.Models
 {
     public class Student : BaseEntity
     {
-        private int userId;
+        private int? userId;
         [Required]
-        public int UserId
+        public int? UserId
         {
             get { return userId; }
             set { userId = value; NotifyPropertyChanged("UserId"); }
@@ -22,9 +22,9 @@ namespace SchoolManagementApp.DataAccess.Models
             set { user = value; NotifyPropertyChanged("User"); }
         }
 
-        private int classId;
+        private int? classId;
         [Required]
-        public int ClassId
+        public int? ClassId
         {
             get { return classId; }
             set { classId = value; NotifyPropertyChanged("ClassId"); }

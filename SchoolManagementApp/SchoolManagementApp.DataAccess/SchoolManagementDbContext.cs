@@ -1,6 +1,5 @@
 ﻿using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
-using SchoolManagementApp.DataAccess.Models.Users;
 using System.Data.Entity;
 
 namespace SchoolManagementApp.DataAccess
@@ -26,8 +25,6 @@ namespace SchoolManagementApp.DataAccess
         public DbSet<Student> Students { get; set; }
 
         public DbSet<Teacher> Teachers { get; set; }
-
-        public DbSet<ClassMaster> ClassMasters { get; set; }
 
         public DbSet<User> Users { get; set; }
 

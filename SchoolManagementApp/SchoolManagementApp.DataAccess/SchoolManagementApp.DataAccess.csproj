@@ -354,6 +354,10 @@
     <Compile Include="Migrations\202305161041207_personIdCascade.designer.cs">
       <DependentUpon>202305161041207_personIdCascade.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305171130434_classMasterRefactor.cs" />
+    <Compile Include="Migrations\202305171130434_classMasterRefactor.designer.cs">
+      <DependentUpon>202305171130434_classMasterRefactor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasePropertyChanged.cs" />
     <Compile Include="Models\CourseClassTeacher.cs" />
@@ -367,7 +371,6 @@
     <Compile Include="Models\StudentRelated\Grade.cs" />
     <Compile Include="Models\StudentRelated\Specialization.cs" />
     <Compile Include="Models\Users\Role.cs" />
-    <Compile Include="Models\Users\ClassMaster.cs" />
     <Compile Include="Models\Users\Student.cs" />
     <Compile Include="Models\Users\Teacher.cs" />
     <Compile Include="Models\Users\User.cs" />
@@ -437,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305161041207_personIdCascade.resx">
       <DependentUpon>202305161041207_personIdCascade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305171130434_classMasterRefactor.resx">
+      <DependentUpon>202305171130434_classMasterRefactor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

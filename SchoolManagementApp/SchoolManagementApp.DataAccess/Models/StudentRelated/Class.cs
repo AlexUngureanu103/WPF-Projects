@@ -14,12 +14,26 @@ namespace SchoolManagementApp.DataAccess.Models.StudentRelated
             set { name = value; NotifyPropertyChanged("Name"); }
         }
 
-        private int specializationId;
+        private int? specializationId;
         [Required]
-        public int SpecializationId
+        public int? SpecializationId
         {
             get { return specializationId; }
             set { specializationId = value; NotifyPropertyChanged("SpecializationId"); }
+        }
+
+        private int? teacherId;
+        public int? TeacherId
+        {
+            get { return teacherId; }
+            set { teacherId = value; NotifyPropertyChanged("TeacherId"); }
+        }
+
+        private Teacher teacher;
+        public Teacher Teacher
+        {
+            get { return teacher; }
+            set { teacher = value; NotifyPropertyChanged("Teacher"); }
         }
 
         private Specialization specialization;

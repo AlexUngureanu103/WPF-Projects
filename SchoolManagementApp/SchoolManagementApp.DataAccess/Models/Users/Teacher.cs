@@ -1,14 +1,13 @@
-﻿using SchoolManagementApp.DataAccess.Models.StudentRelated;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementApp.DataAccess.Models
 {
     public class Teacher : BaseEntity
     {
-        private int userId;
+        private int? userId;
         [Required]
-        public int UserId
+        public int? UserId
         {
             get { return userId; }
             set { userId = value; NotifyPropertyChanged("UserId"); }
