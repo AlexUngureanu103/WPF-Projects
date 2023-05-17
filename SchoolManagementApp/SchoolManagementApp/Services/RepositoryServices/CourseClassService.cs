@@ -1,6 +1,6 @@
 ﻿using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.DataAccess.Models.StudentRelated;
-using SchoolManagementApp.Services.RepositoryServices.Abstractions;
+using SchoolManagementApp.Domain.Models.StudentRelated;
+using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -82,7 +82,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             resultFromDb.CourseTypeId = entity.CourseTypeId;
             resultFromDb.ClassId = entity.ClassId;
             resultFromDb.HasCourse = entity.HasCourse;
-            
+
             unitOfWork.SaveChanges();
             log.Info($"CourseClass {entity.Id} edited successfully");
         }

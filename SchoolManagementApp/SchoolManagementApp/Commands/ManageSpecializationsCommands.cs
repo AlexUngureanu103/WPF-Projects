@@ -1,5 +1,5 @@
-﻿using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.DataAccess.Models.StudentRelated;
+﻿using SchoolManagementApp.Domain.Models.StudentRelated;
+using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using SchoolManagementApp.Enums;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels.AdminControls.ManageSpecializationVMs;

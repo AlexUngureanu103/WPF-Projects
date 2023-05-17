@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.DataAccess.Abstractions;
+﻿using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using System;
 using System.Data.Entity.Validation;
 

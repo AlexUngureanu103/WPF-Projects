@@ -1,11 +1,11 @@
-﻿using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.DataAccess.Models;
+﻿using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using System;
 using System.Linq;
 
 namespace SchoolManagementApp.DataAccess.Repositories
 {
-    public class RoleRepository : RepositoryBase<Role> , IRoleRepository
+    public class RoleRepository : RepositoryBase<Role>, IRoleRepository
     {
         public RoleRepository(SchoolManagementDbContext dbContext) : base(dbContext)
         {

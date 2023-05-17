@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.DataAccess.Models;
+﻿using SchoolManagementApp.Domain.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
 

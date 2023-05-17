@@ -1,6 +1,6 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.Services.RepositoryServices.Abstractions;
+using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;

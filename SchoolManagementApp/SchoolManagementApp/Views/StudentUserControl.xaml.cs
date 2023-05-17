@@ -1,5 +1,5 @@
 ﻿using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.DataAccess.Models;
+using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.ViewModels;
 using System;
 using System.Windows;

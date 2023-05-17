@@ -1,5 +1,5 @@
-﻿using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.DataAccess.Models.StudentRelated;
+﻿using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.Models.StudentRelated;
 using System.Data.Entity;
 
 namespace SchoolManagementApp.DataAccess

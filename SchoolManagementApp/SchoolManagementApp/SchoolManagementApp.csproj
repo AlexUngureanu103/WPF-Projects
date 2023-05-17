@@ -315,24 +315,11 @@
     <Compile Include="Services\Bootstrapper.cs" />
     <Compile Include="Services\IUserControlFactory.cs" />
     <Compile Include="Services\RepositoryServices\AbsencesService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\IAbsencesService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\IClassService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\ICourseClassService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\ICourseService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\IGradeService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\IPersonService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\ISpecializationCourseService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\ISpecializationService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\IStudentService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\ITeacherService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\IUserService.cs" />
     <Compile Include="Services\RepositoryServices\ClassService.cs" />
     <Compile Include="Services\RepositoryServices\CourseClassService.cs" />
     <Compile Include="Services\RepositoryServices\CourseClassTeacherService.cs" />
     <Compile Include="Services\RepositoryServices\CourseService.cs" />
     <Compile Include="Services\RepositoryServices\GradeService.cs" />
-    <Compile Include="Services\RepositoryServices\Abstractions\ICollectionService.cs" />
-    <Compile Include="Services\RepositoryServices\ICourseClassTeacherService.cs" />
     <Compile Include="Services\RepositoryServices\PersonService.cs" />
     <Compile Include="Services\RepositoryServices\SpecializationCourseService.cs" />
     <Compile Include="Services\RepositoryServices\SpecializationService.cs" />
@@ -538,6 +525,10 @@
     <ProjectReference Include="..\SchoolManagementApp.DataAccess\SchoolManagementApp.DataAccess.csproj">
       <Project>{1cdd6f5f-4f16-44c7-9039-5fbf1912d9fe}</Project>
       <Name>SchoolManagementApp.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SchoolManagementApp.Domain\SchoolManagementApp.Domain.csproj">
+      <Project>{d2815911-45b0-4b46-bbd0-6e34bcb15b03}</Project>
+      <Name>SchoolManagementApp.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
 ﻿using SchoolManagementApp.Commands;
 using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.DataAccess.Models.StudentRelated;
 using SchoolManagementApp.DataAccess.Repositories;
+using SchoolManagementApp.Domain.Models.StudentRelated;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;

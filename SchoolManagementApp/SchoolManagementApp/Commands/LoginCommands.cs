@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.DataAccess.Abstractions;
+﻿using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels;
 using System;

@@ -1,8 +1,8 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.DataAccess.Models.StudentRelated;
-using SchoolManagementApp.Services.RepositoryServices.Abstractions;
+using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.Models.StudentRelated;
+using SchoolManagementApp.Domain.RepositoriesAbstractions;
+using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -18,9 +18,9 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
         private readonly IClassService _classService;
 
-        private readonly IRoleRepository _roleRepository; 
+        private readonly IRoleRepository _roleRepository;
 
-        public ManageStudentsVM(IStudentService studentService, IUserService userService, IClassService classService , IRoleRepository roleRepository)
+        public ManageStudentsVM(IStudentService studentService, IUserService userService, IClassService classService, IRoleRepository roleRepository)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             _studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));

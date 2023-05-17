@@ -1,5 +1,5 @@
-﻿using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.DataAccess.Models;
+﻿using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;

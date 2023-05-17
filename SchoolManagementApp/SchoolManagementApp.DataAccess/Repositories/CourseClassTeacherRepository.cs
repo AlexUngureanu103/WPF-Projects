@@ -1,5 +1,5 @@
-﻿using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.DataAccess.Models;
+﻿using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.RepositoriesAbstractions;
 
 namespace SchoolManagementApp.DataAccess.Repositories
 {

@@ -1,6 +1,6 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess.Abstractions;
-using SchoolManagementApp.DataAccess.Models;
+using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using SchoolManagementApp.Services;
 using SchoolManagementApp.Services.Validators;
 using System.Windows.Input;

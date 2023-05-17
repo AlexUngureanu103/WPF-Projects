@@ -1,6 +1,6 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.Services.RepositoryServices.Abstractions;
+using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -15,7 +15,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
         public ManageCoursesVM(ICourseService courseService)
         {
             this._courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
-            
+
             CourseList = _courseService.GetAll();
         }
 

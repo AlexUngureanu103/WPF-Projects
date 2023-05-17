@@ -1,7 +1,7 @@
 ﻿using SchoolManagementApp.Commands;
-using SchoolManagementApp.DataAccess.Models;
-using SchoolManagementApp.DataAccess.Models.StudentRelated;
-using SchoolManagementApp.Services.RepositoryServices.Abstractions;
+using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.Models.StudentRelated;
+using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -17,7 +17,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
         private readonly ISpecializationCourseService specializationCourseService;
 
-        public ManageSpecializationCourseVM(ICourseService courseService , ISpecializationService specializationService , ISpecializationCourseService specializationCourseService)
+        public ManageSpecializationCourseVM(ICourseService courseService, ISpecializationService specializationService, ISpecializationCourseService specializationCourseService)
         {
             this.courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
             this.specializationService = specializationService ?? throw new ArgumentNullException(nameof(specializationService));
@@ -29,14 +29,14 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
             foreach (CourseType course in CourseList)
             {
-                foreach(Specialization specialization in SpecializationList)
+                foreach (Specialization specialization in SpecializationList)
                 {
                     specializationCourseService.Add(new SpecializationCourse
                     {
                         Specialization = specialization,
-                        SpecializationId=specialization.Id,
-                        CourseType=course,
-                        CourseTypeId=course.Id
+                        SpecializationId = specialization.Id,
+                        CourseType = course,
+                        CourseTypeId = course.Id
                     });
                 }
             }

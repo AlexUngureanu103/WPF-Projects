@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.DataAccess.Models;
+﻿using SchoolManagementApp.Domain.Models;
 
 namespace SchoolManagementApp.Services.Validators
 {

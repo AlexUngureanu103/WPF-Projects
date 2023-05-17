@@ -1,10 +1,10 @@
 ﻿using Autofac;
 using SchoolManagementApp.Commands;
 using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.DataAccess.Abstractions;
 using SchoolManagementApp.DataAccess.Repositories;
+using SchoolManagementApp.Domain.RepositoriesAbstractions;
+using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.RepositoryServices;
-using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminControls;
 using SchoolManagementApp.ViewModels.AdminControls.ManageSpecializationVMs;
