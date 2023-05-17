@@ -18,6 +18,7 @@
                     <MultiBinding Converter="{StaticResource classConvert}">
                         <Binding ElementName="txtName" Path="Text"/>
                         <Binding ElementName="txtSpecializationId" Path="SelectedValue" />
+                        <Binding ElementName="Teacher" Path="SelectedValue"/>
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
@@ -36,12 +37,20 @@
             <Label Width="150" FontSize="15">Specialization :</Label>
             <ComboBox Name="txtSpecializationId" Width="200" ItemsSource="{Binding SpecializationList}" 
                       DisplayMemberPath="Name" SelectedItem="{Binding ElementName=ClassGrid ,Path=SelectedItem.Specialization , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel> 
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" FontSize="15">Teacher :</Label>
+            <ComboBox Name="Teacher" Width="200" ItemsSource="{Binding TeacherList}" 
+                      DisplayMemberPath="Name" SelectedItem="{Binding ElementName=ClassGrid ,Path=SelectedItem.Teacher , UpdateSourceTrigger=PropertyChanged}"/>
         </WrapPanel>
         <DataGrid Name="ClassGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding ClassList}" SelectedItem="{Binding SelectedClass, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Specialization" Binding="{Binding Specialization.Name}"/>
+                <DataGridTextColumn Header="Class Master Email" Binding="{Binding Teacher.User.Email}"/>
+                <DataGridTextColumn Header="Class Master FirstName" Binding="{Binding Teacher.User.Person.FirstName}"/>
+                <DataGridTextColumn Header="Class Master LastName" Binding="{Binding Teacher.User.Person.LastName}"/>
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

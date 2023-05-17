@@ -25,7 +25,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             var classes = unitOfWork.Classes.GetAll();
             foreach (var @class in classes)
             {
-                @class.Specialization = unitOfWork.Specializations.GetById(@class.SpecializationId);
+                @class.Specialization = unitOfWork.Specializations.GetById((int)@class.SpecializationId);
             }
 
             return new ObservableCollection<Class>(classes);
@@ -51,7 +51,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return false;
             }
 
-            var specialization = unitOfWork.Specializations.GetById(@class.SpecializationId);
+            var specialization = unitOfWork.Specializations.GetById((int)@class.SpecializationId);
             if (specialization == null)
             {
                 errorMessage = "Specialization cannot be null";

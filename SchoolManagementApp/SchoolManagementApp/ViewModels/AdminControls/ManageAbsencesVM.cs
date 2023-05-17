@@ -92,7 +92,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
                 if (selectedStudent == null)
                     CourseList = _courseService.GetAll();
                 else
-                    CourseList = _courseService.GetClassCourses(selectedStudent.ClassId);
+                    CourseList = _courseService.GetClassCourses((int)selectedStudent.ClassId);
                 OnPropertyChanged(nameof(CourseList));
                 OnPropertyChanged(nameof(AbsenceList));
             }

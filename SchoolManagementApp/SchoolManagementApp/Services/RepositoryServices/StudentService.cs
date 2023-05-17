@@ -50,14 +50,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return false;
             }
 
-            var validClass = unitOfWork.Classes.GetById(student.ClassId);
+            var validClass = unitOfWork.Classes.GetById((int)student.ClassId);
             if (validClass == null)
             {
                 errorMessage = "Class not found";
                 return false;
             }
 
-            var validUser = unitOfWork.Users.GetById(student.UserId);
+            var validUser = unitOfWork.Users.GetById((int)student.UserId);
             if (validUser == null)
             {
                 errorMessage = "User not found";

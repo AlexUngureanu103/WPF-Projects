@@ -1,4 +1,5 @@
 ﻿using SchoolManagementApp.Commands;
+using SchoolManagementApp.DataAccess.Models;
 using SchoolManagementApp.DataAccess.Models.StudentRelated;
 using SchoolManagementApp.Services.RepositoryServices.Abstractions;
 using System;
@@ -14,13 +15,17 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
         private readonly IClassService _classService;
 
-        public ManageClassesVM(IClassService classService, ISpecializationService specializationService)
+        private readonly ITeacherService _teacherService;
+
+        public ManageClassesVM(IClassService classService, ISpecializationService specializationService, ITeacherService teacherService)
         {
             _classService = classService ?? throw new ArgumentNullException(nameof(classService));
             _specializationService = specializationService ?? throw new ArgumentNullException(nameof(specializationService));
+            _teacherService = teacherService ?? throw new ArgumentNullException(nameof(teacherService));
 
             ClassList = _classService.GetAll();
             SpecializationList = _specializationService.GetAll();
+            TeacherList = _teacherService.GetAll();
         }
 
         public ObservableCollection<Class> ClassList
@@ -33,6 +38,12 @@ namespace SchoolManagementApp.ViewModels.AdminControls
         {
             get => _specializationService.SpecializationList;
             set => _specializationService.SpecializationList = value;
+        }
+
+        public ObservableCollection<Teacher> TeacherList
+        {
+            get => _teacherService.TeacherList;
+            set => _teacherService.TeacherList = value;
         }
 
         private Class selectedClass;
