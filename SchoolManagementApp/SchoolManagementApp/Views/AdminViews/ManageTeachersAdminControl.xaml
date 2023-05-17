@@ -3,47 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:convert ="clr-namespace:SchoolManagementApp.Converters"
              xmlns:local="clr-namespace:SchoolManagementApp.Views.AdminViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
+        <StackPanel.Resources>
+            <convert:TeacherConvert x:Key="teacherConvert" />
+        </StackPanel.Resources>
         <WrapPanel>
             <Button Content="Add" Margin="15" Width="100" Height="30" 
                     Command="{Binding AddCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource teacherConvert}">
+                        <Binding ElementName="User" Path="SelectedValue"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
             </Button>
             <Button Content="Edit" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}"
-                    CommandParameter="{Binding ElementName=UserGrid, Path=SelectedItem}"/>
+                    CommandParameter="{Binding ElementName=TeacherGrid, Path=SelectedItem}"/>
             <Button Content="Delete" Margin="15" Width="100" Height="30" Command="{Binding DeleteCommand}"
-                    CommandParameter="{Binding ElementName=UserGrid, Path=SelectedItem}"/>
+                    CommandParameter="{Binding ElementName=TeacherGrid, Path=SelectedItem}"/>
             <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
         </WrapPanel>
+
         <WrapPanel Margin="0,15,0,0">
-            <Label Width="150" FontSize="15">Email:</Label>
-            <TextBox Name="txtEmail" Width="200" Text ="{Binding ElementName=TeacherGrid, 
-                Path=SelectedItem.Email, UpdateSourceTrigger=PropertyChanged}"/>
-        </WrapPanel>
-        <WrapPanel Margin="0,15,0,0">
-            <Label Width="150" FontSize="15">Password:</Label>
-            <TextBox Name="txtPassword" Width="200" Text ="{Binding ElementName=TeacherGrid, 
-                Path=SelectedItem.PasswordHash, UpdateSourceTrigger=PropertyChanged}"/>
-        </WrapPanel>
-        <WrapPanel Margin="0,15,0,0">
-            <Label Width="150" FontSize="15">Role :</Label>
-            <ComboBox Name="Role" Width="200" ItemsSource="{Binding RoleList}" 
-                      DisplayMemberPath="AssignedRole" SelectedItem="{Binding ElementName=TeacherGrid ,Path=SelectedItem.Role , UpdateSourceTrigger=PropertyChanged}"/>
-        </WrapPanel>
-        <WrapPanel Margin="0,15,0,0">
-            <Label Width="150" FontSize="15">Person :</Label>
-            <ComboBox Name="Person" Width="200" ItemsSource="{Binding PersonList}" 
-                      SelectedItem="{Binding ElementName=TeacherGrid ,Path=SelectedItem.Person , UpdateSourceTrigger=PropertyChanged}">
+            <Label Width="150" FontSize="15">User :</Label>
+            <ComboBox Name="User" Width="200" ItemsSource="{Binding UserList}" 
+                      SelectedItem="{Binding ElementName=TeacherGrid ,Path=SelectedItem.User , UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1} {2}">
-                                    <Binding Path="Id"/>
-                                    <Binding Path="FirstName"/>
-                                    <Binding Path="LastName"/>
+                                    <Binding Path="Email"/>
+                                    <Binding Path="Person.FirstName"/>
+                                    <Binding Path="Person.LastName"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -55,7 +50,8 @@
                   ItemsSource="{Binding TeacherList}" SelectedItem="{Binding SelectedTeacher, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="UserId" Binding="{Binding UserId}"/>
+                <DataGridTextColumn Header="FirstName" Binding="{Binding User.Person.FirstName}"/>
+                <DataGridTextColumn Header="LastName" Binding="{Binding User.Person.LastName}"/>
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

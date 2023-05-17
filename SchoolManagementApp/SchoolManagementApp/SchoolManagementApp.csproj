@@ -307,6 +307,7 @@
     <Compile Include="Converters\PersonConvert.cs" />
     <Compile Include="Converters\SpecializationCourseConvert.cs" />
     <Compile Include="Converters\StudentConvert.cs" />
+    <Compile Include="Converters\TeacherConvert.cs" />
     <Compile Include="Converters\UserConvert.cs" />
     <Compile Include="Enums\AddOrEdit.cs" />
     <Compile Include="Services\AuthorizationService.cs" />

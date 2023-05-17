@@ -22,6 +22,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private bool ValidateTeacher(Teacher teacher)
         {
+            var alreadyExists = unitOfWork.Teachers.Any(c => c.UserId == teacher.UserId && c.Id != teacher.Id);
+            if (alreadyExists)
+            {
+                errorMessage = "Teacher with this user id already exists";
+                return false;
+            }
 
             return true;
         }
@@ -55,7 +61,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             //unitOfWork.Teachers.Update(entity);
             teacherFromDb.UserId = entity.UserId;
-            
+
             unitOfWork.SaveChanges();
         }
 
