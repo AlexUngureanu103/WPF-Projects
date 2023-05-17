@@ -18,9 +18,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public StudentService(UnitOfWork unitOfWork)
+        private readonly log4net.ILog log;
+
+        public StudentService(UnitOfWork unitOfWork, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         public ObservableCollection<Student> GetAll()
@@ -78,13 +81,17 @@ namespace SchoolManagementApp.Services.RepositoryServices
         public void Add(Student student)
         {
             if (!ValidateStudent(student))
+            {
+                log.Error(errorMessage);
                 return;
+            }
 
             student.Grades = new List<Grade>();
 
             unitOfWork.Students.Add(student);
             StudentList.Add(student);
             unitOfWork.SaveChanges();
+            log.Info($"Student with id: {student.Id} was added");
         }
 
         public void Edit(Student student)
@@ -94,17 +101,22 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (StudentFromDb == null)
             {
                 errorMessage = "Student not found";
+                log.Error(errorMessage);
                 return;
             }
 
             if (!ValidateStudent(student))
+            {
+                log.Error(errorMessage);
                 return;
+            }
 
             //unitOfWork.Students.Update(student);
             StudentFromDb.UserId = student.UserId;
             StudentFromDb.ClassId = student.ClassId;
 
             unitOfWork.SaveChanges();
+            log.Info($"Student with id: {student.Id} was edited");
         }
 
         public void Remove(Student student)
@@ -112,6 +124,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (student == null)
             {
                 errorMessage = "Student cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
@@ -121,6 +134,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.Students.Remove(student);
             StudentList.Remove(student);
             unitOfWork.SaveChanges();
+            log.Info($"Student with id: {student.Id} was removed");
         }
     }
 }

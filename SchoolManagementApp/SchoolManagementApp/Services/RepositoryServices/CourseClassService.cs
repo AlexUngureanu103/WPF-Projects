@@ -16,9 +16,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public CourseClassService(UnitOfWork unitOfWork)
+        private readonly log4net.ILog log;
+
+        public CourseClassService(UnitOfWork unitOfWork, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
         public ObservableCollection<CourseClass> GetAll()
         {
@@ -31,6 +34,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (clas == null)
             {
                 errorMessage = "Invalid class";
+                log.Error(errorMessage);
                 return false;
             }
 
@@ -38,6 +42,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (course == null)
             {
                 errorMessage = "Invalid course";
+                log.Error(errorMessage);
                 return false;
             }
             return true;
@@ -51,12 +56,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (notUnique)
             {
                 errorMessage = "Entity already exists";
+                log.Error(errorMessage);
                 return;
             }
 
             unitOfWork.CourseClasses.Add(entity);
             CourseClassList.Add(entity);
             unitOfWork.SaveChanges();
+            log.Info($"CourseClass {entity.Id} added successfully");
         }
 
         public void Edit(CourseClass entity)
@@ -65,6 +72,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (resultFromDb == null)
             {
                 errorMessage = "CourseClass not found";
+                log.Error(errorMessage);
                 return;
             }
             if (!ValidateEntity(entity))
@@ -76,6 +84,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             resultFromDb.HasCourse = entity.HasCourse;
             
             unitOfWork.SaveChanges();
+            log.Info($"CourseClass {entity.Id} edited successfully");
         }
 
         public void Remove(CourseClass entity)
@@ -83,6 +92,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (entity == null)
             {
                 errorMessage = "CourseClass cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
@@ -92,6 +102,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.CourseClasses.Remove(entity);
             CourseClassList.Remove(entity);
             unitOfWork.SaveChanges();
+            log.Info($"CourseClass {entity.Id} removed successfully");
         }
     }
 }

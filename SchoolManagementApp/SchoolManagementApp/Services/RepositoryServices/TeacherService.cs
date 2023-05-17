@@ -15,9 +15,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public TeacherService(UnitOfWork unitOfWork)
+        private readonly log4net.ILog log;
+
+        public TeacherService(UnitOfWork unitOfWork, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         private bool ValidateTeacher(Teacher teacher)
@@ -40,11 +43,15 @@ namespace SchoolManagementApp.Services.RepositoryServices
         public void Add(Teacher entity)
         {
             if (!ValidateTeacher(entity))
+            {
+                log.Error(errorMessage);
                 return;
+            }
 
             unitOfWork.Teachers.Add(entity);
             TeacherList.Add(entity);
             unitOfWork.SaveChanges();
+            log.Info($"Teacher with id {entity.Id} added");
         }
 
         public void Edit(Teacher entity)
@@ -53,16 +60,21 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (teacherFromDb == null)
             {
                 errorMessage = "Teacher not found";
+                log.Error(errorMessage);
                 return;
             }
 
             if (!ValidateTeacher(entity))
+            {
+                log.Error(errorMessage);
                 return;
+            }
 
             //unitOfWork.Teachers.Update(entity);
             teacherFromDb.UserId = entity.UserId;
 
             unitOfWork.SaveChanges();
+            log.Info($"Teacher with id {entity.Id} edited");
         }
 
         public void Remove(Teacher entity)
@@ -70,6 +82,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (entity == null)
             {
                 errorMessage = "Teacher cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
@@ -79,6 +92,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.Teachers.Remove(entity);
             TeacherList.Remove(entity);
             unitOfWork.SaveChanges();
+            log.Info($"Teacher with id {entity.Id} removed");
         }
     }
 }

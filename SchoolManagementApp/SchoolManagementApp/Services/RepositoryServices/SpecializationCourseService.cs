@@ -16,9 +16,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public SpecializationCourseService(UnitOfWork unitOfWork)
+        private readonly log4net.ILog log;
+
+        public SpecializationCourseService(UnitOfWork unitOfWork, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         public ObservableCollection<SpecializationCourse> GetAll()
@@ -38,6 +41,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (specializationCourse == null)
             {
                 errorMessage = "Course cannot be null";
+                log.Error(errorMessage);
                 return false;
             }
 
@@ -45,6 +49,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!isValidCourseId)
             {
                 errorMessage = "Course invalid";
+                log.Error(errorMessage);
                 return false;
             }
 
@@ -52,6 +57,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!isValidSpecializationId)
             {
                 errorMessage = "Specialization invalid";
+                log.Error(errorMessage);
                 return false;
             }
             return true;
@@ -87,6 +93,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 SpecializationCourseList.Add(specializationCourse);
             }
             unitOfWork.SaveChanges();
+            log.Info($"Course {specializationCourse.Id} added");
         }
 
         public void Edit(SpecializationCourse specializationCourse)
@@ -96,6 +103,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (resultFromDb == null)
             {
                 errorMessage = "Course not found";
+                log.Error(errorMessage);
                 return;
             }
             if (!ValidateSpecializationCourse(specializationCourse))
@@ -109,6 +117,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             resultFromDb.HasThesis = specializationCourse.HasThesis;
             
             unitOfWork.SaveChanges();
+            log.Info($"Course {specializationCourse.Id} edited");
         }
 
         public void Remove(SpecializationCourse specializationCourse)
@@ -119,12 +128,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (specializationCourse == null)
             {
                 errorMessage = "Course cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
             unitOfWork.SpecializationCourse.Remove(specializationCourse);
             SpecializationCourseList.Remove(specializationCourse);
             unitOfWork.SaveChanges();
+            log.Info($"Course {specializationCourse.Id} removed");
         }
     }
 }

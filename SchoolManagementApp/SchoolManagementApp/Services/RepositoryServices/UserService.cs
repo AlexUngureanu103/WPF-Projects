@@ -17,10 +17,13 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public UserService(UnitOfWork unitOfWork, AuthorizationService authorizationService)
+        private readonly log4net.ILog log;
+
+        public UserService(UnitOfWork unitOfWork, AuthorizationService authorizationService, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             this.authorizationService = authorizationService ?? throw new ArgumentNullException(nameof(authorizationService));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         public ObservableCollection<User> GetAll()
@@ -105,7 +108,11 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public void Add(User user)
         {
-            if (!ValidateUser(user)) return;
+            if (!ValidateUser(user))
+            {
+                log.Error(errorMessage);
+                return;
+            }
 
             ////check password
             //user.PasswordHash = authorizationService.HashPassword(user.PasswordHash);
@@ -120,6 +127,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.Users.Add(user);
             UserList.Add(user);
             unitOfWork.SaveChanges();
+            log.Info($"User {user.Email} added");
         }
 
         public void Edit(User user)
@@ -129,10 +137,15 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (UserFromDb == null)
             {
                 errorMessage = "User not found";
+                log.Error(errorMessage);
                 return;
             }
 
-            if (!ValidateUser(user)) return;
+            if (!ValidateUser(user))
+            {
+                log.Error(errorMessage);
+                return;
+            }
 
             if (user.personId == null && user.Person != null)
             {
@@ -147,6 +160,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             UserFromDb.RoleId = user.RoleId;
 
             unitOfWork.SaveChanges();
+            log.Info($"User {user.Email} edited");
         }
 
         public void Remove(User user)
@@ -154,12 +168,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (user == null)
             {
                 errorMessage = "User cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
             unitOfWork.Users.Remove(user);
             UserList.Remove(user);
             unitOfWork.SaveChanges();
+            log.Info($"User {user.Email} removed");
         }
     }
 }

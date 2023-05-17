@@ -37,11 +37,25 @@
             <Label Width="150" FontSize="15">Specialization :</Label>
             <ComboBox Name="txtSpecializationId" Width="200" ItemsSource="{Binding SpecializationList}" 
                       DisplayMemberPath="Name" SelectedItem="{Binding ElementName=ClassGrid ,Path=SelectedItem.Specialization , UpdateSourceTrigger=PropertyChanged}"/>
-        </WrapPanel> 
+        </WrapPanel>
         <WrapPanel Margin="0,15,0,0">
             <Label Width="150" FontSize="15">Teacher :</Label>
             <ComboBox Name="Teacher" Width="200" ItemsSource="{Binding TeacherList}" 
-                      DisplayMemberPath="Name" SelectedItem="{Binding ElementName=ClassGrid ,Path=SelectedItem.Teacher , UpdateSourceTrigger=PropertyChanged}"/>
+                      SelectedItem="{Binding ElementName=ClassGrid ,Path=SelectedItem.Teacher , UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                    <Binding Path="User.Email"/>
+                                    <Binding Path="User.Person.FirstName"/>
+                                    <Binding Path="User.Person.LastName"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </WrapPanel>
         <DataGrid Name="ClassGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding ClassList}" SelectedItem="{Binding SelectedClass, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">

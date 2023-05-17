@@ -16,9 +16,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public CourseService(UnitOfWork unitOfWork)
+        private readonly log4net.ILog log;
+
+        public CourseService(UnitOfWork unitOfWork, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         public ObservableCollection<CourseType> GetAll()
@@ -41,6 +44,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (course == null || string.IsNullOrEmpty(course.Course))
             {
                 errorMessage = "Course cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
@@ -48,12 +52,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (hasNameConflicts)
             {
                 errorMessage = "Course with this name already exists";
+                log.Error(errorMessage);
                 return;
             }
 
             unitOfWork.Courses.Add(course);
             CourseList.Add(course);
             unitOfWork.SaveChanges();
+            log.Info($"Course {course.Course} added successfully");
         }
 
         public void Edit(CourseType course)
@@ -61,6 +67,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (course == null || string.IsNullOrEmpty(course.Course))
             {
                 errorMessage = "Course name cannot be empty";
+                log.Error(errorMessage);
                 return;
             }
 
@@ -69,6 +76,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (resultFromDb == null)
             {
                 errorMessage = "Course not found";
+                log.Error(errorMessage);
                 return;
             }
 
@@ -76,6 +84,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             resultFromDb.Course = course.Course;
             
             unitOfWork.SaveChanges();
+            log.Info($"Course {course.Course} edited successfully");
         }
 
         public void Remove(CourseType course)
@@ -86,12 +95,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (course == null)
             {
                 errorMessage = "Course cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
             unitOfWork.Courses.Remove(course);
             CourseList.Remove(course);
             unitOfWork.SaveChanges();
+            log.Info($"Course {course.Course} deleted successfully");
         }
 
         public ObservableCollection<CourseType> GetClassCourses(int classId)

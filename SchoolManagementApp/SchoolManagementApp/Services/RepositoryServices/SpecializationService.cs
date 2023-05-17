@@ -14,9 +14,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public SpecializationService(UnitOfWork unitOfWork)
+        private readonly log4net.ILog log;
+
+        public SpecializationService(UnitOfWork unitOfWork, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         public ObservableCollection<Specialization> GetAll()
@@ -54,11 +57,15 @@ namespace SchoolManagementApp.Services.RepositoryServices
         public void Add(Specialization specialization)
         {
             if (!ValidateSpecialization(specialization))
+            {
+                log.Error(errorMessage);
                 return;
+            }
 
             unitOfWork.Specializations.Add(specialization);
             SpecializationList.Add(specialization);
             unitOfWork.SaveChanges();
+            log.Info($"Specialization with name {specialization.Name} was created");
         }
 
         public void Edit(Specialization specialization)
@@ -68,16 +75,21 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (specializationFromDb == null)
             {
                 errorMessage = "Specialization not found";
+                log.Error(errorMessage);
                 return;
             }
 
             if (!ValidateSpecialization(specialization))
+            {
+                log.Error(errorMessage);
                 return;
+            }
 
             //unitOfWork.Specializations.Update(specialization);
             specializationFromDb.Name = specialization.Name;
 
             unitOfWork.SaveChanges();
+            log.Info($"Specialization {specialization.Name} edited");
         }
 
         public void Remove(Specialization specialization)
@@ -85,12 +97,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (specialization == null)
             {
                 errorMessage = "Specialization cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
             unitOfWork.Specializations.Remove(specialization);
             SpecializationList.Remove(specialization);
             unitOfWork.SaveChanges();
+            log.Info($"Specilization {specialization.Name} deleted");
         }
     }
 }

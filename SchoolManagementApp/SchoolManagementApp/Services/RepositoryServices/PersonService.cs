@@ -14,9 +14,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public PersonService(UnitOfWork unitOfWork)
+        private readonly log4net.ILog log;
+
+        public PersonService(UnitOfWork unitOfWork, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         private bool ValidatePerson(Person person)
@@ -25,18 +28,21 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (person.DateOfBirth.CompareTo(DateTime.Now.AddYears(-minAge)) >= 0)
             {
                 errorMessage = $"Person must be at least {minAge} years old";
+                log.Error(errorMessage);
                 return false;
             }
 
             if (person.DateOfBirth.CompareTo(DateTime.Now.AddYears(-100)) <= 0)
             {
                 errorMessage = $"Person cannot be this old";
+                log.Error(errorMessage);
                 return false;
             }
 
             if (person == null || string.IsNullOrEmpty(person.FirstName) || string.IsNullOrEmpty(person.LastName))
             {
                 errorMessage = "First name and last name cannot be empty";
+                log.Error(errorMessage);
                 return false;
             }
 
@@ -57,6 +63,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.Persons.Add(entity);
             PersonList.Add(entity);
             unitOfWork.SaveChanges();
+            log.Info($"Person with name: {entity.FirstName} {entity.LastName} added");
         }
 
         public void Edit(Person entity)
@@ -65,6 +72,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (resultFromDb == null)
             {
                 errorMessage = "Person not found";
+                log.Error(errorMessage);
                 return;
             }
 
@@ -78,6 +86,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             resultFromDb.Address = entity.Address;
             
             unitOfWork.SaveChanges();
+            log.Info($"Person with name: {entity.FirstName} {entity.LastName} edited");
         }
 
         public ObservableCollection<Person> GetAll()
@@ -95,6 +104,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.Persons.Remove(entity);
             PersonList.Remove(entity);
             unitOfWork.SaveChanges();
+            log.Info($"Person with name: {entity.FirstName} {entity.LastName} removed");
         }
     }
 }

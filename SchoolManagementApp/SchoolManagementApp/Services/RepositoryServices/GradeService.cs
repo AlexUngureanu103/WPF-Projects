@@ -19,9 +19,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private string errorMessage;
 
-        public GradeService(UnitOfWork unitOfWork)
+        private readonly log4net.ILog log;
+
+        public GradeService(UnitOfWork unitOfWork, log4net.ILog log)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         public ObservableCollection<Grade> GetAll()
@@ -41,18 +44,21 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (grade == null)
             {
                 errorMessage = "Grade cannot be null";
+                log.Error(errorMessage);
                 return false;
             }
 
             if (grade.Value < 1 || grade.Value > 10)
             {
                 errorMessage = "Invalid grade value";
+                log.Error(errorMessage);
                 return false;
             }
 
             if (grade.Semester < 1 || grade.Semester > 2)
             {
                 errorMessage = "Invalid semester";
+                log.Error(errorMessage);
                 return false;
             }
 
@@ -60,6 +66,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (courseType == null)
             {
                 errorMessage = "Invalid course";
+                log.Error(errorMessage);
                 return false;
             }
 
@@ -67,6 +74,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (student == null)
             {
                 errorMessage = "invalid Student";
+                log.Error(errorMessage);
                 return false;
             }
 
@@ -77,12 +85,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (courseSpecialization == null)
             {
                 errorMessage = "Invalid course for this specialization";
+                log.Error(errorMessage);
                 return false;
             }
             if (courseSpecialization.HasThesis == false)
             {
                 grade.IsThesis = false;
                 errorMessage = "This course does not have a thesis";
+                log.Error(errorMessage);
             }
 
             if (grade.IsThesis == true)
@@ -92,6 +102,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 if (unique != null)
                 {
                     errorMessage = "Student already has a thesis for this course";
+                    log.Error(errorMessage);
                     return false;
                 }
             }
@@ -107,6 +118,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.Grades.Add(grade);
             GradeList.Add(grade);
             unitOfWork.SaveChanges();
+            log.Info($"Grade {grade.Id} added");
         }
 
         public void Edit(Grade grade)
@@ -116,6 +128,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (resultFromDb == null)
             {
                 errorMessage = "Grade not found";
+                log.Error(errorMessage);
                 return;
             }
             if (!ValidateGrade(grade))
@@ -130,6 +143,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             resultFromDb.Date = grade.Date;
 
             unitOfWork.SaveChanges();
+            log.Info($"Grade {grade.Id} edited");
         }
 
         public void Remove(Grade grade)
@@ -140,12 +154,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (grade == null)
             {
                 errorMessage = "Grade cannot be null";
+                log.Error(errorMessage);
                 return;
             }
 
             unitOfWork.Grades.Remove(grade);
             GradeList.Remove(grade);
             unitOfWork.SaveChanges();
+            log.Info($"Grade {grade.Id} removed");
         }
     }
 }
