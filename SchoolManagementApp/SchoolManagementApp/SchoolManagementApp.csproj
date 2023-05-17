@@ -377,9 +377,6 @@
     <Compile Include="Views\AdminViews\ManageStudentsAdminControl.xaml.cs">
       <DependentUpon>ManageStudentsAdminControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdminViews\ManageStudentsViews\AddStudentsWindow.xaml.cs">
-      <DependentUpon>AddStudentsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AdminViews\ManageTeachersAdminControl.xaml.cs">
       <DependentUpon>ManageTeachersAdminControl.xaml</DependentUpon>
     </Compile>
@@ -452,10 +449,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\ManageStudentsAdminControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AdminViews\ManageStudentsViews\AddStudentsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

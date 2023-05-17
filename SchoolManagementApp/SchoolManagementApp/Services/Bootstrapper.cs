@@ -8,7 +8,6 @@ using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminControls;
 using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
-using SchoolManagementApp.Views.AdminViews.ManageStudentsViews;
 using System.Configuration;
 using System.Windows.Controls;
 
@@ -137,8 +136,6 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageGradesAdminControl>().AsSelf();
             builder.RegisterType<ManageAbsencesAdminControl>().AsSelf();
             builder.RegisterType<ManageTeachingClassesAdminControl>().AsSelf();
-
-            builder.RegisterType<AddStudentsWindow>().AsSelf();
         }
 
         private static void RegisterCommands(ContainerBuilder builder)
