@@ -1,6 +1,7 @@
-﻿using SchoolManagementApp.DataAccess;
+﻿using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SchoolManagementApp.Views
@@ -12,16 +13,22 @@ namespace SchoolManagementApp.Views
     {
         private readonly Frame WindowContainer;
 
-        private readonly SchoolManagementDbContext _dbContext;
+        private readonly LoggedUser loggedUser;
 
-        private ClassMasterUserControlVM ClassMasterUserControlVM;
-        public ClassMasterUserControl(Frame windowContainer, SchoolManagementDbContext dbContext)
+        private readonly ClassMasterUserControlVM ClassMasterUserControlVM;
+
+        public ClassMasterUserControl(Frame windowContainer, LoggedUser loggedUser, ClassMasterUserControlVM classMasterUserControlVM)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            this.loggedUser = loggedUser ?? throw new ArgumentNullException(nameof(loggedUser));
+            ClassMasterUserControlVM = classMasterUserControlVM ?? throw new ArgumentNullException(nameof(classMasterUserControlVM));
+
             InitializeComponent();
 
-            ClassMasterUserControlVM = new ClassMasterUserControlVM(_dbContext);
+            string userinfo = loggedUser.User.Email + " " + loggedUser.User.PasswordHash +
+                '\n' + loggedUser.User.Role.AssignedRole +
+                '\n' + loggedUser.User.Person.FirstName + " " + loggedUser.User.Person.LastName;
+            MessageBox.Show($"Info {userinfo}");
 
             DataContext = ClassMasterUserControlVM;
         }

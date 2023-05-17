@@ -314,6 +314,7 @@
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\Bootstrapper.cs" />
     <Compile Include="Services\IUserControlFactory.cs" />
+    <Compile Include="Services\LoggedUser.cs" />
     <Compile Include="Services\RepositoryServices\AbsencesService.cs" />
     <Compile Include="Services\RepositoryServices\ClassService.cs" />
     <Compile Include="Services\RepositoryServices\CourseClassService.cs" />

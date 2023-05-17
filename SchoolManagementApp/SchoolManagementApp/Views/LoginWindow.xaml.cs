@@ -1,9 +1,6 @@
-﻿using Autofac;
-using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.Services;
+﻿using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels;
 using System;
-using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,18 +17,22 @@ namespace SchoolManagementApp.Views
 
         private readonly IUserControlFactory _userControlFactory;
 
-        public LoginWindow(Frame windowContainer, IUserControlFactory userControlFactory, LoginWindowVM loginWindow)
+        private readonly LoggedUser loggedUser;
+
+        public LoginWindow(Frame windowContainer, IUserControlFactory userControlFactory, LoginWindowVM loginWindow, LoggedUser user)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             _userControlFactory = userControlFactory ?? throw new ArgumentNullException(nameof(userControlFactory));
             LoginWindowVM = loginWindow ?? throw new ArgumentNullException(nameof(loginWindow));
-            
+            this.loggedUser = user ?? throw new ArgumentNullException(nameof(user));
+
             InitializeComponent();
             DataContext = LoginWindowVM;
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+            loggedUser.User = LoginWindowVM.User;
             if (LoginWindowVM.User.Role.AssignedRole == "Admin")
             {
                 WindowContainer.Navigate(_userControlFactory.Create<AdminUserControl>());
@@ -44,7 +45,7 @@ namespace SchoolManagementApp.Views
             {
                 WindowContainer.Navigate(_userControlFactory.Create<StudentUserControl>());
             }
-            else if (LoginWindowVM.User.Role.AssignedRole == "Class master")
+            else
             {
                 WindowContainer.Navigate(_userControlFactory.Create<ClassMasterUserControl>());
             }

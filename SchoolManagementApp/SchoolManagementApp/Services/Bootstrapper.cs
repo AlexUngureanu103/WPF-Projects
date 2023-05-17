@@ -42,6 +42,8 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<UserControlFactory>().As<IUserControlFactory>().SingleInstance();
             builder.Register(ctx => frame).AsSelf().SingleInstance();
 
+            builder.RegisterType<LoggedUser>().AsSelf().SingleInstance();
+
             return builder.Build();
         }
 

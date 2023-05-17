@@ -1,15 +1,15 @@
-﻿using SchoolManagementApp.DataAccess;
+﻿using SchoolManagementApp.Services;
 using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels
 {
-    internal class StudentUserControlVM : BaseVM
+    public class StudentUserControlVM : BaseVM
     {
-        public readonly SchoolManagementDbContext _dbContext;
+        public readonly LoggedUser loggerUser;
 
-        public StudentUserControlVM(SchoolManagementDbContext dbContext)
+        public StudentUserControlVM(LoggedUser user)
         {
-            _dbContext = dbContext ?? throw new System.ArgumentNullException(nameof(dbContext));
+            loggerUser = user ?? throw new System.ArgumentNullException(nameof(user));
         }
     }
 }

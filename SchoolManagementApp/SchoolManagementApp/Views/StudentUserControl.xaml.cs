@@ -1,5 +1,4 @@
-﻿using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.Domain.Models;
+﻿using SchoolManagementApp.Services;
 using SchoolManagementApp.ViewModels;
 using System;
 using System.Windows;
@@ -14,22 +13,23 @@ namespace SchoolManagementApp.Views
     {
         private readonly Frame WindowContainer;
 
-        private readonly SchoolManagementDbContext _dbContext;
+        private readonly LoggedUser loggedUser;
 
         private StudentUserControlVM StudentUserControlVM;
 
-        private readonly User user;
-        public StudentUserControl(Frame windowContainer, SchoolManagementDbContext dbContext, User user)
+        public StudentUserControl(Frame windowContainer, StudentUserControlVM studentUserControlVM, LoggedUser loggedUser)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            this.user = user ?? throw new ArgumentNullException(nameof(user));
+            this.loggedUser = loggedUser ?? throw new ArgumentNullException(nameof(loggedUser));
+            StudentUserControlVM = studentUserControlVM ?? throw new ArgumentNullException(nameof(studentUserControlVM));
+
             InitializeComponent();
 
-            StudentUserControlVM = new StudentUserControlVM(_dbContext);
+            string userinfo = loggedUser.User.Email + " " + loggedUser.User.PasswordHash + 
+                '\n' + loggedUser.User.Role.AssignedRole + 
+                '\n' + loggedUser.User.Person.FirstName + " " + loggedUser.User.Person.LastName;
 
-            string userinfo = user.Email + " " + user.PasswordHash;
-            MessageBox.Show($"Info {userinfo}");
+            MessageBox.Show($" {userinfo}");
             DataContext = StudentUserControlVM;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.RepositoriesAbstractions;
+using System.Data.Entity;
 using System.Linq;
 
 namespace SchoolManagementApp.DataAccess.Repositories
@@ -12,7 +13,9 @@ namespace SchoolManagementApp.DataAccess.Repositories
 
         public User GetByEmail(string email)
         {
-            return GetRecords().FirstOrDefault(user => user.Email == email);
+            return GetRecords()
+                .Include(c=>c.Person)
+                .FirstOrDefault(user => user.Email == email);
         }
     }
 }

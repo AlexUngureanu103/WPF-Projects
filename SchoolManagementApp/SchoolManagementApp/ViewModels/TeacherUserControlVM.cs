@@ -1,16 +1,16 @@
-﻿using SchoolManagementApp.DataAccess;
+﻿using SchoolManagementApp.Services;
 using System;
 using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels
 {
-    internal class TeacherUserControlVM : BaseVM
+    public class TeacherUserControlVM : BaseVM
     {
-        public readonly SchoolManagementDbContext _dbContext;
+        public readonly LoggedUser loggedUser;
 
-        public TeacherUserControlVM(SchoolManagementDbContext dbContext)
+        public TeacherUserControlVM(LoggedUser loggedUser)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            this.loggedUser = loggedUser ?? throw new ArgumentNullException(nameof(loggedUser));
         }
     }
 }
