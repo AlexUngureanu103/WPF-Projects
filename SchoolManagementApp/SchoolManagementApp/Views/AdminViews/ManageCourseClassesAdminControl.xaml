@@ -36,7 +36,7 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} ">
+                                <MultiBinding StringFormat="{}Class: {0}   Specialization: {1} ">
                                     <Binding Path="Name"/>
                                     <Binding Path="Specialization.Name"/>
                                 </MultiBinding>
@@ -59,11 +59,8 @@
         <DataGrid Name="CourseClassGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding CourseClassList}" SelectedItem="{Binding SelectedCourseClass}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="ClassId" Binding="{Binding ClassId}"/>
                 <DataGridTextColumn Header="Class" Binding="{Binding Class.Name}"/>
                 <DataGridTextColumn Header="Specialization" Binding="{Binding Class.Specialization.Name}"/>
-                <DataGridTextColumn Header="CourseId" Binding="{Binding CourseTypeId}"/>
                 <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
                 <DataGridTextColumn Header="Has Course" Binding="{Binding HasCourse}"/>
                  </DataGrid.Columns>

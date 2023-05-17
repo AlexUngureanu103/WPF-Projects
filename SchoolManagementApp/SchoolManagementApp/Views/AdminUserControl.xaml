@@ -20,7 +20,6 @@
                 <MenuItem Header="Users" Click="ManageUsers_Click"/>
                 <MenuItem Header="Classes" Click="ManageClasses_Click"/>
                 <MenuItem Header="Teachers" Click="ManageTeachers_Click"/>
-                <MenuItem Header="ClassMasters" Click="ManageClassMasters_Click"/>
                 <MenuItem Header="Students" Click="ManageStudents_Click"/>
                 <MenuItem Header="Specializations" Click="ManageSpecializations_Click"/>
                 <MenuItem Header="Courses" Click="ManageCourses_Click"/>

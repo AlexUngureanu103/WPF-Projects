@@ -1,7 +1,5 @@
-﻿using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.ViewModels.AdminControls.ManageSpecializationVMs;
+﻿using SchoolManagementApp.ViewModels.AdminControls;
 using System;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SchoolManagementApp.Views.AdminViews
@@ -11,31 +9,14 @@ namespace SchoolManagementApp.Views.AdminViews
     /// </summary>
     public partial class ManageSpecializationsAdminControl : UserControl
     {
-        private readonly SchoolManagementDbContext _dbContext;
+        private readonly ManageSpecializationsVM manageSpecializationsVM;
 
-        private ManageSpecializationsVM manageSpecializationsVM;
-        public ManageSpecializationsAdminControl(SchoolManagementDbContext dbContext)
+        public ManageSpecializationsAdminControl(ManageSpecializationsVM manageSpecializationsVM)
         {
-            this._dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            this.manageSpecializationsVM = manageSpecializationsVM ?? throw new ArgumentNullException(nameof(manageSpecializationsVM));
             InitializeComponent();
-            manageSpecializationsVM = new ManageSpecializationsVM(dbContext);
 
             this.DataContext = manageSpecializationsVM;
-        }
-
-        private void AddStudent_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditStudent_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DeleteSpecialization_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -45,7 +45,6 @@
         <DataGrid Name="SpecializationCourseGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding SpecializationCourseList}" SelectedItem="{Binding SelectedSpecializationCourse}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
                 <DataGridTextColumn Header="Specialization" Binding="{Binding Specialization.Name}"/>
                 <DataGridTextColumn Header="HasThesis" Binding="{Binding HasThesis}"/>

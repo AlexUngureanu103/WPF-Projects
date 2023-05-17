@@ -35,7 +35,7 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                <MultiBinding StringFormat="{}Class: {0}    Specialization: {1}   Course:{2}">
                                     <Binding Path="Class.Name"/>
                                     <Binding Path="Class.Specialization.Name"/>
                                     <Binding Path="CourseType.Course"/>
@@ -55,7 +55,7 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                <MultiBinding StringFormat="{}Email: {0}    Name: {1} {2}">
                                     <Binding Path="User.Email"/>
                                     <Binding Path="User.Person.FirstName"/>
                                     <Binding Path="User.Person.LastName"/>

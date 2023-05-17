@@ -1,6 +1,5 @@
 ﻿using SchoolManagementApp.ViewModels.AdminControls;
 using System;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SchoolManagementApp.Views.AdminViews
@@ -18,16 +17,6 @@ namespace SchoolManagementApp.Views.AdminViews
             InitializeComponent();
 
             DataContext = manageStudentsVM;
-        }
-
-        private void AddStudent_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditStudent_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

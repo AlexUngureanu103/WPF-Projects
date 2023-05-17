@@ -46,7 +46,7 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                <MultiBinding StringFormat="{}Email: {0}    Name: {1} {2}">
                                     <Binding Path="User.Email"/>
                                     <Binding Path="User.Person.FirstName"/>
                                     <Binding Path="User.Person.LastName"/>

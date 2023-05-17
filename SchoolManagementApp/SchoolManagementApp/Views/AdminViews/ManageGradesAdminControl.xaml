@@ -39,9 +39,10 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} ">
-                                    <Binding Path="Id"/>
+                                <MultiBinding StringFormat="{}Email:  {0}     Name:  {1} {2}">
                                     <Binding Path="User.Email"/>
+                                    <Binding Path="User.Person.FirstName"/>
+                                    <Binding Path="User.Person.LastName"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -74,15 +75,14 @@
         <DataGrid Name="GradeGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding GradeList}" SelectedItem="{Binding SelectedGrade}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Value" Binding="{Binding Value}"/>
                 <DataGridTextColumn Header="IsThesis" Binding="{Binding IsThesis}"/>
                 <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
-                <DataGridTextColumn Header="CourseId" Binding="{Binding CourseTypeId}"/>
                 <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
-                <DataGridTextColumn Header="StudentId" Binding="{Binding StudentId}"/>
                 <DataGridTextColumn Header="Student" Binding="{Binding Student.User.Email}"/>
+                <DataGridTextColumn Header="Student FirstName" Binding="{Binding Student.User.Person.FirstName}"/>
+                <DataGridTextColumn Header="Student LastName" Binding="{Binding Student.User.Person.LastName}"/>
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

@@ -38,15 +38,9 @@ namespace SchoolManagementApp.Views
             AdminControls.Navigate(_userControlFactory.Create<ManageTeachersAdminControl>());
         }
 
-        private void ManageClassMasters_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Add Class Master Page");
-        }
-
         private void ManageStudents_Click(object sender, RoutedEventArgs e)
         {
             AdminControls.Navigate(_userControlFactory.Create<ManageStudentsAdminControl>());
-            MessageBox.Show("Add Student Page");
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)

@@ -36,9 +36,10 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} ">
-                                    <Binding Path="Id"/>
+                                <MultiBinding StringFormat="{}Email: {0}    Name: {1} {2}">
                                     <Binding Path="Email"/>
+                                    <Binding Path="Person.FirstName"/>
+                                    <Binding Path="Person.LastName"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -54,8 +55,7 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1} ">
-                                    <Binding Path="Id"/>
+                                <MultiBinding StringFormat="{}Class: {0}">
                                     <Binding Path="Name"/>
                                 </MultiBinding>
                             </TextBlock.Text>
@@ -67,10 +67,11 @@
         <DataGrid Name="StudentGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding StudentList}" SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding User.Email}"/>
-                <DataGridTextColumn Header="ClassId" Binding="{Binding ClassId}"/>
+                <DataGridTextColumn Header="First Name" Binding="{Binding User.Person.FirstName}"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding User.Person.LastName}"/>
                 <DataGridTextColumn Header="Class" Binding="{Binding Class.Name}"/>
+                <DataGridTextColumn Header="Specialization" Binding="{Binding Class.Specialization.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>
