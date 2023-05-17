@@ -296,7 +296,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\ManageSpecializationsCommands.cs" />
     <Compile Include="Commands\LoginCommands.cs" />
     <Compile Include="Commands\RelayCommands.cs" />
     <Compile Include="Converters\AbsenceConvert.cs" />
@@ -306,6 +305,7 @@
     <Compile Include="Converters\CourseConvert.cs" />
     <Compile Include="Converters\GradeConvert.cs" />
     <Compile Include="Converters\PersonConvert.cs" />
+    <Compile Include="Converters\SpecializationConvert.cs" />
     <Compile Include="Converters\SpecializationCourseConvert.cs" />
     <Compile Include="Converters\StudentConvert.cs" />
     <Compile Include="Converters\TeacherConvert.cs" />
@@ -337,7 +337,7 @@
     <Compile Include="ViewModels\AdminControls\ManageGradesVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManagePersonsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageSpecializationCourseVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageSpecializationVMs\ManageSpecializationsVM.cs" />
+    <Compile Include="ViewModels\AdminControls\ManageSpecializationsVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageTeachersVM.cs" />
     <Compile Include="ViewModels\AdminControls\ManageTeachingClassesVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />

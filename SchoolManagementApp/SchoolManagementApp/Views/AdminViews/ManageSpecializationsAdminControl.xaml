@@ -3,49 +3,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:convert ="clr-namespace:SchoolManagementApp.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="5"/>
-        </Grid.RowDefinitions>
-        <Label Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Content="Manage Specializations" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
-        <Button Grid.Row="2" Grid.Column="1" x:Name="AddSpecialization" Content="Add Specialization" Margin="5" MaxHeight="50" MaxWidth="100"  Command="{Binding AddCommand}"/>
-        <Button Grid.Row="2" Grid.Column="2" x:Name="EditSpecialization" Content="Edit Specialization" Margin="5" MaxHeight="50" MaxWidth="100" Command="{Binding EditCommand}" IsEnabled="{Binding CanEditSpecialization, Mode=TwoWay}"/>
-        <Button Grid.Row="2" Grid.Column="3" x:Name="DeleteSpecialization" Content="Delete Specialization" Margin="5" MaxHeight="50" MaxWidth="100" Command="{Binding DeleteSpecialization}" Click="DeleteSpecialization_Click"/>
-
-        <DataGrid Grid.Row="3" Grid.RowSpan="7" Grid.Column="1"  Grid.ColumnSpan="2" x:Name="UserList" AutoGenerateColumns="False"  Margin="10" ItemsSource="{Binding Specializations}"  SelectedItem="{Binding SelectedSpecialization}">
+    <StackPanel>
+        <StackPanel.Resources>
+            <convert:SpecializationConvert x:Key="specializationConvert" />
+        </StackPanel.Resources>
+        <WrapPanel>
+            <Button Content="Add" Margin="15" Width="100" Height="30" 
+                    Command="{Binding AddCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource specializationConvert}">
+                        <Binding ElementName="txtSpecialization" Path="Text"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="Edit" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}"
+                    CommandParameter="{Binding ElementName=SpecializationGrid, Path=SelectedItem}"/>
+            <Button Content="Delete" Margin="15" Width="100" Height="30" Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding ElementName=SpecializationGrid, Path=SelectedItem}"/>
+            <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
+        </WrapPanel>
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" FontSize="15">Specialization Name:</Label>
+            <TextBox Name="txtSpecialization" Width="200" Text ="{Binding ElementName=SpecializationGrid, 
+                Path=SelectedItem.Name, UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <DataGrid Name="SpecializationGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                  ItemsSource="{Binding SpecializationList}" SelectedItem="{Binding SelectedSpecialization}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="auto" Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn  Width="auto" Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Specialization Name" Binding="{Binding Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Content="{Binding AddOrEditWindow}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Content="Specialization Name:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" Margin="5" VerticalContentAlignment="Center" Text="{Binding NewSpecialization ,UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Button Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="3" Margin="5" MaxHeight="50" MaxWidth="150" Content="{Binding ButtonContent}" Command="{Binding AddSpecializationCommand}"/>
-    </Grid>
+    </StackPanel>
 </UserControl>

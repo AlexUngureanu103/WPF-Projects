@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using SchoolManagementApp.Commands;
 using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Repositories;
 using SchoolManagementApp.Domain.RepositoriesAbstractions;
@@ -7,7 +6,6 @@ using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.RepositoryServices;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminControls;
-using SchoolManagementApp.ViewModels.AdminControls.ManageSpecializationVMs;
 using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
 using SchoolManagementApp.Views.AdminViews.ManageStudentsViews;
@@ -145,7 +143,7 @@ namespace SchoolManagementApp.Services
 
         private static void RegisterCommands(ContainerBuilder builder)
         {
-            builder.RegisterType<ManageSpecializationsCommands>().AsSelf();
+            //TBA
         }
     }
 }

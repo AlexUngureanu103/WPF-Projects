@@ -1,7 +1,6 @@
-﻿using Autofac;
-using SchoolManagementApp.DataAccess;
-using SchoolManagementApp.Services;
+﻿using SchoolManagementApp.Services;
 using SchoolManagementApp.Views;
+using System;
 using System.Windows;
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -19,11 +18,18 @@ namespace SchoolManagementApp
         {
             InitializeComponent();
             //WindowContainer.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
-            Bootstrapper bootstrapper = new Bootstrapper();
-            var UserControlFactory = bootstrapper.Run(WindowContainer);
-            
-            log.Info("Application started ...");
-            WindowContainer.Navigate(UserControlFactory.Create<LoginWindow>());
+            try
+            {
+                Bootstrapper bootstrapper = new Bootstrapper();
+                var UserControlFactory = bootstrapper.Run(WindowContainer);
+
+                log.Info("Application started ...");
+                WindowContainer.Navigate(UserControlFactory.Create<LoginWindow>());
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message, ex);
+            }
         }
     }
 }
