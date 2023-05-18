@@ -6,8 +6,10 @@ using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.RepositoryServices;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminControls;
+using SchoolManagementApp.ViewModels.TeacherControls;
 using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
+using SchoolManagementApp.Views.TeacherViews;
 using System.Configuration;
 using System.Windows.Controls;
 
@@ -108,6 +110,10 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageTeachingClassesVM>().AsSelf();
 
             builder.RegisterType<ManageSpecializationsVM>().AsSelf();
+
+            //TeacherControls
+
+            builder.RegisterType<ManagageGradesTeacherVM>().AsSelf();
         }
 
         private static void RegisterWindows(ContainerBuilder builder)
@@ -138,6 +144,12 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageGradesAdminControl>().AsSelf();
             builder.RegisterType<ManageAbsencesAdminControl>().AsSelf();
             builder.RegisterType<ManageTeachingClassesAdminControl>().AsSelf();
+
+            //TeacherViews
+            builder.RegisterType<ManageStudentsTeacherControl>().AsSelf();
+            builder.RegisterType<ManageGradesTeacherControl>().AsSelf();
+            builder.RegisterType<ManageAbsencesTeacherControl>().AsSelf();
+            builder.RegisterType<ManageMaterialsTeacherControl>().AsSelf();
         }
 
         private static void RegisterCommands(ContainerBuilder builder)

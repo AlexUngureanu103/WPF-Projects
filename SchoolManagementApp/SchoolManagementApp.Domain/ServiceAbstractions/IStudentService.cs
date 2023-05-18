@@ -6,5 +6,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     public interface IStudentService : ICollectionService<Student>
     {
         ObservableCollection<Student> StudentList { get; set; }
+
+        ObservableCollection<Student> GetStudentsByClassId(int classId);
     }
 }

@@ -348,6 +348,7 @@
     <Compile Include="ViewModels\AdminControls\ManageUsersVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
+    <Compile Include="ViewModels\TeacherControls\ManagageGradesTeacherVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
     </Compile>
@@ -399,6 +400,18 @@
     </Compile>
     <Compile Include="Views\TeacherUserControl.xaml.cs">
       <DependentUpon>TeacherUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherViews\ManageAbsencesTeacherControl.xaml.cs">
+      <DependentUpon>ManageAbsencesTeacherControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherViews\ManageGradesTeacherControl.xaml.cs">
+      <DependentUpon>ManageGradesTeacherControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherViews\ManageMaterialsTeacherControl.xaml.cs">
+      <DependentUpon>ManageMaterialsTeacherControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherViews\ManageStudentsTeacherControl.xaml.cs">
+      <DependentUpon>ManageStudentsTeacherControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -481,6 +494,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TeacherViews\ManageAbsencesTeacherControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherViews\ManageGradesTeacherControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherViews\ManageMaterialsTeacherControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherViews\ManageStudentsTeacherControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -513,7 +542,6 @@
     <Folder Include="Models\Dtos\" />
     <Folder Include="Views\ClassMasterViews\" />
     <Folder Include="Views\StudentViews\" />
-    <Folder Include="Views\TeacherViews\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagementApp.DataAccess\SchoolManagementApp.DataAccess.csproj">

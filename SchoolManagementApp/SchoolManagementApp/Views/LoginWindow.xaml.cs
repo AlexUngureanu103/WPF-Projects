@@ -37,17 +37,13 @@ namespace SchoolManagementApp.Views
             {
                 WindowContainer.Navigate(_userControlFactory.Create<AdminUserControl>());
             }
-            else if (LoginWindowVM.User.Role.AssignedRole == "Teacher")
-            {
-                WindowContainer.Navigate(_userControlFactory.Create<TeacherUserControl>());
-            }
             else if (LoginWindowVM.User.Role.AssignedRole == "Student")
             {
                 WindowContainer.Navigate(_userControlFactory.Create<StudentUserControl>());
             }
-            else
+            else /*if (LoginWindowVM.User.Role.AssignedRole == "Teacher")*/
             {
-                WindowContainer.Navigate(_userControlFactory.Create<ClassMasterUserControl>());
+                WindowContainer.Navigate(_userControlFactory.Create<TeacherUserControl>());
             }
             UpdateMainWindowTitle($"School Management App - {LoginWindowVM.User.Role.AssignedRole} Control Panel");
             LoginWindowVM.Email = string.Empty;

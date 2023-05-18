@@ -3,6 +3,7 @@ using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace SchoolManagementApp.Services.RepositoryServices
 {
@@ -104,6 +105,13 @@ namespace SchoolManagementApp.Services.RepositoryServices
             CourseTeacherList.Remove(entity);
             unitOfWork.SaveChanges();
             log.Info($"Course Class Teacher with Id {entity.Id} deleted");
+        }
+
+        public ObservableCollection<CourseClassTeacher> GetTeachingClasses(int teacherId)
+        {
+            var courseClassTeacher = unitOfWork.CourseClassTeachers.GetAll().Where(c => c.TeacherId == teacherId);
+
+            return new ObservableCollection<CourseClassTeacher>(courseClassTeacher);
         }
     }
 }

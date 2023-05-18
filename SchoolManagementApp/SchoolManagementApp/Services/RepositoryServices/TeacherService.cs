@@ -23,6 +23,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             this.log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
+        public Teacher GetTeacherById(int userId)
+        {
+            var teacher = unitOfWork.Teachers.GetTeacherByUserId(userId);
+
+            return teacher;
+        }
+
+
         private bool ValidateTeacher(Teacher teacher)
         {
             var alreadyExists = unitOfWork.Teachers.Any(c => c.UserId == teacher.UserId && c.Id != teacher.Id);

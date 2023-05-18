@@ -24,7 +24,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             _roleRepository = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
             TeacherList = _teacherService.GetAll();
-            UserList = new ObservableCollection<User>(_userService.GetAll().Where(c => c.RoleId != _roleRepository.GetByRole("Student").Id));
+            UserList = new ObservableCollection<User>(_userService.GetAll().Where(c => c.RoleId != _roleRepository.GetByRole("Student").Id && c.RoleId != _roleRepository.GetByRole("Admin").Id));
         }
 
         public ObservableCollection<Teacher> TeacherList

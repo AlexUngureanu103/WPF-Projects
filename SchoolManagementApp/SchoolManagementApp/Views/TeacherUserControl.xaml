@@ -5,27 +5,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="5"/>
-        </Grid.RowDefinitions>
-        <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Content="Teacher User" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="30" FontSize="15">
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#ab910f" Offset="0.528"/>
+                    <GradientStop Color="#363532" Offset="0.01"/>
+                    <GradientStop Color="#363532" Offset="1"/>
+                    <GradientStop Color="#030200" Offset="1"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            <MenuItem Header ="Manage" >
+                <MenuItem Header="Grades" Click="Grades_Click"/>
+                <MenuItem Header="Absences" Click="Absences_Click"/>
+                <MenuItem Header="Students" Click="Students_Click"/>
+                <MenuItem Header="Materials" Click="Materials_Click"/>
+            </MenuItem>
+            <MenuItem Header="Logout" Click="Logout_Click"/>
+        </Menu>
 
-    </Grid>
+        <Frame  Grid.ColumnSpan="10" x:Name="TeacherControls" />
+    </DockPanel>
 </UserControl>

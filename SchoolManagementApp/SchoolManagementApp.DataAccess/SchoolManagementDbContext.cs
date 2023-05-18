@@ -12,6 +12,11 @@ namespace SchoolManagementApp.DataAccess
 
         public SchoolManagementDbContext() : base("Server=localhost;Database=SchoolManagement;User Id=AlexUngureanu;Password=123456;") { }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Role> Roles { get; set; }
 
         public DbSet<CourseType> Courses { get; set; }

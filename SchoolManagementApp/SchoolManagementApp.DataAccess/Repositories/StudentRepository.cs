@@ -28,5 +28,13 @@ namespace SchoolManagementApp.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Student> GetStudentByClassId(int classId)
+        {
+            var students = GetAll()
+                .Where(c => c.ClassId == classId);
+
+            return students;
+        }
     }
 }

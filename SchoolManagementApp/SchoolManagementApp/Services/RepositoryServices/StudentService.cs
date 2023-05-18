@@ -45,6 +45,15 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             return students;
         }
+
+        public ObservableCollection<Student> GetStudentsByClassId(int classId)
+        {
+            var students = unitOfWork.Students.GetStudentByClassId(classId);
+
+            return new ObservableCollection<Student>(students);
+        }
+
+
         private bool ValidateStudent(Student student)
         {
             if (student == null)

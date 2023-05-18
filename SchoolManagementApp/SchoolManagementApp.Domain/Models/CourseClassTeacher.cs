@@ -4,8 +4,8 @@ namespace SchoolManagementApp.Domain.Models
 {
     public class CourseClassTeacher : BaseEntity
     {
-        private int? courseClassId;
-        public int? CourseClassId
+        private int courseClassId;
+        public int CourseClassId
         {
             get { return courseClassId; }
             set { courseClassId = value; NotifyPropertyChanged("CourseClassId"); }

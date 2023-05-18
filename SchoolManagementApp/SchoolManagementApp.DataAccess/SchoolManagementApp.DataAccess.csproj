@@ -345,6 +345,18 @@
     <Compile Include="Migrations\202305171130434_classMasterRefactor.designer.cs">
       <DependentUpon>202305171130434_classMasterRefactor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305180811103_courseTeacher.cs" />
+    <Compile Include="Migrations\202305180811103_courseTeacher.designer.cs">
+      <DependentUpon>202305180811103_courseTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305180815258_classMig.cs" />
+    <Compile Include="Migrations\202305180815258_classMig.designer.cs">
+      <DependentUpon>202305180815258_classMig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305180832258_taecherId.cs" />
+    <Compile Include="Migrations\202305180832258_taecherId.designer.cs">
+      <DependentUpon>202305180832258_taecherId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AbsencesRepository.cs" />
@@ -416,6 +428,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305171130434_classMasterRefactor.resx">
       <DependentUpon>202305171130434_classMasterRefactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305180811103_courseTeacher.resx">
+      <DependentUpon>202305180811103_courseTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305180815258_classMig.resx">
+      <DependentUpon>202305180815258_classMig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305180832258_taecherId.resx">
+      <DependentUpon>202305180832258_taecherId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

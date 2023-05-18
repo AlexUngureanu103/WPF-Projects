@@ -21,5 +21,12 @@ namespace SchoolManagementApp.DataAccess.Repositories
 
             return teachers;
         }
+
+        public Teacher GetTeacherByUserId(int userId)
+        {
+            var teacher = GetAll().FirstOrDefault(c => c.UserId == userId);
+
+            return teacher;
+        }
     }
 }
