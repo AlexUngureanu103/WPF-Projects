@@ -109,6 +109,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<CourseClassTeacher> GetTeachingClasses(int teacherId)
         {
+            // add function to repo to include FK's
             var courseClassTeacher = unitOfWork.CourseClassTeachers.GetAll().Where(c => c.TeacherId == teacherId);
 
             return new ObservableCollection<CourseClassTeacher>(courseClassTeacher);

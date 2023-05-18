@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace SchoolManagementApp.DataAccess
+namespace SchoolManagementApp.Domain
 {
-    internal class LogHelper
+    public class LogHelper
     {
         public static log4net.ILog GetLogger([CallerFilePath] string filename = "")
         {

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using SchoolManagementApp.DataAccess;
 using SchoolManagementApp.DataAccess.Repositories;
+using SchoolManagementApp.Domain;
 using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.RepositoryServices;

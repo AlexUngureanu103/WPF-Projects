@@ -284,7 +284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="LogHelper.cs" />
     <Compile Include="Migrations\202305030545343_init.cs" />
     <Compile Include="Migrations\202305030545343_init.designer.cs">
       <DependentUpon>202305030545343_init.cs</DependentUpon>
