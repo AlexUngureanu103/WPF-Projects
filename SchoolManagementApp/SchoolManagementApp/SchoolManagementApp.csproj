@@ -349,6 +349,7 @@
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
     <Compile Include="ViewModels\TeacherControls\ManagageGradesTeacherVM.cs" />
+    <Compile Include="ViewModels\TeacherControls\ManageAbsencesTeacherVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
     </Compile>

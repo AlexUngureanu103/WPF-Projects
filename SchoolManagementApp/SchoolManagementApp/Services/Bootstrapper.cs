@@ -115,6 +115,7 @@ namespace SchoolManagementApp.Services
             //TeacherControls
 
             builder.RegisterType<ManagageGradesTeacherVM>().AsSelf();
+            builder.RegisterType<ManageAbsencesTeacherVM>().AsSelf();
         }
 
         private static void RegisterWindows(ContainerBuilder builder)
