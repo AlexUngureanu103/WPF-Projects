@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
-namespace SchoolManagementApp.ViewModels.TeacherControls
+namespace SchoolManagementApp.ViewModels.TeacherVM
 {
     public class ManageAverageGradesTeacherVM : BaseVM
     {

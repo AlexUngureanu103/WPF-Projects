@@ -6,11 +6,11 @@ using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.RepositoryServices;
 using SchoolManagementApp.ViewModels;
-using SchoolManagementApp.ViewModels.AdminControls;
-using SchoolManagementApp.ViewModels.TeacherControls;
+using SchoolManagementApp.ViewModels.AdminVM;
+using SchoolManagementApp.ViewModels.ClassMasterVM;
+using SchoolManagementApp.ViewModels.TeacherVM;
 using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
-using SchoolManagementApp.Views.ClassMasterViews;
 using SchoolManagementApp.Views.TeacherViews;
 using System.Configuration;
 using System.Windows.Controls;
@@ -122,11 +122,11 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageAverageGradesTeacherVM>().AsSelf();
 
             //ClassMasterControls
-            builder.RegisterType<ManageOwnClassClassMasterControl>().AsSelf();
-            
+            builder.RegisterType<ManageAbsencesClassMasterVM>().AsSelf();
+
             //StudentControls
 
-            
+
         }
 
         private static void RegisterWindows(ContainerBuilder builder)

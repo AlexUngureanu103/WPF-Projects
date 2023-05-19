@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
-namespace SchoolManagementApp.ViewModels.AdminControls
+namespace SchoolManagementApp.ViewModels.AdminVM
 {
     public class ManageAbsencesVM : BaseVM
     {

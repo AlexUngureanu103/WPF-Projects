@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.ViewModels.TeacherControls;
+﻿using SchoolManagementApp.ViewModels.TeacherVM;
 using System;
 using System.Windows.Controls;
 

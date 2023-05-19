@@ -1,36 +1,41 @@
 ﻿using SchoolManagementApp.Commands;
 using SchoolManagementApp.Domain.Models;
+using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
-namespace SchoolManagementApp.ViewModels.AdminControls
+namespace SchoolManagementApp.ViewModels.AdminVM
 {
-    public class ManageTeachersVM : BaseVM
+    public class ManageStudentsVM : BaseVM
     {
-        private readonly ITeacherService _teacherService;
+        private readonly IStudentService _studentService;
 
         private readonly IUserService _userService;
 
+        private readonly IClassService _classService;
+
         private readonly IRoleRepository _roleRepository;
 
-        public ManageTeachersVM(ITeacherService teacherService, IUserService userService, IRoleRepository roleRepository)
+        public ManageStudentsVM(IStudentService studentService, IUserService userService, IClassService classService, IRoleRepository roleRepository)
         {
-            _teacherService = teacherService ?? throw new ArgumentNullException(nameof(teacherService));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
+            _classService = classService ?? throw new ArgumentNullException(nameof(classService));
             _roleRepository = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
-            TeacherList = _teacherService.GetAll();
-            UserList = new ObservableCollection<User>(_userService.GetAll().Where(c => c.RoleId != _roleRepository.GetByRole("Student").Id && c.RoleId != _roleRepository.GetByRole("Admin").Id));
+
+            StudentList = _studentService.GetAll();
+            UserList = _userService.GetUsersByRole(_roleRepository.GetByRole("Student").Id);
+            ClassList = _classService.GetAll();
         }
 
-        public ObservableCollection<Teacher> TeacherList
+        public ObservableCollection<Student> StudentList
         {
-            get => _teacherService.TeacherList;
-            set => _teacherService.TeacherList = value;
+            get => _studentService.StudentList;
+            set => _studentService.StudentList = value;
         }
 
         public ObservableCollection<User> UserList
@@ -39,14 +44,20 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             set => _userService.UserList = value;
         }
 
-        private Teacher selectedTeacher;
-        public Teacher SelectedTeacher
+        public ObservableCollection<Class> ClassList
         {
-            get { return selectedTeacher; }
+            get => _classService.ClassList;
+            set => _classService.ClassList = value;
+        }
+
+        private Student selectedStudent;
+        public Student SelectedStudent
+        {
+            get { return selectedStudent; }
             set
             {
-                selectedTeacher = value;
-                OnPropertyChanged(nameof(SelectedTeacher));
+                selectedStudent = value;
+                OnPropertyChanged(nameof(SelectedStudent));
             }
         }
 
@@ -57,7 +68,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Teacher>(_teacherService.Add, param => selectedTeacher == null);
+                    addCommand = new RelayCommands<Student>(_studentService.Add, param => selectedStudent == null);
                 }
                 return addCommand;
             }
@@ -70,7 +81,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Teacher>(_teacherService.Edit, param => selectedTeacher != null);
+                    updateCommand = new RelayCommands<Student>(_studentService.Edit, param => selectedStudent != null);
                 }
                 return updateCommand;
             }
@@ -83,7 +94,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Teacher>(_teacherService.Remove, param => selectedTeacher != null);
+                    deleteCommand = new RelayCommands<Student>(_studentService.Remove, param => selectedStudent != null);
                 }
                 return deleteCommand;
             }
@@ -96,7 +107,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
             {
                 if (clearCommand == null)
                 {
-                    clearCommand = new RelayCommand(Clear, param => selectedTeacher != null);
+                    clearCommand = new RelayCommand(Clear, param => selectedStudent != null);
                 }
                 return clearCommand;
             }
@@ -104,7 +115,7 @@ namespace SchoolManagementApp.ViewModels.AdminControls
 
         private void Clear()
         {
-            SelectedTeacher = null;
+            SelectedStudent = null;
         }
     }
 }

@@ -333,26 +333,27 @@
     <Compile Include="Services\UserControlFactory.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
     <Compile Include="Services\Validators\UsersValidators.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageAbsencesVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageClassesVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageCourseClassesVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageCoursesVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageGradesVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManagePersonsVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageSpecializationCourseVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageSpecializationsVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageTeachersVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageTeachingClassesVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageAbsencesVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageClassesVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageCourseClassesVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageCoursesVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageGradesVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManagePersonsVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageSpecializationCourseVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageSpecializationsVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageTeachersVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageTeachingClassesVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
+    <Compile Include="ViewModels\ClassMasterVM\ManageAbsencesClassMasterVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageStudentsVM.cs" />
-    <Compile Include="ViewModels\AdminControls\ManageUsersVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageStudentsVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageUsersVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
-    <Compile Include="ViewModels\TeacherControls\ManagageGradesTeacherVM.cs" />
-    <Compile Include="ViewModels\TeacherControls\ManageAbsencesTeacherVM.cs" />
-    <Compile Include="ViewModels\TeacherControls\ManageAverageGradesTeacherVM.cs" />
+    <Compile Include="ViewModels\TeacherVM\ManagageGradesTeacherVM.cs" />
+    <Compile Include="ViewModels\TeacherVM\ManageAbsencesTeacherVM.cs" />
+    <Compile Include="ViewModels\TeacherVM\ManageAverageGradesTeacherVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
     </Compile>
@@ -395,8 +396,8 @@
     <Compile Include="Views\ClassMasterUserControl.xaml.cs">
       <DependentUpon>ClassMasterUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClassMasterViews\ManageOwnClassClassMasterControl.xaml.cs">
-      <DependentUpon>ManageOwnClassClassMasterControl.xaml</DependentUpon>
+    <Compile Include="Views\ClassMasterViews\ManageAbsencesClassMasterControl.xaml.cs">
+      <DependentUpon>ManageAbsencesClassMasterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -489,7 +490,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ClassMasterViews\ManageOwnClassClassMasterControl.xaml">
+    <Page Include="Views\ClassMasterViews\ManageAbsencesClassMasterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
