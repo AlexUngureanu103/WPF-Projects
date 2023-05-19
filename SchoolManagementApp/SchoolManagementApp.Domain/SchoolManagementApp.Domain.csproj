@@ -270,6 +270,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\StudentFinalGradeDto.cs" />
     <Compile Include="Dtos\StudentGradeAverageDto.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="Models\BaseEntity.cs" />

@@ -39,7 +39,6 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             this.loggedUser = loggedUser ?? throw new ArgumentNullException(nameof(loggedUser));
 
             classMaster = _teacherService.GetTeacherById(this.loggedUser.User.Id);
-
             ownClass = _classService.GetClassByClassMasterId(classMaster);
 
             StudentList = _studentService.GetStudentsByClassId(ownClass.Id);

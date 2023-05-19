@@ -124,6 +124,7 @@ namespace SchoolManagementApp.Services
 
             //ClassMasterControls
             builder.RegisterType<ManageAbsencesClassMasterVM>().AsSelf();
+            builder.RegisterType<ManageFinalGradesClassMasterVM>().AsSelf();
 
             //StudentControls
 
@@ -167,6 +168,7 @@ namespace SchoolManagementApp.Services
 
             //ClassMasterViews
             builder.RegisterType<ManageAbsencesClassMasterControl>().AsSelf();
+            builder.RegisterType<ManageFinalGradesClassMasterControl>().AsSelf();
         }
 
         private static void RegisterCommands(ContainerBuilder builder)

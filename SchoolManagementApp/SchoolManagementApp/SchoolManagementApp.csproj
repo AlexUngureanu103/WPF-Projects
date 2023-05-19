@@ -308,6 +308,7 @@
     <Compile Include="Converters\SpecializationConvert.cs" />
     <Compile Include="Converters\SpecializationCourseConvert.cs" />
     <Compile Include="Converters\StudentConvert.cs" />
+    <Compile Include="Converters\StudentFinalGradeDtoConvert.cs" />
     <Compile Include="Converters\StudentGradeAverageDtoConvert.cs" />
     <Compile Include="Converters\TeacherConvert.cs" />
     <Compile Include="Converters\UserConvert.cs" />
@@ -346,6 +347,7 @@
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\ClassMasterVM\ManageAbsencesClassMasterVM.cs" />
+    <Compile Include="ViewModels\ClassMasterVM\ManageFinalGradesClassMasterVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
     <Compile Include="ViewModels\AdminVM\ManageStudentsVM.cs" />
     <Compile Include="ViewModels\AdminVM\ManageUsersVM.cs" />
@@ -398,6 +400,9 @@
     </Compile>
     <Compile Include="Views\ClassMasterViews\ManageAbsencesClassMasterControl.xaml.cs">
       <DependentUpon>ManageAbsencesClassMasterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassMasterViews\ManageFinalGradesClassMasterControl.xaml.cs">
+      <DependentUpon>ManageFinalGradesClassMasterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -491,6 +496,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClassMasterViews\ManageAbsencesClassMasterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassMasterViews\ManageFinalGradesClassMasterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

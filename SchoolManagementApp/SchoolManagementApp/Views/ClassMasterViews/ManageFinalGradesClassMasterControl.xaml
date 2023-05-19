@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="SchoolManagementApp.Views.ClassMasterViews.ManageFinalGradesClassMasterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:convert="clr-namespace:SchoolManagementApp.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Background="White" Orientation="Horizontal">
+        <StackPanel.Resources>
+            <convert:StudentFinalGradeDtoConvert x:Key="Convert" />
+        </StackPanel.Resources>
+
+        <StackPanel Margin="10" >
+            <DataGrid Name="StudentGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                  ItemsSource="{Binding StudentList}" SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Email" Binding="{Binding User.Email}"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding User.Person.FirstName}"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding User.Person.LastName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Margin="10">
+            <WrapPanel>
+                <Button Content="Calculate" Margin="15" Width="100" Height="30" 
+                    Command="{Binding CalculateCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource Convert}">
+                            <Binding ElementName="Student" Path="SelectedValue"/>
+                            <Binding ElementName="CourseClass" Path="SelectedValue"/>
+
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Content="Clear" Margin="15" Width="120" Height="30" Command="{Binding ClearCommand}"/>
+                <Button Content="Final Grades" Margin="15" Width="100" Height="30" Command="{Binding FinalGradesCommand}"/>
+                <Button Content="Student Final Grade" Margin="15" Width="120" Height="30" Command="{Binding GeneralAverage}"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="150" FontSize="15">Student:</Label>
+                <ComboBox Name="Student" Width="200" ItemsSource="{Binding StudentList}" 
+                      SelectedItem="{Binding ElementName=StudentGrid ,Path=SelectedItem , UpdateSourceTrigger=PropertyChanged}"
+                      SelectedValue="{Binding SelectedStudent}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}Email:  {0}     Name:  {1} {2}">
+                                        <Binding Path="User.Email"/>
+                                        <Binding Path="User.Person.FirstName"/>
+                                        <Binding Path="User.Person.LastName"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="150" FontSize="15">Course: </Label>
+                <ComboBox Name="CourseClass" Width="200" ItemsSource="{Binding CourseClasseList}" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{} {0}">
+                                        <Binding Path="CourseType.Course"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+
+            <DataGrid x:Name="AverageGrades" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                      ItemsSource="{Binding StudentsAverageGradeList}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Student FirstName" Binding="{Binding Student.User.Person.FirstName}"/>
+                    <DataGridTextColumn Header="Student LastName" Binding="{Binding Student.User.Person.LastName}"/>
+                    <DataGridTextColumn Header="Student" Binding="{Binding Student.User.Email}"/>
+                    <DataGridTextColumn Header="Course" Binding="{Binding ClassCourse.CourseType.Course}"/>
+                    <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                    <DataGridTextColumn Header="Average Grade" Binding="{Binding Average}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

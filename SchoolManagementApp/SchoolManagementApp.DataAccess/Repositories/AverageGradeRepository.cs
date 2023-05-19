@@ -28,6 +28,7 @@ namespace SchoolManagementApp.DataAccess.Repositories
 
         public IEnumerable<AverageGrade> GetClassAverageGrades(int classId)
         {
+            List<AverageGrade> ClassAverageGrades = GetAll().ToList();
             var AverageClassGrades = GetAll()
                 .Where(c => c.ClassCourse.ClassId == classId);
 

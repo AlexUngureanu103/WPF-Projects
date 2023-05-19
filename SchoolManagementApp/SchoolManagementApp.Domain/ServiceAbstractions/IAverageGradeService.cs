@@ -16,5 +16,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
         ObservableCollection<AverageGrade> GetClassAverageGrades(Class @class);
 
         void CalculateStudentAverageGrade(StudentGradeAverageDto student);
+
+        void CalculateStudentFinalGrade(StudentFinalGradeDto student);
     }
 }

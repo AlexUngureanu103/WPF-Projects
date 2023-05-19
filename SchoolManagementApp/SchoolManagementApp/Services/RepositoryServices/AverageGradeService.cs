@@ -164,5 +164,55 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             return true;
         }
+
+        public void CalculateStudentFinalGrade(StudentFinalGradeDto StudentFinalGradeDto)
+        {
+            if (StudentFinalGradeDto == null|| StudentFinalGradeDto.CourseClass == null)
+            {
+                errorMessage = "StudentFinalGradeDto was null";
+                log.Error(errorMessage);
+                return;
+            }
+            var firstSemesterGrade = unitOfWork.AverageGrade.GetStudentCourseAverage(StudentFinalGradeDto.CourseClass.Id, StudentFinalGradeDto.Student.Id, 1);
+            var secondSemesterGrade = unitOfWork.AverageGrade.GetStudentCourseAverage(StudentFinalGradeDto.CourseClass.Id, StudentFinalGradeDto.Student.Id, 2);
+
+            if (firstSemesterGrade == null)
+            {
+                errorMessage = $"Student: {StudentFinalGradeDto.Student.User.Person.FirstName}  {StudentFinalGradeDto.Student.User.Person.LastName} doesn't have enough average grades for course: {StudentFinalGradeDto.CourseClass.CourseType.Course} on first semester yet";
+                log.Error(errorMessage);
+                return;
+            }
+            if (secondSemesterGrade == null)
+            {
+                errorMessage = $"Student: {StudentFinalGradeDto.Student.User.Person.FirstName}  {StudentFinalGradeDto.Student.User.Person.LastName} doesn't have enough average grades for course: {StudentFinalGradeDto.CourseClass.CourseType.Course} on second semester yet";
+                log.Error(errorMessage);
+                return;
+            }
+
+
+            var resultFromDb = unitOfWork.AverageGrade.GetStudentCourseAverage(StudentFinalGradeDto.CourseClass.Id, StudentFinalGradeDto.Student.Id, 0);
+            if (resultFromDb == null)
+            {
+                var finalGrade = new AverageGrade
+                {
+                    StudentId = StudentFinalGradeDto.Student.Id,
+                    CourseClasstId = StudentFinalGradeDto.CourseClass.Id,
+                    Average = (firstSemesterGrade.Average + secondSemesterGrade.Average) / 2,
+                    Semester = 0,
+                };
+
+                unitOfWork.AverageGrade.Add(finalGrade);
+                finalGrade.Student = StudentFinalGradeDto.Student;
+                finalGrade.ClassCourse = StudentFinalGradeDto.CourseClass;
+                AverageGrades.Add(finalGrade);
+            }
+            else
+            {
+                resultFromDb.Average = (firstSemesterGrade.Average + secondSemesterGrade.Average) / 2;
+            }
+
+            unitOfWork.SaveChanges();
+            log.Info($"Student : {StudentFinalGradeDto.Student.User.Person.FirstName}  {StudentFinalGradeDto.Student.User.Person.LastName} on course {StudentFinalGradeDto.CourseClass.CourseType.Course} has Average of  {(firstSemesterGrade.Average + secondSemesterGrade.Average) / 2} For the year");
+        }
     }
 }

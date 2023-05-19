@@ -57,7 +57,7 @@ namespace SchoolManagementApp.Views
 
         private void FinalGrades_Click(object sender, RoutedEventArgs e)
         {
-            //TeacherControls.Navigate(_userControlFactory.Create<ManageOwnClassClassMasterControl>());
+            TeacherControls.Navigate(_userControlFactory.Create<ManageFinalGradesClassMasterControl>());
         }
 
         private void Top_Click(object sender, RoutedEventArgs e)
