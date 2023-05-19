@@ -27,6 +27,7 @@
                 <Button Content="Motivate" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}"
                     CommandParameter="{Binding ElementName=AbsenceGrid, Path=SelectedItem}"/>
                 <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
+                <Button Content="Only UnMotivated" Margin="15" Width="100" Height="30" Command="{Binding OnlyUnMotivatedCommand}"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="150" FontSize="15">Course:</Label>

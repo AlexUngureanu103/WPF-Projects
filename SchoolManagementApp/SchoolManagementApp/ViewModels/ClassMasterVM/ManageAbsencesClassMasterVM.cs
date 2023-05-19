@@ -47,8 +47,6 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             CourseList = _courseService.GetClassCourses(ownClass.Id);
         }
 
-        #region Absence
-
         public ObservableCollection<Absences> AbsenceList
         {
             get => _absenceService.AbsenceList;
@@ -87,7 +85,7 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             {
                 selectedCourse = value;
                 OnPropertyChanged(nameof(SelectedCourse));
-                if(selectedStudent !=null)
+                if (selectedStudent != null)
                     AbsenceList = _absenceService.GetStudentAbsences(selectedStudent, SelectedCourse);
                 else
                 {
@@ -149,7 +147,24 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
                 return clearCommand;
             }
         }
-        #endregion
+
+        private ICommand onlyUnMotivatedCommand;
+        public ICommand OnlyUnMotivatedCommand
+        {
+            get
+            {
+                if (onlyUnMotivatedCommand == null)
+                {
+                    onlyUnMotivatedCommand = new RelayCommand(OnlyUnmotivated);
+                }
+                return onlyUnMotivatedCommand;
+            }
+        }
+
+        private void OnlyUnmotivated()
+        {
+            AbsenceList = new ObservableCollection<Absences>(AbsenceList.Where(c => !c.IsMotivated));
+        }
 
         private void Clear()
         {
