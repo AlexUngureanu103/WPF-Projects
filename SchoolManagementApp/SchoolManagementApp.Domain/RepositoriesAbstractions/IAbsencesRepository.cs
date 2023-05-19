@@ -6,5 +6,7 @@ namespace SchoolManagementApp.Domain.RepositoriesAbstractions
     public interface IAbsencesRepository : IRepository<Absences>
     {
         IEnumerable<Absences> GetStudentAbsences(int studentId);
+
+        IEnumerable<Absences> GetStudentAbsences(int studentId, int courseId);
     }
 }

@@ -145,7 +145,7 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
             {
                 selectedStudent = value;
                 OnPropertyChanged(nameof(SelectedStudent));
-                AbsenceList = _absenceService.GetStudentAbsences(selectedStudent);
+                AbsenceList = _absenceService.GetStudentAbsences(selectedStudent, selectedTeachingClass.CourseClass.CourseType);
                 if (selectedStudent == null)
                     CourseList = _courseService.GetAll();
                 else

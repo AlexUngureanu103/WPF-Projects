@@ -39,6 +39,13 @@ namespace SchoolManagementApp.Services.RepositoryServices
             return new ObservableCollection<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
         }
 
+        public ObservableCollection<Grade> GetStudentGrades(Student student, CourseType course)
+        {
+            if (student == null || course == null)
+                return new ObservableCollection<Grade>();
+            return new ObservableCollection<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id , course.Id));
+        }
+        
         private bool ValidateGrade(Grade grade)
         {
             if (grade == null)

@@ -135,5 +135,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return new ObservableCollection<Absences>();
             return new ObservableCollection<Absences>(unitOfWork.Absences.GetStudentAbsences(student.Id));
         }
+
+        public ObservableCollection<Absences> GetStudentAbsences(Student student, CourseType course)
+        {
+            if (student == null || course == null)
+                return new ObservableCollection<Absences>();
+            return new ObservableCollection<Absences>(unitOfWork.Absences.GetStudentAbsences(student.Id,course.Id));
+        }
     }
 }

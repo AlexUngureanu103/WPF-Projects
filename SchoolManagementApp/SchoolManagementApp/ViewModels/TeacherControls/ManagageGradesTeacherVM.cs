@@ -135,7 +135,7 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
             {
                 selectedStudent = value;
                 OnPropertyChanged(nameof(SelectedStudent));
-                GradeList = _gradeService.GetStudentGrades(selectedStudent);
+                GradeList = _gradeService.GetStudentGrades(selectedStudent, selectedTeachingClass.CourseClass.CourseType);
                 if (selectedStudent == null)
                     CourseList = _courseService.GetAll();
                 else

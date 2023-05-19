@@ -9,5 +9,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
         ObservableCollection<Absences> AbsenceList { get; set; }
 
         ObservableCollection<Absences> GetStudentAbsences(Student student);
+
+        ObservableCollection<Absences> GetStudentAbsences(Student student, CourseType course);
     }
 }

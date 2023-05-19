@@ -10,5 +10,6 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
 
         ObservableCollection<Grade> GetStudentGrades(Student student);
 
+        ObservableCollection<Grade> GetStudentGrades(Student student, CourseType course);
     }
 }

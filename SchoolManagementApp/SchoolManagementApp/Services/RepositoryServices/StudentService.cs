@@ -48,7 +48,11 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Student> GetStudentsByClassId(int classId)
         {
-            var students = unitOfWork.Students.GetStudentByClassId(classId);
+            var students = unitOfWork.Students.GetStudentByClassId(classId).Select(student =>
+            {
+                student.Grades = new List<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
+                return student;
+            });
 
             return new ObservableCollection<Student>(students);
         }

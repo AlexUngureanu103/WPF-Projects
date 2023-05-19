@@ -6,5 +6,7 @@ namespace SchoolManagementApp.Domain.RepositoriesAbstractions
     public interface IGradeRepository : IRepository<Grade>
     {
         IEnumerable<Grade> GetStudentGrades(int studentId);
+        
+        IEnumerable<Grade> GetStudentGrades(int studentId , int courseId);
     }
 }
