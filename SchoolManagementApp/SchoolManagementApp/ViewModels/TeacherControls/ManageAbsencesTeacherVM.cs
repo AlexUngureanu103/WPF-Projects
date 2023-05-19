@@ -13,8 +13,6 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
 {
     public class ManageAbsencesTeacherVM : BaseVM
     {
-        private readonly IClassService _classService;
-
         private readonly IStudentService _studentService;
 
         private readonly IAbsencesService _absenceService;
@@ -29,10 +27,9 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
 
         private readonly Teacher teacher;
 
-        public ManageAbsencesTeacherVM(IClassService classService, IStudentService studentService, IAbsencesService absenceService, ICourseService courseService, ICourseClassTeacherService courseClassTeacherService, ITeacherService teacherService, LoggedUser loggedUser)
+        public ManageAbsencesTeacherVM(IStudentService studentService, IAbsencesService absenceService, ICourseService courseService, ICourseClassTeacherService courseClassTeacherService, ITeacherService teacherService, LoggedUser loggedUser)
         {
             this._studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
-            this._classService = classService ?? throw new ArgumentNullException(nameof(classService));
             this._absenceService = absenceService ?? throw new ArgumentNullException(nameof(absenceService));
             this._courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
             this._courseClassTeacerService = courseClassTeacherService ?? throw new ArgumentNullException(nameof(courseClassTeacherService));
@@ -45,7 +42,6 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
 
             StudentList = _studentService.GetAll();
             AbsenceList = _absenceService.GetAll();
-            ClassList = _classService.GetAll();
             CourseList = _courseService.GetAll();
             Semesters = new List<int> { 1, 2 };
         }
@@ -67,23 +63,15 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
                 if (selectedTeachingClass != null)
                 {
                     var studentsFromClass = _studentService.GetStudentsByClassId(selectedTeachingClass.CourseClass.ClassId);
-
+                    CourseList = new ObservableCollection<CourseType>{
+                        selectedTeachingClass.CourseClass.CourseType
+                    };
                     StudentList = new ObservableCollection<Student>(studentsFromClass);
                 }
             }
         }
 
         #region Grade
-
-        public ObservableCollection<Class> ClassList
-        {
-            get => _classService.ClassList;
-            set
-            {
-                _classService.ClassList = value;
-                OnPropertyChanged(nameof(ClassList));
-            }
-        }
 
         public ObservableCollection<Absences> AbsenceList
         {
@@ -146,11 +134,6 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
                 selectedStudent = value;
                 OnPropertyChanged(nameof(SelectedStudent));
                 AbsenceList = _absenceService.GetStudentAbsences(selectedStudent, selectedTeachingClass.CourseClass.CourseType);
-                if (selectedStudent == null)
-                    CourseList = _courseService.GetAll();
-                else
-                    CourseList = _courseService.GetClassCourses((int)selectedStudent.ClassId);
-                OnPropertyChanged(nameof(CourseList));
                 OnPropertyChanged(nameof(AbsenceList));
             }
         }

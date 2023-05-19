@@ -13,8 +13,6 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
 {
     public class ManagageGradesTeacherVM : BaseVM
     {
-        private readonly IClassService _classService;
-
         private readonly IStudentService _studentService;
 
         private readonly IGradeService _gradeService;
@@ -29,10 +27,9 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
 
         private readonly Teacher teacher;
 
-        public ManagageGradesTeacherVM(IClassService classService, IStudentService studentService, IGradeService gradeService, ICourseService courseService, ICourseClassTeacherService courseClassTeacherService, ITeacherService teacherService, LoggedUser loggedUser)
+        public ManagageGradesTeacherVM( IStudentService studentService, IGradeService gradeService, ICourseService courseService, ICourseClassTeacherService courseClassTeacherService, ITeacherService teacherService, LoggedUser loggedUser)
         {
             this._studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
-            this._classService = classService ?? throw new ArgumentNullException(nameof(classService));
             this._gradeService = gradeService ?? throw new ArgumentNullException(nameof(gradeService));
             this._courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
             this._courseClassTeacerService = courseClassTeacherService ?? throw new ArgumentNullException(nameof(courseClassTeacherService));
@@ -45,7 +42,6 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
 
             StudentList = _studentService.GetAll();
             GradeList = _gradeService.GetAll();
-            ClassList = _classService.GetAll();
             CourseList = _courseService.GetAll();
             Semesters = new List<int> { 1, 2 };
             GradeValues = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -68,23 +64,15 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
                 if (selectedTeachingClass != null)
                 {
                     var studentsFromClass = _studentService.GetStudentsByClassId(selectedTeachingClass.CourseClass.ClassId);
-
+                    CourseList = new ObservableCollection<CourseType>{
+                        selectedTeachingClass.CourseClass.CourseType
+                    };
                     StudentList = new ObservableCollection<Student>(studentsFromClass);
                 }
             }
         }
 
         #region Grade
-
-        public ObservableCollection<Class> ClassList
-        {
-            get => _classService.ClassList;
-            set
-            {
-                _classService.ClassList = value;
-                OnPropertyChanged(nameof(ClassList));
-            }
-        }
 
         public ObservableCollection<Grade> GradeList
         {
@@ -136,10 +124,6 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
                 selectedStudent = value;
                 OnPropertyChanged(nameof(SelectedStudent));
                 GradeList = _gradeService.GetStudentGrades(selectedStudent, selectedTeachingClass.CourseClass.CourseType);
-                if (selectedStudent == null)
-                    CourseList = _courseService.GetAll();
-                else
-                    CourseList = _courseService.GetClassCourses((int)selectedStudent.ClassId);
                 OnPropertyChanged(nameof(CourseList));
                 OnPropertyChanged(nameof(GradeList));
             }

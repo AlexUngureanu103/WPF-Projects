@@ -76,7 +76,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             }
 
             unitOfWork.SaveChanges();
-            log.Info($"Student : {studentAverageGrades.Student.User.Person.FirstName}  {studentAverageGrades.Student.User.Person.LastName} on course {studentAverageGrades.CourseClass.CourseType.Course} has Average of L {average}");
+            log.Info($"Student : {studentAverageGrades.Student.User.Person.FirstName}  {studentAverageGrades.Student.User.Person.LastName} on course {studentAverageGrades.CourseClass.CourseType.Course} has Average of  {average} on Semester: {studentAverageGrades.Semester}");
         }
 
         private double CalculateAverate(StudentGradeAverageDto studentGradeAverageDTO)
