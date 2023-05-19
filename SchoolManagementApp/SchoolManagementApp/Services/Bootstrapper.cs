@@ -11,6 +11,7 @@ using SchoolManagementApp.ViewModels.ClassMasterVM;
 using SchoolManagementApp.ViewModels.TeacherVM;
 using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
+using SchoolManagementApp.Views.ClassMasterViews;
 using SchoolManagementApp.Views.TeacherViews;
 using System.Configuration;
 using System.Windows.Controls;
@@ -163,6 +164,9 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageGradesTeacherControl>().AsSelf();
             builder.RegisterType<ManageAbsencesTeacherControl>().AsSelf();
             builder.RegisterType<ManageMaterialsTeacherControl>().AsSelf();
+
+            //ClassMasterViews
+            builder.RegisterType<ManageAbsencesClassMasterControl>().AsSelf();
         }
 
         private static void RegisterCommands(ContainerBuilder builder)

@@ -1,4 +1,5 @@
 ﻿using SchoolManagementApp.DataAccess;
+using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
@@ -26,10 +27,6 @@ namespace SchoolManagementApp.Services.RepositoryServices
         public ObservableCollection<Class> GetAll()
         {
             var classes = unitOfWork.Classes.GetAll();
-            foreach (var @class in classes)
-            {
-                @class.Specialization = unitOfWork.Specializations.GetById((int)@class.SpecializationId);
-            }
 
             return new ObservableCollection<Class>(classes);
         }
@@ -124,6 +121,13 @@ namespace SchoolManagementApp.Services.RepositoryServices
             ClassList.Remove(@class);
             unitOfWork.SaveChanges();
             log.Info($"Class {@class.Name} removed");
+        }
+
+        public Class GetClassByClassMasterId(Teacher teacher)
+        {
+            var ownClass = unitOfWork.Classes.GetClassByClassMasterId(teacher.Id);
+
+            return ownClass;
         }
     }
 }

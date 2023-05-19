@@ -21,7 +21,12 @@
                 <MenuItem Header="Absences" Click="Absences_Click"/>
                 <MenuItem Header="Students" Click="Students_Click"/>
                 <MenuItem Header="Materials" Click="Materials_Click"/>
-                <MenuItem Header="Manage Own Class" Click="ManageOwnClass_Click"/>
+            </MenuItem>
+            <MenuItem Header="Own Class">
+                <MenuItem Header="Absences" Click="OwnAbsences_Click"/>
+                <MenuItem Header="Final Grades" Click="FinalGrades_Click"/>
+                <MenuItem Header="Top" Click="Top_Click"/>
+                <MenuItem Header="Exmatriculare" Click="ExmatriculareClick"/>
             </MenuItem>
             <MenuItem Header="Logout" Click="Logout_Click"/>
         </Menu>

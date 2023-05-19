@@ -44,13 +44,30 @@ namespace SchoolManagementApp.Views
         {
             TeacherControls.Navigate(_userControlFactory.Create<ManageStudentsTeacherControl>());
         }
+        
         private void Materials_Click(object sender, RoutedEventArgs e)
         {
             TeacherControls.Navigate(_userControlFactory.Create<ManageMaterialsTeacherControl>());
         } 
-        private void ManageOwnClass_Click(object sender, RoutedEventArgs e)
+
+        private void OwnAbsences_Click(object sender, RoutedEventArgs e)
         {
-            TeacherControls.Navigate(_userControlFactory.Create<ManageOwnClassClassMasterControl>());
+            TeacherControls.Navigate(_userControlFactory.Create<ManageAbsencesClassMasterControl>());
+        }
+
+        private void FinalGrades_Click(object sender, RoutedEventArgs e)
+        {
+            //TeacherControls.Navigate(_userControlFactory.Create<ManageOwnClassClassMasterControl>());
+        }
+
+        private void Top_Click(object sender, RoutedEventArgs e)
+        {
+            //TeacherControls.Navigate(_userControlFactory.Create<ManageOwnClassClassMasterControl>());
+        }
+
+        private void ExmatriculareClick(object sender, RoutedEventArgs e)
+        {
+            //TeacherControls.Navigate(_userControlFactory.Create<ManageOwnClassClassMasterControl>());
         }
         private void Logout_Click(object sender, RoutedEventArgs e)
         {

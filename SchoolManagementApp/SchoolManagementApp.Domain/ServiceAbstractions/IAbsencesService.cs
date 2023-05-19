@@ -11,5 +11,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
         ObservableCollection<Absences> GetStudentAbsences(Student student);
 
         ObservableCollection<Absences> GetStudentAbsences(Student student, CourseType course);
+
+        void MotivateAbsence(Absences absence);
     }
 }

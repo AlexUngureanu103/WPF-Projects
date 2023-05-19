@@ -106,6 +106,28 @@ namespace SchoolManagementApp.Services.RepositoryServices
             log.Info($"Absence {entity.Id} updated");
         }
 
+        public void MotivateAbsence(Absences entity)
+        {
+            Absences resultFromDb = unitOfWork.Absences.GetById(entity.Id);
+            if (resultFromDb == null)
+            {
+                errorMessage = "Grade not found";
+                log.Error(errorMessage);
+                return;
+            }
+            if (!ValidateAbsence(entity))
+                return;
+            if (resultFromDb.IsMotivated)
+            {
+                log.Info($"Absence with id: {entity.Id} is already motivated ");
+                return;
+            }
+            entity.IsMotivated = true;
+            resultFromDb.IsMotivated = entity.IsMotivated;
+            unitOfWork.SaveChanges();
+            log.Info($"Absence with id: {entity.Id} motivated ");
+        }
+
         public ObservableCollection<Absences> GetAll()
         {
             return new ObservableCollection<Absences>(unitOfWork.Absences.GetAll());
@@ -140,7 +162,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
         {
             if (student == null || course == null)
                 return new ObservableCollection<Absences>();
-            return new ObservableCollection<Absences>(unitOfWork.Absences.GetStudentAbsences(student.Id,course.Id));
+            return new ObservableCollection<Absences>(unitOfWork.Absences.GetStudentAbsences(student.Id, course.Id));
         }
     }
 }
