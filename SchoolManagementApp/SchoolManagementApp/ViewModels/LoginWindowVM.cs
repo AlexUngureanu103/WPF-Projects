@@ -112,5 +112,78 @@ namespace SchoolManagementApp.ViewModels
             Password = "admin";
             CanLogin = true;
         }
+
+
+        private ICommand adminLogin;
+        public ICommand AdminLogin
+        {
+            get
+            {
+                if (adminLogin == null)
+                {
+                    adminLogin = new RelayCommand(LoginAsAdmin);
+                }
+                return adminLogin;
+            }
+        }
+
+        private ICommand studentLogin;
+        public ICommand StudentLogin
+        {
+            get
+            {
+                if (studentLogin == null)
+                {
+                    studentLogin = new RelayCommand(LoginAsStudent);
+                }
+                return studentLogin;
+            }
+        }
+
+        private ICommand teacherLogin;
+        public ICommand TeacherLogin
+        {
+            get
+            {
+                if (teacherLogin == null)
+                {
+                    teacherLogin = new RelayCommand(LoginAsTeacher);
+                }
+                return teacherLogin;
+            }
+        }
+        private ICommand classMasterLogin;
+        public ICommand ClassMasterLogin
+        {
+            get
+            {
+                if (classMasterLogin == null)
+                {
+                    classMasterLogin = new RelayCommand(LoginAsClassMaster);
+                }
+                return classMasterLogin;
+            }
+        }
+
+        private void LoginAsStudent()
+        {
+            Email = "student@student.ro";
+            Password = "student";
+            CanLogin = true;
+        }
+
+        private void LoginAsTeacher()
+        {
+            Email = "teacher@teacher.ro";
+            Password = "teacher";
+            CanLogin = true;
+        }
+
+        private void LoginAsClassMaster()
+        {
+            Email = "classmaster@classmaster.ro";
+            Password = "classmaster";
+            CanLogin = true;
+        }
     }
 }
