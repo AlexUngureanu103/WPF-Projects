@@ -51,7 +51,7 @@
             <WrapPanel>
                 <Label Width="150" FontSize="15">Student:</Label>
                 <ComboBox Name="Student" Width="200" ItemsSource="{Binding StudentList}" 
-                      SelectedItem="{Binding ElementName=StudentGrid ,Path=SelectedItem.Student , UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding ElementName=StudentGrid ,Path=SelectedItem , UpdateSourceTrigger=PropertyChanged}"
                       SelectedValue="{Binding SelectedStudent}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -72,7 +72,7 @@
             <WrapPanel>
                 <Label Width="150" FontSize="15">Semester:</Label>
                 <ComboBox Name="Semester" Width="120" Height="25" ItemsSource="{Binding Semesters}"
-                      SelectedValue="{Binding ElementName=AbseceGrid, Path=SelectedItem.Semester,UpdateSourceTrigger=PropertyChanged}">
+                      SelectedValue="{Binding ElementName=AverageGrades, Path=SelectedItem.Semester,UpdateSourceTrigger=PropertyChanged}">
                 </ComboBox>
             </WrapPanel>
             <DataGrid x:Name="AverageGrades" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"

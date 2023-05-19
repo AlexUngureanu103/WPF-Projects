@@ -395,6 +395,9 @@
     <Compile Include="Views\ClassMasterUserControl.xaml.cs">
       <DependentUpon>ClassMasterUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ClassMasterViews\ManageOwnClassClassMasterControl.xaml.cs">
+      <DependentUpon>ManageOwnClassClassMasterControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -486,6 +489,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ClassMasterViews\ManageOwnClassClassMasterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -544,7 +551,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Dtos\" />
-    <Folder Include="Views\ClassMasterViews\" />
     <Folder Include="Views\StudentViews\" />
   </ItemGroup>
   <ItemGroup>

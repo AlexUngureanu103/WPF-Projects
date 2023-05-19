@@ -69,6 +69,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 unitOfWork.AverageGrade.Add(averageGrade);
                 averageGrade.Student = studentAverageGrades.Student;
                 averageGrade.ClassCourse = studentAverageGrades.CourseClass;
+                AverageGrades.Add(averageGrade);
             }
             else
             {

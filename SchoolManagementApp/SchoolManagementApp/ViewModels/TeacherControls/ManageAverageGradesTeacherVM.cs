@@ -97,6 +97,17 @@ namespace SchoolManagementApp.ViewModels.TeacherControls
             }
         }
 
+        private Student selectedStudent;
+        public Student SelectedStudent
+        {
+            get => selectedStudent;
+            set
+            {
+                selectedStudent = value;
+                OnPropertyChanged(nameof(SelectedStudent));
+            }
+        }
+
         private ICommand calculateCommand;
         public ICommand CalculateCommand
         {

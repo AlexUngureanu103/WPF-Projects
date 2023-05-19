@@ -43,9 +43,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
         {
             if (student == null || course == null)
                 return new ObservableCollection<Grade>();
-            return new ObservableCollection<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id , course.Id));
+            return new ObservableCollection<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id, course.Id));
         }
-        
+
         private bool ValidateGrade(Grade grade)
         {
             if (grade == null)
@@ -104,7 +104,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             if (grade.IsThesis == true)
             {
-                var unique = unitOfWork.Grades.GetAll().FirstOrDefault(g => g.StudentId == student.Id && g.CourseTypeId == grade.CourseTypeId && g.IsThesis == true && g.Semester == grade.Semester);
+                var unique = unitOfWork.Grades.GetAll().FirstOrDefault(g => g.StudentId == student.Id && g.CourseTypeId == grade.CourseTypeId && g.IsThesis == true && g.Semester == grade.Semester && g.Id != grade.Id);
 
                 if (unique != null)
                 {

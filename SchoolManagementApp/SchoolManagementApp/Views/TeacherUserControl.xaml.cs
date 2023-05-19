@@ -27,11 +27,6 @@ namespace SchoolManagementApp.Views
 
             InitializeComponent();
 
-            //string userinfo = loggedUser.User.Email + " " + loggedUser.User.PasswordHash +
-            //    '\n' + loggedUser.User.Role.AssignedRole +
-            //    '\n' + loggedUser.User.Person.FirstName + " " + loggedUser.User.Person.LastName;
-            //MessageBox.Show($"Info {userinfo}");
-
             DataContext = TeacherUserControlVM;
         }
 
