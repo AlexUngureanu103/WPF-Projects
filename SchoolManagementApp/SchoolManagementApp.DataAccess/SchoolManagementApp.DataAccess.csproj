@@ -356,9 +356,14 @@
     <Compile Include="Migrations\202305180832258_taecherId.designer.cs">
       <DependentUpon>202305180832258_taecherId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305190522240_AverageGrade.cs" />
+    <Compile Include="Migrations\202305190522240_AverageGrade.designer.cs">
+      <DependentUpon>202305190522240_AverageGrade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AbsencesRepository.cs" />
+    <Compile Include="Repositories\AverageGradeRepository.cs" />
     <Compile Include="Repositories\ClassRepository.cs" />
     <Compile Include="Repositories\CourseClassRepository.cs" />
     <Compile Include="Repositories\CourseClassTeacherRepository.cs" />
@@ -436,6 +441,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305180832258_taecherId.resx">
       <DependentUpon>202305180832258_taecherId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305190522240_AverageGrade.resx">
+      <DependentUpon>202305190522240_AverageGrade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

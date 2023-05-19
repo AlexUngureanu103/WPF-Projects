@@ -15,5 +15,10 @@ namespace SchoolManagementApp.DataAccess.Repositories
         {
             return GetRecords().Where(absence => absence.StudentId == studentId);
         }
+
+        public IEnumerable<Absences> GetStudentAbsences(int studentId, int courseId)
+        {
+            return GetRecords().Where(absence => absence.StudentId == studentId && absence.CourseTypeId == courseId);
+        }
     }
 }

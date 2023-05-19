@@ -42,5 +42,7 @@ namespace SchoolManagementApp.DataAccess
         public DbSet<SpecializationCourse> SpecializationCourses { get; set; }
 
         public DbSet<Person> Persons { get; set; }
+
+        public DbSet<AverageGrade> AverageGrades { get; set; }
     }
 }

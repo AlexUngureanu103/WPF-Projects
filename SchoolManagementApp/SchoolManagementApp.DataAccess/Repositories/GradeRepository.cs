@@ -16,5 +16,10 @@ namespace SchoolManagementApp.DataAccess.Repositories
         {
             return GetRecords().Where(grade => grade.StudentId == studentId);
         }
+
+        public IEnumerable<Grade> GetStudentGrades(int studentId, int courseId)
+        {
+            return GetRecords().Where(grade => grade.StudentId == studentId && grade.CourseTypeId == courseId);
+        }
     }
 }
