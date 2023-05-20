@@ -21,7 +21,7 @@
                       SelectedItem="{Binding  SelectedCourse, UpdateSourceTrigger=PropertyChanged}"/>
             </WrapPanel>
 
-            <DataGrid Name="AbsenceGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="auto" Width="auto"
+            <DataGrid Name="AbsenceGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="300" Width="auto"
                   ItemsSource="{Binding AbsenceList}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="IsMotivated" Binding="{Binding IsMotivated}"/>

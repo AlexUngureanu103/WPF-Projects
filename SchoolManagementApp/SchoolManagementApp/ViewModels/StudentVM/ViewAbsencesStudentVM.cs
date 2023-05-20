@@ -23,7 +23,6 @@ namespace SchoolManagementApp.ViewModels.StudentVM
 
         private readonly Student student;
 
-
         public ViewAbsencesStudentVM(IStudentService studentService, IClassService classService, IAbsencesService absencesService, ICourseService courseService, LoggedUser loggedUser)
         {
             _studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
@@ -37,6 +36,7 @@ namespace SchoolManagementApp.ViewModels.StudentVM
             AbsenceList = _absencesService.GetStudentAbsences(student);
             CourseList = _courseService.GetClassCourses(student.Class.Id);
         }
+
         public ObservableCollection<Absences> AbsenceList
         {
             get => _absencesService.AbsenceList;
