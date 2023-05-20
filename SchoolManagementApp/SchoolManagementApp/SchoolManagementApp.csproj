@@ -311,6 +311,7 @@
     <Compile Include="Converters\StudentFinalGradeDtoConvert.cs" />
     <Compile Include="Converters\StudentGradeAverageDtoConvert.cs" />
     <Compile Include="Converters\TeacherConvert.cs" />
+    <Compile Include="Converters\TeachingMaterialConvert.cs" />
     <Compile Include="Converters\UserConvert.cs" />
     <Compile Include="Enums\AddOrEdit.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
@@ -329,6 +330,7 @@
     <Compile Include="Services\RepositoryServices\SpecializationService.cs" />
     <Compile Include="Services\RepositoryServices\StudentService.cs" />
     <Compile Include="Services\RepositoryServices\TeacherService.cs" />
+    <Compile Include="Services\RepositoryServices\TeachingMaterialsService.cs" />
     <Compile Include="Services\RepositoryServices\UserService.cs" />
     <Compile Include="Services\SortById.cs" />
     <Compile Include="Services\UserControlFactory.cs" />
@@ -356,6 +358,7 @@
     <Compile Include="ViewModels\TeacherVM\ManagageGradesTeacherVM.cs" />
     <Compile Include="ViewModels\TeacherVM\ManageAbsencesTeacherVM.cs" />
     <Compile Include="ViewModels\TeacherVM\ManageAverageGradesTeacherVM.cs" />
+    <Compile Include="ViewModels\TeacherVM\ManageTeachingMaterialsTeacherVM.cs" />
     <Compile Include="Views\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
     </Compile>

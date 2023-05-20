@@ -44,5 +44,7 @@ namespace SchoolManagementApp.DataAccess
         public DbSet<Person> Persons { get; set; }
 
         public DbSet<AverageGrade> AverageGrades { get; set; }
+
+        public DbSet<TeachingMaterial> TeachingMaterials { get; set; }
     }
 }

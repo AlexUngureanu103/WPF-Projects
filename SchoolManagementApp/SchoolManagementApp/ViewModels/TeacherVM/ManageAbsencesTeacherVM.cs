@@ -19,7 +19,7 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
 
         private readonly ICourseService _courseService;
 
-        private readonly ICourseClassTeacherService _courseClassTeacerService;
+        private readonly ICourseClassTeacherService _courseClassTeacherService;
 
         private readonly ITeacherService _teacherService;
 
@@ -32,13 +32,13 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             this._studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
             this._absenceService = absenceService ?? throw new ArgumentNullException(nameof(absenceService));
             this._courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
-            this._courseClassTeacerService = courseClassTeacherService ?? throw new ArgumentNullException(nameof(courseClassTeacherService));
+            this._courseClassTeacherService = courseClassTeacherService ?? throw new ArgumentNullException(nameof(courseClassTeacherService));
             this._teacherService = teacherService ?? throw new ArgumentNullException(nameof(teacherService));
             this.loggedUser = loggedUser ?? throw new ArgumentNullException(nameof(loggedUser));
 
 
             teacher = _teacherService.GetTeacherById(this.loggedUser.User.Id);
-            TeachingClassesList = _courseClassTeacerService.GetTeachingClasses(teacher.Id);
+            TeachingClassesList = _courseClassTeacherService.GetTeachingClasses(teacher.Id);
 
             StudentList = _studentService.GetAll();
             AbsenceList = _absenceService.GetAll();
@@ -48,8 +48,8 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
 
         public ObservableCollection<CourseClassTeacher> TeachingClassesList
         {
-            get => _courseClassTeacerService.CourseTeacherList;
-            set => _courseClassTeacerService.CourseTeacherList = value;
+            get => _courseClassTeacherService.CourseTeacherList;
+            set => _courseClassTeacherService.CourseTeacherList = value;
         }
 
         private CourseClassTeacher selectedTeachingClass;

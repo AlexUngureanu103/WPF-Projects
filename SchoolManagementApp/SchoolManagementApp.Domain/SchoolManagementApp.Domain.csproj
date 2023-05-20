@@ -285,6 +285,7 @@
     <Compile Include="Models\StudentRelated\Class.cs" />
     <Compile Include="Models\StudentRelated\Grade.cs" />
     <Compile Include="Models\StudentRelated\Specialization.cs" />
+    <Compile Include="Models\StudentRelated\TeachingMaterial.cs" />
     <Compile Include="Models\Users\Role.cs" />
     <Compile Include="Models\Users\Student.cs" />
     <Compile Include="Models\Users\Teacher.cs" />
@@ -303,6 +304,7 @@
     <Compile Include="RepositoriesAbstractions\ISpecializationRepository.cs" />
     <Compile Include="RepositoriesAbstractions\IStudentRepository.cs" />
     <Compile Include="RepositoriesAbstractions\ITeacherRepository.cs" />
+    <Compile Include="RepositoriesAbstractions\ITeachingMaterialsRepository.cs" />
     <Compile Include="RepositoriesAbstractions\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAbstractions\IAbsencesService.cs" />
@@ -318,6 +320,7 @@
     <Compile Include="ServiceAbstractions\ISpecializationService.cs" />
     <Compile Include="ServiceAbstractions\IStudentService.cs" />
     <Compile Include="ServiceAbstractions\ITeacherService.cs" />
+    <Compile Include="ServiceAbstractions\ITeachingMaterialsService.cs" />
     <Compile Include="ServiceAbstractions\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>

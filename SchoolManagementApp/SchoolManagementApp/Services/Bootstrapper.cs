@@ -67,6 +67,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<AbsencesService>().As<IAbsencesService>();
             builder.RegisterType<CourseClassTeacherService>().As<ICourseClassTeacherService>();
             builder.RegisterType<AverageGradeService>().As<IAverageGradeService>();
+            builder.RegisterType<TeachingMaterialsService>().As<ITeachingMaterialsService>();
 
             builder.RegisterType<AuthorizationService>().AsSelf();
         }
@@ -87,6 +88,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<AbsencesRepository>().As<IAbsencesRepository>();
             builder.RegisterType<CourseClassTeacherRepository>().As<ICourseClassTeacherRepository>();
             builder.RegisterType<AverageGradeRepository>().As<IAverageGradeRepository>();
+            builder.RegisterType<TeachingMaterialsRepository>().As<ITeachingMaterialsRepository>();
         }
 
         private static void RegisterMainUsersPage(ContainerBuilder builder)
@@ -121,6 +123,7 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManagageGradesTeacherVM>().AsSelf();
             builder.RegisterType<ManageAbsencesTeacherVM>().AsSelf();
             builder.RegisterType<ManageAverageGradesTeacherVM>().AsSelf();
+            builder.RegisterType<ManageTeachingMaterialsTeacherVM>().AsSelf();
 
             //ClassMasterControls
             builder.RegisterType<ManageAbsencesClassMasterVM>().AsSelf();
