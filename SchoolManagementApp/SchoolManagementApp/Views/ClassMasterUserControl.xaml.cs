@@ -67,7 +67,7 @@ namespace SchoolManagementApp.Views
 
         private void ExmatriculareClick(object sender, RoutedEventArgs e)
         {
-            //TeacherControls.Navigate(_userControlFactory.Create<ManageOwnClassClassMasterControl>());
+            TeacherControls.Navigate(_userControlFactory.Create<ViewExmatriculationSituationClassMasterControl>());
         }
         private void Logout_Click(object sender, RoutedEventArgs e)
         {

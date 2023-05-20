@@ -350,6 +350,7 @@
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\ClassMasterVM\ManageAbsencesClassMasterVM.cs" />
     <Compile Include="ViewModels\ClassMasterVM\ManageFinalGradesClassMasterVM.cs" />
+    <Compile Include="ViewModels\ClassMasterVM\ViewExmatriculationSituationClassMasterVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
     <Compile Include="ViewModels\AdminVM\ManageStudentsVM.cs" />
     <Compile Include="ViewModels\AdminVM\ManageUsersVM.cs" />
@@ -410,6 +411,9 @@
     </Compile>
     <Compile Include="Views\ClassMasterViews\ManageFinalGradesClassMasterControl.xaml.cs">
       <DependentUpon>ManageFinalGradesClassMasterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassMasterViews\ViewExmatriculationSituationClassMasterControl.xaml.cs">
+      <DependentUpon>ViewExmatriculationSituationClassMasterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -519,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClassMasterViews\ManageFinalGradesClassMasterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassMasterViews\ViewExmatriculationSituationClassMasterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
