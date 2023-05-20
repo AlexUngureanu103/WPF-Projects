@@ -28,21 +28,17 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Student> GetAll()
         {
-            var students = new ObservableCollection<Student>(unitOfWork.Students.GetAll().Select(student =>
-            {
-                student.Grades = new List<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
-                return student;
-            }));
+            var students = new ObservableCollection<Student>(unitOfWork.Students.GetAll());
             return students;
         }
 
         public ObservableCollection<Student> GetStudentsByClassId(int classId)
         {
-            var students = unitOfWork.Students.GetStudentByClassId(classId).Select(student =>
-            {
-                student.Grades = new List<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
-                return student;
-            });
+            var students = unitOfWork.Students.GetStudentByClassId(classId);
+            //foreach (Student student in students)
+            //{
+            //    student.Grades = new List<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
+            //}
 
             return new ObservableCollection<Student>(students);
         }

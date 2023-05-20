@@ -129,5 +129,18 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.SaveChanges();
             log.Info($"Teaching Material with id: {entity.Id} , Name {entity.Name} was deleted");
         }
+
+        public ObservableCollection<TeachingMaterial> GetClassTeachingMaterials(Class @class)
+        {
+            if (@class == null)
+            {
+                errorMessage = "Class cannot be null";
+                log.Error(errorMessage);
+                return new ObservableCollection<TeachingMaterial>();
+            }
+            var teachingMaterials = unitOfWork.TeachingMaterials.GetClassTeachingMaterials(@class.Id);
+
+            return new ObservableCollection<TeachingMaterial>(teachingMaterials);
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.RepositoriesAbstractions;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -20,6 +19,13 @@ namespace SchoolManagementApp.DataAccess.Repositories
                 .Include(c => c.CourseClass.CourseType)
                 .Include(c => c.CourseClass.Class.Specialization)
                 .Include(c => c.CourseClass.Class.Teacher.User.Person);
+
+            return teachingMaterials;
+        }
+
+        public IEnumerable<TeachingMaterial> GetClassTeachingMaterials(int classId)
+        {
+            var teachingMaterials = GetAll().Where(c => c.CourseClass.ClassId == classId && c.CourseClass.HasCourse);
 
             return teachingMaterials;
         }

@@ -1,12 +1,43 @@
 ﻿<UserControl x:Class="SchoolManagementApp.Views.StudentViews.ViewMaterialsStudentControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SchoolManagementApp.Views.StudentViews"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <StackPanel Background="White" Orientation="Horizontal">
+        <StackPanel Margin="10">
+            <WrapPanel>
+                <Button Content="All" Margin="15" Width="100" Height="30" Command="{Binding AllCommand}"/>
+            </WrapPanel>
+
+            <WrapPanel>
+                <Label Width="150" FontSize="15">Course:</Label>
+                <ComboBox Name="CourseType" Width="200" ItemsSource="{Binding CourseList}" DisplayMemberPath="Course"
+                      SelectedItem="{Binding  SelectedCourse, UpdateSourceTrigger=PropertyChanged}"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="150" FontSize="15">Semester:</Label>
+                <ComboBox Name="Semester" Width="120" Height="25" ItemsSource="{Binding Semesters}"
+                      SelectedValue="{Binding SelectedSemester,UpdateSourceTrigger=PropertyChanged}">
+                </ComboBox>
+            </WrapPanel>
+            <DataGrid Name="TeachingMaterialsGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                  ItemsSource="{Binding TeachingMaterialsList}" SelectedItem="{Binding SelectedTeachingMaterial}"  IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                    <DataGridTextColumn Header="Class" Binding="{Binding CourseClass.Class.Name}"/>
+                    <DataGridTextColumn Header="Course" Binding="{Binding CourseClass.CourseType.Course}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </StackPanel>
+        <StackPanel>
+            <WrapPanel Orientation="Vertical" Margin="15">
+                <Label Width="150" FontSize="20" Content="{Binding SelectedTeachingMaterial.Name}"/>
+                <TextBlock Text="{Binding SelectedTeachingMaterial.Content}" Width="400" Height="400" Margin="0,15,0,0"/>
+            </WrapPanel>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

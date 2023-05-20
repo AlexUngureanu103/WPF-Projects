@@ -6,5 +6,7 @@ namespace SchoolManagementApp.Domain.RepositoriesAbstractions
     public interface ITeachingMaterialsRepository : IRepository<TeachingMaterial>
     {
         IEnumerable<TeachingMaterial> GetCourseClassTeachingMaterials(int courseClassId);
+
+        IEnumerable<TeachingMaterial> GetClassTeachingMaterials(int classId);
     }
 }

@@ -19,7 +19,8 @@ namespace SchoolManagementApp.DataAccess.Repositories
                 .Include(c => c.Class)
                 .Include(c => c.Class.Teacher.User.Person)
                 .Include(c => c.User)
-                .Include(c => c.User.Person);
+                .Include(c => c.User.Person)
+                .Include(c => c.Grades);
 
             return students;
         }
