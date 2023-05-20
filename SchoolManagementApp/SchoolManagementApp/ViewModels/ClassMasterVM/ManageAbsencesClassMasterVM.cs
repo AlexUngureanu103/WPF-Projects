@@ -141,7 +141,7 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             {
                 if (clearCommand == null)
                 {
-                    clearCommand = new RelayCommand(Clear, param => selectedAbsence != null);
+                    clearCommand = new RelayCommand(Clear);
                 }
                 return clearCommand;
             }

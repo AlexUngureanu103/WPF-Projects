@@ -27,7 +27,7 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
 
         private readonly Teacher teacher;
 
-        public ManagageGradesTeacherVM( IStudentService studentService, IGradeService gradeService, ICourseService courseService, ICourseClassTeacherService courseClassTeacherService, ITeacherService teacherService, LoggedUser loggedUser)
+        public ManagageGradesTeacherVM(IStudentService studentService, IGradeService gradeService, ICourseService courseService, ICourseClassTeacherService courseClassTeacherService, ITeacherService teacherService, LoggedUser loggedUser)
         {
             this._studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
             this._gradeService = gradeService ?? throw new ArgumentNullException(nameof(gradeService));
@@ -123,7 +123,8 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 selectedStudent = value;
                 OnPropertyChanged(nameof(SelectedStudent));
-                GradeList = _gradeService.GetStudentGrades(selectedStudent, selectedTeachingClass.CourseClass.CourseType);
+                if (selectedTeachingClass != null)
+                    GradeList = _gradeService.GetStudentGrades(selectedStudent, selectedTeachingClass.CourseClass.CourseType);
                 OnPropertyChanged(nameof(CourseList));
                 OnPropertyChanged(nameof(GradeList));
             }
@@ -200,7 +201,7 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 if (clearCommand == null)
                 {
-                    clearCommand = new RelayCommand(Clear, param => selectedGrade != null);
+                    clearCommand = new RelayCommand(Clear);
                 }
                 return clearCommand;
             }

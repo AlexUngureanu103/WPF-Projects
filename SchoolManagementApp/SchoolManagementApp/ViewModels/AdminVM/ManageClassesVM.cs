@@ -103,7 +103,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (clearCommand == null)
                 {
-                    clearCommand = new RelayCommand(Clear, param => selectedClass != null);
+                    clearCommand = new RelayCommand(Clear);
                 }
                 return clearCommand;
             }

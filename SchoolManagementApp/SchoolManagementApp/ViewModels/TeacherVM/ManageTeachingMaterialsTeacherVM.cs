@@ -152,7 +152,7 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 if (clearCommand == null)
                 {
-                    clearCommand = new RelayCommand(Clear, param => selectedTeachingMaterial != null);
+                    clearCommand = new RelayCommand(Clear);
                 }
                 return clearCommand;
             }

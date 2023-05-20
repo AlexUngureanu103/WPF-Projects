@@ -133,7 +133,8 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 selectedStudent = value;
                 OnPropertyChanged(nameof(SelectedStudent));
-                AbsenceList = _absenceService.GetStudentAbsences(selectedStudent, selectedTeachingClass.CourseClass.CourseType);
+                if (selectedTeachingClass != null)
+                    AbsenceList = _absenceService.GetStudentAbsences(selectedStudent, selectedTeachingClass.CourseClass.CourseType);
                 OnPropertyChanged(nameof(AbsenceList));
             }
         }
@@ -184,7 +185,7 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 if (clearCommand == null)
                 {
-                    clearCommand = new RelayCommand(Clear, param => selectedAbsence != null);
+                    clearCommand = new RelayCommand(Clear);
                 }
                 return clearCommand;
             }
