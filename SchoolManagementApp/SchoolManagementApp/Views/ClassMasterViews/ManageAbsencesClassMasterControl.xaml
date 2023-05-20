@@ -40,6 +40,7 @@
                     <DataGridTextColumn Header="IsMotivated" Binding="{Binding IsMotivated}"/>
                     <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                    <DataGridTextColumn Header="Class" Binding="{Binding Student.Class.Name}"/>
                     <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
                     <DataGridTextColumn Header="Student" Binding="{Binding Student.User.Email}"/>
                     <DataGridTextColumn Header="Student FirstName" Binding="{Binding Student.User.Person.FirstName}"/>

@@ -81,6 +81,7 @@
                     <DataGridTextColumn Header="Student LastName" Binding="{Binding Student.User.Person.LastName}"/>
                     <DataGridTextColumn Header="Student" Binding="{Binding Student.User.Email}"/>
                     <DataGridTextColumn Header="Course" Binding="{Binding ClassCourse.CourseType.Course}"/>
+                    <DataGridTextColumn Header="Class" Binding="{Binding ClassCourse.Class.Name}"/>
                     <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
                     <DataGridTextColumn Header="Average Grade" Binding="{Binding Average}"/>
                 </DataGrid.Columns>
