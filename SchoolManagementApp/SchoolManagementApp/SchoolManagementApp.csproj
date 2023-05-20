@@ -355,6 +355,10 @@
     <Compile Include="ViewModels\AdminVM\ManageUsersVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\StudentUserControlVM.cs" />
+    <Compile Include="ViewModels\StudentVM\ViewAbsencesStudentVM.cs" />
+    <Compile Include="ViewModels\StudentVM\ViewFinalGradesStudentVM.cs" />
+    <Compile Include="ViewModels\StudentVM\ViewGradesStudentVM.cs" />
+    <Compile Include="ViewModels\StudentVM\ViewMaterialsStudentVM.cs" />
     <Compile Include="ViewModels\TeacherVM\ManagageGradesTeacherVM.cs" />
     <Compile Include="ViewModels\TeacherVM\ManageAbsencesTeacherVM.cs" />
     <Compile Include="ViewModels\TeacherVM\ManageAverageGradesTeacherVM.cs" />
@@ -413,6 +417,18 @@
     <Compile Include="ViewModels\TeacherUserControlVM.cs" />
     <Compile Include="Views\StudentUserControl.xaml.cs">
       <DependentUpon>StudentUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentViews\ViewAbsencesStudentControl.xaml.cs">
+      <DependentUpon>ViewAbsencesStudentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentViews\ViewFinalGradesStudentControl.xaml.cs">
+      <DependentUpon>ViewFinalGradesStudentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentViews\ViewGradesStudentControl.xaml.cs">
+      <DependentUpon>ViewGradesStudentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentViews\ViewMaterialsStudentControl.xaml.cs">
+      <DependentUpon>ViewMaterialsStudentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TeacherUserControl.xaml.cs">
       <DependentUpon>TeacherUserControl.xaml</DependentUpon>
@@ -514,6 +530,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\StudentViews\ViewAbsencesStudentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentViews\ViewFinalGradesStudentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentViews\ViewGradesStudentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentViews\ViewMaterialsStudentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TeacherUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -564,7 +596,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Dtos\" />
-    <Folder Include="Views\StudentViews\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagementApp.DataAccess\SchoolManagementApp.DataAccess.csproj">

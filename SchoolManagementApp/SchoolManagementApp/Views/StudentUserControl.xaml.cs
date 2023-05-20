@@ -1,5 +1,5 @@
 ﻿using SchoolManagementApp.Services;
-using SchoolManagementApp.ViewModels;
+using SchoolManagementApp.Views.StudentViews;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,24 +13,50 @@ namespace SchoolManagementApp.Views
     {
         private readonly Frame WindowContainer;
 
-        private readonly LoggedUser loggedUser;
+        private readonly IUserControlFactory _userControlFactory;
 
-        private StudentUserControlVM StudentUserControlVM;
-
-        public StudentUserControl(Frame windowContainer, StudentUserControlVM studentUserControlVM, LoggedUser loggedUser)
+        public StudentUserControl(Frame windowContainer, IUserControlFactory userControlFactory)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
-            this.loggedUser = loggedUser ?? throw new ArgumentNullException(nameof(loggedUser));
-            StudentUserControlVM = studentUserControlVM ?? throw new ArgumentNullException(nameof(studentUserControlVM));
+            this._userControlFactory = userControlFactory ?? throw new ArgumentNullException(nameof(userControlFactory));
 
             InitializeComponent();
+        }
 
-            string userinfo = loggedUser.User.Email + " " + loggedUser.User.PasswordHash + 
-                '\n' + loggedUser.User.Role.AssignedRole + 
-                '\n' + loggedUser.User.Person.FirstName + " " + loggedUser.User.Person.LastName;
+        private void Grades_Click(object sender, RoutedEventArgs e)
+        {
+            StudentControls.Navigate(_userControlFactory.Create<ViewGradesStudentControl>());
+        }
 
-            MessageBox.Show($" {userinfo}");
-            DataContext = StudentUserControlVM;
+        private void Absences_Click(object sender, RoutedEventArgs e)
+        {
+            StudentControls.Navigate(_userControlFactory.Create<ViewAbsencesStudentControl>());
+        }
+
+        private void Materials_Click(object sender, RoutedEventArgs e)
+        {
+            StudentControls.Navigate(_userControlFactory.Create<ViewMaterialsStudentControl>());
+        }
+
+        private void FinalGrades_Click(object sender, RoutedEventArgs e)
+        {
+            StudentControls.Navigate(_userControlFactory.Create<ViewFinalGradesStudentControl>());
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowContainer.CanGoBack)
+            {
+                while (WindowContainer.CanGoBack)
+                {
+                    WindowContainer.RemoveBackEntry();
+                }
+                WindowContainer.Navigate(_userControlFactory.Create<LoginWindow>());
+            }
+            else
+            {
+                throw new ArgumentException("Invalid  navigation operation");
+            }
         }
     }
 }

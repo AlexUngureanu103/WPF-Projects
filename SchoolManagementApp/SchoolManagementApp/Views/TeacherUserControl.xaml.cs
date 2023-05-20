@@ -22,7 +22,6 @@ namespace SchoolManagementApp.Views
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             _userControlFactory = userControlFactory ?? throw new ArgumentNullException(nameof(userControlFactory));
-
             TeacherUserControlVM = teacherUserControlVM ?? throw new ArgumentNullException(nameof(teacherUserControlVM));
 
             InitializeComponent();

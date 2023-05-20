@@ -8,10 +8,12 @@ using SchoolManagementApp.Services.RepositoryServices;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminVM;
 using SchoolManagementApp.ViewModels.ClassMasterVM;
+using SchoolManagementApp.ViewModels.StudentVM;
 using SchoolManagementApp.ViewModels.TeacherVM;
 using SchoolManagementApp.Views;
 using SchoolManagementApp.Views.AdminViews;
 using SchoolManagementApp.Views.ClassMasterViews;
+using SchoolManagementApp.Views.StudentViews;
 using SchoolManagementApp.Views.TeacherViews;
 using System.Configuration;
 using System.Windows.Controls;
@@ -130,7 +132,10 @@ namespace SchoolManagementApp.Services
             builder.RegisterType<ManageFinalGradesClassMasterVM>().AsSelf();
 
             //StudentControls
-
+            builder.RegisterType<ViewAbsencesStudentVM>().AsSelf();
+            builder.RegisterType<ViewGradesStudentVM>().AsSelf();
+            builder.RegisterType<ViewFinalGradesStudentVM>().AsSelf();
+            builder.RegisterType<ViewMaterialsStudentVM>().AsSelf();
 
         }
 
@@ -172,6 +177,12 @@ namespace SchoolManagementApp.Services
             //ClassMasterViews
             builder.RegisterType<ManageAbsencesClassMasterControl>().AsSelf();
             builder.RegisterType<ManageFinalGradesClassMasterControl>().AsSelf();
+
+            //StudentViews
+            builder.RegisterType<ViewAbsencesStudentControl>().AsSelf();
+            builder.RegisterType<ViewGradesStudentControl>().AsSelf();
+            builder.RegisterType<ViewMaterialsStudentControl>().AsSelf();
+            builder.RegisterType<ViewFinalGradesStudentControl>().AsSelf();
         }
 
         private static void RegisterCommands(ContainerBuilder builder)
