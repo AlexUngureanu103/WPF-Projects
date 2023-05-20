@@ -33,16 +33,6 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 student.Grades = new List<Grade>(unitOfWork.Grades.GetStudentGrades(student.Id));
                 return student;
             }));
-            //students.Select(student =>
-            //{
-            //    student.Grades.Select(grade =>
-            //    {
-            //        grade.CourseType = unitOfWork.Courses.GetById((int)grade.CourseTypeId);
-            //        return grade;
-            //    });
-            //    return student;
-            //});
-
             return students;
         }
 
@@ -56,7 +46,6 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             return new ObservableCollection<Student>(students);
         }
-
 
         private bool ValidateStudent(Student student)
         {
@@ -148,6 +137,19 @@ namespace SchoolManagementApp.Services.RepositoryServices
             StudentList.Remove(student);
             unitOfWork.SaveChanges();
             log.Info($"Student with id: {student.Id} was removed");
+        }
+
+        public Student GetStudentByUserId(User user)
+        {
+            if (user == null)
+            {
+                errorMessage = "User cannot be null";
+                log.Error(errorMessage);
+                return null;
+            }
+            var student = unitOfWork.Students.GetByUserId(user.Id);
+
+            return student;
         }
     }
 }

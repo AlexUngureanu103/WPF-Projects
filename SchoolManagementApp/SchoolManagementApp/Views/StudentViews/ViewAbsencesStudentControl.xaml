@@ -6,7 +6,34 @@
              xmlns:local="clr-namespace:SchoolManagementApp.Views.StudentViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <StackPanel Background="White" Orientation="Horizontal">
+
+        <StackPanel Margin="10">
+            <WrapPanel>
+
+                <Button Content="Only UnMotivated" Margin="15" Width="100" Height="30" Command="{Binding OnlyUnMotivatedCommand}"/>
+                <Button Content="All" Margin="15" Width="100" Height="30" Command="{Binding AllCommand}"/>
+            </WrapPanel>
+
+            <WrapPanel>
+                <Label Width="150" FontSize="15">Course:</Label>
+                <ComboBox Name="CourseType" Width="200" ItemsSource="{Binding CourseList}" DisplayMemberPath="Course"
+                      SelectedItem="{Binding  SelectedCourse, UpdateSourceTrigger=PropertyChanged}"/>
+            </WrapPanel>
+
+            <DataGrid Name="AbsenceGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="auto" Width="auto"
+                  ItemsSource="{Binding AbsenceList}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="IsMotivated" Binding="{Binding IsMotivated}"/>
+                    <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                    <DataGridTextColumn Header="Class" Binding="{Binding Student.Class.Name}"/>
+                    <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
+                    <DataGridTextColumn Header="Student Email" Binding="{Binding Student.User.Email}"/>
+                    <DataGridTextColumn Header="Student FirstName" Binding="{Binding Student.User.Person.FirstName}"/>
+                    <DataGridTextColumn Header="Student LastName" Binding="{Binding Student.User.Person.LastName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
