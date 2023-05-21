@@ -62,7 +62,17 @@ namespace SchoolManagementApp.Views
 
         private void Top_Click(object sender, RoutedEventArgs e)
         {
-            //TeacherControls.Navigate(_userControlFactory.Create<ManageOwnClassClassMasterControl>());
+            TeacherControls.Navigate(_userControlFactory.Create<ViewTopClassMasterControl>());
+        }
+        
+        private void Corrigents_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherControls.Navigate(_userControlFactory.Create<ViewCorrigentsClassMasterControl>());
+        }
+        
+        private void Repeaters_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherControls.Navigate(_userControlFactory.Create<ViewRepeatersClassMasterControl>());
         }
 
         private void ExmatriculareClick(object sender, RoutedEventArgs e)
