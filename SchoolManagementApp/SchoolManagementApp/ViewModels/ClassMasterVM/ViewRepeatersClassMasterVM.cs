@@ -21,7 +21,6 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
 
         private readonly ITeacherService _teacherService;
 
-
         private readonly Teacher classMaster;
 
         public readonly Class ownClass;

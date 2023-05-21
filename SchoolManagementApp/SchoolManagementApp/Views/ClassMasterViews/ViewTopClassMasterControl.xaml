@@ -6,7 +6,18 @@
              xmlns:local="clr-namespace:SchoolManagementApp.Views.ClassMasterViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <StackPanel Background="White" Orientation="Horizontal">
+        <StackPanel Margin="10" Width="600">
+            <DataGrid x:Name="StudentRepreaterList" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                      ItemsSource="{Binding StudentTopList}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Student Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Student Email" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="Class" Binding="{Binding Class.Name}"/>
+                    <DataGridTextColumn Header="Final Grade" Binding="{Binding FinalGrade}"/>
+                    <DataGridTextColumn Header="Place" Binding="{Binding Place}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
