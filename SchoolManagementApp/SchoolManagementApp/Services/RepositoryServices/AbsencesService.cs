@@ -123,8 +123,9 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return;
             }
             entity.IsMotivated = true;
-            resultFromDb.IsMotivated = entity.IsMotivated;
-            unitOfWork.SaveChanges();
+            //resultFromDb.IsMotivated = entity.IsMotivated;
+            //unitOfWork.SaveChanges();
+            unitOfWork.Absences.MotivateAbsence(entity.Id);
             log.Info($"Absence with id: {entity.Id} motivated ");
         }
 

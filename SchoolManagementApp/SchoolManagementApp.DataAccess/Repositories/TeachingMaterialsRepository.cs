@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using SchoolManagementApp.Domain;
-using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using System.Collections.Generic;

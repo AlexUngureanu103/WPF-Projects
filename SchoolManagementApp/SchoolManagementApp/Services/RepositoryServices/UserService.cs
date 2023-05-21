@@ -33,11 +33,6 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 user.Person = unitOfWork.Persons.GetById(user.personId);
                 return user;
             });
-            //foreach (User user in users)
-            //{
-            //    if (user.personId != null)
-            //        user.Person = unitOfWork.Persons.GetById((int)user.personId);
-            //}
 
             return new ObservableCollection<User>(users);
         }

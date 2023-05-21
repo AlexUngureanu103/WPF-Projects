@@ -8,5 +8,7 @@ namespace SchoolManagementApp.Domain.RepositoriesAbstractions
         IEnumerable<Absences> GetStudentAbsences(int studentId);
 
         IEnumerable<Absences> GetStudentAbsences(int studentId, int courseId);
+
+        void MotivateAbsence(int absenceId);
     }
 }
