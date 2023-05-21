@@ -63,7 +63,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.TeachingMaterials.Add(entity);
             TeachingMaterialsList.Add(entity);
-            unitOfWork.SaveChanges();
+            //unitOfWork.SaveChanges();
             log.Info($"Teaching Material with Name {entity.Name} for class {entity.CourseClass.Class.Name} , on couse {entity.CourseClass.CourseType.Course} was added");
         }
 
@@ -84,11 +84,12 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return;
             }
 
-            resultFromDb.Content = entity.Content;
-            resultFromDb.Name = entity.Name;
-            resultFromDb.CourseClass = entity.CourseClass;
+            //resultFromDb.Content = entity.Content;
+            //resultFromDb.Name = entity.Name;
+            //resultFromDb.CourseClass = entity.CourseClass;
 
-            unitOfWork.SaveChanges();
+            //unitOfWork.SaveChanges();
+            unitOfWork.TeachingMaterials.Update(entity);
             log.Info($"Teaching Material with id: {entity.Id} was updated to :\nName {entity.Name} for class {entity.CourseClass.Class.Name} , on couse {entity.CourseClass.CourseType.Course}");
         }
 
@@ -126,7 +127,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.TeachingMaterials.Remove(entity);
             TeachingMaterialsList.Remove(entity);
-            unitOfWork.SaveChanges();
+            //unitOfWork.SaveChanges();
             log.Info($"Teaching Material with id: {entity.Id} , Name {entity.Name} was deleted");
         }
 
