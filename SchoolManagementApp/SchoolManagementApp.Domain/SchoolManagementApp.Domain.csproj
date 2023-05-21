@@ -270,7 +270,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dtos\CorrigentStudentDto.cs" />
+    <Compile Include="Dtos\RepeaterStudentDto.cs" />
     <Compile Include="Dtos\StudentAbsenceDto.cs" />
     <Compile Include="Dtos\StudentFinalGradeDto.cs" />
     <Compile Include="Dtos\StudentGradeAverageDto.cs" />
