@@ -21,6 +21,7 @@
                 <MenuItem Header="Students" Click="Students_Click"/>
                 <MenuItem Header="Materials" Click="Materials_Click"/>
             </MenuItem>
+            <MenuItem Header="Class Master Views" Click="CMViews_Click" IsEnabled="{Binding IsClassMaster}"/>
             <MenuItem Header="Logout" Click="Logout_Click"/>
         </Menu>
 

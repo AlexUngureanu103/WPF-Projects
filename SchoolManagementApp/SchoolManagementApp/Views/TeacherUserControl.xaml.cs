@@ -46,6 +46,10 @@ namespace SchoolManagementApp.Views
         {
             TeacherControls.Navigate(_userControlFactory.Create<ManageMaterialsTeacherControl>());
         }
+        private void CMViews_Click(object sender, RoutedEventArgs e)
+        {
+            WindowContainer.Navigate(_userControlFactory.Create<ClassMasterUserControl>());
+        }
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             if (WindowContainer.CanGoBack)

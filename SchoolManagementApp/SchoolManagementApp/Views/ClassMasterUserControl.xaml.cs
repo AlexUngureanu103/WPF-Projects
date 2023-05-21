@@ -79,6 +79,11 @@ namespace SchoolManagementApp.Views
         {
             TeacherControls.Navigate(_userControlFactory.Create<ViewExmatriculationSituationClassMasterControl>());
         }
+        
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            WindowContainer.Navigate(_userControlFactory.Create<TeacherUserControl>());
+        }
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             if (WindowContainer.CanGoBack)

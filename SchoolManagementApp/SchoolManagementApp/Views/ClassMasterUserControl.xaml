@@ -16,12 +16,6 @@
                     <GradientStop Color="#030200" Offset="1"/>
                 </LinearGradientBrush>
             </Menu.Background>
-            <MenuItem Header ="Manage" >
-                <MenuItem Header="Grades" Click="Grades_Click"/>
-                <MenuItem Header="Absences" Click="Absences_Click"/>
-                <MenuItem Header="Students" Click="Students_Click"/>
-                <MenuItem Header="Materials" Click="Materials_Click"/>
-            </MenuItem>
             <MenuItem Header="Own Class">
                 <MenuItem Header="Absences" Click="OwnAbsences_Click"/>
                 <MenuItem Header="Final Grades" Click="FinalGrades_Click"/>
@@ -32,6 +26,7 @@
                 <MenuItem Header="Corrigents" Click="Corrigents_Click"/>
                 <MenuItem Header="Repeaters" Click="Repeaters_Click"/>
             </MenuItem>
+            <MenuItem Header="Back" Click="Back_Click"/>
             <MenuItem Header="Logout" Click="Logout_Click"/>
         </Menu>
 
