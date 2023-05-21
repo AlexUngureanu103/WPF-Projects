@@ -62,7 +62,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return;
             unitOfWork.Persons.Add(entity);
             PersonList.Add(entity);
-            unitOfWork.SaveChanges();
+
+            //unitOfWork.SaveChanges();
             log.Info($"Person with name: {entity.FirstName} {entity.LastName} added");
         }
 
@@ -79,13 +80,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (!ValidatePerson(entity))
                 return;
 
-            //unitOfWork.Persons.Update(entity);
-            resultFromDb.FirstName = entity.FirstName;
-            resultFromDb.LastName = entity.LastName;
-            resultFromDb.DateOfBirth = entity.DateOfBirth;
-            resultFromDb.Address = entity.Address;
+            unitOfWork.Persons.Update(entity);
+            ////unitOfWork.Persons.Update(entity);
+            //resultFromDb.FirstName = entity.FirstName;
+            //resultFromDb.LastName = entity.LastName;
+            //resultFromDb.DateOfBirth = entity.DateOfBirth;
+            //resultFromDb.Address = entity.Address;
 
-            unitOfWork.SaveChanges();
+            //unitOfWork.SaveChanges();
             log.Info($"Person with name: {entity.FirstName} {entity.LastName} edited");
         }
 
@@ -103,7 +105,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.Persons.Remove(entity);
             PersonList.Remove(entity);
-            unitOfWork.SaveChanges();
+            //unitOfWork.SaveChanges();
             log.Info($"Person with name: {entity.FirstName} {entity.LastName} removed");
         }
     }

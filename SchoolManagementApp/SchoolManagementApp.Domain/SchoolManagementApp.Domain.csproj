@@ -271,6 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassTop.cs" />
+    <Compile Include="DALHelper.cs" />
     <Compile Include="Dtos\RepeaterStudentDto.cs" />
     <Compile Include="Dtos\StudentAbsenceDto.cs" />
     <Compile Include="Dtos\StudentFinalGrade.cs" />
