@@ -6,7 +6,47 @@
              xmlns:local="clr-namespace:SchoolManagementApp.Views.ClassMasterViews"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <StackPanel Background="White" Orientation="Horizontal">
+        <StackPanel Margin="10">
+            <WrapPanel>
+                <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="150" FontSize="15">Student:</Label>
+                <ComboBox Name="Student" Width="200" ItemsSource="{Binding StudentList}" 
+                      SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}Email:  {0}     Name:  {1} {2}">
+                                        <Binding Path="User.Email"/>
+                                        <Binding Path="User.Person.FirstName"/>
+                                        <Binding Path="User.Person.LastName"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="150" FontSize="15">Course:</Label>
+                <ComboBox Name="CourseType" Width="200" ItemsSource="{Binding CourseList}" DisplayMemberPath="Course"
+                      SelectedItem="{Binding SelectedCourse}"/>
+            </WrapPanel>
+            <DataGrid x:Name="AverageGrades" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                      ItemsSource="{Binding StudentsAverageGradeList}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Student FirstName" Binding="{Binding Student.User.Person.FirstName}"/>
+                    <DataGridTextColumn Header="Student LastName" Binding="{Binding Student.User.Person.LastName}"/>
+                    <DataGridTextColumn Header="Student" Binding="{Binding Student.User.Email}"/>
+                    <DataGridTextColumn Header="Course" Binding="{Binding ClassCourse.CourseType.Course}"/>
+                    <DataGridTextColumn Header="Class" Binding="{Binding ClassCourse.Class.Name}"/>
+                    <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                    <DataGridTextColumn Header="Average Grade" Binding="{Binding Average}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
