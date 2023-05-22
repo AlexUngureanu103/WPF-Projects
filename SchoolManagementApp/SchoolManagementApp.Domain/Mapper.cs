@@ -110,7 +110,7 @@ namespace SchoolManagementApp.Domain
                     }
                 }
 
-                place = place++;
+                place ++;
             }
 
             return result;

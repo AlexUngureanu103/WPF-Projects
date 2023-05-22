@@ -51,7 +51,7 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             CourseList = _courseService.GetClassCourses(ownClass.Id);
 
             StudentList = _studentService.GetStudentsByClassId(ownClass.Id);
-            StudentsAverageGradeList = _averageGradeService.GetClassAverageGrades(ownClass);
+            GetClassAverageGrades();
             Semesters = new List<int> { 1, 2 };
         }
 
@@ -104,6 +104,11 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             {
                 selectedStudent = value;
                 OnPropertyChanged(nameof(SelectedStudent));
+                if (selectedStudent != null)
+                {
+                    GetClassAverageGrades();
+                    StudentsAverageGradeList = new ObservableCollection<AverageGrade>(StudentsAverageGradeList.Where(c => c.StudentId == selectedStudent.Id));
+                }
             }
         }
 
@@ -125,6 +130,11 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             {
                 selectedCourse = value;
                 OnPropertyChanged(nameof(SelectedCourse));
+                if (selectedCourse != null)
+                {
+                    GetClassAverageGrades();
+                    StudentsAverageGradeList = new ObservableCollection<AverageGrade>(StudentsAverageGradeList.Where(c => c.ClassCourse.CourseTypeId == selectedCourse.Id));
+                }
             }
         }
 
@@ -208,8 +218,14 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             StudentsAverageGradeList = new ObservableCollection<AverageGrade>(StudentsAverageGradeList.Where(c => c.Semester == 0));
         }
 
+        private void GetClassAverageGrades()
+        {
+            StudentsAverageGradeList = _averageGradeService.GetClassAverageGrades(ownClass);
+        }
+
         private void Clear()
         {
+            GetClassAverageGrades();
             ErrorMessage = string.Empty;
             SelectedCourse = null;
             SelectedStudent = null;
