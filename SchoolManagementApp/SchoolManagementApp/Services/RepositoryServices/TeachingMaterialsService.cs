@@ -13,7 +13,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<TeachingMaterial> TeachingMaterialsList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private log4net.ILog log;
 
@@ -65,6 +65,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             TeachingMaterialsList.Add(entity);
             //unitOfWork.SaveChanges();
             log.Info($"Teaching Material with Name {entity.Name} for class {entity.CourseClass.Class.Name} , on couse {entity.CourseClass.CourseType.Course} was added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(TeachingMaterial entity)
@@ -91,6 +92,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             //unitOfWork.SaveChanges();
             unitOfWork.TeachingMaterials.Update(entity);
             log.Info($"Teaching Material with id: {entity.Id} was updated to :\nName {entity.Name} for class {entity.CourseClass.Class.Name} , on couse {entity.CourseClass.CourseType.Course}");
+            errorMessage = string.Empty;
         }
 
         public ObservableCollection<TeachingMaterial> GetAll()
@@ -109,6 +111,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return new ObservableCollection<TeachingMaterial>();
             }
             var teachingMaterials = unitOfWork.TeachingMaterials.GetCourseClassTeachingMaterials(courseClass.Id);
+            errorMessage = string.Empty;
 
             return new ObservableCollection<TeachingMaterial>(teachingMaterials);
         }
@@ -129,6 +132,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             TeachingMaterialsList.Remove(entity);
             //unitOfWork.SaveChanges();
             log.Info($"Teaching Material with id: {entity.Id} , Name {entity.Name} was deleted");
+            errorMessage = string.Empty;
         }
 
         public ObservableCollection<TeachingMaterial> GetClassTeachingMaterials(Class @class)
@@ -140,7 +144,8 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return new ObservableCollection<TeachingMaterial>();
             }
             var teachingMaterials = unitOfWork.TeachingMaterials.GetClassTeachingMaterials(@class.Id);
-
+            errorMessage = string.Empty;
+            
             return new ObservableCollection<TeachingMaterial>(teachingMaterials);
         }
     }

@@ -16,7 +16,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         private readonly UnitOfWork unitOfWork;
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -78,6 +78,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"Student : {studentAverageGrades.Student.User.Person.FirstName}  {studentAverageGrades.Student.User.Person.LastName} on course {studentAverageGrades.CourseClass.CourseType.Course} has Average of  {average} on Semester: {studentAverageGrades.Semester}");
+            errorMessage = string.Empty;
         }
 
         private double CalculateAverate(StudentGradeAverageDto studentGradeAverageDTO)
@@ -213,6 +214,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"Student : {StudentFinalGradeDto.Student.User.Person.FirstName}  {StudentFinalGradeDto.Student.User.Person.LastName} on course {StudentFinalGradeDto.CourseClass.CourseType.Course} has Average of  {(firstSemesterGrade.Average + secondSemesterGrade.Average) / 2} For the year");
+            errorMessage = string.Empty;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Absences> AbsenceList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -80,6 +80,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             AbsenceList.Add(entity);
             unitOfWork.SaveChanges();
             log.Info($"Absence {entity.Id} added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(Absences entity)
@@ -127,6 +128,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             //unitOfWork.SaveChanges();
             unitOfWork.Absences.MotivateAbsence(entity.Id);
             log.Info($"Absence with id: {entity.Id} motivated ");
+            errorMessage = string.Empty;
         }
 
         public ObservableCollection<Absences> GetAll()
@@ -150,6 +152,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             AbsenceList.Remove(entity);
             unitOfWork.SaveChanges();
             log.Info($"Absence {entity.Id} deleted");
+            errorMessage = string.Empty;
         }
 
         public ObservableCollection<Absences> GetStudentAbsences(Student student)

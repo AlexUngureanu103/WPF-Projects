@@ -7,6 +7,8 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<User> UserList { get; set; }
 
+        string errorMessage { get; }
+
         ObservableCollection<User> GetAllComplete();
 
         ObservableCollection<User> GetUsersByRole(int roleId);

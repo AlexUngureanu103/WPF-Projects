@@ -8,6 +8,8 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<Grade> GradeList { get; set; }
 
+        string errorMessage { get; }
+
         ObservableCollection<Grade> GetStudentGrades(Student student);
 
         ObservableCollection<Grade> GetStudentGrades(Student student, CourseType course);

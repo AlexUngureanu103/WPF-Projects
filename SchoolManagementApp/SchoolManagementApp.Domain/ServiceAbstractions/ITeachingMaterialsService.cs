@@ -7,6 +7,8 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<TeachingMaterial> TeachingMaterialsList { get; set; }
 
+        string errorMessage { get; }
+
         ObservableCollection<TeachingMaterial> GetCourseClassTeachingMaterials(CourseClass courseClass);
 
         ObservableCollection<TeachingMaterial> GetClassTeachingMaterials(Class @class);

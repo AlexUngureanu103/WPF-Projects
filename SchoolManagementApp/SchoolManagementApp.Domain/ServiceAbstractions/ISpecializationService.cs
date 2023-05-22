@@ -7,6 +7,8 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<Specialization> SpecializationList { get; set; }
 
+        string errorMessage { get; }
+
         Specialization GetById(int id);
     }
 }

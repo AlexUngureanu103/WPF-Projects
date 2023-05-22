@@ -14,7 +14,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<CourseClass> CourseClassList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -64,6 +64,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             CourseClassList.Add(entity);
             unitOfWork.SaveChanges();
             log.Info($"CourseClass {entity.Id} added successfully");
+            errorMessage = string.Empty;
         }
 
         public void Edit(CourseClass entity)
@@ -85,6 +86,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"CourseClass {entity.Id} edited successfully");
+            errorMessage = string.Empty;
         }
 
         public void Remove(CourseClass entity)
@@ -103,6 +105,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             CourseClassList.Remove(entity);
             unitOfWork.SaveChanges();
             log.Info($"CourseClass {entity.Id} removed successfully");
+            errorMessage = string.Empty;
         }
     }
 }

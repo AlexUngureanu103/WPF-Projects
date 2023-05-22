@@ -13,7 +13,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<CourseClassTeacher> CourseTeacherList { get; set; }
 
-        public string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -66,6 +66,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             CourseTeacherList.Add(entity);
             unitOfWork.SaveChanges();
             log.Info($"Course {entity.CourseClass.CourseType.Course} on class {entity.CourseClass.Class.Name} is lectured by {entity.Teacher.User.Email} {entity.Teacher.User.Person.FirstName} {entity.Teacher.User.Person.LastName} was added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(CourseClassTeacher entity)
@@ -90,6 +91,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             unitOfWork.SaveChanges();
             log.Info($"Course Class Teacher with Id {entity.Id} edited");
             log.Info($"Course {entity.CourseClass.CourseType.Course} on class {entity.CourseClass.Class.Name} is lectured by {entity.Teacher.User.Email} {entity.Teacher.User.Person.FirstName} {entity.Teacher.User.Person.LastName}");
+            errorMessage = string.Empty;
         }
 
         public void Remove(CourseClassTeacher entity)
@@ -105,6 +107,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             CourseTeacherList.Remove(entity);
             unitOfWork.SaveChanges();
             log.Info($"Course Class Teacher with Id {entity.Id} deleted");
+            errorMessage = string.Empty;
         }
 
         public ObservableCollection<CourseClassTeacher> GetTeachingClasses(int teacherId)

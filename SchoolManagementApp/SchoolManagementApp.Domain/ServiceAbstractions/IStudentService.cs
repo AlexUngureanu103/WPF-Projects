@@ -7,6 +7,8 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<Student> StudentList { get; set; }
 
+        string errorMessage { get; }
+
         ObservableCollection<Student> GetStudentsByClassId(int classId);
 
         Student GetStudentByUserId(User user);

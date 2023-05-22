@@ -6,5 +6,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     public interface ICourseClassService : ICollectionService<CourseClass>
     {
         ObservableCollection<CourseClass> CourseClassList { get; set; }
+
+        string errorMessage { get; }
     }
 }

@@ -17,7 +17,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Grade> CurrentStudentGrades { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -57,14 +57,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             if (grade.Value < 1 || grade.Value > 10)
             {
-                errorMessage = "Invalid grade value";
+                errorMessage = $"Invalid grade value: {grade.Value}";
                 log.Error(errorMessage);
                 return false;
             }
 
             if (grade.Semester < 1 || grade.Semester > 2)
             {
-                errorMessage = "Invalid semester";
+                errorMessage = $"Invalid semester: {grade.Semester}";
                 log.Error(errorMessage);
                 return false;
             }
@@ -72,7 +72,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             var courseType = unitOfWork.Courses.GetById((int)grade.CourseTypeId);
             if (courseType == null)
             {
-                errorMessage = "Invalid course";
+                errorMessage = $"Invalid course: {grade.CourseTypeId}";
                 log.Error(errorMessage);
                 return false;
             }
@@ -80,7 +80,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             var student = unitOfWork.Students.GetById((int)grade.StudentId);
             if (student == null)
             {
-                errorMessage = "invalid Student";
+                errorMessage = $"invalid Student: {grade.StudentId}";
                 log.Error(errorMessage);
                 return false;
             }
@@ -98,7 +98,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             if (courseSpecialization.HasThesis == false)
             {
                 grade.IsThesis = false;
-                errorMessage = "This course does not have a thesis";
+                errorMessage = $"This course: {courseSpecialization.Id} does not have a thesis";
                 log.Error(errorMessage);
             }
 
@@ -126,6 +126,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             GradeList.Add(grade);
             unitOfWork.SaveChanges();
             log.Info($"Grade {grade.Id} added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(Grade grade)
@@ -151,6 +152,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"Grade {grade.Id} edited");
+            errorMessage = string.Empty;
         }
 
         public void Remove(Grade grade)
@@ -169,6 +171,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             GradeList.Remove(grade);
             unitOfWork.SaveChanges();
             log.Info($"Grade {grade.Id} removed");
+            errorMessage = string.Empty;
         }
     }
 }

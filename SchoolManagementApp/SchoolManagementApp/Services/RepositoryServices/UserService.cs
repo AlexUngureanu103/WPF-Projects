@@ -15,7 +15,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<User> UserList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -123,6 +123,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             UserList.Add(user);
             unitOfWork.SaveChanges();
             log.Info($"User {user.Email} added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(User user)
@@ -156,6 +157,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"User {user.Email} edited");
+            errorMessage = string.Empty;
         }
 
         public void Remove(User user)
@@ -171,6 +173,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             UserList.Remove(user);
             unitOfWork.SaveChanges();
             log.Info($"User {user.Email} removed");
+            errorMessage = string.Empty;
         }
     }
 }

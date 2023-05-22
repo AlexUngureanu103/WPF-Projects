@@ -12,7 +12,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Specialization> SpecializationList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -66,6 +66,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             SpecializationList.Add(specialization);
             unitOfWork.SaveChanges();
             log.Info($"Specialization with name {specialization.Name} was created");
+            errorMessage = string.Empty;
         }
 
         public void Edit(Specialization specialization)
@@ -74,7 +75,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             if (specializationFromDb == null)
             {
-                errorMessage = "Specialization not found";
+                errorMessage = $"Specialization: {specialization.Id} not found";
                 log.Error(errorMessage);
                 return;
             }
@@ -90,6 +91,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"Specialization {specialization.Name} edited");
+            errorMessage = string.Empty;
         }
 
         public void Remove(Specialization specialization)
@@ -105,6 +107,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             SpecializationList.Remove(specialization);
             unitOfWork.SaveChanges();
             log.Info($"Specilization {specialization.Name} deleted");
+            errorMessage = string.Empty;
         }
     }
 }

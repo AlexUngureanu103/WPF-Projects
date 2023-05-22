@@ -13,7 +13,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Teacher> TeacherList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -36,7 +36,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             var alreadyExists = unitOfWork.Teachers.Any(c => c.UserId == teacher.UserId && c.Id != teacher.Id);
             if (alreadyExists)
             {
-                errorMessage = "Teacher with this user id already exists";
+                errorMessage = $"Teacher with this user id: {teacher.UserId} already exists";
                 return false;
             }
 
@@ -60,6 +60,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             TeacherList.Add(entity);
             unitOfWork.SaveChanges();
             log.Info($"Teacher with id {entity.Id} added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(Teacher entity)
@@ -83,6 +84,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"Teacher with id {entity.Id} edited");
+            errorMessage = string.Empty;
         }
 
         public void Remove(Teacher entity)
@@ -101,6 +103,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             TeacherList.Remove(entity);
             unitOfWork.SaveChanges();
             log.Info($"Teacher with id {entity.Id} removed");
+            errorMessage = string.Empty;
         }
     }
 }

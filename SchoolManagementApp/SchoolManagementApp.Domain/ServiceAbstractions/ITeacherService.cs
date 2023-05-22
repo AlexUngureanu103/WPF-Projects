@@ -7,6 +7,8 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<Teacher> TeacherList { get; set; }
 
+        string errorMessage { get; }
+
         Teacher GetTeacherById(int id);
     }
 }

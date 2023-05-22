@@ -14,7 +14,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Class> ClassList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -83,6 +83,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             ClassList.Add(@class);
             unitOfWork.SaveChanges();
             log.Info($"Class {@class.Name} added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(Class @class)
@@ -106,6 +107,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"Class {@class.Name} edited");
+            errorMessage = string.Empty;
         }
 
         public void Remove(Class @class)
@@ -121,6 +123,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             ClassList.Remove(@class);
             unitOfWork.SaveChanges();
             log.Info($"Class {@class.Name} removed");
+            errorMessage = string.Empty;
         }
 
         public Class GetClassByClassMasterId(Teacher teacher)

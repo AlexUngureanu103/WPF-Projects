@@ -12,7 +12,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Person> PersonList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -65,6 +65,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             //unitOfWork.SaveChanges();
             log.Info($"Person with name: {entity.FirstName} {entity.LastName} added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(Person entity)
@@ -89,6 +90,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             //unitOfWork.SaveChanges();
             log.Info($"Person with name: {entity.FirstName} {entity.LastName} edited");
+            errorMessage = string.Empty;
         }
 
         public ObservableCollection<Person> GetAll()
@@ -107,6 +109,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             PersonList.Remove(entity);
             //unitOfWork.SaveChanges();
             log.Info($"Person with name: {entity.FirstName} {entity.LastName} removed");
+            errorMessage = string.Empty;
         }
     }
 }

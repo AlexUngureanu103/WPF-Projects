@@ -14,7 +14,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<SpecializationCourse> SpecializationCourseList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -48,7 +48,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             bool isValidCourseId = unitOfWork.Courses.Any(c => c.Id == specializationCourse.CourseTypeId);
             if (!isValidCourseId)
             {
-                errorMessage = "Course invalid";
+                errorMessage = $"Course: {specializationCourse.CourseTypeId} invalid";
                 log.Error(errorMessage);
                 return false;
             }
@@ -56,7 +56,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             bool isValidSpecializationId = unitOfWork.Specializations.Any(c => c.Id == specializationCourse.SpecializationId);
             if (!isValidSpecializationId)
             {
-                errorMessage = "Specialization invalid";
+                errorMessage = $"Specialization: {specializationCourse.SpecializationId} invalid";
                 log.Error(errorMessage);
                 return false;
             }
@@ -94,6 +94,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             }
             unitOfWork.SaveChanges();
             log.Info($"Course {specializationCourse.Id} added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(SpecializationCourse specializationCourse)
@@ -118,6 +119,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"Course {specializationCourse.Id} edited");
+            errorMessage = string.Empty;
         }
 
         public void Remove(SpecializationCourse specializationCourse)
@@ -136,6 +138,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             SpecializationCourseList.Remove(specializationCourse);
             unitOfWork.SaveChanges();
             log.Info($"Course {specializationCourse.Id} removed");
+            errorMessage = string.Empty;
         }
     }
 }

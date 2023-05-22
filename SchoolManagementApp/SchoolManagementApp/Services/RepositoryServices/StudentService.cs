@@ -16,7 +16,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
         public ObservableCollection<Student> StudentList { get; set; }
 
-        private string errorMessage;
+        public string errorMessage { get; set; }
 
         private readonly log4net.ILog log;
 
@@ -54,14 +54,14 @@ namespace SchoolManagementApp.Services.RepositoryServices
             var validClass = unitOfWork.Classes.GetById((int)student.ClassId);
             if (validClass == null)
             {
-                errorMessage = "Class not found";
+                errorMessage = $"Class: {student.ClassId} not found";
                 return false;
             }
 
             var validUser = unitOfWork.Users.GetById((int)student.UserId);
             if (validUser == null)
             {
-                errorMessage = "User not found";
+                errorMessage = $"User: {student.UserId} not found";
                 return false;
             }
 
@@ -69,7 +69,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             {
                 if (StudentList.Any(c => c.UserId == student.UserId && c.Id != student.Id))
                 {
-                    errorMessage = $"User id: {student.UserId} is already linked to naother user";
+                    errorMessage = $"User id: {student.UserId} is already linked to another user";
                     return false;
                 }
             }
@@ -90,6 +90,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             StudentList.Add(student);
             unitOfWork.SaveChanges();
             log.Info($"Student with id: {student.Id} was added");
+            errorMessage = string.Empty;
         }
 
         public void Edit(Student student)
@@ -115,6 +116,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
 
             unitOfWork.SaveChanges();
             log.Info($"Student with id: {student.Id} was edited");
+            errorMessage = string.Empty;
         }
 
         public void Remove(Student student)
@@ -133,6 +135,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
             StudentList.Remove(student);
             unitOfWork.SaveChanges();
             log.Info($"Student with id: {student.Id} was removed");
+            errorMessage = string.Empty;
         }
 
         public Student GetStudentByUserId(User user)
@@ -144,6 +147,7 @@ namespace SchoolManagementApp.Services.RepositoryServices
                 return null;
             }
             var student = unitOfWork.Students.GetByUserId(user.Id);
+            errorMessage = string.Empty;
 
             return student;
         }
