@@ -52,6 +52,17 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             Semesters = new List<int> { 1, 2 };
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<CourseClass> CourseClasseList
         {
             get => _courseClassService.CourseClassList;
@@ -132,11 +143,17 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             {
                 if (calculateCommand == null)
                 {
-                    calculateCommand = new RelayCommands<StudentFinalGradeDto>(_averageGradeService.CalculateStudentFinalGrade);
+                    calculateCommand = new RelayCommands<StudentFinalGradeDto>(CalculateStudentFinalGrade);
                 }
 
                 return calculateCommand;
             }
+        }
+
+        private void CalculateStudentFinalGrade(StudentFinalGradeDto studentFinalGradeDto)
+        {
+            _averageGradeService.CalculateStudentFinalGrade(studentFinalGradeDto);
+            ErrorMessage = _averageGradeService.errorMessage;
         }
 
         private ICommand clearCommand;

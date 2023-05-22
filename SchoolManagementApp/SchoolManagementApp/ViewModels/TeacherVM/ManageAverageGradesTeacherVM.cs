@@ -41,6 +41,17 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             Semesters = new List<int> { 1, 2 };
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<AverageGrade> StudentsAverageGradeList
         {
             get => _averageGradeService.AverageGrades;
@@ -115,11 +126,17 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 if (calculateCommand == null)
                 {
-                    calculateCommand = new RelayCommands<StudentGradeAverageDto>(_averageGradeService.CalculateStudentAverageGrade);
+                    calculateCommand = new RelayCommands<StudentGradeAverageDto>(CalculateStudentAverageGrade);
                 }
 
                 return calculateCommand;
             }
+        }
+
+        private void CalculateStudentAverageGrade(StudentGradeAverageDto studentGradeAverageDto)
+        {
+            _averageGradeService.CalculateStudentAverageGrade(studentGradeAverageDto);
+            ErrorMessage = _averageGradeService.errorMessage;
         }
 
         private ICommand clearCommand;

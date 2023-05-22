@@ -73,7 +73,9 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </WrapPanel>
-
+            <WrapPanel>
+                <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+            </WrapPanel>
             <DataGrid x:Name="AverageGrades" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                       ItemsSource="{Binding StudentsAverageGradeList}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>

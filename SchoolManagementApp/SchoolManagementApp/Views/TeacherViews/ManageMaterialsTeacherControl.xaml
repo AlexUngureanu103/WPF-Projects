@@ -59,6 +59,9 @@
                       SelectedValue="{Binding ElementName=TeachingMaterialsGrid, Path=SelectedItem.Semester,UpdateSourceTrigger=PropertyChanged}">
                 </ComboBox>
             </WrapPanel>
+            <WrapPanel>
+                <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+            </WrapPanel>
             <DataGrid Name="TeachingMaterialsGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding TeachingMaterialsList}" SelectedItem="{Binding SelectedTeachingMaterial}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>

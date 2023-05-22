@@ -332,7 +332,6 @@
     <Compile Include="Services\RepositoryServices\TeacherService.cs" />
     <Compile Include="Services\RepositoryServices\TeachingMaterialsService.cs" />
     <Compile Include="Services\RepositoryServices\UserService.cs" />
-    <Compile Include="Services\SortById.cs" />
     <Compile Include="Services\UserControlFactory.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
     <Compile Include="Services\Validators\UsersValidators.cs" />

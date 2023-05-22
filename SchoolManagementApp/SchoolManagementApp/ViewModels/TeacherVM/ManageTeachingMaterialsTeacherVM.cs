@@ -39,6 +39,17 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             Semesters = new List<int> { 1, 2 };
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<CourseClassTeacher> TeachingClassesList
         {
             get => _courseClassTeacherService.CourseTeacherList;
@@ -113,10 +124,16 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<TeachingMaterial>(_teachingMaterialsService.Add, param => selectedTeachingMaterial == null);
+                    addCommand = new RelayCommands<TeachingMaterial>(Add, param => selectedTeachingMaterial == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(TeachingMaterial teachingMaterial)
+        {
+            _teachingMaterialsService.Add(teachingMaterial);
+            ErrorMessage = _teachingMaterialsService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -126,10 +143,16 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<TeachingMaterial>(_teachingMaterialsService.Edit, param => selectedTeachingMaterial != null);
+                    updateCommand = new RelayCommands<TeachingMaterial>(Edit, param => selectedTeachingMaterial != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(TeachingMaterial teachingMaterial)
+        {
+            _teachingMaterialsService.Edit(teachingMaterial);
+            ErrorMessage = _teachingMaterialsService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -139,10 +162,16 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<TeachingMaterial>(_teachingMaterialsService.Remove, param => selectedTeachingMaterial != null);
+                    deleteCommand = new RelayCommands<TeachingMaterial>(Remove, param => selectedTeachingMaterial != null);
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(TeachingMaterial teachingMaterial)
+        {
+            _teachingMaterialsService.Remove(teachingMaterial);
+            ErrorMessage = _teachingMaterialsService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -160,6 +189,7 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedTeachingClass = null;
             SelectedTeachingMaterial = null;
         }

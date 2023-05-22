@@ -88,6 +88,9 @@
                 <Label Width="150" FontSize="15">Is Motivated:</Label>
                 <CheckBox Name="IsMotivated" IsChecked="{Binding ElementName=AbseceGrid, Path=SelectedItem.IsMotivated, UpdateSourceTrigger=PropertyChanged}"/>
             </WrapPanel>
+            <WrapPanel>
+                <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+            </WrapPanel>
             <DataGrid Name="AbseceGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding AbsenceList}" SelectedItem="{Binding SelectedAbsence}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
