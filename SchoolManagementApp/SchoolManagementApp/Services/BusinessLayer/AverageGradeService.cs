@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace SchoolManagementApp.Services.RepositoryServices
+namespace SchoolManagementApp.Services.BusinessLayer
 {
     internal class AverageGradeService : IAverageGradeService
     {

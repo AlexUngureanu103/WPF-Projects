@@ -1,6 +1,6 @@
 ﻿using SchoolManagementApp.Domain.Models;
 
-namespace SchoolManagementApp.Services.Application
+namespace SchoolManagementApp.Services.ApplicationLayer
 {
     public class LoggedUser
     {

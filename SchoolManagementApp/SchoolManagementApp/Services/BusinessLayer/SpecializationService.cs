@@ -4,7 +4,7 @@ using SchoolManagementApp.Domain.ServiceAbstractions;
 using System;
 using System.Collections.ObjectModel;
 
-namespace SchoolManagementApp.Services.RepositoryServices
+namespace SchoolManagementApp.Services.BusinessLayer
 {
     public class SpecializationService : ISpecializationService
     {

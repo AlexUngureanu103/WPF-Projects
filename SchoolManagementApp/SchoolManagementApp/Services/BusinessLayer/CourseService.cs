@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 
-namespace SchoolManagementApp.Services.RepositoryServices
+namespace SchoolManagementApp.Services.BusinessLayer
 {
     internal class CourseService : ICourseService
     {

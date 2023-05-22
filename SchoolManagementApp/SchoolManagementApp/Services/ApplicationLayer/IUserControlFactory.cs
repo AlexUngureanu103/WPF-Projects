@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace SchoolManagementApp.Services.Application
+namespace SchoolManagementApp.Services.ApplicationLayer
 {
     public interface IUserControlFactory
     {

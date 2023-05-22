@@ -6,7 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
-namespace SchoolManagementApp.Services.RepositoryServices
+namespace SchoolManagementApp.Services.BusinessLayer
 {
     internal class ClassService : IClassService
     {

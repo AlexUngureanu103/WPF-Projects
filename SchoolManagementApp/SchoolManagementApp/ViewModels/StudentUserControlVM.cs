@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.Services.Application;
+﻿using SchoolManagementApp.Services.ApplicationLayer;
 using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels

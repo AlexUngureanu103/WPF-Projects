@@ -5,7 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace SchoolManagementApp.Services.RepositoryServices
+namespace SchoolManagementApp.Services.BusinessLayer
 {
     internal class TeachingMaterialsService : ITeachingMaterialsService
     {

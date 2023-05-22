@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.Services.Application;
+﻿using SchoolManagementApp.Services.ApplicationLayer;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.Views.ClassMasterViews;
 using SchoolManagementApp.Views.TeacherViews;

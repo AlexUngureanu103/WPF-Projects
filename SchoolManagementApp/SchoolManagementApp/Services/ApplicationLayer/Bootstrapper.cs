@@ -4,7 +4,7 @@ using SchoolManagementApp.DataAccess.Repositories;
 using SchoolManagementApp.Domain;
 using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using SchoolManagementApp.Domain.ServiceAbstractions;
-using SchoolManagementApp.Services.RepositoryServices;
+using SchoolManagementApp.Services.BusinessLayer;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminVM;
 using SchoolManagementApp.ViewModels.ClassMasterVM;
@@ -18,7 +18,7 @@ using SchoolManagementApp.Views.TeacherViews;
 using System.Configuration;
 using System.Windows.Controls;
 
-namespace SchoolManagementApp.Services.Application
+namespace SchoolManagementApp.Services.ApplicationLayer
 {
     internal class Bootstrapper
     {
