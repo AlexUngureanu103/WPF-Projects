@@ -9,7 +9,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<AverageGrade> AverageGrades { get; set; }
 
-        string errorMessage { get; }
+        string errorMessage { get; set; }
 
         ObservableCollection<AverageGrade> GetAll();
 

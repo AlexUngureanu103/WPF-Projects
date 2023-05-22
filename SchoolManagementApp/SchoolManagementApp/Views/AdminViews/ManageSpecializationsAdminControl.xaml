@@ -30,6 +30,9 @@
             <TextBox Name="txtSpecialization" Width="200" Text ="{Binding ElementName=SpecializationGrid, 
                 Path=SelectedItem.Name, UpdateSourceTrigger=PropertyChanged}"/>
         </WrapPanel>
+        <WrapPanel>
+            <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+        </WrapPanel>
         <DataGrid Name="SpecializationGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding SpecializationList}" SelectedItem="{Binding SelectedSpecialization}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>

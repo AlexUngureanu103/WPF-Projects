@@ -32,6 +32,17 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             ClassList = _classService.GetAll();
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<Student> StudentList
         {
             get => _studentService.StudentList;
@@ -68,10 +79,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Student>(_studentService.Add, param => selectedStudent == null);
+                    addCommand = new RelayCommands<Student>(Add, param => selectedStudent == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(Student student)
+        {
+            _studentService.Add(student);
+            ErrorMessage = _studentService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -81,10 +98,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Student>(_studentService.Edit, param => selectedStudent != null);
+                    updateCommand = new RelayCommands<Student>(Edit, param => selectedStudent != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(Student student)
+        {
+            _studentService.Edit(student);
+            ErrorMessage = _studentService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -94,10 +117,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Student>(_studentService.Remove, param => selectedStudent != null);
+                    deleteCommand = new RelayCommands<Student>(Remove, param => selectedStudent != null);
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(Student student)
+        {
+            _studentService.Remove(student);
+            ErrorMessage = _studentService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -115,6 +144,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedStudent = null;
         }
     }

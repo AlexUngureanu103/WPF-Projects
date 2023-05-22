@@ -72,6 +72,9 @@
             <Label Width="150" FontSize="15">IS Thesis:</Label>
             <CheckBox Name="IsThesis" IsChecked="{Binding ElementName=GradeGrid, Path=SelectedItem.IsThesis, UpdateSourceTrigger=PropertyChanged}"/>
         </WrapPanel>
+        <WrapPanel>
+            <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+        </WrapPanel>
         <DataGrid Name="GradeGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding GradeList}" SelectedItem="{Binding SelectedGrade}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>

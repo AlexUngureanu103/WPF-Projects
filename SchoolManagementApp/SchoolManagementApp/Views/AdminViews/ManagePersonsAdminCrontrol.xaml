@@ -49,6 +49,9 @@
             <DatePicker x:Name="txtDateOfBirth" SelectedDate="{Binding ElementName=PersonGrid ,
                 Path=SelectedItem.DateOfBirth , UpdateSourceTrigger=PropertyChanged}"/>
         </WrapPanel>
+        <WrapPanel>
+            <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+        </WrapPanel>
         <DataGrid Name="PersonGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding PersonList}" SelectedItem="{Binding SelectedPerson}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>

@@ -7,7 +7,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<CourseType> CourseList { get; set; }
 
-        string errorMessage { get; }
+        string errorMessage { get; set; }
 
         bool EntityAlreadyExists(CourseType courseType);
 

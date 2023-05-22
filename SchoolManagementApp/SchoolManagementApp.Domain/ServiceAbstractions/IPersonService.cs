@@ -7,6 +7,6 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<Person> PersonList { get; set; }
 
-        string errorMessage { get; }
+        string errorMessage { get; set; }
     }
 }

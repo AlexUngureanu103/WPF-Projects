@@ -19,6 +19,17 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             PersonList = personService.GetAll();
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<Person> PersonList
         {
             get => _personService.PersonList;
@@ -43,10 +54,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Person>(_personService.Add, param => selectedPerson == null);
+                    addCommand = new RelayCommands<Person>(Add, param => selectedPerson == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(Person person)
+        {
+            _personService.Add(person);
+            ErrorMessage = _personService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -56,10 +73,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Person>(_personService.Edit, param => selectedPerson != null);
+                    updateCommand = new RelayCommands<Person>(Edit, param => selectedPerson != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(Person person)
+        {
+            _personService.Edit(person);
+            ErrorMessage = _personService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -69,10 +92,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Person>(_personService.Remove, param => selectedPerson != null);
+                    deleteCommand = new RelayCommands<Person>(Remove, param => selectedPerson != null);
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(Person person)
+        {
+            _personService.Remove(person);
+            ErrorMessage = _personService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -90,6 +119,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedPerson = null;
         }
     }

@@ -34,6 +34,17 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             Semesters = new List<int> { 1, 2 };
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<Class> ClassList
         {
             get => _classService.ClassList;
@@ -105,10 +116,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Absences>(_absenceService.Add, param => selectedAbsence == null);
+                    addCommand = new RelayCommands<Absences>(Add, param => selectedAbsence == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(Absences absences)
+        {
+            _absenceService.Add(absences);
+            ErrorMessage = _absenceService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -118,10 +135,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Absences>(_absenceService.Edit, param => selectedAbsence != null);
+                    updateCommand = new RelayCommands<Absences>(Edit, param => selectedAbsence != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(Absences absences)
+        {
+            _absenceService.Edit(absences);
+            ErrorMessage = _absenceService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -131,10 +154,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Absences>(_absenceService.Remove, param => selectedAbsence != null);
+                    deleteCommand = new RelayCommands<Absences>(Remove, param => selectedAbsence != null);
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(Absences absences)
+        {
+            _absenceService.Remove(absences);
+            ErrorMessage = _absenceService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -152,6 +181,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedAbsence = null;
             AbsenceList = _absenceService.GetAll();
             OnPropertyChanged(nameof(AbsenceList));

@@ -19,6 +19,17 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             SpecializationList = _specializationService.GetAll();
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<Specialization> SpecializationList
         {
             get => _specializationService.SpecializationList;
@@ -43,10 +54,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Specialization>(_specializationService.Add, param => selectedSpecialization == null);
+                    addCommand = new RelayCommands<Specialization>(Add, param => selectedSpecialization == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(Specialization specialization)
+        {
+            _specializationService.Add(specialization);
+            ErrorMessage = _specializationService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -56,10 +73,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Specialization>(_specializationService.Edit, param => selectedSpecialization != null);
+                    updateCommand = new RelayCommands<Specialization>(Edit, param => selectedSpecialization != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(Specialization specialization)
+        {
+            _specializationService.Edit(specialization);
+            ErrorMessage = _specializationService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -69,10 +92,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Specialization>(_specializationService.Remove, param => selectedSpecialization != null);
+                    deleteCommand = new RelayCommands<Specialization>(Remove, param => selectedSpecialization != null);
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(Specialization specialization)
+        {
+            _specializationService.Remove(specialization);
+            ErrorMessage = _specializationService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -90,6 +119,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedSpecialization = null;
         }
     }

@@ -43,6 +43,17 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<Class> ClassList
         {
             get => _classService.ClassList;
@@ -79,10 +90,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<CourseClass>(_courseClassService.Add, param => selectedCourseClass == null);
+                    addCommand = new RelayCommands<CourseClass>(Add, param => selectedCourseClass == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(CourseClass courseClass)
+        {
+            _courseClassService.Add(courseClass);
+            ErrorMessage = _courseClassService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -92,10 +109,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<CourseClass>(_courseClassService.Edit, param => selectedCourseClass != null);
+                    updateCommand = new RelayCommands<CourseClass>(Edit, param => selectedCourseClass != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(CourseClass courseClass)
+        {
+            _courseClassService.Edit(courseClass);
+            ErrorMessage = _courseClassService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -109,6 +132,12 @@ namespace SchoolManagementApp.ViewModels.AdminVM
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(CourseClass courseClass)
+        {
+            _courseClassService.Remove(courseClass);
+            ErrorMessage = _courseClassService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -126,6 +155,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedCourseClass = null;
         }
     }

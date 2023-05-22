@@ -56,6 +56,9 @@
             <Label Width="150" FontSize="15">Has Course:</Label>
             <CheckBox Name="HasCourse" IsChecked="{Binding ElementName=CourseClassGrid, Path=SelectedItem.HasCourse, UpdateSourceTrigger=PropertyChanged}"/>
         </WrapPanel>
+        <WrapPanel>
+            <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+        </WrapPanel>
         <DataGrid Name="CourseClassGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding CourseClassList}" SelectedItem="{Binding SelectedCourseClass}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>

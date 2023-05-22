@@ -7,7 +7,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<User> UserList { get; set; }
 
-        string errorMessage { get; }
+        string errorMessage { get; set; }
 
         ObservableCollection<User> GetAllComplete();
 

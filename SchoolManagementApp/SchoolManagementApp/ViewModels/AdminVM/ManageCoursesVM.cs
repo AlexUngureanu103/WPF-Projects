@@ -19,6 +19,17 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             CourseList = _courseService.GetAll();
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ObservableCollection<CourseType> CourseList
         {
             get => _courseService.CourseList;
@@ -43,10 +54,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<CourseType>(_courseService.Add, param => selectedCourse == null);
+                    addCommand = new RelayCommands<CourseType>(Add, param => selectedCourse == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(CourseType course)
+        {
+            _courseService.Add(course);
+            ErrorMessage = _courseService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -56,10 +73,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<CourseType>(_courseService.Edit, param => selectedCourse != null);
+                    updateCommand = new RelayCommands<CourseType>(Edit, param => selectedCourse != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(CourseType course)
+        {
+            _courseService.Edit(course);
+            ErrorMessage = _courseService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -69,10 +92,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<CourseType>(_courseService.Remove, param => selectedCourse != null);
+                    deleteCommand = new RelayCommands<CourseType>(Remove, param => selectedCourse != null);
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(CourseType course)
+        {
+            _courseService.Remove(course);
+            ErrorMessage = _courseService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -90,6 +119,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedCourse = null;
         }
     }

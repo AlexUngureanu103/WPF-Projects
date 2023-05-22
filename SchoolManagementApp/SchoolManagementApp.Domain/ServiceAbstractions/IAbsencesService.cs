@@ -8,7 +8,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<Absences> AbsenceList { get; set; }
 
-        string errorMessage { get; }
+        string errorMessage { get; set; }
 
         ObservableCollection<Absences> GetStudentAbsences(Student student);
 

@@ -35,6 +35,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             GradeValues = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
         public ObservableCollection<Class> ClassList
         {
             get => _classService.ClassList;
@@ -120,10 +130,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<Grade>(_gradeService.Add, param => selectedGrade == null);
+                    addCommand = new RelayCommands<Grade>(Add, param => selectedGrade == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(Grade grade)
+        {
+            _gradeService.Add(grade);
+            ErrorMessage = _gradeService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -133,10 +149,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<Grade>(_gradeService.Edit, param => selectedGrade != null);
+                    updateCommand = new RelayCommands<Grade>(Edit, param => selectedGrade != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(Grade grade)
+        {
+            _gradeService.Edit(grade);
+            ErrorMessage = _gradeService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -146,10 +168,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<Grade>(_gradeService.Remove, param => selectedGrade != null);
+                    deleteCommand = new RelayCommands<Grade>(Remove, param => selectedGrade != null);
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(Grade grade)
+        {
+            _gradeService.Remove(grade);
+            ErrorMessage = _gradeService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -167,6 +195,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedGrade = null;
             GradeList = _gradeService.GetAll();
             OnPropertyChanged(nameof(GradeList));

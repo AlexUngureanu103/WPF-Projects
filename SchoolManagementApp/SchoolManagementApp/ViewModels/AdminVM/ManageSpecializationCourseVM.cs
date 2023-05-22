@@ -42,6 +42,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             }
         }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
         public ObservableCollection<CourseType> CourseList
         {
             get => courseService.CourseList;
@@ -79,10 +89,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommands<SpecializationCourse>(specializationCourseService.Add, param => selectedSpecializationCourse == null);
+                    addCommand = new RelayCommands<SpecializationCourse>(Add, param => selectedSpecializationCourse == null);
                 }
                 return addCommand;
             }
+        }
+
+        private void Add(SpecializationCourse specializationCourse)
+        {
+            specializationCourseService.Add(specializationCourse);
+            ErrorMessage = specializationCourseService.errorMessage;
         }
 
         private ICommand updateCommand;
@@ -92,10 +108,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (updateCommand == null)
                 {
-                    updateCommand = new RelayCommands<SpecializationCourse>(specializationCourseService.Edit, param => selectedSpecializationCourse != null);
+                    updateCommand = new RelayCommands<SpecializationCourse>(Edit, param => selectedSpecializationCourse != null);
                 }
                 return updateCommand;
             }
+        }
+
+        private void Edit(SpecializationCourse specializationCourse)
+        {
+            specializationCourseService.Edit(specializationCourse);
+            ErrorMessage = specializationCourseService.errorMessage;
         }
 
         private ICommand deleteCommand;
@@ -105,10 +127,16 @@ namespace SchoolManagementApp.ViewModels.AdminVM
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommands<SpecializationCourse>(specializationCourseService.Remove, param => selectedSpecializationCourse != null);
+                    deleteCommand = new RelayCommands<SpecializationCourse>(Remove, param => selectedSpecializationCourse != null);
                 }
                 return deleteCommand;
             }
+        }
+
+        private void Remove(SpecializationCourse specializationCourse)
+        {
+            specializationCourseService.Remove(specializationCourse);
+            ErrorMessage = specializationCourseService.errorMessage;
         }
 
         private ICommand clearCommand;
@@ -126,6 +154,7 @@ namespace SchoolManagementApp.ViewModels.AdminVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedSpecializationCourse = null;
         }
     }

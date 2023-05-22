@@ -31,6 +31,9 @@
             <TextBox Name="txtCourse" Width="200" Text ="{Binding ElementName=CourseGrid, 
                 Path=SelectedItem.Course, UpdateSourceTrigger=PropertyChanged}"/>
         </WrapPanel>
+        <WrapPanel>
+            <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+        </WrapPanel>
         <DataGrid Name="CourseGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
                   ItemsSource="{Binding CourseList}" SelectedItem="{Binding SelectedCourse}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>

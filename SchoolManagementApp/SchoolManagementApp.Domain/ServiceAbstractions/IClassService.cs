@@ -8,7 +8,7 @@ namespace SchoolManagementApp.Domain.ServiceAbstractions
     {
         ObservableCollection<Class> ClassList { get; set; }
 
-        string errorMessage { get; }
+        string errorMessage { get; set; }
 
         Class GetClassByClassMasterId(Teacher teacher);
     }
