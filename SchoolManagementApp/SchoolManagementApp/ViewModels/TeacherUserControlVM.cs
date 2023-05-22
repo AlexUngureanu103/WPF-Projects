@@ -1,8 +1,11 @@
-﻿using SchoolManagementApp.Domain.Models;
+﻿using SchoolManagementApp.Commands;
+using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.ApplicationLayer;
 using System;
+using System.Windows;
+using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels
@@ -38,6 +41,24 @@ namespace SchoolManagementApp.ViewModels
                 isClassMaster = value;
                 OnPropertyChanged(nameof(IsClassMaster));
             }
+        }
+
+        private ICommand teacherInfoCommand;
+        public ICommand TeacherInfoCommand
+        {
+            get
+            {
+                if(teacherInfoCommand == null)
+                {
+                    teacherInfoCommand = new RelayCommand(DisplayInfo);
+                }
+                return teacherInfoCommand;
+            }
+        }
+
+        private void DisplayInfo()
+        {
+            MessageBox.Show($"Email: {teacher.User.Email}\nName: {teacher.User.Person.FirstName} {teacher.User.Person.LastName}", "Info");
         }
     }
 }

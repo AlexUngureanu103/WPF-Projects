@@ -16,7 +16,7 @@ namespace SchoolManagementApp.DataAccess.Repositories
         public new IEnumerable<Student> GetAll()
         {
             var students = GetRecords()
-                .Include(c => c.Class)
+                .Include(c => c.Class.Specialization)
                 .Include(c => c.Class.Teacher.User.Person)
                 .Include(c => c.User)
                 .Include(c => c.User.Person)

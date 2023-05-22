@@ -1,4 +1,5 @@
 ﻿using SchoolManagementApp.Services.ApplicationLayer;
+using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.Views.StudentViews;
 using System;
 using System.Windows;
@@ -15,12 +16,16 @@ namespace SchoolManagementApp.Views
 
         private readonly IUserControlFactory _userControlFactory;
 
-        public StudentUserControl(Frame windowContainer, IUserControlFactory userControlFactory)
+        private readonly StudentUserControlVM studentUserControlVM;
+        public StudentUserControl(Frame windowContainer, IUserControlFactory userControlFactory, StudentUserControlVM studentUserControlVM)
         {
             WindowContainer = windowContainer ?? throw new ArgumentNullException(nameof(windowContainer));
             this._userControlFactory = userControlFactory ?? throw new ArgumentNullException(nameof(userControlFactory));
+            this.studentUserControlVM = studentUserControlVM ?? throw new ArgumentNullException(nameof(studentUserControlVM));
 
             InitializeComponent();
+
+            DataContext = this.studentUserControlVM;
         }
 
         private void Grades_Click(object sender, RoutedEventArgs e)

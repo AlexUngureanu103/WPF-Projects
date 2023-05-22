@@ -27,6 +27,7 @@
                 <MenuItem Header="Repeaters" Click="Repeaters_Click"/>
             </MenuItem>
             <MenuItem Header="Back" Click="Back_Click"/>
+            <MenuItem Header="Info" Command="{Binding ClassMasterInfoCommand}"/>
             <MenuItem Header="Logout" Click="Logout_Click"/>
         </Menu>
 
