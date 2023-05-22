@@ -56,6 +56,19 @@ namespace SchoolManagementApp.ViewModels
             }
         }
 
+        private ICommand displayAbout;
+        public ICommand DisplayAbout
+        {
+            get
+            {
+                if(displayAbout == null)
+                {
+                    displayAbout = new RelayCommand(loginCommands.About);
+                }
+                return displayAbout;
+            }
+        }
+
         private User user;
         public User User
         {

@@ -52,5 +52,10 @@ namespace SchoolManagementApp.Commands
             else
                 _loginWindowVM.AccountType = _loginWindowVM.User.Role.AssignedRole;
         }
+
+        public void About()
+        {
+            MessageBox.Show("Nume: Ungureanu Alexandru\nGrupa: 10LF213\nSpecializare: Informatica","About");
+        }
     }
 }
