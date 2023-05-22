@@ -346,6 +346,7 @@
     <Compile Include="ViewModels\AdminVM\ManageSpecializationsVM.cs" />
     <Compile Include="ViewModels\AdminVM\ManageTeachersVM.cs" />
     <Compile Include="ViewModels\AdminVM\ManageTeachingClassesVM.cs" />
+    <Compile Include="ViewModels\AdminVM\ManageTeachingMaterialsVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\ClassMasterUserControlVM.cs" />
     <Compile Include="ViewModels\ClassMasterVM\ManageAbsencesClassMasterVM.cs" />
@@ -402,6 +403,9 @@
     </Compile>
     <Compile Include="Views\AdminViews\ManageTeachingClassesAdminControl.xaml.cs">
       <DependentUpon>ManageTeachingClassesAdminControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminViews\ManageTeachingMaterialsAdminUserControl.xaml.cs">
+      <DependentUpon>ManageTeachingMaterialsAdminUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminViews\ManageUsers.xaml.cs">
       <DependentUpon>ManageUsers.xaml</DependentUpon>
@@ -519,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminViews\ManageTeachingClassesAdminControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminViews\ManageTeachingMaterialsAdminUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

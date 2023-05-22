@@ -97,6 +97,11 @@ namespace SchoolManagementApp.Views
         {
             AdminControls.Navigate(_userControlFactory.Create<ManageTeachingClassesAdminControl>());
         }
+        
+        private void TeachingMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            AdminControls.Navigate(_userControlFactory.Create<ManageTeachingMaterialsAdminUserControl>());
+        }
     }
 }
 

@@ -28,6 +28,7 @@
                 <MenuItem Header="Specializations" Click="ManageSpecializations_Click"/>
                 <MenuItem Header="Absences" Click="Absences_Click"/>
                 <MenuItem Header="Grades" Click="Grades_Click"/>
+                <MenuItem Header="Teaching Material" Click="TeachingMaterial_Click"/>
             </MenuItem>
             <MenuItem Header="Asociations">
                 <MenuItem Header="Classes" Click="ManageClasses_Click"/>

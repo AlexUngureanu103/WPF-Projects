@@ -123,6 +123,7 @@ namespace SchoolManagementApp.Services.ApplicationLayer
             builder.RegisterType<ManageTeachingClassesVM>().AsSelf();
 
             builder.RegisterType<ManageSpecializationsVM>().AsSelf();
+            builder.RegisterType<ManageTeachingMaterialsVM>().AsSelf();
 
             //TeacherControls
 
@@ -175,6 +176,7 @@ namespace SchoolManagementApp.Services.ApplicationLayer
             builder.RegisterType<ManageGradesAdminControl>().AsSelf();
             builder.RegisterType<ManageAbsencesAdminControl>().AsSelf();
             builder.RegisterType<ManageTeachingClassesAdminControl>().AsSelf();
+            builder.RegisterType<ManageTeachingMaterialsAdminUserControl>().AsSelf();
 
             //TeacherViews
             builder.RegisterType<ManageStudentsTeacherControl>().AsSelf();
