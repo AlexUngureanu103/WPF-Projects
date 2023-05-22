@@ -136,7 +136,7 @@ namespace SchoolManagementApp.ViewModels.StudentVM
             GradeList = new ObservableCollection<Grade>(GradeList.Where(c => c.IsThesis));
         }
 
-        public void AllAbsences()
+        private void AllAbsences()
         {
             GradeList = _gradeService.GetStudentGrades(student);
         }

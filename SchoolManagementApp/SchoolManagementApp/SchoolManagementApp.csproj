@@ -321,6 +321,8 @@
     <Compile Include="Services\BusinessLayer\AbsencesService.cs" />
     <Compile Include="Services\BusinessLayer\AverageGradeService.cs" />
     <Compile Include="Services\BusinessLayer\ClassService.cs" />
+    <Compile Include="Services\BusinessLayer\Commands\RepeaterStudents.cs" />
+    <Compile Include="Services\BusinessLayer\Commands\StudentGeneralAverage.cs" />
     <Compile Include="Services\BusinessLayer\CourseClassService.cs" />
     <Compile Include="Services\BusinessLayer\CourseClassTeacherService.cs" />
     <Compile Include="Services\BusinessLayer\CourseService.cs" />

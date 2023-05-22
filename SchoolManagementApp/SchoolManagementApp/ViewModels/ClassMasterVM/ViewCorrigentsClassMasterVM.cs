@@ -119,7 +119,6 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             }
         }
 
-
         private void Clear()
         {
             SelectedCourse = null;

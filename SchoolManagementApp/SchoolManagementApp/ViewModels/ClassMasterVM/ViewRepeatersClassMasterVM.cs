@@ -1,12 +1,11 @@
-﻿using SchoolManagementApp.Domain;
-using SchoolManagementApp.Domain.Dtos;
+﻿using SchoolManagementApp.Domain.Dtos;
 using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.ApplicationLayer;
+using SchoolManagementApp.Services.BusinessLayer.Commands;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using To_Do_List_Management_App.ViewModels;
 
 namespace SchoolManagementApp.ViewModels.ClassMasterVM
@@ -25,12 +24,15 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
 
         public readonly Class ownClass;
 
-        public ViewRepeatersClassMasterVM(IAverageGradeService averageGradeService, IClassService classService, ITeacherService teacherService, IStudentService studentService, LoggedUser loggedUser)
+        private readonly RepeaterStudents repeaterStudents;
+
+        public ViewRepeatersClassMasterVM(IAverageGradeService averageGradeService, IClassService classService, ITeacherService teacherService, IStudentService studentService, LoggedUser loggedUser, RepeaterStudents repeaterStudents)
         {
             _averageGradeService = averageGradeService ?? throw new ArgumentNullException(nameof(averageGradeService));
             _classService = classService ?? throw new ArgumentNullException(nameof(classService));
             _teacherService = teacherService ?? throw new ArgumentNullException(nameof(teacherService));
             _studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
+            this.repeaterStudents = repeaterStudents ?? throw new ArgumentNullException(nameof(repeaterStudents));
 
             classMaster = _teacherService.GetTeacherById(loggedUser.User.Id);
             ownClass = _classService.GetClassByClassMasterId(classMaster);
@@ -62,20 +64,7 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
 
         private void GetRepeaterStudents()
         {
-            StudentRepeaterList = new ObservableCollection<RepeaterStudentDto>();
-
-            foreach (Student student in StudentList)
-            {
-                var corrigentCourses = _averageGradeService.GetStudentAverageGrades(student)
-                    .Where(c => c.Semester == 0 && c.Average < 5).ToList()
-                    .Select(c => c.ClassCourse.CourseType)
-                    .ToList();
-                var reapeater = Mapper.CreateRepeaterStudentDto(student, corrigentCourses);
-                if (reapeater != null)
-                {
-                    StudentRepeaterList.Add(reapeater);
-                }
-            }
+            StudentRepeaterList = repeaterStudents.GetRepeaterStudents(StudentList);
         }
     }
 }

@@ -82,8 +82,6 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             }
         }
 
-        #region Grade
-
         public ObservableCollection<Absences> AbsenceList
         {
             get => _absenceService.AbsenceList;
@@ -219,7 +217,6 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
                 return clearCommand;
             }
         }
-        #endregion
 
         private void Clear()
         {

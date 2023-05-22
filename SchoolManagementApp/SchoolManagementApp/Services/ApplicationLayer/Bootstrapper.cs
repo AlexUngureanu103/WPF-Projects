@@ -5,6 +5,7 @@ using SchoolManagementApp.Domain;
 using SchoolManagementApp.Domain.RepositoriesAbstractions;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.BusinessLayer;
+using SchoolManagementApp.Services.BusinessLayer.Commands;
 using SchoolManagementApp.ViewModels;
 using SchoolManagementApp.ViewModels.AdminVM;
 using SchoolManagementApp.ViewModels.ClassMasterVM;
@@ -50,6 +51,9 @@ namespace SchoolManagementApp.Services.ApplicationLayer
             builder.Register(ctx => frame).AsSelf().SingleInstance();
 
             builder.RegisterType<LoggedUser>().AsSelf().SingleInstance();
+
+            builder.RegisterType<StudentGeneralAverage>().AsSelf();
+            builder.RegisterType<RepeaterStudents>().AsSelf();
 
             return builder.Build();
         }

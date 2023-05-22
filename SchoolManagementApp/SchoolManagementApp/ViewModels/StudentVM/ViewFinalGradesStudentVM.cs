@@ -3,11 +3,11 @@ using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.ApplicationLayer;
+using SchoolManagementApp.Services.BusinessLayer.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
@@ -24,11 +24,14 @@ namespace SchoolManagementApp.ViewModels.StudentVM
 
         private readonly Student student;
 
-        public ViewFinalGradesStudentVM(IAverageGradeService averageGradeService, ICourseService courseService, IStudentService studentService, LoggedUser loggedUser)
+        private readonly StudentGeneralAverage studentGeneralAverage;
+
+        public ViewFinalGradesStudentVM(IAverageGradeService averageGradeService, ICourseService courseService, IStudentService studentService, LoggedUser loggedUser, StudentGeneralAverage studentGeneralAverage)
         {
             this._averageGradeService = averageGradeService ?? throw new ArgumentNullException(nameof(averageGradeService));
             this._courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
             this._studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
+            this.studentGeneralAverage = studentGeneralAverage ?? throw new ArgumentNullException(nameof(studentGeneralAverage));
 
             this.student = _studentService.GetStudentByUserId(loggedUser.User);
 
@@ -154,22 +157,9 @@ namespace SchoolManagementApp.ViewModels.StudentVM
             }
         }
 
-
         private void DisplayGeneralAverage()
         {
-            var studentsFinalGrades = _averageGradeService.GetStudentAverageGrades(student).Where(c => c.Semester == 0);
-            if (studentsFinalGrades == null)
-                return;
-            if (studentsFinalGrades.Count() != CourseList.Count)
-            {
-                MessageBox.Show("Please finalize every subject grades.", "Error");
-                return;
-            }
-            else
-            {
-                double final = studentsFinalGrades.Sum(c => c.Average) / studentsFinalGrades.Count();
-                MessageBox.Show($"Student : {student.User.Person.FirstName}  {student.User.Person.LastName} has the General Average: {final}");
-            }
+            studentGeneralAverage.DisplayGeneralAverage(student);
         }
 
         private void GetAllStudentAverageGrades()

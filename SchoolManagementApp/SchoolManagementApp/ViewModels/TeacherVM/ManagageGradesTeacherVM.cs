@@ -83,8 +83,6 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             }
         }
 
-        #region Grade
-
         public ObservableCollection<Grade> GradeList
         {
             get => _gradeService.GradeList;
@@ -235,7 +233,6 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
                 return clearCommand;
             }
         }
-        #endregion
 
         private void Clear()
         {

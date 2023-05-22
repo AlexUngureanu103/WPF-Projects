@@ -4,11 +4,11 @@ using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.ServiceAbstractions;
 using SchoolManagementApp.Services.ApplicationLayer;
+using SchoolManagementApp.Services.BusinessLayer.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using To_Do_List_Management_App.ViewModels;
 
@@ -32,7 +32,9 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
 
         public readonly Class ownClass;
 
-        public ManageFinalGradesClassMasterVM(IAverageGradeService averageGradeService, IClassService classService, ICourseService courseService, ITeacherService teacherService, ICourseClassService courseClassService, IStudentService studentService, LoggedUser loggedUser)
+        private readonly StudentGeneralAverage studentGeneralAverage;
+
+        public ManageFinalGradesClassMasterVM(IAverageGradeService averageGradeService, IClassService classService, ICourseService courseService, ITeacherService teacherService, ICourseClassService courseClassService, IStudentService studentService, LoggedUser loggedUser, StudentGeneralAverage studentGeneralAverage)
         {
             _averageGradeService = averageGradeService ?? throw new ArgumentNullException(nameof(averageGradeService));
             _classService = classService ?? throw new ArgumentNullException(nameof(classService));
@@ -40,6 +42,7 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
             _teacherService = teacherService ?? throw new ArgumentNullException(nameof(teacherService));
             _studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
             _courseClassService = courseClassService ?? throw new ArgumentNullException(nameof(courseClassService));
+            this.studentGeneralAverage = studentGeneralAverage ?? throw new ArgumentNullException(nameof(studentGeneralAverage));
 
             classMaster = _teacherService.GetTeacherById(loggedUser.User.Id);
             ownClass = _classService.GetClassByClassMasterId(classMaster);
@@ -197,19 +200,7 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
 
         private void DisplayGeneralAverage()
         {
-            var studentsFinalGrades = _averageGradeService.GetStudentAverageGrades(selectedStudent).Where(c => c.Semester == 0);
-            if (studentsFinalGrades == null)
-                return;
-            if (studentsFinalGrades.Count() != CourseList.Count)
-            {
-                MessageBox.Show("Please finalize every subject grades.", "Error");
-                return;
-            }
-            else
-            {
-                double final = studentsFinalGrades.Sum(c => c.Average) / studentsFinalGrades.Count();
-                MessageBox.Show($"Student : {selectedStudent.User.Person.FirstName}  {selectedStudent.User.Person.LastName} has the General Average: {final}");
-            }
+            studentGeneralAverage.DisplayGeneralAverage(selectedStudent);
         }
 
         private void FinalGradesOnly()
@@ -219,6 +210,7 @@ namespace SchoolManagementApp.ViewModels.ClassMasterVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedCourse = null;
             SelectedStudent = null;
         }

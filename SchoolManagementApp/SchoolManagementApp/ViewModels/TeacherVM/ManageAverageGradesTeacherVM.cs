@@ -37,7 +37,6 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
             teacher = _teacherService.GetTeacherById(this.loggedUser.User.Id);
             TeachingClassesList = _courseClassTeacerService.GetTeachingClasses(teacher.Id);
 
-            //StudentList = _studentService.GetAll();
             Semesters = new List<int> { 1, 2 };
         }
 
@@ -154,6 +153,7 @@ namespace SchoolManagementApp.ViewModels.TeacherVM
 
         private void Clear()
         {
+            ErrorMessage = string.Empty;
             SelectedTeachingClass = null;
         }
     }
