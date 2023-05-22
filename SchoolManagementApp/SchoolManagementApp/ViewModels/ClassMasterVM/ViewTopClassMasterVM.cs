@@ -3,7 +3,7 @@ using SchoolManagementApp.Domain.Dtos;
 using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.ServiceAbstractions;
-using SchoolManagementApp.Services;
+using SchoolManagementApp.Services.Application;
 using System;
 using System.Collections.ObjectModel;
 using To_Do_List_Management_App.ViewModels;

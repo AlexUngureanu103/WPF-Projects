@@ -2,8 +2,7 @@
 using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.ServiceAbstractions;
-using SchoolManagementApp.Services;
-using SchoolManagementApp.Services.RepositoryServices;
+using SchoolManagementApp.Services.Application;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +17,6 @@ namespace SchoolManagementApp.ViewModels.StudentVM
     {
         private readonly IAverageGradeService _averageGradeService;
 
-        private readonly IClassService _classService;
 
         private readonly ICourseService _courseService;
 
@@ -26,10 +24,9 @@ namespace SchoolManagementApp.ViewModels.StudentVM
 
         private readonly Student student;
 
-        public ViewFinalGradesStudentVM(IAverageGradeService averageGradeService, IClassService classService, ICourseService courseService, IStudentService studentService, LoggedUser loggedUser)
+        public ViewFinalGradesStudentVM(IAverageGradeService averageGradeService, ICourseService courseService, IStudentService studentService, LoggedUser loggedUser)
         {
             this._averageGradeService = averageGradeService ?? throw new ArgumentNullException(nameof(averageGradeService));
-            this._classService = classService ?? throw new ArgumentNullException(nameof(classService));
             this._courseService = courseService ?? throw new ArgumentNullException(nameof(courseService));
             this._studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
 

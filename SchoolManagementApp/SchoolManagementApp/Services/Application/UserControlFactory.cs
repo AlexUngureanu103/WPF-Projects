@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Controls;
 
-namespace SchoolManagementApp.Services
+namespace SchoolManagementApp.Services.Application
 {
     public class UserControlFactory : IUserControlFactory
     {

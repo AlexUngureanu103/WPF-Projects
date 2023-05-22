@@ -1,4 +1,4 @@
-﻿using SchoolManagementApp.Services;
+﻿using SchoolManagementApp.Services.Application;
 using SchoolManagementApp.Views.AdminViews;
 using System;
 using System.Windows;

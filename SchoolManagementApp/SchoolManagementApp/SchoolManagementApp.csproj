@@ -314,10 +314,10 @@
     <Compile Include="Converters\TeachingMaterialConvert.cs" />
     <Compile Include="Converters\UserConvert.cs" />
     <Compile Include="Enums\AddOrEdit.cs" />
-    <Compile Include="Services\AuthorizationService.cs" />
-    <Compile Include="Services\Bootstrapper.cs" />
-    <Compile Include="Services\IUserControlFactory.cs" />
-    <Compile Include="Services\LoggedUser.cs" />
+    <Compile Include="Services\Application\AuthorizationService.cs" />
+    <Compile Include="Services\Application\Bootstrapper.cs" />
+    <Compile Include="Services\Application\IUserControlFactory.cs" />
+    <Compile Include="Services\Application\LoggedUser.cs" />
     <Compile Include="Services\RepositoryServices\AbsencesService.cs" />
     <Compile Include="Services\RepositoryServices\AverageGradeService.cs" />
     <Compile Include="Services\RepositoryServices\ClassService.cs" />
@@ -332,9 +332,8 @@
     <Compile Include="Services\RepositoryServices\TeacherService.cs" />
     <Compile Include="Services\RepositoryServices\TeachingMaterialsService.cs" />
     <Compile Include="Services\RepositoryServices\UserService.cs" />
-    <Compile Include="Services\UserControlFactory.cs" />
+    <Compile Include="Services\Application\UserControlFactory.cs" />
     <Compile Include="Services\Validators\LoginValidators.cs" />
-    <Compile Include="Services\Validators\UsersValidators.cs" />
     <Compile Include="ViewModels\AdminVM\ManageAbsencesVM.cs" />
     <Compile Include="ViewModels\AdminVM\ManageClassesVM.cs" />
     <Compile Include="ViewModels\AdminVM\ManageCourseClassesVM.cs" />
@@ -625,9 +624,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Dtos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagementApp.DataAccess\SchoolManagementApp.DataAccess.csproj">
       <Project>{1cdd6f5f-4f16-44c7-9039-5fbf1912d9fe}</Project>

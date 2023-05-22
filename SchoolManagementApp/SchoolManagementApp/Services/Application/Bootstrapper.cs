@@ -18,7 +18,7 @@ using SchoolManagementApp.Views.TeacherViews;
 using System.Configuration;
 using System.Windows.Controls;
 
-namespace SchoolManagementApp.Services
+namespace SchoolManagementApp.Services.Application
 {
     internal class Bootstrapper
     {

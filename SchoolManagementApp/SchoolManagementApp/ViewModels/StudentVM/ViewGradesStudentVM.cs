@@ -2,7 +2,7 @@
 using SchoolManagementApp.Domain.Models;
 using SchoolManagementApp.Domain.Models.StudentRelated;
 using SchoolManagementApp.Domain.ServiceAbstractions;
-using SchoolManagementApp.Services;
+using SchoolManagementApp.Services.Application;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
