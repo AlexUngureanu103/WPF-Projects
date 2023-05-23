@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="SchoolManagementApp.Views.AdminViews.ManagePersonsAdminCrontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:convert ="clr-namespace:SchoolManagementApp.Converters"
+             xmlns:local="clr-namespace:SchoolManagementApp.Views.AdminViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <convert:PersonConvert x:Key="personConvert" />
+        </StackPanel.Resources>
+        <WrapPanel>
+            <Button Content="Add" Margin="15" Width="100" Height="30" 
+                    Command="{Binding AddCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource personConvert}">
+                        <Binding ElementName="txtFirstName" Path="Text" />
+                        <Binding ElementName="txtLastName" Path="Text" />
+                        <Binding ElementName="txtDateOfBirth" Path="SelectedDate" />
+                        <Binding ElementName="txtAdress" Path="Text" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="Edit" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}"
+                    CommandParameter="{Binding ElementName=PersonGrid, Path=SelectedItem}"/>
+            <Button Content="Delete" Margin="15" Width="100" Height="30" Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding ElementName=PersonGrid, Path=SelectedItem}"/>
+            <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
+        </WrapPanel>
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" FontSize="15">First Name:</Label>
+            <TextBox Name="txtFirstName" Width="200" Text="{Binding ElementName=PersonGrid ,
+                Path=SelectedItem.FirstName , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Last Name:</Label>
+            <TextBox Name="txtLastName" Width="200" Text="{Binding ElementName=PersonGrid,
+                Path=SelectedItem.LastName , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Adress:</Label>
+            <TextBox x:Name="txtAdress" Width="200" Text="{Binding ElementName=PersonGrid ,
+                Path=SelectedItem.Address , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Date of Birth:</Label>
+            <DatePicker x:Name="txtDateOfBirth" SelectedDate="{Binding ElementName=PersonGrid ,
+                Path=SelectedItem.DateOfBirth , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+        </WrapPanel>
+        <DataGrid Name="PersonGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                  ItemsSource="{Binding PersonList}" SelectedItem="{Binding SelectedPerson}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Date of Birth" Binding="{Binding DateOfBirth}"/>
+                <DataGridTextColumn Header="Adress" Binding="{Binding Address}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>

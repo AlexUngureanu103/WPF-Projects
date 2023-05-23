@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="SchoolManagementApp.Views.AdminViews.ManageCourseClassesAdminControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:convert ="clr-namespace:SchoolManagementApp.Converters"
+             xmlns:local="clr-namespace:SchoolManagementApp.Views.AdminViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <convert:CourseClassConvert x:Key="courseClassConvert" />
+        </StackPanel.Resources>
+        <WrapPanel>
+            <Button Content="Add" Margin="15" Width="100" Height="30" 
+                    Command="{Binding AddCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource courseClassConvert}">
+                        <Binding ElementName="Class" Path="SelectedValue"/>
+                        <Binding ElementName="CourseType" Path="SelectedValue"/>
+                        <Binding ElementName="HasCourse" Path="IsChecked"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="Edit" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}"
+                    CommandParameter="{Binding ElementName=CourseClassGrid, Path=SelectedItem}"/>
+            <Button Content="Delete" Margin="15" Width="100" Height="30" Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding ElementName=CourseClassGrid, Path=SelectedItem}"/>
+            <Button Content="Clear" Margin="15" Width="100" Height="30" Command="{Binding ClearCommand}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Class:</Label>
+            <ComboBox Name="Class" Width="200" ItemsSource="{Binding ClassList}" 
+                      SelectedItem="{Binding ElementName=CourseClassGrid ,Path=SelectedItem.Class , UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Class: {0}   Specialization: {1} ">
+                                    <Binding Path="Name"/>
+                                    <Binding Path="Specialization.Name"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </WrapPanel>
+
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Course:</Label>
+            <ComboBox Name="CourseType" Width="200" ItemsSource="{Binding CourseList}" DisplayMemberPath="Course"
+                      SelectedItem="{Binding ElementName=CourseClassGrid ,Path=SelectedItem.CourseType , UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Width="150" FontSize="15">Has Course:</Label>
+            <CheckBox Name="HasCourse" IsChecked="{Binding ElementName=CourseClassGrid, Path=SelectedItem.HasCourse, UpdateSourceTrigger=PropertyChanged}"/>
+        </WrapPanel>
+        <WrapPanel>
+            <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+        </WrapPanel>
+        <DataGrid Name="CourseClassGrid" AutoGenerateColumns="False" Margin="0,15,0,0" Height="250"
+                  ItemsSource="{Binding CourseClassList}" SelectedItem="{Binding SelectedCourseClass}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Class" Binding="{Binding Class.Name}"/>
+                <DataGridTextColumn Header="Specialization" Binding="{Binding Class.Specialization.Name}"/>
+                <DataGridTextColumn Header="Course" Binding="{Binding CourseType.Course}"/>
+                <DataGridTextColumn Header="Has Course" Binding="{Binding HasCourse}"/>
+                 </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>
