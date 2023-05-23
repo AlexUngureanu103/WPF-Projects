@@ -10,7 +10,7 @@ namespace SchoolManagementApp.DataAccess
         {
         }
 
-        public SchoolManagementDbContext() : base("Server=localhost;Database=SchoolManagement;User Id=AlexUngureanu;Password=123456;") { }
+        public SchoolManagementDbContext() : base("name=SchoolManagement") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
